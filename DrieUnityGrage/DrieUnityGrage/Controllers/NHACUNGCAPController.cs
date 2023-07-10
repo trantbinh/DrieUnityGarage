@@ -21,7 +21,7 @@ namespace DrieUnityGrage.Controllers
         }
 
         // GET: NHACUNGCAP/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(String id)
         {
             if (id == null)
             {
@@ -46,7 +46,7 @@ namespace DrieUnityGrage.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaNCC,TenNCC,DiaChiNCC,DienThoaiNCC,MaSoThueNCC,Email,LoaiHinh,HoTenNguoiDaiDien")] NHACUNGCAP nHACUNGCAP)
+        public ActionResult Create([Bind(Include = "MaNCC,TenNCC,DiaChiNCC,DienThoaiNCC,MaSoThueNCC,Email,LoaiHinh,HoTenNguoiDaiDien")] NHACUNGCAP nHACUNGCAP, String LoaiHinh)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace DrieUnityGrage.Controllers
                     int newMaNCC = lastMaNCCNum + 1;
                     nHACUNGCAP.MaNCC = "NC0" + newMaNCC.ToString();
                 }
-                
+                nHACUNGCAP.LoaiHinh= LoaiHinh;
                 db.NHACUNGCAPs.Add(nHACUNGCAP);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -75,7 +75,7 @@ namespace DrieUnityGrage.Controllers
         }
 
         // GET: NHACUNGCAP/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(String id)
         {
             if (id == null)
             {

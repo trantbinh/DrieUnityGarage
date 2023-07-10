@@ -178,6 +178,7 @@
     <Content Include="Content\bootstrap5\js\bootstrap.js" />
     <Content Include="Content\bootstrap5\js\bootstrap.min.js" />
     <Content Include="Content\HomePage_Layout.css" />
+    <Content Include="Content\NCC_Index.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

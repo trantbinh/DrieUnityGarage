@@ -1,81 +1,88 @@
 ﻿@model DrieUnityGrage.Models.NHACUNGCAP
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Xoá nhà cung cấp";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>NHACUNGCAP</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenNCC)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TenNCC)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DiaChiNCC)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DiaChiNCC)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DienThoaiNCC)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DienThoaiNCC)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MaSoThueNCC)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaSoThueNCC)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LoaiHinh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LoaiHinh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HoTenNguoiDaiDien)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HoTenNguoiDaiDien)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6" style="text-align:center">
+            <h2>Xác nhận xoá thông tin nhà cung cấp</h2>
         </div>
-    }
+        <div class="col-lg-3"></div>
+    </div>
+   
+
+    <div class="container col-8">
+        <hr />
+        <div class="form-horizontal form-decor">
+
+            <div class="form-group space-field">
+                Tên nhà cung cấp:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.TenNCC)
+                </div>
+            </div>
+
+            <div class="form-group space-field">
+                Địa chỉ:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.DiaChiNCC)
+                </div>
+            </div>
+
+            <div class="form-group space-field">
+                Điện thoại:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.DienThoaiNCC)
+                </div>
+            </div>
+
+            <div class="form-group space-field">
+                Mã số thuế:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.MaSoThueNCC)
+                </div>
+            </div>
+
+            <div class="form-group space-field">
+                Email:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.Email)
+                </div>
+            </div>
+            <div class="form-group space-field">
+                Loại hình kinh doanh:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.LoaiHinh)
+                </div>
+            </div>
+
+            <div class="form-group space-field">
+                Người đại diện:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.HoTenNguoiDaiDien)
+                </div>
+            </div>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group" style="margin-top:40px">
+                <div class="row">
+                    <div class="col-lg-5 align-bottom">
+                        @Html.ActionLink("< Quay về", "Index", null, new { @class = "nonedecor" })
+                    </div>
+                    <div class="col-lg-7">
+                        <input type="submit" value="Xoá thông tin" class="btn btn-danger delete-btn " />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+   
 </div>
