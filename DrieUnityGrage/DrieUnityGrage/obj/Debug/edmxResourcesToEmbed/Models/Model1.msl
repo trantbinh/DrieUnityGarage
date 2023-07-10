@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DrieUnityGarageModelStoreContainer" CdmEntityContainer="DrieUnityGarageEntities">
+    <EntitySetMapping Name="NHACUNGCAPs">
+      <EntityTypeMapping TypeName="DrieUnityGarageModel.NHACUNGCAP">
+        <MappingFragment StoreEntitySet="NHACUNGCAP">
+          <ScalarProperty Name="MaNCC" ColumnName="MaNCC" />
+          <ScalarProperty Name="TenNCC" ColumnName="TenNCC" />
+          <ScalarProperty Name="DiaChiNCC" ColumnName="DiaChiNCC" />
+          <ScalarProperty Name="DienThoaiNCC" ColumnName="DienThoaiNCC" />
+          <ScalarProperty Name="MaSoThueNCC" ColumnName="MaSoThueNCC" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="LoaiHinh" ColumnName="LoaiHinh" />
+          <ScalarProperty Name="HoTenNguoiDaiDien" ColumnName="HoTenNguoiDaiDien" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

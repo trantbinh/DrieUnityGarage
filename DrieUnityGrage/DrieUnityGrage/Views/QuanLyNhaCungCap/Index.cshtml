@@ -1,0 +1,72 @@
+﻿@model IEnumerable<DrieUnityGrage.Models.NHACUNGCAP>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<h2>Index</h2>
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenNCC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaChiNCC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DienThoaiNCC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaSoThueNCC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoaiHinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HoTenNguoiDaiDien)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenNCC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiaChiNCC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DienThoaiNCC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaSoThueNCC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoaiHinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoTenNguoiDaiDien)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaNCC }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaNCC }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaNCC })
+        </td>
+    </tr>
+}
+
+</table>

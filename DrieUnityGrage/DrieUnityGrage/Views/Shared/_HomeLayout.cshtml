@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+
+<style type="text/css">
+
+    .sidebar li .submenu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .sidebar .nav-link {
+        font-weight: 500;
+        color: var(--bs-dark);
+    }
+
+        .sidebar .nav-link:hover {
+            color: var(--bs-primary);
+        }
+</style>
+
+
+<script type="text/javascript">
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        document.querySelectorAll('.sidebar .nav-link').forEach(function (element) {
+
+            element.addEventListener('click', function (e) {
+
+                let nextEl = element.nextElementSibling;
+                let parentEl = element.parentElement;
+
+                if (nextEl) {
+                    e.preventDefault();
+                    let mycollapse = new bootstrap.Collapse(nextEl);
+
+                    if (nextEl.classList.contains('show')) {
+                        mycollapse.hide();
+                    } else {
+                        mycollapse.show();
+                        // find other submenus with class=show
+                        var opened_submenu = parentEl.parentElement.querySelector('.submenu.show');
+                        // if it exists, then close all of them
+                        if (opened_submenu) {
+                            new bootstrap.Collapse(opened_submenu);
+                        }
+
+                    }
+                }
+
+            });
+        })
+
+    });
+    // DOMContentLoaded  end
+</script>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DrieUnity Garage | @ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/HomePage_Layout.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap5/css/bootstrap.css" />
+    <script src="~/Content/bootstrap5/js/bootstrap.js"></script>
+</head>
+<body class="body-container">
+    <header id="header" id="container-fluid">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="header-name-container col-lg-2">
+                <img src="~/Images/HomePage_Header/HomePage_HeaderName.png" alt="Name garage" class="header-name-image" />
+            </div>
+            <div class="col-lg-7"></div>
+            <div class="col-lg-1">
+                <img src="~/Images/Logo/Logo.png" alt="Name garage" class="header-logo" />
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="header-name-container col-lg-2">
+                <img src="~/Images/HomePage_Header/HomePage_HeaderDescription.png" alt="Name garage" width="250px" />
+            </div>
+            <div class="col-lg-1"></div>
+            <div class="header-name-container col-lg-3">
+                <img src="~/Images/HomePage_Header/HomePage_HeaderPhoneNum.png" alt="Name garage" width="340px" />
+            </div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-1">
+                <img src="~/Images/Logo/Logo_Name.png" alt="Name garage" class="header-logoname" />
+
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid" style="padding:0">
+        <div class="row" style="padding:0">
+            <div class="col-lg-2">
+                <nav class="sidebar_css sidebar">
+
+                    <ul class="nav flex-column" id="nav_accordion">
+                        <li class="btn-signin">
+                            <a class="btn-signin-text" href="#">Đăng nhập</a>
+                        </li>
+                        <li class="btn-signin">
+                            <a class="btn-signin-text" href="#">Đăng ký</a>
+                        </li>
+                        <li class="nav-item" style="margin-top:15px;">
+                            <a class="nav-link nav-link-text" href="#" style="padding-left:0">
+                                <img src="~/Images/Icon/icon_QLKhachHang28x28.png" class="icon" /> Quản lý khách hàng
+                            </a>
+                        </li>
+                        <li class="nav-item has-submenu"style="margin-top:8px;">
+                            <a class="nav-link" href="#" style="padding-left:0">
+                                <img src="~/Images/Icon/icon_QLCSKH28x28.png" class="icon" /> Quản lý CSKH <i class="bi small bi-caret-down-fill"></i>
+                            </a>
+                            <ul class="submenu collapse">
+                                <li><a class="nav-link" href="#">Submenu item 4 </a></li>
+                                <li><a class="nav-link" href="#">Submenu item 5 </a></li>
+                                <li><a class="nav-link" href="#">Submenu item 6 </a></li>
+                                <li><a class="nav-link" href="#">Submenu item 7 </a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-submenu"style="margin-top:8px;">
+                            <a class="nav-link" href="#" style="padding-left:0">
+                                <img src="~/Images/Icon/icon_QLHangHoa28x28.png" class="icon" /> Quản lý hàng hoá <i class="bi small bi-caret-down-fill"></i>
+                            </a>
+                            <ul class="submenu collapse">
+                                <li><a class="nav-link" href="#">Submenu item 4 </a></li>
+                                <li><a class="nav-link" href="#">Submenu item 5 </a></li>
+                                <li><a class="nav-link" href="#">Submenu item 6 </a></li>
+                                <li><a class="nav-link" href="#">Submenu item 7 </a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"style="margin-top:8px;">
+                            <a class="nav-link nav-link-text" href="#" style="padding-left:0">
+                                <img src="~/Images/Icon/icon_QLNhaCungCap28x28.png" class="icon" /> Nhà cung cấp
+                            </a>
+                        </li>
+
+                        <li class="nav-item has-submenu"style="margin-top:8px;">
+                            <a class="nav-link" href="#" style="padding-left:0">
+                                <img src="~/Images/Icon/icon_QLNhanVien28x28.png" class="icon" /> Quản lý nhân viên<i class="bi small bi-caret-down-fill"></i>
+                            </a>
+                            <ul class="submenu collapse">
+                                <li><a class="nav-link" href="#">Submenu item 4 </a></li>
+                                <li><a class="nav-link" href="#">Submenu item 5 </a></li>
+                                <li><a class="nav-link" href="#">Submenu item 6 </a></li>
+                                <li><a class="nav-link" href="#">Submenu item 7 </a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item"style="margin-top:8px;">
+                            <a class="nav-link nav-link-text" href="#" style="padding-left:0">
+                                <img src="~/Images/Icon/icon_QLXe28x28.png" class="icon" /> Quản lý xe
+                            </a>
+                        </li>
+
+                        <li class="nav-item has-submenu"style="margin-top:8px;">
+                            <a class="nav-link" href="#" style="padding-left:0">
+                                <img src="~/Images/Icon/icon_QLXuatNhap28x28.png" class="icon" /> Quản lý xuất nhập<i class="bi small bi-caret-down-fill"></i>
+                            </a>
+                            <ul class="submenu collapse">
+                                <li><a class="nav-link" href="#">Submenu item 4 </a></li>
+                                <li><a class="nav-link" href="#">Submenu item 5 </a></li>
+                                <li><a class="nav-link" href="#">Submenu item 6 </a></li>
+                                <li><a class="nav-link" href="#">Submenu item 7 </a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item has-submenu"style="margin-top:8px;">
+                            <a class="nav-link" href="#" style="padding-left:0">
+                                <img src="~/Images/Icon/icon_QLTaiChinh28x28.png" class="icon" /> Quản lý tài chính<i class="bi small bi-caret-down-fill"></i>
+                            </a>
+                            <ul class="submenu collapse">
+                                <li><a class="nav-link" href="#">Submenu item 4 </a></li>
+                                <li><a class="nav-link" href="#">Submenu item 5 </a></li>
+                                <li><a class="nav-link" href="#">Submenu item 6 </a></li>
+                                <li><a class="nav-link" href="#">Submenu item 7 </a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-submenu"style="margin-top:8px;">
+                            <a class="nav-link" href="#" style="padding-left:0">
+                                <img src="~/Images/Icon/icon_QLDonHang28x28.png" class="icon" /> Quản lý đơn hàng<i class="bi small bi-caret-down-fill"></i>
+                            </a>
+                            <ul class="submenu collapse">
+                                <li><a class="nav-link" href="#">Submenu item 4 </a></li>
+                                <li><a class="nav-link" href="#">Submenu item 5 </a></li>
+                                <li><a class="nav-link" href="#">Submenu item 6 </a></li>
+                                <li><a class="nav-link" href="#">Submenu item 7 </a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item has-submenu"style="margin-top:8px;">
+                            <a class="nav-link" href="#" style="padding-left:0">
+                                <img src="~/Images/Icon/icon_QLDichVu28x28.png" class="icon" /> Quản lý dịch vụ<i class="bi small bi-caret-down-fill"></i>
+                            </a>
+                            <ul class="submenu collapse">
+                                <li><a class="nav-link" href="#">Submenu item 4 </a></li>
+                                <li><a class="nav-link" href="#">Submenu item 5 </a></li>
+                                <li><a class="nav-link" href="#">Submenu item 6 </a></li>
+                                <li><a class="nav-link" href="#">Submenu item 7 </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-9">
+                @RenderBody()
+            </div>
+
+
+
+        </div>
+
+
+    </div><!-- container //  -->
+
+</body>
+</html>
