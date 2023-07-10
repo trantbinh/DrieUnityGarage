@@ -10,17 +10,17 @@ using DrieUnityGrage.Models;
 
 namespace DrieUnityGrage.Controllers
 {
-    public class QuanLyNhaCungCapController : Controller
+    public class NHACUNGCAPController : Controller
     {
         private DrieUnityGarageEntities db = new DrieUnityGarageEntities();
 
-        // GET: QuanLyNhaCungCap
+        // GET: NHACUNGCAP
         public ActionResult Index()
         {
             return View(db.NHACUNGCAPs.ToList());
         }
 
-        // GET: QuanLyNhaCungCap/Details/5
+        // GET: NHACUNGCAP/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,13 +35,13 @@ namespace DrieUnityGrage.Controllers
             return View(nHACUNGCAP);
         }
 
-        // GET: QuanLyNhaCungCap/Create
+        // GET: NHACUNGCAP/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: QuanLyNhaCungCap/Create
+        // POST: NHACUNGCAP/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -50,6 +50,22 @@ namespace DrieUnityGrage.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Tạo mã nhà cung cấp String
+                List<NHACUNGCAP> lstNCC = db.NHACUNGCAPs.ToList();
+                int countLst = lstNCC.Count();
+                if(countLst == 0)
+                {
+                    nHACUNGCAP.MaNCC = "NC01";
+                }
+                else
+                {
+                    NHACUNGCAP lastNCC = lstNCC[countLst - 1];
+                    String lastMaNCC = lastNCC.MaNCC;
+                    int lastMaNCCNum = int.Parse(lastMaNCC.Substring(3));
+                    int newMaNCC = lastMaNCCNum + 1;
+                    nHACUNGCAP.MaNCC = "NC0" + newMaNCC.ToString();
+                }
+                
                 db.NHACUNGCAPs.Add(nHACUNGCAP);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -58,7 +74,7 @@ namespace DrieUnityGrage.Controllers
             return View(nHACUNGCAP);
         }
 
-        // GET: QuanLyNhaCungCap/Edit/5
+        // GET: NHACUNGCAP/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,7 +89,7 @@ namespace DrieUnityGrage.Controllers
             return View(nHACUNGCAP);
         }
 
-        // POST: QuanLyNhaCungCap/Edit/5
+        // POST: NHACUNGCAP/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -89,8 +105,8 @@ namespace DrieUnityGrage.Controllers
             return View(nHACUNGCAP);
         }
 
-        // GET: QuanLyNhaCungCap/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: NHACUNGCAP/Delete/5
+        public ActionResult Delete(String id)
         {
             if (id == null)
             {
@@ -104,10 +120,10 @@ namespace DrieUnityGrage.Controllers
             return View(nHACUNGCAP);
         }
 
-        // POST: QuanLyNhaCungCap/Delete/5
+        // POST: NHACUNGCAP/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(String id)
         {
             NHACUNGCAP nHACUNGCAP = db.NHACUNGCAPs.Find(id);
             db.NHACUNGCAPs.Remove(nHACUNGCAP);

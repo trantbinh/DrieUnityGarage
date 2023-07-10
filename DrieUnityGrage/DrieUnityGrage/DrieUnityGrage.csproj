@@ -130,7 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
-    <Compile Include="Controllers\QuanLyNhaCungCapController.cs" />
+    <Compile Include="Controllers\NHACUNGCAPController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -221,13 +221,6 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap5\css\bootstrap-grid.css.map" />
     <Content Include="Content\bootstrap5\css\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap5\css\bootstrap-grid.rtl.css.map" />
@@ -250,6 +243,13 @@
     <Content Include="Content\bootstrap5\js\bootstrap.esm.min.js.map" />
     <Content Include="Content\bootstrap5\js\bootstrap.js.map" />
     <Content Include="Content\bootstrap5\js\bootstrap.min.js.map" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -277,11 +277,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
     <Content Include="Views\HomePage\View_HomePage.cshtml" />
-    <Content Include="Views\QuanLyNhaCungCap\Create.cshtml" />
-    <Content Include="Views\QuanLyNhaCungCap\Delete.cshtml" />
-    <Content Include="Views\QuanLyNhaCungCap\Details.cshtml" />
-    <Content Include="Views\QuanLyNhaCungCap\Edit.cshtml" />
-    <Content Include="Views\QuanLyNhaCungCap\Index.cshtml" />
+    <Content Include="Views\NHACUNGCAP\Create.cshtml" />
+    <Content Include="Views\NHACUNGCAP\Delete.cshtml" />
+    <Content Include="Views\NHACUNGCAP\Details.cshtml" />
+    <Content Include="Views\NHACUNGCAP\Edit.cshtml" />
+    <Content Include="Views\NHACUNGCAP\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

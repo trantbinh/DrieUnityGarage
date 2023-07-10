@@ -4,7 +4,7 @@
     <Key>
       <PropertyRef Name="MaNCC" />
     </Key>
-    <Property Name="MaNCC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaNCC" Type="varchar" MaxLength="5" Nullable="false" />
     <Property Name="TenNCC" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="DiaChiNCC" Type="nvarchar" MaxLength="300" />
     <Property Name="DienThoaiNCC" Type="varchar" MaxLength="10" />

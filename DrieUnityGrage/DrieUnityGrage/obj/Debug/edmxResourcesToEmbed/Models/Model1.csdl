@@ -4,7 +4,7 @@
     <Key>
       <PropertyRef Name="MaNCC" />
     </Key>
-    <Property Name="MaNCC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaNCC" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="TenNCC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="DiaChiNCC" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
     <Property Name="DienThoaiNCC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />

@@ -14,7 +14,7 @@ namespace DrieUnityGrage.Models
     
     public partial class NHACUNGCAP
     {
-        public int MaNCC { get; set; }
+        public string MaNCC { get; set; }
         public string TenNCC { get; set; }
         public string DiaChiNCC { get; set; }
         public string DienThoaiNCC { get; set; }
