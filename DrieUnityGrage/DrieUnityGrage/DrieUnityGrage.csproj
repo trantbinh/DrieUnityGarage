@@ -206,8 +206,11 @@
     <Content Include="Content\bootstrap5\js\bootstrap.esm.min.js" />
     <Content Include="Content\bootstrap5\js\bootstrap.js" />
     <Content Include="Content\bootstrap5\js\bootstrap.min.js" />
+    <Content Include="Content\HangHoa_Index.css" />
     <Content Include="Content\HomePage_Layout.css" />
+    <Content Include="Content\KhachHang_Index.css" />
     <Content Include="Content\NCC_Index.css" />
+    <Content Include="Content\NhanVien_Index.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

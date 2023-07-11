@@ -91,7 +91,9 @@
                     @Html.ActionLink("Chi tiết", "Details", new { id = item.MaNCC }, new { @class = "btn btn-danger" })
 
                 </td>
-                <td>   @Html.ActionLink("Xoá", "Delete", new { id = item.MaNCC }, new { @class = "btn btn-primary" })</td>
+                <td>  
+                    @Html.ActionLink("Xoá", "Delete", new { id = item.MaNCC }, new { @class = "btn btn-primary" })
+                </td>
             </tr>
         }
 

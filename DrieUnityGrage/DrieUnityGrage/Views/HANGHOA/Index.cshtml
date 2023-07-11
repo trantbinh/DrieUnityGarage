@@ -1,64 +1,88 @@
 ﻿@model IEnumerable<DrieUnityGrage.Models.HANGHOA>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Quản lý hàng hoá";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/HangHoa_Index.css" />
 
-<h2>Index</h2>
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-5">
+            <h2>Danh sách hàng hoá </h2>
+        </div>
+        <div class="col-lg-5">
+        </div>
+        <div class="col-lg-2">
+            @Html.ActionLink("Tạo mới", "Create", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+    <table class="table index-table" style="margin-top:20px;">
+        <tr>
+            <th>
+                Mã hàng hoá
+            </th>
+            <th>
+                Tên hàng hoá
+            </th>
+            <th>
+                Đơn giá
+            </th>
+            <th>
+                Đơn vị tính
+            <th>
+                Loại hàng
+            <th>
+                Số lượng tồn
+            </th>
+            <th>
+                Nhà cung cấp
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TenHH)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DonGia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DonViTinh)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LoaiHang)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SoLuongTon)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NHACUNGCAP.TenNCC)
-        </th>
-        <th></th>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaHH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenHH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonViTinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoaiHang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuongTon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NHACUNGCAP.TenNCC)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.MaHH }, new { @class = "btn btn-success" })
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenHH)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DonGia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DonViTinh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LoaiHang)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoLuongTon)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NHACUNGCAP.TenNCC)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaHH }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaHH }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaHH })
-        </td>
-    </tr>
-}
+                </td>
+                <td>
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.MaHH }, new { @class = "btn btn-danger" })
 
-</table>
+                </td>
+                <td>
+                    @Html.ActionLink("Xoá", "Delete", new { id = item.MaHH }, new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+

@@ -23,11 +23,13 @@
     font-weight: 500;
     width: 30%
 }
+
 .delete-btn {
     font-size: 20px;
     font-weight: 500;
     width: 40%;
 }
+
 .create-formgroup {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -57,7 +59,7 @@ th, td {
     table-layout: fixed;
     width: 100%;
     word-break: break-word;
-    color:black;
+    color: black;
     border-spacing: 10px 10px;
 }
 
@@ -122,8 +124,7 @@ th, td {
 .nonedecor {
     text-decoration: none;
     font-size: 25px;
-    color:black;
-    
+    color: black;
 }
 
 .edit-btn {
@@ -148,6 +149,7 @@ th, td {
     margin-top: 20px;
     font-size: 30px;
 }
-.space-field{
-    margin-top:20px;
+
+.space-field {
+    margin-top: 20px;
 }
