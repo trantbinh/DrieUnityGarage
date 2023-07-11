@@ -1,0 +1,355 @@
+﻿body{
+
+}
+#btnDangNhap {
+    background-color: #117595;
+    border: 3px solid;
+    border-color: #ffffff;
+    border-radius: 10px;
+    height: 41px;
+    top:120px;
+    left:10px;
+    position: absolute;
+    width: 13%;
+    cursor:pointer;
+
+}
+    #btnDangNhap:hover {
+        background-color: #f6f6f6;
+        border-color: #117595;
+        transition: 0.2s ease;
+    }
+    .textBtn:hover {
+        color: #117595;
+    }
+    .textBtn {
+        color: #ffffff;
+        text-align: center;
+        font-family: "Inter-SemiBold", Helvetica;
+        font-size: 20px;
+        font-weight: 600;
+        height: 38px;
+        left: 24px;
+        line-height: 36px;
+        width: 100%;
+    }
+#btnDangXuat {
+    bottom: 50px;
+    background-color: #117595;
+    border: 3px solid;
+    border-color: #ffffff;
+    border-radius: 10px;
+    height: 41px;
+    left: 10px;
+    position: absolute;
+    width: 13%;
+    cursor: pointer;
+}
+#btnDangXuat:hover {
+    background-color: #f6f6f6;
+    border-color: #117595;
+    transition: 0.2s ease;
+}
+        .boxTChu {
+            background-color: transparent;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: 100%;
+        }
+    .boxTChu .content-trangchu-wrapper {
+        border: 0px none;
+        height: 1115px;
+        width: 1120px;
+    }
+
+    .boxTChu .content-trangchu {
+        height: 1115px;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 1120px;
+    }
+
+    .boxTChu .overlap {
+        height: 1115px;
+        position: relative;
+    }
+
+    .boxTChu .banner {
+        background-image: url('/Assets/banner.png') ;
+        background-position: 50% 50%;
+        background-size: cover;
+        background:top center no-repeat;
+        height: 1115px;
+        left: 0;
+/*        position: absolute;*/
+        top: 0;
+        width: 1120px;
+    }
+
+    .boxTChu .rectangle {
+        background-color: #118b9f;
+        height: 216px;
+        left: 31px;
+        position: absolute;
+        top: 28px;
+        width: 398px;
+    }
+
+    .boxTChu .rectangle3 {
+        background-color: #f2f2f4;
+        height: 199px;
+        left: 10px;
+        position: absolute;
+        top: 414px;
+        width: 442px;
+    }
+
+    .boxTChu .rectangle-2 {
+        background-color: #059b9d;
+        height: 200px;
+        left: 22px;
+        position: absolute;
+        top: 787px;
+        width: 396px;
+    }
+
+    .boxTChu .content-first {
+        height: 273px;
+        left: 50px;
+        position: absolute;
+        top: 54px;
+        width: 383px;
+    }
+
+    .boxTChu .d-ch-v-s-a-xe {
+        color: #ffffff;
+        font-family: "Inter-Bold", Helvetica;
+        font-size: 36px;
+        font-weight: 700;
+        height: 54px;
+        left: 12px;
+        letter-spacing: 0;
+        line-height: normal;
+        position: absolute;
+        top: 0;
+        width: 366px;
+    }
+
+    .boxTChu .text-wrapper {
+        color: #ffffff;
+        font-family: "Inter-MediumItalic", Helvetica;
+        font-size: 20px;
+        font-style: italic;
+        font-weight: 500;
+        height: 127px;
+        left: 12px;
+        letter-spacing: 0;
+        line-height: normal;
+        position: absolute;
+        top: 63px;
+        width: 367px;
+    }
+
+    .boxTChu .btn {
+        height: 61px;
+        left: 0;
+        position: absolute;
+        top: 212px;
+        width: 291px;
+    }
+
+.boxTChuTChu .overlap-group {
+    height: 62px;
+    left: -1px;
+    position: relative;
+    top: -1px;
+    width: 290px;
+}
+
+.boxTChuTChu .rectangle-3 {
+    background-color: #117595;
+    border: 3px solid;
+    border-color: #ffffff;
+    border-radius: 16px;
+    height: 61px;
+    left: 1px;
+    position: absolute;
+    top: 1px;
+    width: 289px;
+}
+
+.boxTChuTChu .t-m-hi-u-th-m {
+    -webkit-text-stroke: 1px #000000;
+    color: #ffffff;
+    font-family: "Inter-SemiBold Italic", Helvetica;
+    font-size: 30px;
+    font-style: italic;
+    font-weight: 600;
+    height: 61px;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 289px;
+}
+
+.boxTChuTChu .content-sec {
+    height: 277px;
+    left: 10px;
+    position: absolute;
+    top: 422px;
+    width: 412px;
+}
+
+.boxTChuTChu .overlap-2 {
+    height: 191px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 408px;
+}
+
+.boxTChuTChu .p {
+    color: #60696b;
+    font-family: "Inter-MediumItalic", Helvetica;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 500;
+    left: 41px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 64px;
+    width: 367px;
+}
+
+.boxTChuTChu .d-ch-v-thay-l-p-xe {
+    color: #123a3f;
+    font-family: "Inter-SemiBold", Helvetica;
+    font-size: 30px;
+    font-weight: 600;
+    height: 84px;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 380px;
+}
+
+.boxTChuTChu .btn-timhieuthem {
+    height: 61px;
+    left: 34px;
+    position: absolute;
+    top: 216px;
+    width: 291px;
+}
+
+.boxTChuTChu .t-m-hi-u-th-m-wrapper {
+    background-color: #d2dae3;
+    border: 4px solid;
+    border-color: #375e61;
+    border-radius: 16px;
+    height: 61px;
+    position: relative;
+    width: 289px;
+}
+
+.boxTChuTChu .t-m-hi-u-th-m-2 {
+    color: #354e53;
+    font-family: "Inter-SemiBold Italic", Helvetica;
+    font-size: 30px;
+    font-style: italic;
+    font-weight: 600;
+    height: 61px;
+    left: -4px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: -4px;
+    width: 289px;
+}
+
+.boxTChuTChu .content-third {
+    height: 277px;
+    left: 16px;
+    position: absolute;
+    top: 791px;
+    width: 406px;
+}
+
+.boxTChuTChu .h-y-g-i-ch-ng-t-i-b {
+    color: #ffffff;
+    font-family: "Inter-MediumItalic", Helvetica;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 500;
+    left: 41px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 64px;
+    width: 361px;
+}
+
+.boxTChuTChu .ph-c-v {
+    color: #ffffff;
+    font-family: "Inter-SemiBold", Helvetica;
+    font-size: 30px;
+    font-weight: 600;
+    height: 64px;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 306px;
+}
+
+.boxTChuTChu .overlap-group-wrapper {
+    height: 61px;
+    left: 35px;
+    position: absolute;
+    top: 216px;
+    width: 300px;
+}
+
+.boxTChuTChu .overlap-group-2 {
+    height: 61px;
+    position: relative;
+    width: 298px;
+}
+
+.boxTChuTChu .rectangle-4 {
+    background-color: #017776;
+    border: 4px solid;
+    border-color: #ffffff;
+    border-radius: 16px;
+    height: 61px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 289px;
+}
+
+.boxTChuTChu .t-m-hi-u-th-m-3 {
+    color: #ffffff;
+    font-family: "Inter-SemiBold Italic", Helvetica;
+    font-size: 30px;
+    font-style: italic;
+    font-weight: 600;
+    height: 61px;
+    left: 35px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 0;
+    width: 263px;
+}
