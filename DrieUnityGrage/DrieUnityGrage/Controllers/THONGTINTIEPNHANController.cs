@@ -10,107 +10,107 @@ using DrieUnityGrage.Models;
 
 namespace DrieUnityGrage.Controllers
 {
-    public class QuanLyNhaCungCapController : Controller
+    public class THONGTINTIEPNHANController : Controller
     {
         private DrieUnityGarageEntities db = new DrieUnityGarageEntities();
 
-        // GET: QuanLyNhaCungCap
+        // GET: THONGTINTIEPNHAN
         public ActionResult Index()
         {
-            return View(db.NHACUNGCAPs.ToList());
+            return View(db.THONGTINTIEPNHANs.ToList());
         }
 
-        // GET: QuanLyNhaCungCap/Details/5
-        public ActionResult Details(int? id)
+        // GET: THONGTINTIEPNHAN/Details/5
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NHACUNGCAP nHACUNGCAP = db.NHACUNGCAPs.Find(id);
-            if (nHACUNGCAP == null)
+            THONGTINTIEPNHAN tHONGTINTIEPNHAN = db.THONGTINTIEPNHANs.Find(id);
+            if (tHONGTINTIEPNHAN == null)
             {
                 return HttpNotFound();
             }
-            return View(nHACUNGCAP);
+            return View(tHONGTINTIEPNHAN);
         }
 
-        // GET: QuanLyNhaCungCap/Create
+        // GET: THONGTINTIEPNHAN/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: QuanLyNhaCungCap/Create
+        // POST: THONGTINTIEPNHAN/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaNCC,TenNCC,DiaChiNCC,DienThoaiNCC,MaSoThueNCC,Email,LoaiHinh,HoTenNguoiDaiDien")] NHACUNGCAP nHACUNGCAP)
+        public ActionResult Create([Bind(Include = "MaTN,TN_MaKH,TN_BienSoXe,TN_MaNV,ThoiGianTiepNhan,ThoiGianGiaoDuKien,GhiChuKH")] THONGTINTIEPNHAN tHONGTINTIEPNHAN)
         {
             if (ModelState.IsValid)
             {
-                db.NHACUNGCAPs.Add(nHACUNGCAP);
+                db.THONGTINTIEPNHANs.Add(tHONGTINTIEPNHAN);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(nHACUNGCAP);
+            return View(tHONGTINTIEPNHAN);
         }
 
-        // GET: QuanLyNhaCungCap/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: THONGTINTIEPNHAN/Edit/5
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NHACUNGCAP nHACUNGCAP = db.NHACUNGCAPs.Find(id);
-            if (nHACUNGCAP == null)
+            THONGTINTIEPNHAN tHONGTINTIEPNHAN = db.THONGTINTIEPNHANs.Find(id);
+            if (tHONGTINTIEPNHAN == null)
             {
                 return HttpNotFound();
             }
-            return View(nHACUNGCAP);
+            return View(tHONGTINTIEPNHAN);
         }
 
-        // POST: QuanLyNhaCungCap/Edit/5
+        // POST: THONGTINTIEPNHAN/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaNCC,TenNCC,DiaChiNCC,DienThoaiNCC,MaSoThueNCC,Email,LoaiHinh,HoTenNguoiDaiDien")] NHACUNGCAP nHACUNGCAP)
+        public ActionResult Edit([Bind(Include = "MaTN,TN_MaKH,TN_BienSoXe,TN_MaNV,ThoiGianTiepNhan,ThoiGianGiaoDuKien,GhiChuKH")] THONGTINTIEPNHAN tHONGTINTIEPNHAN)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(nHACUNGCAP).State = EntityState.Modified;
+                db.Entry(tHONGTINTIEPNHAN).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(nHACUNGCAP);
+            return View(tHONGTINTIEPNHAN);
         }
 
-        // GET: QuanLyNhaCungCap/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: THONGTINTIEPNHAN/Delete/5
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NHACUNGCAP nHACUNGCAP = db.NHACUNGCAPs.Find(id);
-            if (nHACUNGCAP == null)
+            THONGTINTIEPNHAN tHONGTINTIEPNHAN = db.THONGTINTIEPNHANs.Find(id);
+            if (tHONGTINTIEPNHAN == null)
             {
                 return HttpNotFound();
             }
-            return View(nHACUNGCAP);
+            return View(tHONGTINTIEPNHAN);
         }
 
-        // POST: QuanLyNhaCungCap/Delete/5
+        // POST: THONGTINTIEPNHAN/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            NHACUNGCAP nHACUNGCAP = db.NHACUNGCAPs.Find(id);
-            db.NHACUNGCAPs.Remove(nHACUNGCAP);
+            THONGTINTIEPNHAN tHONGTINTIEPNHAN = db.THONGTINTIEPNHANs.Find(id);
+            db.THONGTINTIEPNHANs.Remove(tHONGTINTIEPNHAN);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

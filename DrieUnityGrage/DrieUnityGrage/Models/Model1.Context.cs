@@ -25,6 +25,14 @@ namespace DrieUnityGrage.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<CT_HOADON> CT_HOADON { get; set; }
+        public virtual DbSet<HANGHOA> HANGHOAs { get; set; }
+        public virtual DbSet<HOADON> HOADONs { get; set; }
+        public virtual DbSet<KHACHHANG> KHACHHANGs { get; set; }
         public virtual DbSet<NHACUNGCAP> NHACUNGCAPs { get; set; }
+        public virtual DbSet<NHANVIEN> NHANVIENs { get; set; }
+        public virtual DbSet<PHUONGTIEN> PHUONGTIENs { get; set; }
+        public virtual DbSet<THONGTINTHANHTOAN> THONGTINTHANHTOANs { get; set; }
+        public virtual DbSet<THONGTINTIEPNHAN> THONGTINTIEPNHANs { get; set; }
     }
 }

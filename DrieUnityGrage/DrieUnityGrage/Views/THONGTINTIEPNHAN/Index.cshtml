@@ -1,0 +1,64 @@
+﻿@model IEnumerable<DrieUnityGrage.Models.THONGTINTIEPNHAN>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TN_MaKH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TN_BienSoXe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TN_MaNV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThoiGianTiepNhan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThoiGianGiaoDuKien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GhiChuKH)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TN_MaKH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TN_BienSoXe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TN_MaNV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThoiGianTiepNhan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThoiGianGiaoDuKien)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GhiChuKH)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaTN }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaTN }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaTN })
+        </td>
+    </tr>
+}
+
+</table>
