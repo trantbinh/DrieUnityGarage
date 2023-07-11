@@ -151,3 +151,7 @@ th, td {
 .space-field{
     margin-top:20px;
 }
+.dis-inline {
+   display:inline;
+   width:100px;
+}

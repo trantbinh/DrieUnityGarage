@@ -129,6 +129,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CT_HOADONController.cs" />
     <Compile Include="Controllers\HANGHOAController.cs" />
     <Compile Include="Controllers\HOADONController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
@@ -139,6 +140,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CTHD.cs" />
+    <Compile Include="Models\DONHANG.cs" />
     <Compile Include="Models\CT_HOADON.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -181,6 +184,7 @@
     <Compile Include="Models\THONGTINTIEPNHAN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TIEPNHAN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -286,6 +290,8 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -336,6 +342,16 @@
     <Content Include="Views\HANGHOA\Details.cshtml" />
     <Content Include="Views\HANGHOA\Edit.cshtml" />
     <Content Include="Views\HANGHOA\Index.cshtml" />
+    <Content Include="Views\HOADON\Extensions_LayThongTinKhachHang.cshtml" />
+    <Content Include="Views\HOADON\GetInfo.cshtml" />
+    <Content Include="Views\HOADON\Partial_LayChiTietHoaDon.cshtml" />
+    <Content Include="Views\CT_HOADON\Create.cshtml" />
+    <Content Include="Views\CT_HOADON\Delete.cshtml" />
+    <Content Include="Views\CT_HOADON\Details.cshtml" />
+    <Content Include="Views\CT_HOADON\Edit.cshtml" />
+    <Content Include="Views\CT_HOADON\Index.cshtml" />
+    <Content Include="Views\HOADON\Partial_ThemChiTietHoaDon.cshtml" />
+    <Content Include="Views\HOADON\Partial_LayThongTinTiepNhan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

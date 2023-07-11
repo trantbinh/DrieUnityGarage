@@ -1,13 +1,9 @@
 ﻿@using DrieUnityGrage.Models
 
-
-
 @foreach (var hdh in Model)
 {
     <div class="form-group">
-        Tên khách hàng
-        <div class="col-md-10">
-            @hdh.lstThongTin[0]
-        </div>
+        Tên khách hàng: @Html.Action("Extensions_LayThongTinKhachHang","HOADON", new {id = hdh.TN_MaKH})
+
     </div>
 }
