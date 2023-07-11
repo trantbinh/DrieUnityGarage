@@ -14,6 +14,12 @@ namespace DrieUnityGrage.Models
     
     public partial class NHACUNGCAP
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public NHACUNGCAP()
+        {
+            this.HANGHOAs = new HashSet<HANGHOA>();
+        }
+    
         public string MaNCC { get; set; }
         public string TenNCC { get; set; }
         public string DiaChiNCC { get; set; }
@@ -22,5 +28,8 @@ namespace DrieUnityGrage.Models
         public string Email { get; set; }
         public string LoaiHinh { get; set; }
         public string HoTenNguoiDaiDien { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HANGHOA> HANGHOAs { get; set; }
     }
 }

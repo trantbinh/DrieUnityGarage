@@ -129,10 +129,27 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HANGHOAController.cs" />
+    <Compile Include="Controllers\HOADONController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
+    <Compile Include="Controllers\KHACHHANGController.cs" />
     <Compile Include="Controllers\NHACUNGCAPController.cs" />
+    <Compile Include="Controllers\NHANVIENController.cs" />
+    <Compile Include="Controllers\THONGTINTIEPNHANController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CT_HOADON.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HANGHOA.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HOADON.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KHACHHANG.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -150,6 +167,18 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\NHACUNGCAP.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NHANVIEN.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PHUONGTIEN.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\THONGTINTHANHTOAN.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\THONGTINTIEPNHAN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -280,6 +309,33 @@
     <Content Include="Views\NHACUNGCAP\Details.cshtml" />
     <Content Include="Views\NHACUNGCAP\Edit.cshtml" />
     <Content Include="Views\NHACUNGCAP\Index.cshtml" />
+    <Content Include="Views\THONGTINTIEPNHAN\Create.cshtml" />
+    <Content Include="Views\THONGTINTIEPNHAN\Delete.cshtml" />
+    <Content Include="Views\THONGTINTIEPNHAN\Details.cshtml" />
+    <Content Include="Views\THONGTINTIEPNHAN\Edit.cshtml" />
+    <Content Include="Views\THONGTINTIEPNHAN\Index.cshtml" />
+    <Content Include="Views\HOADON\Create.cshtml" />
+    <Content Include="Views\HOADON\Delete.cshtml" />
+    <Content Include="Views\HOADON\Details.cshtml" />
+    <Content Include="Views\HOADON\Edit.cshtml" />
+    <Content Include="Views\HOADON\Index.cshtml" />
+    <Content Include="Views\HOADON\LayThongTinTiepNhan.cshtml" />
+    <Content Include="Views\HOADON\Extensions_TaoMaHD.cshtml" />
+    <Content Include="Views\KHACHHANG\Create.cshtml" />
+    <Content Include="Views\KHACHHANG\Delete.cshtml" />
+    <Content Include="Views\KHACHHANG\Details.cshtml" />
+    <Content Include="Views\KHACHHANG\Edit.cshtml" />
+    <Content Include="Views\KHACHHANG\Index.cshtml" />
+    <Content Include="Views\NHANVIEN\Create.cshtml" />
+    <Content Include="Views\NHANVIEN\Delete.cshtml" />
+    <Content Include="Views\NHANVIEN\Details.cshtml" />
+    <Content Include="Views\NHANVIEN\Edit.cshtml" />
+    <Content Include="Views\NHANVIEN\Index.cshtml" />
+    <Content Include="Views\HANGHOA\Create.cshtml" />
+    <Content Include="Views\HANGHOA\Delete.cshtml" />
+    <Content Include="Views\HANGHOA\Details.cshtml" />
+    <Content Include="Views\HANGHOA\Edit.cshtml" />
+    <Content Include="Views\HANGHOA\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

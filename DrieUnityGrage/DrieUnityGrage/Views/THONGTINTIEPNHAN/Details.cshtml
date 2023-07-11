@@ -1,0 +1,67 @@
+﻿@model DrieUnityGrage.Models.THONGTINTIEPNHAN
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>THONGTINTIEPNHAN</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TN_MaKH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TN_MaKH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TN_BienSoXe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TN_BienSoXe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TN_MaNV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TN_MaNV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThoiGianTiepNhan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThoiGianTiepNhan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThoiGianGiaoDuKien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThoiGianGiaoDuKien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GhiChuKH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GhiChuKH)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaTN }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
