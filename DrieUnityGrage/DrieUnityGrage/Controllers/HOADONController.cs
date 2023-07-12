@@ -44,7 +44,7 @@ namespace DrieUnityGrage.Controllers
             {
                 currentProduct.SoLuong++;
             }
-            return RedirectToAction("TaoHoaDon", "HOADON");
+            return RedirectToAction("TaoHoaDon", "HOADON", new { id = Session["MaHD"] });
         }
 
         //Tính tổng số lượng sản phẩm
@@ -76,13 +76,9 @@ namespace DrieUnityGrage.Controllers
             if (pro != null)
             {
                 myCart.RemoveAll(n => n.MaSP.Equals(id));
-                return RedirectToAction("TaoHoaDon", "HOADON");
+                return RedirectToAction("TaoHoaDon", "HOADON", new { id = Session["MaHD"] });
             }
-            if (myCart == null || myCart.Count == 0)
-            {
-                return RedirectToAction("TaoHoaDon", "HOADON");
-            }
-            return RedirectToAction("TaoHoaDon", "HOADON");
+            return RedirectToAction("TaoHoaDon", "HOADON", new { id = Session["MaHD"] });
 
         }
 
@@ -95,13 +91,13 @@ namespace DrieUnityGrage.Controllers
             {
                 pro.SoLuong = int.Parse(f["changequantity"].ToString());
             }
-            return RedirectToAction("TaoHoaDon", "HOADON");
+            return RedirectToAction("TaoHoaDon", "HOADON", new { id = Session["MaHD"] });
         }
 
         //--------------------------VIEW TAOHOADON-------------------------------\\
 
         //Hiển thị danh sách CTHD
-        public ActionResult Partial_LayChiTietHoaDon()
+        public ActionResult Partial_LayChiTietHoaDonList()
         {
             List<SanPham> myCart = CTHD_LayDanhSachSanPham();
             ViewBag.TotalNumber = TinhTongSoLuong();
@@ -113,28 +109,102 @@ namespace DrieUnityGrage.Controllers
         public ActionResult Partial_ThemChiTietHoaDon()
         { 
             ViewBag.CTHD_MaHH = new SelectList(db.HANGHOAs, "MaHH", "TenHH");
-            ViewBag.Selected = "a";
             return PartialView();
         }
         [HttpPost]
         public ActionResult Partial_ThemChiTietHoaDon(CT_HOADON hh)
         {
-            ViewBag.CTHD_MaHH = new SelectList(db.HANGHOAs, "MaHH", "TenHH");
-            ViewBag.Selected = hh.CTHD_MaHH;
-            Session["MaHH"] = hh.CTHD_MaHH;
-            return RedirectToAction("CTHD_ThemSP", "HOADON", new { id = Session["MaHH"].ToString() });
+            if (Session["CheckTN"]==null)
+                return RedirectToAction("TaoHoaDon", "HOADON");
+            else
+            {
+                ViewBag.CTHD_MaHH = new SelectList(db.HANGHOAs, "MaHH", "TenHH");
+                ViewBag.Selected = hh.CTHD_MaHH;
+                Session["MaHH"] = hh.CTHD_MaHH;
+                        return RedirectToAction("CTHD_ThemSP", "HOADON", new { id = Session["MaHH"].ToString() });
+            }
+           
         }
-/*
-        public ActionResult Partial_LayThongTinTiepNhan(String id) { 
-        
-            var a = db.THONGTINTIEPNHANs.Where(m=> m.MaTN.Equals(id)).ToList();
-            return PartialView(a);
+        /*
+                public ActionResult Partial_LayThongTinTiepNhan(String id) { 
 
-          
+                    var a = db.THONGTINTIEPNHANs.Where(m=> m.MaTN.Equals(id)).ToList();
+                    return PartialView(a);
+
+
+                }
+
+        */
+        [HttpPost]
+        public ActionResult CTDH_TaoHoaDon(HOADON hd)
+        {
+            var tongtien = TinhTongTien();
+            List<SanPham> lstSP = CTHD_LayDanhSachSanPham();
+            if (ModelState.IsValid)
+            {
+                hd.MaHD = Session["MaHD"].ToString();
+                
+                hd.NgayLap = DateTime.Now;
+               
+                hd.TongThanhToan = tongtien;
+                hd.HD_BienSoXe =Session["BienSoXe"].ToString();
+                hd.HD_MaKH = Session["MaKH"].ToString();
+                hd.HD_MaTN =Session["MaTN"].ToString();
+                hd.HD_MaTT = null;
+                db.Entry(hd).State = EntityState.Modified;
+                db.SaveChanges();
+
+                foreach (var item in lstSP) { 
+                    var details = new CT_HOADON();
+                    details.CTHD_MaHD= Session["MaHD"].ToString();
+                    details.SoLuong = item.SoLuong;
+                    details.CTHD_MaHH = item.MaSP;
+                    details.ThanhTien = item.FinalPrice();
+                    db.CT_HOADON.Add(details);
+                    db.SaveChanges();
+                }
+            }
+            Session.Remove("MaHD");
+            Session.Remove("MaKH");
+            Session.Remove("MaTN");
+            Session.Remove("BienSoXe");
+            Session.Remove("CheckTN");
+            Session.Remove("lstSPHD");
+
+            return RedirectToAction("LayDanhSachHoaDon", "HOADON");
         }
+/*        public ActionResult CTHD_ThemCTHD()
+        {
+                        List<SanPham> lstSP = CTHD_LayDanhSachSanPham();
+            if (ModelState.IsValid)
+            {
+                hd.NgayLap = DateTime.Now;
+                hd.MaHD = Session["MaHD"].ToString();
+                hd.TongThanhToan = tongtien;
+                hd.HD_BienSoXe = "S51";*//* Session["BienSoXe"].ToString();*//*
+                hd.HD_MaKH = "KH15";*//*Session["MaKH"].ToString();*//*
+                hd.HD_MaTN = "TN22";*//*Session["MaTN"].ToString();*//*
+                hd.HD_MaTT = null;
+                db.HOADONs.Add(hd); 
+                db.SaveChanges();
 
-*/
-        // GET: HOADON
+                foreach (var item in lstSP) { 
+                    var details = new CT_HOADON();
+                    details.CTHD_MaHD= Session["MaHD"].ToString();
+                    details.SoLuong = item.SoLuong;
+                    details.CTHD_MaHH = item.MaSP;
+                    details.ThanhTien = item.FinalPrice();
+                    db.CT_HOADON.Add(details);
+                    db.SaveChanges();
+                }
+             
+
+
+            }
+            return RedirectToAction("LayDanhSachHoaDon", "HOADON");
+
+        }
+*/        // GET: HOADON
         public ActionResult LayDanhSachHoaDon()
         {
             var hOADONs = db.HOADONs.Include(h => h.KHACHHANG).Include(h => h.PHUONGTIEN).Include(h => h.THONGTINTHANHTOAN).Include(h => h.THONGTINTIEPNHAN);
@@ -160,28 +230,47 @@ namespace DrieUnityGrage.Controllers
         public ActionResult TaoHoaDon(String id)
         {
             Session["CheckTN"] = 0;
-            
             String idHD;
             if (id != null)
             {
                 idHD = id;
+                //Lấy thông tin tiếp nhận
+                var hd = db.HOADONs.FirstOrDefault(m => m.MaHD.Equals(id));
+                String MaTiepNhan = hd.HD_MaTN;
+                var tn = db.THONGTINTIEPNHANs.FirstOrDefault(m => m.MaTN.Equals(MaTiepNhan));
+                ViewBag.MaTN= tn.MaTN;
+
+                Session["MaKH"] = tn.TN_MaKH;
+                Session["MaTN"] = tn.MaTN;
+                Session["MaNV"] = tn.TN_MaNV;
+                Session["BienSoXe"] = tn.TN_BienSoXe;
+
+                //Thông tin khách hàng
+                var kh = db.KHACHHANGs.FirstOrDefault(m => m.MaKH.Equals(tn.TN_MaKH));
+                ViewBag.KhachHang =kh.MaKH + " - "+ kh.HoTenKH;
+                ViewBag.SDT = kh.DienThoaiKH;
+
+                var nv = db.NHANVIENs.FirstOrDefault(m => m.MaNV.Equals(tn.TN_MaNV));
+                ViewBag.NhanVien = nv.MaNV+" - "+nv.HoTenNV;
             }
             else
-            { idHD = TaoMaHoaDon(); }
+            { 
+                idHD = TaoMaHoaDon();
+                ViewBag.HD_MaTN = new SelectList(db.THONGTINTIEPNHANs, "MaTN", "MaTN");
+            }
             
             HOADON hOADONs = db.HOADONs.Find(id);
             if (hOADONs == null)
             {
                 Session["CheckTN"] = null;
+              
             }
-
-
-            var tn = db.THONGTINTIEPNHANs.ToList();
-                ViewBag.HD_MaTN = new SelectList(db.THONGTINTIEPNHANs, "MaTN", "MaTN");
-                ViewBag.MaHD = idHD;
-                String date = String.Format("{0:dd/MM/yy}", DateTime.Now.ToString());
-                ViewBag.NgayLapHD = date;
-                return View(hOADONs);
+           
+            ViewBag.MaHD = idHD;
+            String date = DateTime.Now.ToString("dd/MM/yyyy");
+            ViewBag.NgayLapHD = date;
+            Session["MaHD"] = idHD;
+            return View(hOADONs);
         }
 
         // POST: HOADON/Create
@@ -210,6 +299,21 @@ namespace DrieUnityGrage.Controllers
             return View(hOADON);
         }
 
+
+
+        public ActionResult Partial_LayChiTietHoaDonDB(string id)
+        {
+            var ctdh = db.CT_HOADON.Where(m => m.CTHD_MaHD.Equals(id)).ToList();
+            List<SanPham> lstSp = new List<SanPham>();
+            
+            for(int i = 0; i< ctdh.Count; i++) {
+                
+                SanPham sp = new SanPham(ctdh[i].CTHD_MaHH);
+                lstSp.Add(sp);
+            }
+            return PartialView(lstSp);
+        }
+
         // GET: HOADON/Edit/5
         public ActionResult CapNhatHoaDon(string id)
         {
@@ -222,30 +326,62 @@ namespace DrieUnityGrage.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.HD_MaKH = new SelectList(db.KHACHHANGs, "MaKH", "HoTenKH", hOADON.HD_MaKH);
-            ViewBag.HD_BienSoXe = new SelectList(db.PHUONGTIENs, "BienSoXe", "SoMay", hOADON.HD_BienSoXe);
-            ViewBag.HD_MaTT = new SelectList(db.THONGTINTHANHTOANs, "MaTT", "TT_MaKH", hOADON.HD_MaTT);
-            ViewBag.HD_MaTT = new SelectList(db.THONGTINTIEPNHANs, "MaTN", "TN_MaKH", hOADON.HD_MaTT);
+            //Lấy thông tin tiếp nhận
+            var hd = db.HOADONs.FirstOrDefault(m => m.MaHD.Equals(id));
+            String MaTiepNhan = hd.HD_MaTN;
+            var tn = db.THONGTINTIEPNHANs.FirstOrDefault(m => m.MaTN.Equals(MaTiepNhan));
+            ViewBag.MaTN = tn.MaTN;
+
+            Session["MaHD"] = id;
+
+            //Thông tin khách hàng
+            var kh = db.KHACHHANGs.FirstOrDefault(m => m.MaKH.Equals(tn.TN_MaKH));
+            ViewBag.KhachHang = kh.MaKH + " - " + kh.HoTenKH;
+            ViewBag.SDT = kh.DienThoaiKH;
+
+            var nv = db.NHANVIENs.FirstOrDefault(m => m.MaNV.Equals(tn.TN_MaNV));
+            ViewBag.NhanVien = nv.MaNV + " - " + nv.HoTenNV;
+
+            ViewBag.HD_MaTN = new SelectList(db.THONGTINTIEPNHANs, "MaTN", "MaTN", hOADON.HD_MaTN);
             return View(hOADON);
         }
 
         // POST: HOADON/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+/*        [HttpPost]
+        public ActionResult CapNhatThongTinTiepNhan(HOADON hOADON)
+        {
+            var tn = db.THONGTINTIEPNHANs.FirstOrDefault(m => m.MaTN.Equals(hOADON.HD_MaTN));
+            if (ModelState.IsValid)
+            {
+                hOADON.MaHD = Session["MaHD"].ToString();
+                hOADON.NgayLap = DateTime.Now;
+                hOADON.HD_MaKH = tn.TN_MaKH;
+                
+                db.Entry(hOADON).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("CapNhatHoaDon");
+            }
+            Session.Remove("MaHD");
+            return RedirectToAction("CapNhatHoaDon");
+
+        }
+*/
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CapNhatHoaDon([Bind(Include = "MaHD,NgayLap,HD_MaKH,HD_BienSoXe,TongThanhToan,HD_MaTT,HD_MaTN")] HOADON hOADON)
         {
+            var tn = db.THONGTINTIEPNHANs.FirstOrDefault(m => m.MaTN.Equals(hOADON.HD_MaTN));
             if (ModelState.IsValid)
             {
+                hOADON.HD_MaKH = tn.TN_MaKH;
+                hOADON.HD_BienSoXe = tn.TN_BienSoXe;
                 db.Entry(hOADON).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("LayDanhSachHoaDon");
+                return RedirectToAction("CapNhatHoaDon");
             }
-            ViewBag.HD_MaKH = new SelectList(db.KHACHHANGs, "MaKH", "HoTenKH", hOADON.HD_MaKH);
-            ViewBag.HD_BienSoXe = new SelectList(db.PHUONGTIENs, "BienSoXe", "SoMay", hOADON.HD_BienSoXe);
-            ViewBag.HD_MaTT = new SelectList(db.THONGTINTHANHTOANs, "MaTT", "TT_MaKH", hOADON.HD_MaTT);
-            ViewBag.HD_MaTT = new SelectList(db.THONGTINTIEPNHANs, "MaTN", "TN_MaKH", hOADON.HD_MaTT);
+            
             return View(hOADON);
         }
 
@@ -261,6 +397,21 @@ namespace DrieUnityGrage.Controllers
             {
                 return HttpNotFound();
             }
+            //Lấy thông tin tiếp nhận
+            var hd = db.HOADONs.FirstOrDefault(m => m.MaHD.Equals(id));
+            String MaTiepNhan = hd.HD_MaTN;
+            var tn = db.THONGTINTIEPNHANs.FirstOrDefault(m => m.MaTN.Equals(MaTiepNhan));
+            ViewBag.MaTN = tn.MaTN;
+
+            Session["MaHD"] = id;
+
+            //Thông tin khách hàng
+            var kh = db.KHACHHANGs.FirstOrDefault(m => m.MaKH.Equals(tn.TN_MaKH));
+            ViewBag.KhachHang = kh.MaKH + " - " + kh.HoTenKH;
+            ViewBag.SDT = kh.DienThoaiKH;
+
+            var nv = db.NHANVIENs.FirstOrDefault(m => m.MaNV.Equals(tn.TN_MaNV));
+            ViewBag.NhanVien = nv.MaNV + " - " + nv.HoTenNV;
             return View(hOADON);
         }
 
@@ -310,7 +461,11 @@ namespace DrieUnityGrage.Controllers
             }
             return (idHD);
         }
-
+        public ActionResult Extensions_LayTenKhachHang(string id)
+        {
+            var lstThongTin = db.KHACHHANGs.Where(m => m.MaKH.Equals(id)).ToList();
+            return PartialView(lstThongTin);
+        }
         public ActionResult Extensions_LayThongTinKhachHang(string id)
         {
             var lstThongTin = db.KHACHHANGs.Where(m => m.MaKH.Equals(id)).ToList();

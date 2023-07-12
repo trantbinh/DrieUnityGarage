@@ -352,6 +352,7 @@
     <Content Include="Views\CT_HOADON\Index.cshtml" />
     <Content Include="Views\HOADON\Partial_ThemChiTietHoaDon.cshtml" />
     <Content Include="Views\HOADON\Partial_LayThongTinTiepNhan.cshtml" />
+    <Content Include="Views\HOADON\Partial_LayChiTietHoaDonDB.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

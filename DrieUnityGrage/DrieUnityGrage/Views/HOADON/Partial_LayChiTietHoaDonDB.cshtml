@@ -24,12 +24,7 @@
         <th>
             Thành tiền
         </th>
-        <th>
 
-        </th>
-        <th>
-
-        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -51,8 +46,7 @@
 
                 <td>
 
-                    <input type="number" min="1" name="changequantity" value="@item.SoLuong"
-                           data-id="@item.MaSP" class="quantity quantity-form" />
+                    @item.SoLuong
                 </td>
 
 
@@ -64,12 +58,6 @@
                 <td>
                     @String.Format("{0:0,0}", item.FinalPrice())
 
-                </td>
-                <td><input type="submit" value="Cập nhật" class="btn btn-warning" /></td>
-
-                <td>
-                    @Html.ActionLink("Xoá", "CTDH_XoaSP", new { id = item.MaSP },
-                                   new { @class = "btn btn-danger" })
                 </td>
             </tr>
 
@@ -97,5 +85,6 @@
     }
 
 </table>
+
 
 
