@@ -15,13 +15,13 @@ namespace DrieUnityGarage.Controllers
         private DrieUnityGarageEntities db = new DrieUnityGarageEntities();
 
         // GET: KHACHHANG
-        public ActionResult Index()
+        public ActionResult LayDanhSachKhachHang()
         {
             return View(db.KHACHHANGs.ToList());
         }
 
         // GET: KHACHHANG/Details/5
-        public ActionResult Details(string id)
+        public ActionResult LayThongTinKhachHang(string id)
         {
             if (id == null)
             {
@@ -36,7 +36,7 @@ namespace DrieUnityGarage.Controllers
         }
 
         // GET: KHACHHANG/Create
-        public ActionResult Create()
+        public ActionResult ThemKhachHang()
         {
             return View();
         }
@@ -46,20 +46,20 @@ namespace DrieUnityGarage.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaKH,HoTenKH,DienThoaiKH,NgaySinh,GioiTinh,Email,DiemThanhVien,DiaChi")] KHACHHANG kHACHHANG)
+        public ActionResult ThemKhachHang([Bind(Include = "MaKH,HoTenKH,DienThoaiKH,NgaySinh,GioiTinh,Email,DiemThanhVien,DiaChi")] KHACHHANG kHACHHANG)
         {
             if (ModelState.IsValid)
             {
                 db.KHACHHANGs.Add(kHACHHANG);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("LayDanhSachKhachHang");
             }
 
             return View(kHACHHANG);
         }
 
         // GET: KHACHHANG/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult CapNhatKhachHang(string id)
         {
             if (id == null)
             {
@@ -78,19 +78,19 @@ namespace DrieUnityGarage.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaKH,HoTenKH,DienThoaiKH,NgaySinh,GioiTinh,Email,DiemThanhVien,DiaChi")] KHACHHANG kHACHHANG)
+        public ActionResult CapNhatKhachHang([Bind(Include = "MaKH,HoTenKH,DienThoaiKH,NgaySinh,GioiTinh,Email,DiemThanhVien,DiaChi")] KHACHHANG kHACHHANG)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(kHACHHANG).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("LayDanhSachKhachHang");
             }
             return View(kHACHHANG);
         }
 
         // GET: KHACHHANG/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult XoaKHachHang(string id)
         {
             if (id == null)
             {

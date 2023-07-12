@@ -15,13 +15,13 @@ namespace DrieUnityGarage.Controllers
         private DrieUnityGarageEntities db = new DrieUnityGarageEntities();
 
         // GET: NHACUNGCAP
-        public ActionResult Index()
+        public ActionResult LayDanhSachNhaCungCap()
         {
             return View(db.NHACUNGCAPs.ToList());
         }
 
         // GET: NHACUNGCAP/Details/5
-        public ActionResult Details(String id)
+        public ActionResult LayThongTinNhaCungCap(String id)
         {
             if (id == null)
             {
@@ -36,7 +36,7 @@ namespace DrieUnityGarage.Controllers
         }
 
         // GET: NHACUNGCAP/Create
-        public ActionResult Create()
+        public ActionResult ThemNhaCungCap()
         {
             return View();
         }
@@ -46,7 +46,7 @@ namespace DrieUnityGarage.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaNCC,TenNCC,DiaChiNCC,DienThoaiNCC,MaSoThueNCC,Email,LoaiHinh,HoTenNguoiDaiDien")] NHACUNGCAP nHACUNGCAP, String LoaiHinh)
+        public ActionResult ThemNhaCungCap([Bind(Include = "MaNCC,TenNCC,DiaChiNCC,DienThoaiNCC,MaSoThueNCC,Email,LoaiHinh,HoTenNguoiDaiDien")] NHACUNGCAP nHACUNGCAP, String LoaiHinh)
         {
             if (ModelState.IsValid)
             {
@@ -68,14 +68,14 @@ namespace DrieUnityGarage.Controllers
                 nHACUNGCAP.LoaiHinh= LoaiHinh;
                 db.NHACUNGCAPs.Add(nHACUNGCAP);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("LayDanhSachNhaCungCap");
             }
 
             return View(nHACUNGCAP);
         }
 
         // GET: NHACUNGCAP/Edit/5
-        public ActionResult Edit(String id)
+        public ActionResult SuaNhaCungCap(String id)
         {
             if (id == null)
             {
@@ -94,19 +94,19 @@ namespace DrieUnityGarage.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaNCC,TenNCC,DiaChiNCC,DienThoaiNCC,MaSoThueNCC,Email,LoaiHinh,HoTenNguoiDaiDien")] NHACUNGCAP nHACUNGCAP)
+        public ActionResult SuaNhaCungCap([Bind(Include = "MaNCC,TenNCC,DiaChiNCC,DienThoaiNCC,MaSoThueNCC,Email,LoaiHinh,HoTenNguoiDaiDien")] NHACUNGCAP nHACUNGCAP)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(nHACUNGCAP).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("LayDanhSachNhaCungCap");
             }
             return View(nHACUNGCAP);
         }
 
         // GET: NHACUNGCAP/Delete/5
-        public ActionResult Delete(String id)
+        public ActionResult XoaNhacungCap(String id)
         {
             if (id == null)
             {
@@ -121,14 +121,14 @@ namespace DrieUnityGarage.Controllers
         }
 
         // POST: NHACUNGCAP/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("XoaNhacungCap")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(String id)
         {
             NHACUNGCAP nHACUNGCAP = db.NHACUNGCAPs.Find(id);
             db.NHACUNGCAPs.Remove(nHACUNGCAP);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("LayDanhSachNhaCungCap");
         }
 
         protected override void Dispose(bool disposing)

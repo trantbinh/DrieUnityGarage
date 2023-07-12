@@ -214,6 +214,7 @@
     <Content Include="Content\bootstrap5\js\bootstrap.js" />
     <Content Include="Content\bootstrap5\js\bootstrap.min.js" />
     <Content Include="Content\HangHoa_Index.css" />
+    <Content Include="Content\HoaDon_Index.css" />
     <Content Include="Content\HomePage_Layout.css" />
     <Content Include="Content\KhachHang_Index.css" />
     <Content Include="Content\Login.css" />
@@ -324,7 +325,7 @@
     <Content Include="Views\HOADON\Extensions_LayThongTinKhachHang.cshtml" />
     <Content Include="Views\HOADON\LayDanhSachHoaDon.cshtml" />
     <Content Include="Views\HOADON\LayThongTinTiepNhan.cshtml" />
-    <Content Include="Views\HOADON\Partial_LayChiTietHoaDon.cshtml" />
+    <Content Include="Views\HOADON\Partial_LayChiTietHoaDonList.cshtml" />
     <Content Include="Views\HOADON\Partial_LayChiTietHoaDonDB.cshtml" />
     <Content Include="Views\HOADON\Partial_LayThongTinTiepNhan.cshtml" />
     <Content Include="Views\HOADON\Partial_ThemChiTietHoaDon.cshtml" />
@@ -343,11 +344,6 @@
     <Content Include="Views\THONGTINTIEPNHAN\Details.cshtml" />
     <Content Include="Views\THONGTINTIEPNHAN\Edit.cshtml" />
     <Content Include="Views\THONGTINTIEPNHAN\Index.cshtml" />
-    <Content Include="Views\HANGHOA\Create.cshtml" />
-    <Content Include="Views\HANGHOA\Delete.cshtml" />
-    <Content Include="Views\HANGHOA\Details.cshtml" />
-    <Content Include="Views\HANGHOA\Edit.cshtml" />
-    <Content Include="Views\HANGHOA\Index.cshtml" />
     <Content Include="Views\KHACHHANG\Create.cshtml" />
     <Content Include="Views\KHACHHANG\Delete.cshtml" />
     <Content Include="Views\KHACHHANG\Details.cshtml" />
@@ -358,6 +354,27 @@
     <Content Include="Views\NHANVIEN\Details.cshtml" />
     <Content Include="Views\NHANVIEN\Edit.cshtml" />
     <Content Include="Views\NHANVIEN\Index.cshtml" />
+
+    <Content Include="Views\NHANVIEN\LayDanhSachNhanVien.cshtml" />
+    <Content Include="Views\NHANVIEN\LayThongTinNhanVien.cshtml" />
+    <Content Include="Views\NHANVIEN\SuaThongTinNhanVien.cshtml" />
+    <Content Include="Views\NHANVIEN\ThemNhanVien.cshtml" />
+    <Content Include="Views\NHANVIEN\XoaNhanVien.cshtml" />
+    <Content Include="Views\NHACUNGCAP\LayDanhSachNhaCungCap.cshtml" />
+    <Content Include="Views\NHACUNGCAP\LayThongTinNhaCungCap.cshtml" />
+    <Content Include="Views\NHACUNGCAP\SuaNhaCungCap.cshtml" />
+    <Content Include="Views\NHACUNGCAP\ThemNhaCungCap.cshtml" />
+    <Content Include="Views\NHACUNGCAP\XoaNhaCungCap.cshtml" />
+    <Content Include="Views\KHACHHANG\CapNhatKhachHang.cshtml" />
+    <Content Include="Views\KHACHHANG\LayThongTinKhachHang.cshtml" />
+    <Content Include="Views\KHACHHANG\ThemKhachHang.cshtml" />
+    <Content Include="Views\KHACHHANG\XoaKhachHang.cshtml" />
+    <Content Include="Views\HANGHOA\LayDanhSachHangHoa.cshtml" />
+    <Content Include="Views\HANGHOA\LayThongTinHangHoa.cshtml" />
+    <Content Include="Views\HANGHOA\ThemHangHoa.cshtml" />
+    <Content Include="Views\HANGHOA\SuaThongTinHangHoa.cshtml" />
+    <Content Include="Views\HANGHOA\XoaHangHoa.cshtml" />
+    <Content Include="Views\KHACHHANG\LayDanhSachKhachHang.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Users\DangNhap.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
