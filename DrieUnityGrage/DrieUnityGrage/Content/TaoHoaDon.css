@@ -1,0 +1,46 @@
+﻿/*Chi tiết đơn hàng*/
+.quantity {
+    width: 60px;
+    padding-left: 12px;
+    padding-right: 0px;
+    margin: 0px auto
+}
+
+.quantity-form {
+    width: 50px;
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: black;
+    background-color: white;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 0.375rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+    .quantity-form:focus {
+        color: black;
+        background-color: white;
+        border-color: black;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+
+
+    .quantity-form::-moz-placeholder {
+        color: black;
+        opacity: 1;
+    }
+
+    .quantity-form::placeholder {
+        color: black;
+        opacity: 1;
+    }
+
+.tr-chitiethd {
+    text-align:center; font-size:20px; font-weight:bold
+}

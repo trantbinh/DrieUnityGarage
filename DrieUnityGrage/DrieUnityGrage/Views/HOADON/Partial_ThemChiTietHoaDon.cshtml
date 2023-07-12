@@ -1,31 +1,27 @@
 ﻿@model DrieUnityGrage.Models.CT_HOADON
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
 
 @using (Html.BeginForm("Partial_ThemChiTietHoaDon", "HOADON"))
 {
-    @Html.AntiForgeryToken()
+    <div style="border: solid 1px black; padding-left: 5px; padding-right: 5px; padding-top:15px; padding-bottom:15px; align-items: center; justify-content: center; text-align: center ">
+        <p style="text-align:center; font-size:20px; font-weight:bold">Thêm sản phẩm</p>
 
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            Hàng hoá:
-            <div class="col-md-10">
-                @Html.DropDownList("CTHD_MaHH", null, htmlAttributes: new { @class = "form-control" })
+        <div class="col-12 dis-inline">
+            Sản phẩm:
+            <div class=" dis-inline" style="padding-left:20px">
+                @Html.DropDownList("CTHD_MaHH", null, htmlAttributes: new { @class = "form-selectSP" })
                 @Html.ValidationMessageFor(model => model.CTHD_MaHH, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            Số lượng:
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
-            </div>
+        <div style="margin-top:30px;">
+            <input type="submit" value="Thêm vào hoá đơn" class="btn btn-info" />
+
+
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Thêm" class="btn btn-default" />
-            </div>
-        </div>
+
+
     </div>
 }
