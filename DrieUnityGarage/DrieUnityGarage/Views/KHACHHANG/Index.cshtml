@@ -1,0 +1,90 @@
+﻿@model IEnumerable<DrieUnityGarage.Models.KHACHHANG>
+
+@{
+    ViewBag.Title = "Quản lý khách hàng";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/KhachHang_Index.css" />
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-5">
+            <h2>Danh sách khách hàng </h2>
+        </div>
+        <div class="col-lg-5">
+        </div>
+        <div class="col-lg-2">
+            @Html.ActionLink("Tạo mới", "Create", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+    <table class="table index-table" style="margin-top:20px;">
+        <tr>
+            <th>
+                Họ tên khách hàng
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Ngày sinh
+            </th>
+            <th>
+                Giới tính
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Điểm thành viên
+            </th>
+            <th>
+                Địa chỉ
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoTenKH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DienThoaiKH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgaySinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GioiTinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiemThanhVien)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaChi)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.MaKH }, new { @class = "btn btn-success" })
+
+                </td>
+                <td>
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.MaKH }, new { @class = "btn btn-danger" })
+
+                </td>
+                <td>
+                    @Html.ActionLink("Xoá", "Delete", new { id = item.MaKH }, new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+

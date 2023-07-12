@@ -1,0 +1,155 @@
+﻿* {
+    margin: 0;
+}
+
+.title {
+    text-align: center;
+    color: white;
+    margin-top: 15px
+}
+
+.minititle {
+    text-align: center;
+    color: white;
+}
+
+.form-decor {
+    color: black;
+    font-size: 20px;
+}
+
+.create-btn {
+    font-size: 20px;
+    font-weight: 500;
+    width: 30%
+}
+
+.delete-btn {
+    font-size: 20px;
+    font-weight: 500;
+    width: 40%;
+}
+
+.create-formgroup {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.save-btn {
+    font-size: 20px;
+    font-weight: 500;
+    width: 20%;
+}
+
+.save-formgroup {
+    margin-top: 20px;
+}
+
+th, td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.index-btn {
+    text-decoration: none;
+    color: white;
+}
+
+.index-table {
+    table-layout: fixed;
+    width: 100%;
+    word-break: break-word;
+    color: black;
+    border-spacing: 10px 10px;
+}
+
+.details-btn {
+    font-size: 20px;
+    font-weight: 500;
+    width: 20%;
+}
+
+.overall-table {
+    color: white;
+    width: 70%;
+    table-layout: fixed;
+    word-break: break-word;
+    font-size: 20px;
+}
+
+.edit-form {
+    width: 100%;
+    display: block;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 0.375rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+    .edit-form:focus {
+        color: #212529;
+        background-color: #fff;
+        border-color: #86b7fe;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+
+
+    .edit-form::-moz-placeholder {
+        color: #6c757d;
+        opacity: 1;
+    }
+
+    .edit-form::placeholder {
+        color: #6c757d;
+        opacity: 1;
+    }
+
+.form-group {
+    align-items: center;
+    margin: 0px auto;
+}
+
+
+
+
+.nonedecor {
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+}
+
+.edit-btn {
+    width: 200px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.nonedecor:hover {
+    color: #FCAE03;
+}
+
+.platform {
+    color: white;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.adminpage {
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+    font-size: 30px;
+}
+
+.space-field {
+    margin-top: 20px;
+}

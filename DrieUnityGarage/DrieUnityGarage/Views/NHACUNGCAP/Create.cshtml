@@ -1,0 +1,112 @@
+﻿@model DrieUnityGarage.Models.NHACUNGCAP
+
+@{
+    ViewBag.Title = "Tạo nhà cung cấp";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6" style="text-align:center">
+            <h2>Thêm nhà cung cấp mới</h2>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+    <div class="container col-8">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal form-decor">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group space-field">
+                    Tên nhà cung cấp:
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.TenNCC, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TenNCC, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group space-field">
+                    Địa chỉ:
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.DiaChiNCC, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DiaChiNCC, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group space-field">
+                    Điện thoại:
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.DienThoaiNCC, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DienThoaiNCC, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group space-field">
+                    Mã số thuế:
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.MaSoThueNCC, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MaSoThueNCC, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group space-field">
+                    Email:
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @*Tạo dropdown líst*@
+                @{
+                    var lstLoaiHinh = new List<SelectListItem>()
+                    {
+                    new SelectListItem()
+                    {
+                       Text ="Cá nhân",
+                       Value ="Cá nhân"
+                    },
+                     new SelectListItem()
+                   {
+                       Text = "Tổ chức",
+                       Value = "Tổ chức"
+                   }
+               };
+                }
+                <div class="form-group space-field">
+                    <div class="col-md-12">
+                        Loại hình kinh doanh:
+                        @Html.DropDownList("LoaiHinh", lstLoaiHinh, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LoaiHinh, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group space-field">
+                    Người đại diện:
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.HoTenNguoiDaiDien, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.HoTenNguoiDaiDien, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top:40px">
+                    <div class="row">
+                        <div class="col-lg-5 align-bottom">
+                            @Html.ActionLink("< Quay về", "Index", null, new { @class = "nonedecor" })
+                        </div>
+                        <div class="col-lg-7">
+                            <input type="submit" value="Tạo mới" class="btn btn-info create-btn" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

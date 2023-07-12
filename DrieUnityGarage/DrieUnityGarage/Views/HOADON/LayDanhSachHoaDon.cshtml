@@ -1,0 +1,70 @@
+﻿@model IEnumerable<DrieUnityGarage.Models.HOADON>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "TaoHoaDon")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayLap)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TongThanhToan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HD_MaTN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KHACHHANG.HoTenKH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PHUONGTIEN.SoMay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.THONGTINTHANHTOAN.TT_MaKH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.THONGTINTIEPNHAN.TN_MaKH)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayLap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TongThanhToan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HD_MaTN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KHACHHANG.HoTenKH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PHUONGTIEN.BienSoXe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.THONGTINTHANHTOAN.TT_MaKH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.THONGTINTIEPNHAN.TN_MaKH)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "CapNhatHoaDon", new { id=item.MaHD }) |
+            @Html.ActionLink("Details", "XemChiTietHoaDon", new { id=item.MaHD }) |
+            @Html.ActionLink("Delete", "XoaHoaDon", new { id=item.MaHD })
+        </td>
+    </tr>
+}
+
+</table>
