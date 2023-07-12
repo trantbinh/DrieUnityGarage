@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-
+@Scripts.Render("~/bundles/unobtrusive")
 <style type="text/css">
 
     .sidebar li .submenu {
@@ -68,7 +68,7 @@
 </head>
 <body class="body-container">
     <header id="header" id="container-fluid">
-        <div class="row"style="padding:0; margin:0">
+        <div class="row" style="padding:0; margin:0">
             <div class="col-lg-2" style="padding:0; margin:0"></div>
             <div class="header-name-container col-lg-2">
                 <img src="~/Images/HomePage_Header/HomePage_HeaderName.png" alt="Name garage" class="header-name-image" />
@@ -97,7 +97,7 @@
     </header>
     <div class="container-fluid" style="padding:0">
         <div class="row" style="padding:0">
-            <div class="col-lg-2"style="padding:0; margin:0">
+            <div class="col-lg-2" style="padding:0; margin:0">
                 <nav class="sidebar_css sidebar" style="padding:25px">
 
                     <ul class="nav flex-column" id="nav_accordion">
@@ -112,7 +112,7 @@
                                 <img src="~/Images/Icon/icon_QLKhachHang28x28.png" class="icon" /> Quản lý khách hàng
                             </a>
                         </li>
-                        <li class="nav-item has-submenu"style="margin-top:8px;">
+                        <li class="nav-item has-submenu" style="margin-top:8px;">
                             <a class="nav-link" href="#" style="padding-left:0">
                                 <img src="~/Images/Icon/icon_QLCSKH28x28.png" class="icon" /> Quản lý CSKH <i class="bi small bi-caret-down-fill"></i>
                             </a>
@@ -123,7 +123,7 @@
                                 <li><a class="nav-link" href="#">Submenu item 7 </a></li>
                             </ul>
                         </li>
-                        <li class="nav-item has-submenu"style="margin-top:8px;">
+                        <li class="nav-item has-submenu" style="margin-top:8px;">
                             <a class="nav-link" href="#" style="padding-left:0">
                                 <img src="~/Images/Icon/icon_QLHangHoa28x28.png" class="icon" /> Quản lý hàng hoá <i class="bi small bi-caret-down-fill"></i>
                             </a>
@@ -134,13 +134,13 @@
                                 <li><a class="nav-link" href="#">Submenu item 7 </a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"style="margin-top:8px;">
+                        <li class="nav-item" style="margin-top:8px;">
                             <a class="nav-link nav-link-text" href="@Url.Action("Index","NHACUNGCAP")" style="padding-left:0">
                                 <img src="~/Images/Icon/icon_QLNhaCungCap28x28.png" class="icon" /> Nhà cung cấp
                             </a>
                         </li>
 
-                        <li class="nav-item has-submenu"style="margin-top:8px;">
+                        <li class="nav-item has-submenu" style="margin-top:8px;">
                             <a class="nav-link" href="#" style="padding-left:0">
                                 <img src="~/Images/Icon/icon_QLNhanVien28x28.png" class="icon" /> Quản lý nhân viên<i class="bi small bi-caret-down-fill"></i>
                             </a>
@@ -152,13 +152,13 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item"style="margin-top:8px;">
+                        <li class="nav-item" style="margin-top:8px;">
                             <a class="nav-link nav-link-text" href="#" style="padding-left:0">
                                 <img src="~/Images/Icon/icon_QLXe28x28.png" class="icon" /> Quản lý xe
                             </a>
                         </li>
 
-                        <li class="nav-item has-submenu"style="margin-top:8px;">
+                        <li class="nav-item has-submenu" style="margin-top:8px;">
                             <a class="nav-link" href="#" style="padding-left:0">
                                 <img src="~/Images/Icon/icon_QLXuatNhap28x28.png" class="icon" /> Quản lý xuất nhập<i class="bi small bi-caret-down-fill"></i>
                             </a>
@@ -170,7 +170,7 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item has-submenu"style="margin-top:8px;">
+                        <li class="nav-item has-submenu" style="margin-top:8px;">
                             <a class="nav-link" href="#" style="padding-left:0">
                                 <img src="~/Images/Icon/icon_QLTaiChinh28x28.png" class="icon" /> Quản lý tài chính<i class="bi small bi-caret-down-fill"></i>
                             </a>
@@ -181,7 +181,7 @@
                                 <li><a class="nav-link" href="#">Submenu item 7 </a></li>
                             </ul>
                         </li>
-                        <li class="nav-item has-submenu"style="margin-top:8px;">
+                        <li class="nav-item has-submenu" style="margin-top:8px;">
                             <a class="nav-link" href="#" style="padding-left:0">
                                 <img src="~/Images/Icon/icon_QLDonHang28x28.png" class="icon" /> Quản lý đơn hàng<i class="bi small bi-caret-down-fill"></i>
                             </a>
@@ -193,7 +193,7 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item has-submenu"style="margin-top:8px;">
+                        <li class="nav-item has-submenu" style="margin-top:8px;">
                             <a class="nav-link" href="#" style="padding-left:0">
                                 <img src="~/Images/Icon/icon_QLDichVu28x28.png" class="icon" /> Quản lý dịch vụ<i class="bi small bi-caret-down-fill"></i>
                             </a>
@@ -207,7 +207,7 @@
                     </ul>
                 </nav>
             </div>
-            <div class="col-lg-10"style="padding:0; padding-bottom:50px;">
+            <div class="col-lg-10" style="padding:0; padding-bottom:50px;">
                 @RenderBody()
             </div>
 

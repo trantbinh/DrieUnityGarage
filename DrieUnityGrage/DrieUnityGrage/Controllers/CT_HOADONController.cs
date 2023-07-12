@@ -10,132 +10,116 @@ using DrieUnityGrage.Models;
 
 namespace DrieUnityGrage.Controllers
 {
-    public class THONGTINTIEPNHANController : Controller
+    public class CT_HOADONController : Controller
     {
         private DrieUnityGarageEntities db = new DrieUnityGarageEntities();
 
-
-        public TIEPNHAN LayThongTinTiepNhan()
-        {
-            TIEPNHAN lstTN = Session["TiepNhan"] as TIEPNHAN;
-            if (lstTN == null)
-            {
-                Session["TiepNhan"] = lstTN;
-            }
-            return lstTN;
-        }
-        public ActionResult ThemThongTinTiepNhan(String id)
-        {
-            TIEPNHAN lstTN = LayThongTinTiepNhan();
-            TIEPNHAN newTN;
-            if (lstTN == null)
-            {
-                newTN = new TIEPNHAN(id);
-            }
-            return RedirectToAction("Create");
-        }
-
-
-
-
-
-        // GET: THONGTINTIEPNHAN
+        // GET: CT_HOADON
         public ActionResult Index()
         {
-            return View(db.THONGTINTIEPNHANs.ToList());
+            var cT_HOADON = db.CT_HOADON.Include(c => c.HANGHOA).Include(c => c.HOADON);
+            return View(cT_HOADON.ToList());
         }
 
-        // GET: THONGTINTIEPNHAN/Details/5
+        // GET: CT_HOADON/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            THONGTINTIEPNHAN tHONGTINTIEPNHAN = db.THONGTINTIEPNHANs.Find(id);
-            if (tHONGTINTIEPNHAN == null)
+            CT_HOADON cT_HOADON = db.CT_HOADON.Find(id);
+            if (cT_HOADON == null)
             {
                 return HttpNotFound();
             }
-            return View(tHONGTINTIEPNHAN);
+            return View(cT_HOADON);
         }
 
-        // GET: THONGTINTIEPNHAN/Create
+        // GET: CT_HOADON/Create
         public ActionResult Create()
         {
+            ViewBag.CTHD_MaHH = new SelectList(db.HANGHOAs, "MaHH", "TenHH");
+            ViewBag.CTHD_MaHD = new SelectList(db.HOADONs, "MaHD", "HD_MaKH");
             return View();
         }
 
-        // POST: THONGTINTIEPNHAN/Create
+        // POST: CT_HOADON/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaTN,TN_MaKH,TN_BienSoXe,TN_MaNV,ThoiGianTiepNhan,ThoiGianGiaoDuKien,GhiChuKH")] THONGTINTIEPNHAN tHONGTINTIEPNHAN)
+        public ActionResult Create([Bind(Include = "CTHD_MaHH,CTHD_MaHD,SoLuong,ThanhTien")] CT_HOADON cT_HOADON)
         {
             if (ModelState.IsValid)
             {
-                db.THONGTINTIEPNHANs.Add(tHONGTINTIEPNHAN);
+                db.CT_HOADON.Add(cT_HOADON);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(tHONGTINTIEPNHAN);
+            ViewBag.CTHD_MaHH = new SelectList(db.HANGHOAs, "MaHH", "TenHH", cT_HOADON.CTHD_MaHH);
+            ViewBag.CTHD_MaHD = new SelectList(db.HOADONs, "MaHD", "HD_MaKH", cT_HOADON.CTHD_MaHD);
+            return View(cT_HOADON);
         }
 
-        // GET: THONGTINTIEPNHAN/Edit/5
+        // GET: CT_HOADON/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            THONGTINTIEPNHAN tHONGTINTIEPNHAN = db.THONGTINTIEPNHANs.Find(id);
-            if (tHONGTINTIEPNHAN == null)
+            CT_HOADON cT_HOADON = db.CT_HOADON.Find(id);
+            if (cT_HOADON == null)
             {
                 return HttpNotFound();
             }
-            return View(tHONGTINTIEPNHAN);
+            ViewBag.CTHD_MaHH = new SelectList(db.HANGHOAs, "MaHH", "TenHH", cT_HOADON.CTHD_MaHH);
+            ViewBag.CTHD_MaHD = new SelectList(db.HOADONs, "MaHD", "HD_MaKH", cT_HOADON.CTHD_MaHD);
+            return View(cT_HOADON);
         }
 
-        // POST: THONGTINTIEPNHAN/Edit/5
+        // POST: CT_HOADON/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaTN,TN_MaKH,TN_BienSoXe,TN_MaNV,ThoiGianTiepNhan,ThoiGianGiaoDuKien,GhiChuKH")] THONGTINTIEPNHAN tHONGTINTIEPNHAN)
+        public ActionResult Edit([Bind(Include = "CTHD_MaHH,CTHD_MaHD,SoLuong,ThanhTien")] CT_HOADON cT_HOADON)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tHONGTINTIEPNHAN).State = EntityState.Modified;
+                db.Entry(cT_HOADON).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(tHONGTINTIEPNHAN);
+            ViewBag.CTHD_MaHH = new SelectList(db.HANGHOAs, "MaHH", "TenHH", cT_HOADON.CTHD_MaHH);
+            ViewBag.CTHD_MaHD = new SelectList(db.HOADONs, "MaHD", "HD_MaKH", cT_HOADON.CTHD_MaHD);
+            return View(cT_HOADON);
         }
 
-        // GET: THONGTINTIEPNHAN/Delete/5
+        // GET: CT_HOADON/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            THONGTINTIEPNHAN tHONGTINTIEPNHAN = db.THONGTINTIEPNHANs.Find(id);
-            if (tHONGTINTIEPNHAN == null)
+            CT_HOADON cT_HOADON = db.CT_HOADON.Find(id);
+            if (cT_HOADON == null)
             {
                 return HttpNotFound();
             }
-            return View(tHONGTINTIEPNHAN);
+            return View(cT_HOADON);
         }
 
-        // POST: THONGTINTIEPNHAN/Delete/5
+        // POST: CT_HOADON/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            THONGTINTIEPNHAN tHONGTINTIEPNHAN = db.THONGTINTIEPNHANs.Find(id);
-            db.THONGTINTIEPNHANs.Remove(tHONGTINTIEPNHAN);
+            CT_HOADON cT_HOADON = db.CT_HOADON.Find(id);
+            db.CT_HOADON.Remove(cT_HOADON);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

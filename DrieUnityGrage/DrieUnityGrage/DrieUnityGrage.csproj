@@ -129,6 +129,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CT_HOADONController.cs" />
     <Compile Include="Controllers\HANGHOAController.cs" />
     <Compile Include="Controllers\HOADONController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
@@ -139,6 +140,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CTHD.cs" />
+    <Compile Include="Models\DONHANG.cs" />
     <Compile Include="Models\CT_HOADON.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -175,12 +178,14 @@
     <Compile Include="Models\PHUONGTIEN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SanPham.cs" />
     <Compile Include="Models\THONGTINTHANHTOAN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\THONGTINTIEPNHAN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TIEPNHAN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +213,7 @@
     <Content Include="Content\bootstrap5\js\bootstrap.min.js" />
     <Content Include="Content\HomePage_Layout.css" />
     <Content Include="Content\NCC_Index.css" />
+    <Content Include="Content\TaoHoaDon.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -286,6 +292,8 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -314,13 +322,12 @@
     <Content Include="Views\THONGTINTIEPNHAN\Details.cshtml" />
     <Content Include="Views\THONGTINTIEPNHAN\Edit.cshtml" />
     <Content Include="Views\THONGTINTIEPNHAN\Index.cshtml" />
-    <Content Include="Views\HOADON\Create.cshtml" />
-    <Content Include="Views\HOADON\Delete.cshtml" />
-    <Content Include="Views\HOADON\Details.cshtml" />
-    <Content Include="Views\HOADON\Edit.cshtml" />
-    <Content Include="Views\HOADON\Index.cshtml" />
+    <Content Include="Views\HOADON\TaoHoaDon.cshtml" />
+    <Content Include="Views\HOADON\XoaHoaDon.cshtml" />
+    <Content Include="Views\HOADON\XemChiTietHoaDon.cshtml" />
+    <Content Include="Views\HOADON\CapNhatHoaDon.cshtml" />
+    <Content Include="Views\HOADON\LayDanhSachHoaDon.cshtml" />
     <Content Include="Views\HOADON\LayThongTinTiepNhan.cshtml" />
-    <Content Include="Views\HOADON\Extensions_TaoMaHD.cshtml" />
     <Content Include="Views\KHACHHANG\Create.cshtml" />
     <Content Include="Views\KHACHHANG\Delete.cshtml" />
     <Content Include="Views\KHACHHANG\Details.cshtml" />
@@ -336,6 +343,16 @@
     <Content Include="Views\HANGHOA\Details.cshtml" />
     <Content Include="Views\HANGHOA\Edit.cshtml" />
     <Content Include="Views\HANGHOA\Index.cshtml" />
+    <Content Include="Views\HOADON\Extensions_LayThongTinKhachHang.cshtml" />
+    <Content Include="Views\HOADON\Partial_LayChiTietHoaDon.cshtml" />
+    <Content Include="Views\CT_HOADON\Create.cshtml" />
+    <Content Include="Views\CT_HOADON\Delete.cshtml" />
+    <Content Include="Views\CT_HOADON\Details.cshtml" />
+    <Content Include="Views\CT_HOADON\Edit.cshtml" />
+    <Content Include="Views\CT_HOADON\Index.cshtml" />
+    <Content Include="Views\HOADON\Partial_ThemChiTietHoaDon.cshtml" />
+    <Content Include="Views\HOADON\Partial_LayThongTinTiepNhan.cshtml" />
+    <Content Include="Views\HOADON\Partial_LayChiTietHoaDonDB.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
