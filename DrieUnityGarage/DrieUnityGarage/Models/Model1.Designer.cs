@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream:DrieUnityGarage/DrieUnityGarage/Models/Model1.Designer.cs
 ﻿// T4 code generation is enabled for model 'D:\CODE\2nd_Semester3\SoftwareEngineer\DrieUnityGarage\DrieUnityGarage\Models\Model1.edmx'. 
+=======
+﻿// T4 code generation is enabled for model 'D:\Clonner\DrieUnityGarage\DrieUnityGrage\DrieUnityGrage\Models\Model1.edmx'. 
+>>>>>>> Stashed changes:DrieUnityGrage/DrieUnityGrage/Models/Model1.Designer.cs
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

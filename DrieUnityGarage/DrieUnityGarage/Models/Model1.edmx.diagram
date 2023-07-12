@@ -4,7 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
+<<<<<<< Updated upstream:DrieUnityGarage/DrieUnityGarage/Models/Model1.edmx.diagram
       <Diagram DiagramId="29ba857132444c2b9ef7be0e4c1bb359" Name="Diagram1">
+=======
+      <Diagram DiagramId="68a6b6f495af487a8535de5692294ec5" Name="Diagram1">
+>>>>>>> Stashed changes:DrieUnityGrage/DrieUnityGrage/Models/Model1.edmx.diagram
         <EntityTypeShape EntityType="DrieUnityGarageModel.CT_HOADON" Width="1.5" PointX="7.5" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="DrieUnityGarageModel.HANGHOA" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DrieUnityGarageModel.HOADON" Width="1.5" PointX="5.25" PointY="6.5" IsExpanded="true" />

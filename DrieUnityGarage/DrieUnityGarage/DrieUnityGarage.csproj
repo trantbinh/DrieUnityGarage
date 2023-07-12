@@ -327,6 +327,7 @@
     <Content Include="Views\HOADON\XemChiTietHoaDon.cshtml" />
     <Content Include="Views\HOADON\XoaHoaDon.cshtml" />
     <Content Include="Views\HomePage\View_HomePage.cshtml" />
+<<<<<<< Updated upstream:DrieUnityGarage/DrieUnityGarage/DrieUnityGarage.csproj
     <Content Include="Views\NHACUNGCAP\Create.cshtml" />
     <Content Include="Views\NHACUNGCAP\Delete.cshtml" />
     <Content Include="Views\NHACUNGCAP\Details.cshtml" />
@@ -334,11 +335,14 @@
     <Content Include="Views\NHACUNGCAP\Index.cshtml" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+=======
+>>>>>>> Stashed changes:DrieUnityGrage/DrieUnityGrage/DrieUnityGrage.csproj
     <Content Include="Views\THONGTINTIEPNHAN\Create.cshtml" />
     <Content Include="Views\THONGTINTIEPNHAN\Delete.cshtml" />
     <Content Include="Views\THONGTINTIEPNHAN\Details.cshtml" />
     <Content Include="Views\THONGTINTIEPNHAN\Edit.cshtml" />
     <Content Include="Views\THONGTINTIEPNHAN\Index.cshtml" />
+<<<<<<< Updated upstream:DrieUnityGarage/DrieUnityGarage/DrieUnityGarage.csproj
     <Content Include="Views\HANGHOA\Create.cshtml" />
     <Content Include="Views\HANGHOA\Delete.cshtml" />
     <Content Include="Views\HANGHOA\Details.cshtml" />
@@ -354,6 +358,37 @@
     <Content Include="Views\NHANVIEN\Details.cshtml" />
     <Content Include="Views\NHANVIEN\Edit.cshtml" />
     <Content Include="Views\NHANVIEN\Index.cshtml" />
+=======
+    <Content Include="Views\HOADON\LayThongTinTiepNhan.cshtml" />
+    <Content Include="Views\HOADON\Extensions_TaoMaHD.cshtml" />
+    <Content Include="Views\HANGHOA\ThemHangHoa.cshtml" />
+    <Content Include="Views\HANGHOA\XoaHangHoa.cshtml" />
+    <Content Include="Views\HANGHOA\LayThongTinHangHoa.cshtml" />
+    <Content Include="Views\HANGHOA\SuaThongTinHangHoa.cshtml" />
+    <Content Include="Views\HANGHOA\LayDanhSachHangHoa.cshtml" />
+    <Content Include="Views\KHACHHANG\LayDanhSachKhachHang.cshtml" />
+    <Content Include="Views\KHACHHANG\LayThongTinKhachHang.cshtml" />
+    <Content Include="Views\KHACHHANG\ThemKhachHang.cshtml" />
+    <Content Include="Views\KHACHHANG\XoaKhachHang.cshtml" />
+    <Content Include="Views\KHACHHANG\CapNhatKhachHang.cshtml" />
+    <Content Include="Views\NHACUNGCAP\LayDanhSachNhaCungCap.cshtml" />
+    <Content Include="Views\NHACUNGCAP\LayThongTinNhaCungCap.cshtml" />
+    <Content Include="Views\NHACUNGCAP\ThemNhaCungCap.cshtml" />
+    <Content Include="Views\NHACUNGCAP\SuaNhaCungCap.cshtml" />
+    <Content Include="Views\NHACUNGCAP\XoaNhaCungCap.cshtml" />
+    <Content Include="Views\NHANVIEN\LayDanhSachNhanVien.cshtml" />
+    <Content Include="Views\NHANVIEN\LayThongTinNhanVien.cshtml" />
+    <Content Include="Views\NHANVIEN\ThemNhanVien.cshtml" />
+    <Content Include="Views\NHANVIEN\SuaThongTinNhanVien.cshtml" />
+    <Content Include="Views\NHANVIEN\XoaNhanVien.cshtml" />
+    <Content Include="Views\HOADON\LayDanhSachHoaDon.cshtml" />
+    <Content Include="Views\HOADON\LayThongTinHoaDon.cshtml" />
+    <Content Include="Views\HOADON\ThemHoaDon.cshtml" />
+    <Content Include="Views\HOADON\SuaHoaDon.cshtml" />
+    <Content Include="Views\HOADON\XoaHoaDon.cshtml" />
+    <Content Include="Views\HOADON\TaoMaHD.cshtml" />
+    <Content Include="Views\HOADON\Delete.cshtml" />
+>>>>>>> Stashed changes:DrieUnityGrage/DrieUnityGrage/DrieUnityGrage.csproj
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

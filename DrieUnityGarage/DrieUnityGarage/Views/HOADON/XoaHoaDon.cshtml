@@ -1,7 +1,13 @@
+<<<<<<< Updated upstream:DrieUnityGarage/DrieUnityGarage/Views/HOADON/XoaHoaDon.cshtml
 ﻿@model DrieUnityGarage.Models.HOADON
 
 @{
     ViewBag.Title = "Xoá hoá đơn";
+=======
+﻿
+@{
+    ViewBag.Title = "XoaHoaDon";
+>>>>>>> Stashed changes:DrieUnityGrage/DrieUnityGrage/Views/HOADON/XoaHoaDon.cshtml
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
@@ -9,11 +15,16 @@
     <div class="row">
         <div class="col-lg-3"></div>
         <div class="col-lg-6" style="text-align:center">
+<<<<<<< Updated upstream:DrieUnityGarage/DrieUnityGarage/Views/HOADON/XoaHoaDon.cshtml
             <h2>Cập nhật thông tin hoá đơn</h2>
+=======
+            <h2>Xác nhận xoá thông tin hàng hóa</h2>
+>>>>>>> Stashed changes:DrieUnityGrage/DrieUnityGrage/Views/HOADON/XoaHoaDon.cshtml
         </div>
         <div class="col-lg-3"></div>
     </div>
 
+<<<<<<< Updated upstream:DrieUnityGarage/DrieUnityGarage/Views/HOADON/XoaHoaDon.cshtml
     <p style="font-size:20px; font-weight:bold">Thông tin chung:</p>
     <div class="row" style="font-size:17px; margin:0">
         <div class="col-lg-4" style="padding-left:50px">
@@ -68,3 +79,74 @@
         </div>
     }
 </div>
+=======
+
+    <div class="container col-8">
+        <hr />
+        <div class="form-horizontal form-decor">
+
+            <div class="form-group space-field">
+                Tên hàng hóa:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.NgayLap)
+                </div>
+            </div>
+            <div class="form-group space-field">
+                Tên hàng hóa:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.TongThanhToan)
+                </div>
+            </div>
+            <div class="form-group space-field">
+                Tên hàng hóa:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.HD_MaTN)
+                </div>
+            </div>
+            <div class="form-group space-field">
+                Tên hàng hóa:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.KHACHHANG.HoTenKH)
+                </div>
+            </div>
+            <div class="form-group space-field">
+                Tên hàng hóa:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.PHUONGTIEN.SoMay)
+                </div>
+            </div>
+            <div class="form-group space-field">
+                Tên hàng hóa:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.THONGTINTHANHTOAN.TT_MaKH)
+                </div>
+            </div>
+            <div class="form-group space-field">
+                Tên hàng hóa:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.THONGTINTIEPNHAN.TN_MaKH)
+                </div>
+            </div>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group" style="margin-top:40px">
+                    <div class="row">
+                        <div class="col-lg-5 align-bottom">
+                            @Html.ActionLink("< Quay về", "LayDanhSachHoaDon", null, new { @class = "nonedecor" })
+                        </div>
+                        <div class="col-lg-7">
+                            <input type="submit" value="Xoá thông tin" class="btn btn-danger XoaThongTinHangHoa-btn " />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+>>>>>>> Stashed changes:DrieUnityGrage/DrieUnityGrage/Views/HOADON/XoaHoaDon.cshtml

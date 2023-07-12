@@ -15,13 +15,13 @@ namespace DrieUnityGarage.Controllers
         private DrieUnityGarageEntities db = new DrieUnityGarageEntities();
 
         // GET: NHANVIEN
-        public ActionResult Index()
+        public ActionResult LayDanhSachNhanVien()
         {
             return View(db.NHANVIENs.ToList());
         }
 
         // GET: NHANVIEN/Details/5
-        public ActionResult Details(string id)
+        public ActionResult LayThongTinNhanVien(string id)
         {
             if (id == null)
             {
@@ -36,7 +36,7 @@ namespace DrieUnityGarage.Controllers
         }
 
         // GET: NHANVIEN/Create
-        public ActionResult Create()
+        public ActionResult ThemNhanVien()
         {
             return View();
         }
@@ -46,20 +46,35 @@ namespace DrieUnityGarage.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaNV,HoTenNV,DienThoaiNV,NgaySinh,GioiTinh,Email,DiaChi,ChucVu,PhongBan,TenDangNhap,MatKhau,NgayTaoTK")] NHANVIEN nHANVIEN)
+        public ActionResult ThemNhanVien([Bind(Include = "MaNV,HoTenNV,DienThoaiNV,NgaySinh,GioiTinh,Email,DiaChi,ChucVu,PhongBan,TenDangNhap,MatKhau,NgayTaoTK")] NHANVIEN nHANVIEN)
         {
             if (ModelState.IsValid)
             {
+                List<NHANVIEN> lstNV = db.NHANVIENs.ToList();
+                int countLst = lstNV.Count();
+                if (countLst == 0)
+                {
+                    nHANVIEN.MaNV = "NV01";
+                }
+                else
+                {
+                    NHANVIEN lastNV = lstNV[countLst - 1];
+                    String lastMaNV = lastNV.MaNV;
+                    int lastMaNVNum = int.Parse(lastMaNV.Substring(3));
+                    int newMaNV = lastMaNVNum + 1;
+                    nHANVIEN.MaNV = "NV0" + newMaNV.ToString();
+                }
+
                 db.NHANVIENs.Add(nHANVIEN);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("LayDanhSachNhanVien");
             }
 
             return View(nHANVIEN);
         }
 
         // GET: NHANVIEN/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult SuaThongTinNhanVien(string id)
         {
             if (id == null)
             {
@@ -78,19 +93,19 @@ namespace DrieUnityGarage.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaNV,HoTenNV,DienThoaiNV,NgaySinh,GioiTinh,Email,DiaChi,ChucVu,PhongBan,TenDangNhap,MatKhau,NgayTaoTK")] NHANVIEN nHANVIEN)
+        public ActionResult SuaThongTinNhanVien([Bind(Include = "MaNV,HoTenNV,DienThoaiNV,NgaySinh,GioiTinh,Email,DiaChi,ChucVu,PhongBan,TenDangNhap,MatKhau,NgayTaoTK")] NHANVIEN nHANVIEN)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(nHANVIEN).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("LayDanhSachNhanVien");
             }
             return View(nHANVIEN);
         }
 
         // GET: NHANVIEN/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult XoaNhanVien(string id)
         {
             if (id == null)
             {
@@ -105,14 +120,14 @@ namespace DrieUnityGarage.Controllers
         }
 
         // POST: NHANVIEN/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("XoaNhanVien")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult XoaNhanVienConfirmed(string id)
         {
             NHANVIEN nHANVIEN = db.NHANVIENs.Find(id);
             db.NHANVIENs.Remove(nHANVIEN);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("LayDanhSachNhanVien");
         }
 
         protected override void Dispose(bool disposing)

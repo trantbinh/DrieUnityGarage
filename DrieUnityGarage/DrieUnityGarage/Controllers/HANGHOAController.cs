@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Web;
 using System.Web.Mvc;
 using DrieUnityGarage.Models;
@@ -52,6 +53,21 @@ namespace DrieUnityGarage.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Tạo mã nhà cung cấp String
+                List<HANGHOA> lstHH = db.HANGHOAs.ToList();
+                int countLst = lstHH.Count();
+                if (countLst == 0)
+                {
+                    hANGHOA.MaHH = "HH01";
+                }
+                else
+                {
+                    HANGHOA lastHH = lstHH[countLst - 1];
+                    String lastMaHH = lastHH.MaHH;
+                    int lastMaHHNum = int.Parse(lastMaHH.Substring(3));
+                    int newMaHH = lastMaHHNum + 1;
+                    hANGHOA.MaHH = "HH0" + newMaHH.ToString();
+                }
                 db.HANGHOAs.Add(hANGHOA);
                 db.SaveChanges();
                 return RedirectToAction("Index");
