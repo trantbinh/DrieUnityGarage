@@ -1,0 +1,90 @@
+﻿@model IEnumerable<DrieUnityGrage.Models.HANGHOA>
+
+@{
+    ViewBag.Title = "LayDanhSachHangHoa";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_LayDanhSachHangHoa.css" />
+
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-5">
+            <h2>Danh sách hàng hóa </h2>
+        </div>
+        <div class="col-lg-5">
+        </div>
+        <div class="col-lg-2">
+            @Html.ActionLink("Tạo mới", "ThemHangHoa", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+    <table class="table LayDanhSachHangHoa-table" style="margin-top:20px;">
+
+        <tr>
+            <th>
+                Tên hàng hóa
+            </th>
+            <th>
+                Đơn giá
+            </th>
+            <th>
+                Đơn vị tính
+            </th>
+            <th>
+                Loại hàng
+            </th>
+            <th>
+                Số lượng tồn
+            </th>
+            <th>
+                Tên nhà cung cấp
+            </th>
+            
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>
+                    @Html.DisplayFor(modelItem => item.TenHH)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonViTinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoaiHang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuongTon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NHACUNGCAP.TenNCC)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "SuaThongTinHangHoa", new { id = item.MaHH }, new { @class = "btn btn-success" })
+
+                </td>
+                <td>
+                    @Html.ActionLink("Chi tiết", "LayThongTinHangHoa", new { id = item.MaHH }, new { @class = "btn btn-danger" })
+
+                </td>
+                <td>   @Html.ActionLink("Xoá", "XoaHangHoa", new { id = item.MaHH }, new { @class = "btn btn-primary" })</td>
+            </tr>
+        }
+
+    </table>
+
+
+</div>

@@ -4,110 +4,114 @@
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>NHANVIEN</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.HoTenNV)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HoTenNV)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DienThoaiNV)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DienThoaiNV)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NgaySinh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NgaySinh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GioiTinh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GioiTinh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DiaChi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DiaChi)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ChucVu)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ChucVu)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhongBan)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhongBan)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TenDangNhap)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TenDangNhap)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MatKhau)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MatKhau)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayTaoTK)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NgayTaoTK)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6" style="text-align:center">
+            <h2>Xác nhận xoá nhân viên</h2>
         </div>
-    }
+        <div class="col-lg-3"></div>
+    </div>
+
+
+    <div class="container col-8">
+        <hr />
+        <div class="form-horizontal form-decor">
+
+            <div class="form-group space-field">
+                Họ tên:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.HoTenNV)
+                </div>
+            </div>
+
+            <div class="form-group space-field">
+                Số điện thoại:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.DienThoaiNV)
+                </div>
+            </div>
+
+            <div class="form-group space-field">
+                Ngày tháng năm sinh:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.NgaySinh)
+                </div>
+            </div>
+
+            <div class="form-group space-field">
+                Giới tính:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.GioiTinh)
+                </div>
+            </div>
+
+            <div class="form-group space-field">
+                Email:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.Email)
+                </div>
+            </div>
+
+            <div class="form-group space-field">
+                Địa chỉ:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.DiaChi)
+                </div>
+            </div>
+
+            <div class="form-group space-field">
+                Chức vụ:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.ChucVu)
+                </div>
+            </div>
+
+            <div class="form-group space-field">
+                Phòng ban:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.PhongBan)
+                </div>
+            </div>
+
+            <div class="form-group space-field">
+                Tên đăng nhập:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.TenDangNhap)
+                </div>
+            </div>
+
+            <div class="form-group space-field">
+                Mật khẩu:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.MatKhau)
+                </div>
+            </div>
+
+            <div class="form-group space-field">
+                Ngày tạo tài khoản:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.NgayTaoTK)
+                </div>
+            </div>
+        </div>
+        @using (Html.BeginForm())
+        {
+         @Html.AntiForgeryToken()
+         <div class="form-group" style="margin-top:40px">
+             <div class="row">
+                 <div class="col-lg-5 align-bottom">
+                     @Html.ActionLink("< Quay về", "Index", null, new { @class = "nonedecor" })
+                 </div>
+                 <div class="col-lg-7">
+                     <input type="submit" value="Xoá thông tin" class="btn btn-danger delete-btn " />
+                 </div>
+             </div>
+         </div>
+        }
+    </div>
+
 </div>

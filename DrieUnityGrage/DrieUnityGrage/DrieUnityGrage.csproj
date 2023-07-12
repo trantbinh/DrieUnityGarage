@@ -333,11 +333,11 @@
     <Content Include="Views\NHANVIEN\Details.cshtml" />
     <Content Include="Views\NHANVIEN\Edit.cshtml" />
     <Content Include="Views\NHANVIEN\Index.cshtml" />
-    <Content Include="Views\HANGHOA\Create.cshtml" />
-    <Content Include="Views\HANGHOA\Delete.cshtml" />
-    <Content Include="Views\HANGHOA\Details.cshtml" />
-    <Content Include="Views\HANGHOA\Edit.cshtml" />
-    <Content Include="Views\HANGHOA\Index.cshtml" />
+    <Content Include="Views\HANGHOA\ThemHangHoa.cshtml" />
+    <Content Include="Views\HANGHOA\XoaHangHoa.cshtml" />
+    <Content Include="Views\HANGHOA\LayThongTinHangHoa.cshtml" />
+    <Content Include="Views\HANGHOA\SuaThongTinHangHoa.cshtml" />
+    <Content Include="Views\HANGHOA\LayDanhSachHangHoa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

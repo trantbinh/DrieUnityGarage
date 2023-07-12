@@ -4,8 +4,9 @@
     "\\DrieUnityGrage",
     "\\DrieUnityGrage\\DrieUnityGrage",
     "\\DrieUnityGrage\\DrieUnityGrage\\Views",
-    "\\DrieUnityGrage\\DrieUnityGrage\\Views\\KHACHHANG"
+    "\\DrieUnityGrage\\DrieUnityGrage\\Views\\NHACUNGCAP",
+    "\\DrieUnityGrage\\DrieUnityGrage\\Views\\THONGTINTIEPNHAN"
   ],
-  "SelectedNode": "\\DrieUnityGrage\\DrieUnityGrage\\Views\\KHACHHANG\\Index.cshtml",
+  "SelectedNode": "\\DrieUnityGrage\\DrieUnityGrage.sln",
   "PreviewInSolutionExplorer": false
 }
