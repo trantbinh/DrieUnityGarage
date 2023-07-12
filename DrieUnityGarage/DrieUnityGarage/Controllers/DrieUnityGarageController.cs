@@ -1,5 +1,4 @@
 ﻿using DrieUnityGarage.Models;
-using DrieUnityGarage.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Web.Mvc;
 
 namespace DrieUnityGarage.Controllers
 {
-    public class HomePageController : Controller
+    public class DrieUnityGarageController : Controller
     {
         DrieUnityGarageEntities db = new DrieUnityGarageEntities();
         // GET: HomePage

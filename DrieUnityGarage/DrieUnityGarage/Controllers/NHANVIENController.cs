@@ -51,7 +51,7 @@ namespace DrieUnityGarage.Controllers
                         {
                             Session["IsAdmin"] = null;
                         }
-                        return RedirectToAction("HomePage", "HomePage");
+                        return RedirectToAction("HomePage", "DrieUnityGarage");
                     }
                     else
                     {
@@ -67,13 +67,13 @@ namespace DrieUnityGarage.Controllers
         }
         //-----------------ĐĂNG XUẤT------------------//
 
-        public ActionResult LogOut()
+        public ActionResult DangXuat()
         {
             Session.Remove("TaiKhoan");
-            Session.Remove("LogName");
-            Session.Remove("IDCus");
-
-            return RedirectToAction("HomePage", "CitricStore");
+            Session.Remove("TenDN");
+            Session.Remove("MaTaiKhoanNV");
+            Session.Remove("IsAdmin");
+            return RedirectToAction("HomePage", "DrieUnityGarage");
         }
 
 
