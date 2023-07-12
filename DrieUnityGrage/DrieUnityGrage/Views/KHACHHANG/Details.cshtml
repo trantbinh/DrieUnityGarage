@@ -3,73 +3,88 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    <link href="~/Content/Button/button.css" rel="stylesheet" />
 }
-
-<h2>Details</h2>
-
-<div>
-    <h4>KHACHHANG</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.HoTenKH)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HoTenKH)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DienThoaiKH)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DienThoaiKH)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NgaySinh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NgaySinh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GioiTinh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GioiTinh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DiemThanhVien)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DiemThanhVien)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DiaChi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DiaChi)
-        </dd>
-
-    </dl>
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <h2>Xem chi tiết khách hàng</h2>
+            <br />
+        </div>
+        <div class="col-4"></div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaKH }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            @*<div class="card-header">
+                    <h4 class="card-title">KHACHHANG</h4>
+                </div>*@
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.HoTenKH)
+                    </dt>
+                    <dd class="col-sm-8" style="border: 1px solid #ccc; padding: 5px; border-radius:10px">
+                        @Html.DisplayFor(model => model.HoTenKH)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.DienThoaiKH)
+                    </dt>
+                    <dd class="col-sm-8" style="border: 1px solid #ccc; padding: 5px; border-radius: 10px">
+                        @Html.DisplayFor(model => model.DienThoaiKH)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.NgaySinh)
+                    </dt>
+                    <dd class="col-sm-8" style="border: 1px solid #ccc; padding: 5px; border-radius: 10px">
+                        @Html.DisplayFor(model => model.NgaySinh)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.GioiTinh)
+                    </dt>
+                    <dd class="col-sm-8" style="border: 1px solid #ccc; padding: 5px; border-radius: 10px">
+                        @Html.DisplayFor(model => model.GioiTinh)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+                    <dd class="col-sm-8" style="border: 1px solid #ccc; padding: 5px; border-radius: 10px">
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.DiaChi)
+                    </dt>
+                    <dd class="col-sm-8" style="border: 1px solid #ccc; padding: 5px; border-radius: 10px">
+                        @Html.DisplayFor(model => model.DiaChi)
+                    </dd>
+                </dl>
+            </div>
+            <br />
+            <div class="card-footer">
+                <p>
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-5">
+                            <button class="custom-button back" onclick="location.href='@Url.Action("Index")'">
+                                <img src="~/Images/Icon/icon_Back.png" alt="Quay lại" class="button-icon" />
+                                <span class="button-text">Quay lại</span>
+                            </button>
+                        </div>
+                        <div class="col-5">
+                            <button class="custom-button edit" onclick="location.href='@Url.Action("Edit", new { id = Model.MaKH })'">
+                                <span class="button-text">Chỉnh sửa</span>
+                            </button>
+                        </div>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

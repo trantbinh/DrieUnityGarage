@@ -11,7 +11,8 @@ namespace DrieUnityGrage.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class KHACHHANG
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,7 +21,6 @@ namespace DrieUnityGrage.Models
             this.HOADONs = new HashSet<HOADON>();
             this.PHUONGTIENs = new HashSet<PHUONGTIEN>();
         }
-    
         public string MaKH { get; set; }
         public string HoTenKH { get; set; }
         public string DienThoaiKH { get; set; }

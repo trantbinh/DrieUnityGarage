@@ -1,0 +1,29 @@
+﻿.custom-button.back{
+    background-color: #eee;
+    border: none;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius:10px;
+}
+
+.custom-button.edit {
+    background-color: #FFDB5B;
+    color: white;
+    border: none;
+    padding: 5px 38px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.button-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+
+.button-text {
+    color: black;
+}

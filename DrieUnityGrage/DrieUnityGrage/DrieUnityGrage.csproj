@@ -206,6 +206,7 @@
     <Content Include="Content\bootstrap5\js\bootstrap.esm.min.js" />
     <Content Include="Content\bootstrap5\js\bootstrap.js" />
     <Content Include="Content\bootstrap5\js\bootstrap.min.js" />
+    <Content Include="Content\Button\button.css" />
     <Content Include="Content\HomePage_Layout.css" />
     <Content Include="Content\NCC_Index.css" />
     <Content Include="favicon.ico" />
@@ -237,6 +238,7 @@
     <Content Include="Images\Icon\icon_QLXe28x28.png" />
     <Content Include="Images\Icon\icon_QLXuatNhap.png" />
     <Content Include="Images\Icon\icon_QLXuatNhap28x28.png" />
+    <Content Include="Images\Icon\icon_Back.png" />
     <Content Include="Images\Logo\Logo.png" />
     <Content Include="Images\Logo\Logo_Name.png" />
     <Content Include="Models\Model1.Context.tt">
