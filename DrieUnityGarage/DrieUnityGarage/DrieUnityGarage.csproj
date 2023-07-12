@@ -127,16 +127,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\BundleConfig2.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CT_HOADONController.cs" />
     <Compile Include="Controllers\HANGHOAController.cs" />
     <Compile Include="Controllers\HOADONController.cs" />
-    <Compile Include="Controllers\HomePageController.cs" />
+    <Compile Include="Controllers\DrieUnityGarageController.cs" />
     <Compile Include="Controllers\KHACHHANGController.cs" />
     <Compile Include="Controllers\NHACUNGCAPController.cs" />
     <Compile Include="Controllers\NHANVIENController.cs" />
     <Compile Include="Controllers\THONGTINTIEPNHANController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -214,6 +216,7 @@
     <Content Include="Content\HangHoa_Index.css" />
     <Content Include="Content\HomePage_Layout.css" />
     <Content Include="Content\KhachHang_Index.css" />
+    <Content Include="Content\Login.css" />
     <Content Include="Content\NCC_Index.css" />
     <Content Include="Content\NhanVien_Index.css" />
     <Content Include="Content\Site.css" />
@@ -225,6 +228,8 @@
     <Content Include="Images\HomePage_Header\HomePage_HeaderName.png" />
     <Content Include="Images\HomePage_Header\HomePage_HeaderPhoneNum.png" />
     <Content Include="Images\HomePage_Header\HomePage_HeaderRectangle.png" />
+    <Content Include="Images\Icon\icon_Avarta.png" />
+    <Content Include="Images\Icon\icon_Logout.png" />
     <Content Include="Images\Icon\icon_QLCSKH.png" />
     <Content Include="Images\Icon\icon_QLCSKH28x28.png" />
     <Content Include="Images\Icon\icon_QLDichVu.png" />
@@ -326,14 +331,13 @@
     <Content Include="Views\HOADON\TaoHoaDon.cshtml" />
     <Content Include="Views\HOADON\XemChiTietHoaDon.cshtml" />
     <Content Include="Views\HOADON\XoaHoaDon.cshtml" />
-    <Content Include="Views\HomePage\View_HomePage.cshtml" />
+    <Content Include="Views\DrieUnityGarage\HomePage.cshtml" />
     <Content Include="Views\NHACUNGCAP\Create.cshtml" />
     <Content Include="Views\NHACUNGCAP\Delete.cshtml" />
     <Content Include="Views\NHACUNGCAP\Details.cshtml" />
     <Content Include="Views\NHACUNGCAP\Edit.cshtml" />
     <Content Include="Views\NHACUNGCAP\Index.cshtml" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\THONGTINTIEPNHAN\Create.cshtml" />
     <Content Include="Views\THONGTINTIEPNHAN\Delete.cshtml" />
     <Content Include="Views\THONGTINTIEPNHAN\Details.cshtml" />
@@ -354,9 +358,16 @@
     <Content Include="Views\NHANVIEN\Details.cshtml" />
     <Content Include="Views\NHANVIEN\Edit.cshtml" />
     <Content Include="Views\NHANVIEN\Index.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\Users\DangNhap.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\NHANVIEN\DangNhap.cshtml" />
+    <Content Include="Views\NHANVIEN\LayDanhSachTaiKhoan.cshtml" />
+    <Content Include="Views\NHANVIEN\TaoTaiKhoan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

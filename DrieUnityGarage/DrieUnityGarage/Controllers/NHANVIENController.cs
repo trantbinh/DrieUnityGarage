@@ -13,6 +13,115 @@ namespace DrieUnityGarage.Controllers
     public class NHANVIENController : Controller
     {
         private DrieUnityGarageEntities db = new DrieUnityGarageEntities();
+        
+        //-----------------ĐĂNG NHẬP------------------//
+        [HttpGet]
+        public ActionResult DangNhap()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult DangNhap(NHANVIEN nv)
+        {
+            if (ModelState.IsValid)
+            {
+                if (string.IsNullOrEmpty(nv.TenDangNhap))
+                    ModelState.AddModelError(String.Empty, "Tên đăng nhập không được để trống");
+                if (string.IsNullOrEmpty(nv.MatKhau))
+                    ModelState.AddModelError(string.Empty, "Mật khẩu không được để trống");
+                if (ModelState.IsValid)
+                {
+                    var check = db.NHANVIENs.FirstOrDefault(k => k.TenDangNhap.Equals(nv.TenDangNhap)&& k.MatKhau.Equals(nv.MatKhau));
+
+                 
+
+                    if (check != null)
+                    {
+                        Session["TaiKhoan"] = check;
+
+                        Session["TenDN"] = check.TenDangNhap;
+
+                        Session["MaTaiKhoanNV"] = check.MaNV;
+
+                        if (check.ChucVu.Equals("Quản lý"))
+                        {
+                            Session["IsAdmin"] = 1;
+                        }
+                        else
+                        {
+                            Session["IsAdmin"] = null;
+                        }
+                        return RedirectToAction("HomePage", "DrieUnityGarage");
+                    }
+                    else
+                    {
+                        ViewBag.ThongBao = "Tên đăng nhập hoặc mật khẩu không đúng!";
+                    }
+
+                }
+
+
+            }
+            return View();
+
+        }
+        //-----------------ĐĂNG XUẤT------------------//
+
+        public ActionResult DangXuat()
+        {
+            Session.Remove("TaiKhoan");
+            Session.Remove("TenDN");
+            Session.Remove("MaTaiKhoanNV");
+            Session.Remove("IsAdmin");
+            return RedirectToAction("HomePage", "DrieUnityGarage");
+        }
+
+        //-----------------DANH SÁCH TÀI KHOẢN---------------//
+        public ActionResult LayDanhSachTaiKhoan()
+        {
+            var tk = db.NHANVIENs.ToList();
+            return View(tk);
+        }
+
+
+        public ActionResult TaoTaiKhoan()
+        {
+            ViewBag.MaNV = new SelectList(db.NHANVIENs, "MaNV", "MaNV");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult TaoTaiKhoan([Bind(Include = "TenDangNhap,MatKhau,NgayTaoTK")]  NHANVIEN nv)
+        {
+            if (ModelState.IsValid)
+            {
+               
+                db.Entry(nv).State = EntityState.Modified;
+                db.SaveChanges(); 
+                return RedirectToAction("LayDanhSachTaiKhoan");
+            }
+            ViewBag.MaNV = new SelectList(db.NHANVIENs, "MaNV", "MaNV");
+            return View(nv);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // GET: NHANVIEN
         public ActionResult Index()
