@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<DrieUnityGarage.Models.KHACHHANG>
-
 @{
-    ViewBag.Title = "Quản lý khách hàng";
+    ViewBag.Title = "LayDanhSachKhachHang";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
+
 
 <link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/Content/KhachHang_Index.css" />
@@ -71,7 +71,7 @@
                     @Html.DisplayFor(modelItem => item.DiaChi)
                 </td>
                 <td>
-                    @Html.ActionLink("Sửa", "CaoNhatKhachHang", new { id = item.MaKH }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Sửa", "CapNhatKhachHang", new { id = item.MaKH }, new { @class = "btn btn-success" })
 
                 </td>
                 <td>
@@ -86,5 +86,4 @@
 
     </table>
 </div>
-
 

@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<DrieUnityGarage.Models.HANGHOA>
-
 @{
-    ViewBag.Title = "Quản lý hàng hoá";
+    ViewBag.Title = "LayDanhSachHangHoa";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
+
 <link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/Content/HangHoa_Index.css" />
 
@@ -15,7 +15,7 @@
         <div class="col-lg-5">
         </div>
         <div class="col-lg-2">
-            @Html.ActionLink("Tạo mới", "Create", null, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Tạo mới", "ThemHangHoa", null, new { @class = "btn btn-primary" })
         </div>
     </div>
     <table class="table index-table" style="margin-top:20px;">
@@ -69,20 +69,21 @@
                     @Html.DisplayFor(modelItem => item.NHACUNGCAP.TenNCC)
                 </td>
                 <td>
-                    @Html.ActionLink("Sửa", "Edit", new { id = item.MaHH }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Sửa", "SuaThongTinHangHoa", new { id = item.MaHH }, new { @class = "btn btn-success" })
 
                 </td>
                 <td>
-                    @Html.ActionLink("Chi tiết", "Details", new { id = item.MaHH }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Chi tiết", "LayThongTinHangHoa", new { id = item.MaHH }, new { @class = "btn btn-danger" })
 
                 </td>
                 <td>
-                    @Html.ActionLink("Xoá", "Delete", new { id = item.MaHH }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Xoá", "XoaHangHoa", new { id = item.MaHH }, new { @class = "btn btn-primary" })
                 </td>
             </tr>
         }
 
     </table>
 </div>
+
 
 
