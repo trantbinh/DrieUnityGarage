@@ -13,6 +13,89 @@ namespace DrieUnityGarage.Controllers
     public class NHANVIENController : Controller
     {
         private DrieUnityGarageEntities db = new DrieUnityGarageEntities();
+        
+        //-----------------ĐĂNG NHẬP------------------//
+        [HttpGet]
+        public ActionResult DangNhap()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult DangNhap(NHANVIEN nv)
+        {
+            if (ModelState.IsValid)
+            {
+                if (string.IsNullOrEmpty(nv.TenDangNhap))
+                    ModelState.AddModelError(String.Empty, "Tên đăng nhập không được để trống");
+                if (string.IsNullOrEmpty(nv.MatKhau))
+                    ModelState.AddModelError(string.Empty, "Mật khẩu không được để trống");
+                if (ModelState.IsValid)
+                {
+                    var check = db.NHANVIENs.FirstOrDefault(k => k.TenDangNhap.Equals(nv.TenDangNhap)&& k.MatKhau.Equals(nv.MatKhau));
+
+                 
+
+                    if (check != null)
+                    {
+                        Session["TaiKhoan"] = check;
+
+                        Session["TenDN"] = check.TenDangNhap;
+
+                        Session["MaTaiKhoanNV"] = check.MaNV;
+
+                        if (check.ChucVu.Equals("Quản lý"))
+                        {
+                            Session["IsAdmin"] = 1;
+                        }
+                        else
+                        {
+                            Session["IsAdmin"] = null;
+                        }
+                        return RedirectToAction("HomePage", "HomePage");
+                    }
+                    else
+                    {
+                        ViewBag.ThongBao = "Tên đăng nhập hoặc mật khẩu không đúng!";
+                    }
+
+                }
+
+
+            }
+            return View();
+
+        }
+        //-----------------ĐĂNG XUẤT------------------//
+
+        public ActionResult LogOut()
+        {
+            Session.Remove("TaiKhoan");
+            Session.Remove("LogName");
+            Session.Remove("IDCus");
+
+            return RedirectToAction("HomePage", "CitricStore");
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // GET: NHANVIEN
         public ActionResult Index()

@@ -89,7 +89,7 @@
                 <img src="~/Images/HomePage_Header/HomePage_HeaderPhoneNum.png" alt="Name garage" width="340px" />
             </div>
             <div class="col-lg-2"></div>
-            <div class="col-lg-1">
+            <div class="col-lg-1" style="margin-left:-20px;">
                 <img src="~/Images/Logo/Logo_Name.png" alt="Name garage" class="header-logoname" />
 
             </div>
@@ -101,12 +101,25 @@
                 <nav class="sidebar_css sidebar" style="padding:25px">
 
                     <ul class="nav flex-column" id="nav_accordion">
-                        <li class="btn-signin">
-                            <a class="btn-signin-text" href="#">Đăng nhập</a>
-                        </li>
-                        <li class="btn-signin">
-                            <a class="btn-signin-text" href="#">Đăng ký</a>
-                        </li>
+                        @if (Session["TaiKhoan"] == null)
+                        {
+
+                            <li class="btn-signin">
+                                <a class="btn-signin-text" href="@Url.Action("DangNhap", "NHANVIEN")">Đăng nhập</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item" style="margin-top:10px; text-align:center">
+                                <a href="">
+                                    <img src="~/Images/Icon/icon_Avarta.png" />
+                                    <div style="font-size:18px;margin-top:10px; font-weight:500;">@Session["MaTaiKhoanNV"].ToString() - @Session["TenDN"].ToString()</div>
+
+                                </a>
+                            </li>
+
+
+                        }
                         <li class="nav-item" style="margin-top:15px;">
                             <a class="nav-link nav-link-text" href="#" style="padding-left:0">
                                 <img src="~/Images/Icon/icon_QLKhachHang28x28.png" class="icon" /> Quản lý khách hàng
@@ -134,24 +147,28 @@
                                 <li><a class="nav-link" href="#">Submenu item 7 </a></li>
                             </ul>
                         </li>
-                        <li class="nav-item" style="margin-top:8px;">
-                            <a class="nav-link nav-link-text" href="@Url.Action("Index","NHACUNGCAP")" style="padding-left:0">
-                                <img src="~/Images/Icon/icon_QLNhaCungCap28x28.png" class="icon" /> Nhà cung cấp
-                            </a>
-                        </li>
-
-                        <li class="nav-item has-submenu" style="margin-top:8px;">
-                            <a class="nav-link" href="#" style="padding-left:0">
-                                <img src="~/Images/Icon/icon_QLNhanVien28x28.png" class="icon" /> Quản lý nhân viên<i class="bi small bi-caret-down-fill"></i>
-                            </a>
-                            <ul class="submenu collapse">
-                                <li><a class="nav-link" href="#">Submenu item 4 </a></li>
-                                <li><a class="nav-link" href="#">Submenu item 5 </a></li>
-                                <li><a class="nav-link" href="#">Submenu item 6 </a></li>
-                                <li><a class="nav-link" href="#">Submenu item 7 </a></li>
-                            </ul>
-                        </li>
-
+                        @if (Session["IsAdmin"] != null)
+                        {
+                            <li class="nav-item" style="margin-top:8px;">
+                                <a class="nav-link nav-link-text" href="@Url.Action("LayDanhSachNhaCungCap", "NHACUNGCAP")" style="padding-left:0">
+                                    <img src="~/Images/Icon/icon_QLNhaCungCap28x28.png" class="icon" /> Nhà cung cấp
+                                </a>
+                            </li>
+                        }
+                        @if (Session["IsAdmin"] != null)
+                        {
+                            <li class="nav-item has-submenu" style="margin-top:8px;">
+                                <a class="nav-link" href="#" style="padding-left:0">
+                                    <img src="~/Images/Icon/icon_QLNhanVien28x28.png" class="icon" /> Quản lý nhân viên<i class="bi small bi-caret-down-fill"></i>
+                                </a>
+                                <ul class="submenu collapse">
+                                    <li><a class="nav-link" href="#">Submenu item 4 </a></li>
+                                    <li><a class="nav-link" href="#">Submenu item 5 </a></li>
+                                    <li><a class="nav-link" href="#">Submenu item 6 </a></li>
+                                    <li><a class="nav-link" href="#">Submenu item 7 </a></li>
+                                </ul>
+                            </li>
+                        }
                         <li class="nav-item" style="margin-top:8px;">
                             <a class="nav-link nav-link-text" href="#" style="padding-left:0">
                                 <img src="~/Images/Icon/icon_QLXe28x28.png" class="icon" /> Quản lý xe
@@ -204,7 +221,17 @@
                                 <li><a class="nav-link" href="#">Submenu item 7 </a></li>
                             </ul>
                         </li>
-                    </ul>
+                        @if (Session["TaiKhoan"] != null)
+                        {
+
+                            <li class="nav-item" style="margin-top:50px;">
+                                <a class="nav-link nav-link-text" href="#" style="padding-left:0">
+                                    <img src="~/Images/Icon/icon_Logout.png" class="icon" /> Đăng xuất
+                                </a>
+                            </li>
+                        }
+
+                        </ul>
                 </nav>
             </div>
             <div class="col-lg-10" style="padding:0; padding-bottom:50px;">

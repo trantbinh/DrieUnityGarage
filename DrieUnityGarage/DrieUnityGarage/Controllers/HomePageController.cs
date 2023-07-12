@@ -12,7 +12,7 @@ namespace DrieUnityGarage.Controllers
     {
         DrieUnityGarageEntities db = new DrieUnityGarageEntities();
         // GET: HomePage
-        public ActionResult View_HomePage()
+        public ActionResult HomePage()
         {
             return View();
         }
