@@ -23,6 +23,9 @@
 
         <tr>
             <th>
+                Mã nhân viên
+            </th>
+            <th>
                 Họ tên
             </th>
             <th>
@@ -47,15 +50,6 @@
                 Phòng ban
             </th>
             <th>
-                Tên đăng nhập
-            </th>
-            <th>
-                Mật khẩu
-            </th>
-            <th>
-                Ngày tạo tài khoản
-            </th>
-            <th>
 
             </th>
             <th>
@@ -70,13 +64,17 @@
         {
             <tr>
                 <th>
+                    @Html.DisplayFor(modelItem => item.MaNV)
+                </th>
+
+                <th>
                     @Html.DisplayFor(modelItem => item.HoTenNV)
                 </th>
                 <td>
                     @Html.DisplayFor(modelItem => item.DienThoaiNV)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NgaySinh)
+                    @String.Format("{0:dd/MMM/yy}", item.NgaySinh)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.GioiTinh)
@@ -92,15 +90,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PhongBan)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TenDangNhap)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MatKhau)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NgayTaoTK)
                 </td>
                 <td>
                     @Html.ActionLink("Sửa", "SuaThongTinNhanVien", new { id = item.MaNV }, new { @class = "btn btn-success" })

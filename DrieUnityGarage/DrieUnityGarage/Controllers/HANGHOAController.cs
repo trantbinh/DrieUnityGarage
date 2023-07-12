@@ -57,16 +57,26 @@ namespace DrieUnityGarage.Controllers
                 int countLst = lstHH.Count();
                 if (countLst == 0)
                 {
-                    hANGHOA.MaHH = "HH01";
+                    hANGHOA.MaHH = "HH001";
                 }
                 else
                 {
                     HANGHOA lastHH = lstHH[countLst - 1];
                     String lastMHH = lastHH.MaHH;
-                    int lastMaHHNum = int.Parse(lastMHH.Substring(3));
+                    int lastMaHHNum = int.Parse(lastMHH.Substring(2));
                     int newMaHH = lastMaHHNum + 1;
-                    hANGHOA.MaHH = "HH0" + newMaHH.ToString();
+                    if (newMaHH < 10)
+                    {
+                        hANGHOA.MaHH = "HH00" + newMaHH.ToString();
+                    }
+                
+                    else {
+                        hANGHOA.MaHH = "HH0" + newMaHH.ToString();
+                    
+                    }
+                    
                 }
+                hANGHOA.SoLuongTon = 0;
                 db.HANGHOAs.Add(hANGHOA);
                 db.SaveChanges();
                 return RedirectToAction("LayDanhSachHangHoa");

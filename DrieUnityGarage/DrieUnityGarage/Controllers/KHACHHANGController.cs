@@ -50,6 +50,33 @@ namespace DrieUnityGarage.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Tạo mã nhà cung cấp String
+                List<KHACHHANG> lstHH = db.KHACHHANGs.ToList();
+                int countLst = lstHH.Count();
+                if (countLst == 0)
+                {
+                    kHACHHANG.MaKH = "KH001";
+                }
+                else
+                {
+                    KHACHHANG lastHH = lstHH[countLst - 1];
+                    String lastMHH = lastHH.MaKH;
+                    int lastMaHHNum = int.Parse(lastMHH.Substring(2));
+                    int newMaHH = lastMaHHNum + 1;
+                    if (newMaHH < 10)
+                    {
+                        kHACHHANG.MaKH = "KH00" + newMaHH.ToString();
+                    }
+
+                    else
+                    {
+                        kHACHHANG.MaKH = "KH0" + newMaHH.ToString();
+
+                    }
+
+
+                }
+                kHACHHANG.DiemThanhVien = 0;
                 db.KHACHHANGs.Add(kHACHHANG);
                 db.SaveChanges();
                 return RedirectToAction("LayDanhSachKhachHang");
@@ -90,7 +117,7 @@ namespace DrieUnityGarage.Controllers
         }
 
         // GET: KHACHHANG/Delete/5
-        public ActionResult XoaKHachHang(string id)
+        public ActionResult XoaKhachHang(string id)
         {
             if (id == null)
             {
@@ -105,14 +132,14 @@ namespace DrieUnityGarage.Controllers
         }
 
         // POST: KHACHHANG/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("XoaKhachHang")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
             KHACHHANG kHACHHANG = db.KHACHHANGs.Find(id);
             db.KHACHHANGs.Remove(kHACHHANG);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("LayDanhSachKhachHang");
         }
 
         protected override void Dispose(bool disposing)

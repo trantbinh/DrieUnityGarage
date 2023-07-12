@@ -106,23 +106,6 @@ namespace DrieUnityGarage.Controllers
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // GET: NHANVIEN
         public ActionResult LayDanhSachNhanVien()
         {
@@ -155,10 +138,37 @@ namespace DrieUnityGarage.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaNV,HoTenNV,DienThoaiNV,NgaySinh,GioiTinh,Email,DiaChi,ChucVu,PhongBan,TenDangNhap,MatKhau,NgayTaoTK")] NHANVIEN nHANVIEN)
+        public ActionResult ThemNhanVien([Bind(Include = "MaNV,HoTenNV,DienThoaiNV,NgaySinh,GioiTinh,Email,DiaChi,ChucVu,PhongBan,TenDangNhap,MatKhau,NgayTaoTK")] NHANVIEN nHANVIEN)
         {
             if (ModelState.IsValid)
             {
+                //Tạo mã nhà cung cấp String
+                List<NHANVIEN> lstHH = db.NHANVIENs.ToList();
+                int countLst = lstHH.Count();
+                if (countLst == 0)
+                {
+                    nHANVIEN.MaNV = "NV001";
+                }
+                else
+                {
+                    NHANVIEN lastHH = lstHH[countLst - 1];
+                    String lastMHH = lastHH.MaNV;
+                    int lastMaHHNum = int.Parse(lastMHH.Substring(2));
+                    int newMaHH = lastMaHHNum + 1;
+                    if (newMaHH < 10)
+                    {
+                        nHANVIEN.MaNV = "NV00" + newMaHH.ToString();
+                    }
+
+                    else
+                    {
+                        nHANVIEN.MaNV = "NV0" + newMaHH.ToString();
+
+                    }
+
+
+                }
+                nHANVIEN.NgayTaoTK = DateTime.Now;
                 db.NHANVIENs.Add(nHANVIEN);
                 db.SaveChanges();
                 return RedirectToAction("LayDanhSachNhanVien");

@@ -15,74 +15,82 @@
         </div>
         <div class="col-lg-3"></div>
     </div>
-    <div class="container col-8">
+    <div class="container col-6">
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
 
-            <div class="form-horizontal form-decor">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <hr />
+        <div class="form-horizontal form-decor">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <hr />
 
-                <div class="form-group space-field">
-                    Tên hàng hoá:
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.TenHH, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.TenHH, "", new { @class = "text-danger" })
-                    </div>
+            <div class="form-group space-field">
+                Tên hàng hoá:
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.TenHH, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TenHH, "", new { @class = "text-danger" })
                 </div>
+            </div>
 
-                <div class="form-group space-field">
-                    Đơn giá:
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.DonGia, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.DonGia, "", new { @class = "text-danger" })
-                    </div>
+            <div class="form-group space-field">
+                Đơn giá:
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.DonGia, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DonGia, "", new { @class = "text-danger" })
                 </div>
+            </div>
 
-                <div class="form-group space-field">
-                    Đơn vị tính:
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.DonViTinh, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.DonViTinh, "", new { @class = "text-danger" })
-                    </div>
+            <div class="form-group space-field">
+                Đơn vị tính:
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.DonViTinh, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DonViTinh, "", new { @class = "text-danger" })
                 </div>
+            </div>
+            @*Tạo dropdown líst*@
+            @{
+                var lstLoaiHang = new List<SelectListItem>()
+                        {
+                    new SelectListItem()
+                    {
+                       Text ="Phụ tùng",
+                       Value ="Phụ tùng"
+                    },
+                     new SelectListItem()
+                   {
+                       Text = "Dịch vụ",
+                       Value = "Dịch vụ"
+                   }
+               };
+            }
 
-                <div class="form-group space-field">
-                    Loại hàng:
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.LoaiHang, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.LoaiHang, "", new { @class = "text-danger" })
+        <div class="form-group space-field">
+            Loại hàng:
+            <div class="col-md-12" style="display:inline">
+                @Html.DropDownList("LoaiHang", lstLoaiHang, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LoaiHang, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group space-field">
+            Nhà cung cấp hàng hoá:
+            <div class="col-md-12">
+                @Html.DropDownList("HH_MaNCC", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.HH_MaNCC, "", new { @class = "text-danger" })
+            </div>
+        </div>
+            <div class="form-group" style="margin-top:40px">
+                <div class="row">
+                    <div class="col-lg-5 align-bottom">
+                        @Html.ActionLink("< Quay về", "LayDanhSachHangHoa", null, new { @class = "nonedecor" })
                     </div>
-                </div>
+                    <div class="col-lg-7">
+                        <input type="submit" value="Tạo mới" class="btn btn-info create-btn" />
 
-                <div class="form-group space-field">
-                    Số lượng tồn:
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.SoLuongTon, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.SoLuongTon, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group space-field">
-                    Nhà cung cấp hàng hoá:
-                    <div class="col-md-10">
-                        @Html.DropDownList("HH_MaNCC", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.HH_MaNCC, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group" style="margin-top:40px">
-                    <div class="row">
-                        <div class="col-lg-5 align-bottom">
-                            @Html.ActionLink("< Quay về", "LayDanhSachHangHoa", null, new { @class = "nonedecor" })
-                        </div>
-                        <div class="col-lg-7">
-                            <input type="submit" value="Tạo mới" class="btn btn-info create-btn" />
-
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
         }
     </div>
 </div>

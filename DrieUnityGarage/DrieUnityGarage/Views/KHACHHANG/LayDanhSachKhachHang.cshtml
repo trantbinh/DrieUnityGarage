@@ -21,6 +21,9 @@
     <table class="table index-table" style="margin-top:20px;">
         <tr>
             <th>
+                Mã khách hàng
+            </th>
+            <th>
                 Họ tên khách hàng
             </th>
             <th>
@@ -38,9 +41,6 @@
             <th>
                 Điểm thành viên
             </th>
-            <th>
-                Địa chỉ
-            </th>
             <th></th>
             <th></th>
             <th></th>
@@ -49,6 +49,10 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaKH)
+                </td>
+
                 <td>
                     @Html.DisplayFor(modelItem => item.HoTenKH)
                 </td>
@@ -68,10 +72,7 @@
                     @Html.DisplayFor(modelItem => item.DiemThanhVien)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DiaChi)
-                </td>
-                <td>
-                    @Html.ActionLink("Sửa", "CapNhatKhachHang", new { id = item.MaKH }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Sửa", "CapNhatKhachHang","KHACHHANG", new { id = item.MaKH }, new { @class = "btn btn-success" })
 
                 </td>
                 <td>

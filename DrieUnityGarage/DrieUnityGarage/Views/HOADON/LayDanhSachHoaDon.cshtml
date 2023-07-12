@@ -22,13 +22,16 @@
     <table class="table">
         <tr>
             <th>
+                Mã hoá đơn
+            </th>
+            <th>
                 Ngày lập
             </th>
             <th>
                 Tổng thanh toán
             </th>
             <th>
-                Mã tiếp nhận hoá đơn
+                Mã tiếp nhận
             </th>
             <th>
                 Họ tên khách hàng
@@ -37,11 +40,13 @@
                 Số máy
             </th>
             <th>
-                Thông tin thanh toán (Mã khách hàng)
+                Mã thanh toán
             </th>
             <th>
-                Thông tin tiếp nhận (Mã khách hàng)
+                Mã khách hàng
             </th>
+            <th></th>
+            <th></th>
             <th></th>
         </tr>
 
@@ -49,10 +54,13 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NgayLap)
+                    @Html.DisplayFor(modelItem => item.MaHD)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TongThanhToan)
+                    @String.Format("{0:dd/MM/yyyy}", item.NgayLap)
+                </td>
+                <td>
+                    @String.Format("{0:0,0}", item.TongThanhToan)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.HD_MaTN)
