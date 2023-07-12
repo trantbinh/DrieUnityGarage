@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<link href="~/Content/Login.css" rel="stylesheet" />
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+
+<div class="container-fluid">
+    <header style="padding-top:15px">
+        <div class="row" style="padding:0; margin:0">
+            <div class="col-lg-1" style="padding:0; margin:0"></div>
+            <div class="header-name-container col-lg-3">
+                <img src="~/Images/HomePage_Header/HomePage_HeaderName.png" alt="Name garage" class="header-name-image" />
+            </div>
+            <div class="col-lg-6"></div>
+            <div class="col-lg-1" style="margin-left:30px">
+                <img src="~/Images/Logo/Logo.png" alt="Name garage" class="header-logo" />
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="header-name-container col-lg-2">
+                <img src="~/Images/HomePage_Header/HomePage_HeaderDescription.png" alt="Name garage" width="250px" />
+            </div>
+            <div class="col-lg-2"></div>
+            <div class="header-name-container col-lg-3">
+                <img src="~/Images/HomePage_Header/HomePage_HeaderPhoneNum.png" alt="Name garage" width="340px" />
+            </div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-1">
+                <img src="~/Images/Logo/Logo_Name.png" alt="Name garage" class="header-logoname" />
+
+            </div>
+        </div>
+    </header>
+    <div class="row" style="margin-top:100px">
+        <div class="col-3"></div>
+        <div class="col-6 login-container">
+
+            <p class="login-title">Đăng nhập</p>
+            @using (Html.BeginForm("DangNhap", "NHANVIEN"))
+            {
+                @Html.ValidationSummary(true)
+                <p class="thongbao">@ViewBag.ThongBao</p>
+                <div class="row" style="margin-top:25px">
+                    <div class="col-2">
+
+                    </div>
+
+                    <div class="col-lg-8">
+                        <input placeholder="Tên đăng nhập" name="TenDangNhap" class="form-login" required />
+                    </div>
+
+                    <div class="col-2"></div>
+
+                </div>
+
+                <div class="row" style="margin-top:15px">
+                    <div class="col-2">
+
+                    </div>
+
+                    <div class="col-lg-8">
+                        <input placeholder="Mật khẩu" name="MatKhau" required class="form-login" />
+                    </div>
+
+                    <div class="col-2"></div>
+
+                </div>
+                <div class="row" style="margin-top:40px; padding-bottom:15px;">
+                    <div class="col-4">
+
+                    </div>
+
+                    <div class="col-lg-4">
+                        <button type="submit" class="btn-login">
+                            Đăng nhập
+                        </button>
+                    </div>
+
+                    <div class="col-4"></div>
+
+                </div>
+                @Html.ActionLink("Quay về", "HomePage", "DrieUnityGarage", null, new {@class="btn-back"})
+            }
+
+        </div>
+            <div class="col-3"></div>
+
+
+        </div>
+
+
+    </div>

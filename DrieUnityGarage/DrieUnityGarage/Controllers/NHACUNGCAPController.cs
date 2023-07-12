@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DrieUnityGarage.Models;
-using DrieUnityGarage.Models;
 
 namespace DrieUnityGarage.Controllers
 {
