@@ -76,8 +76,34 @@ namespace DrieUnityGarage.Controllers
             return RedirectToAction("HomePage", "DrieUnityGarage");
         }
 
+        //-----------------DANH SÁCH TÀI KHOẢN---------------//
+        public ActionResult LayDanhSachTaiKhoan()
+        {
+            var tk = db.NHANVIENs.ToList();
+            return View(tk);
+        }
 
 
+        public ActionResult TaoTaiKhoan()
+        {
+            ViewBag.MaNV = new SelectList(db.NHANVIENs, "MaNV", "MaNV");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult TaoTaiKhoan([Bind(Include = "TenDangNhap,MatKhau,NgayTaoTK")]  NHANVIEN nv)
+        {
+            if (ModelState.IsValid)
+            {
+               
+                db.Entry(nv).State = EntityState.Modified;
+                db.SaveChanges(); 
+                return RedirectToAction("LayDanhSachTaiKhoan");
+            }
+            ViewBag.MaNV = new SelectList(db.NHANVIENs, "MaNV", "MaNV");
+            return View(nv);
+        }
 
 
 

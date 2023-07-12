@@ -362,6 +362,8 @@
     <Content Include="Views\Users\DangNhap.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\NHANVIEN\DangNhap.cshtml" />
+    <Content Include="Views\NHANVIEN\LayDanhSachTaiKhoan.cshtml" />
+    <Content Include="Views\NHANVIEN\TaoTaiKhoan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

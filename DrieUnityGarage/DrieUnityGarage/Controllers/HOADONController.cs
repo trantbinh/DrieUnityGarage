@@ -9,7 +9,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using DrieUnityGarage.Models;
-using DrieUnityGarage.Models;
 
 namespace DrieUnityGarage.Controllers
 {

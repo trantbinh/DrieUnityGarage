@@ -260,9 +260,9 @@ textarea.form-login-lg {
     font-weight:bold;
 }
 .btn-back {
-    
+    margin-top:20px;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 16px;
     color: black;
 }
 
