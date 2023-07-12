@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\DrieUnityGrage",
-    "\\DrieUnityGrage\\DrieUnityGrage"
+    "\\DrieUnityGrage\\DrieUnityGrage",
+    "\\DrieUnityGrage\\DrieUnityGrage\\Views",
+    "\\DrieUnityGrage\\DrieUnityGrage\\Views\\KHACHHANG"
   ],
-  "SelectedNode": "\\DrieUnityGrage\\DrieUnityGrage.sln",
+  "SelectedNode": "\\DrieUnityGrage\\DrieUnityGrage\\Views\\KHACHHANG\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }

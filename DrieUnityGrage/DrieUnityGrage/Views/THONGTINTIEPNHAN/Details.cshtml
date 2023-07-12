@@ -4,64 +4,73 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
 
-<h2>Details</h2>
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6" style="text-align:center">
+            <h2>Thông tin tiếp nhận</h2>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+    <div class="container col-8">
+        <hr />
+        <div class="form-horizontal form-decor">
 
-<div>
-    <h4>THONGTINTIEPNHAN</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TN_MaKH)
-        </dt>
+            <div class="form-group space-field">
+                Mã khách hàng:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.TN_MaKH)
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.TN_MaKH)
-        </dd>
+            <div class="form-group space-field">
+                Biển số xe:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.TN_BienSoXe)
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TN_BienSoXe)
-        </dt>
+            <div class="form-group space-field">
+                Mã nhân viên:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.TN_MaNV)
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.TN_BienSoXe)
-        </dd>
+            <div class="form-group space-field">
+                Thời gian tiếp nhận:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.ThoiGianTiepNhan)
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TN_MaNV)
-        </dt>
+            <div class="form-group space-field">
+                Thời gian dự kiến:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.ThoiGianGiaoDuKien)
+                </div>
+            </div>
+            <div class="form-group space-field">
+                Ghi chú:
+                <div class="col-md-12 form-control">
+                    @Html.DisplayFor(model => model.GhiChuKH)
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.TN_MaNV)
-        </dd>
+        </div>
+        <div class="form-group" style="margin-top:40px">
+            <div class="row">
+                <div class="col-lg-5 align-bottom">
+                    @Html.ActionLink("< Quay về", "Index", null, new { @class = "nonedecor" })
+                </div>
+                <div class="col-lg-7">
+                    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaTN }, new { @class = "btn btn-success create-btn" })
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ThoiGianTiepNhan)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ThoiGianTiepNhan)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ThoiGianGiaoDuKien)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ThoiGianGiaoDuKien)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GhiChuKH)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GhiChuKH)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaTN }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
