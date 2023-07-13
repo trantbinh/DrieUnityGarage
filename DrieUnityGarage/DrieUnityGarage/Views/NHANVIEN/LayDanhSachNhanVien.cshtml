@@ -92,14 +92,14 @@
                     @Html.DisplayFor(modelItem => item.PhongBan)
                 </td>
                 <td>
-                    @Html.ActionLink("Sửa", "SuaThongTinNhanVien", new { id = item.MaNV }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Sửa", "SuaThongTinNhanVien", new { id = item.MaNV}, new { @class = "btn btn-success" })
 
                 </td>
                 <td>
                     @Html.ActionLink("Chi tiết", "LayThongTinNhanVien", new { id = item.MaNV }, new { @class = "btn btn-danger" })
 
                 </td>
-                <td>   @Html.ActionLink("Xoá", "XoaNhanVien", new { id = item.MaNV }, new { @class = "btn btn-primary" })</td>
+                <td>   @Html.ActionLink("Xoá", "XoaNhanVien", new { id = item.MaNV, check = 1 }, new { @class = "btn btn-primary" })</td>
             </tr>
         }
 

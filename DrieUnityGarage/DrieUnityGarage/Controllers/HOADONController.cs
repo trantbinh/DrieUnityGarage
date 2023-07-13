@@ -412,6 +412,7 @@ namespace DrieUnityGarage.Controllers
 
             var nv = db.NHANVIENs.FirstOrDefault(m => m.MaNV.Equals(tn.TN_MaNV));
             ViewBag.NhanVien = nv.MaNV + " - " + nv.HoTenNV;
+
             return View(hOADON);
         }
 
@@ -420,10 +421,46 @@ namespace DrieUnityGarage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            HOADON hOADON = db.HOADONs.Find(id);
-            db.HOADONs.Remove(hOADON);
+            bool check;
+            List<CT_HOADON> cthd = db.CT_HOADON.Where(m => m.CTHD_MaHD.Equals(id)).ToList();
+            if (cthd != null)
+            {
+                for (int i = 0; i < cthd.Count(); i++)
+                {
+                    check = XoaChiTietHD(cthd[i].CTHD_MaHD);
+                }
+            }
+            
+               
+                HOADON hOADON = db.HOADONs.Find(id);
+                db.HOADONs.Remove(hOADON);
+                db.SaveChanges();
+                return RedirectToAction("LayDanhSachHoaDon");
+            
+            
+        }
+     /*   // GET: CT_HOADON/Delete/5
+        public ActionResult XoaChiTietHD (string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CT_HOADON cT_HOADON = db.CT_HOADON.Find(id);
+            if (cT_HOADON == null)
+            {
+                return HttpNotFound();
+            }
+            return View(cT_HOADON);
+        }*/
+
+        // POST: CT_HOADON/Delete/5
+        public bool XoaChiTietHD(string id)
+        {
+            CT_HOADON cT_HOADON = db.CT_HOADON.FirstOrDefault(m=>m.CTHD_MaHD.Equals(id));
+            db.CT_HOADON.Remove(cT_HOADON);
             db.SaveChanges();
-            return RedirectToAction("LayDanhSachHoaDon");
+            return true;
         }
 
         protected override void Dispose(bool disposing)

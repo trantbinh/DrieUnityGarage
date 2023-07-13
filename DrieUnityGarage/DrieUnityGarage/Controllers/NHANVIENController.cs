@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.EnterpriseServices.CompensatingResourceManager;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -209,16 +210,25 @@ namespace DrieUnityGarage.Controllers
         }
 
         // GET: NHANVIEN/Delete/5
-        public ActionResult XoaNhanVien(string id)
+        public ActionResult XoaNhanVien(string id, int check)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NHANVIEN nHANVIEN = db.NHANVIENs.Find(id);
-            if (nHANVIEN == null)
+            NHANVIEN nHANVIEN = db.NHANVIENs.Find(id); ;
+
+
+;            if (check == 0)
             {
-                return HttpNotFound();
+                ViewBag.ThongBao = "Không thể xoá nhân viên này vì mã nhân viên đã được dùng để tạo thông tin khác";
+            }
+           else
+            { 
+                if (nHANVIEN == null)
+                {
+                    return HttpNotFound();
+                }
             }
             return View(nHANVIEN);
         }
@@ -228,10 +238,28 @@ namespace DrieUnityGarage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult XoaNhanVienConfirmed(string id)
         {
-            NHANVIEN nHANVIEN = db.NHANVIENs.Find(id);
-            db.NHANVIENs.Remove(nHANVIEN);
-            db.SaveChanges();
-            return RedirectToAction("LayDanhSachNhanVien");
+            bool check = KiemTraKhoaNgoaiNhanVien(id);
+            if(check == true)
+            {
+                return XoaNhanVien(id, 0) ;
+            }
+            else
+            {
+                NHANVIEN nHANVIEN = db.NHANVIENs.Find(id);
+                db.NHANVIENs.Remove(nHANVIEN);
+                db.SaveChanges();
+                return RedirectToAction("LayDanhSachNhanVien");
+            }
+           
+        }
+        public bool KiemTraKhoaNgoaiNhanVien(string id)
+        {
+            List<THONGTINTIEPNHAN> tn = db.THONGTINTIEPNHANs.Where(m => m.TN_MaNV.Equals(id)).ToList();
+            if (tn != null)
+            {
+                return true;
+            }
+            return false;
         }
 
         protected override void Dispose(bool disposing)

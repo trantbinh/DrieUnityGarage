@@ -117,16 +117,23 @@ namespace DrieUnityGarage.Controllers
         }
 
         // GET: KHACHHANG/Delete/5
-        public ActionResult XoaKhachHang(string id)
+        public ActionResult XoaKhachHang(string id, int check)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             KHACHHANG kHACHHANG = db.KHACHHANGs.Find(id);
-            if (kHACHHANG == null)
+            if (check == 0)
             {
-                return HttpNotFound();
+                ViewBag.ThongBao = "Không thể xoá khách hàng này vì mã khách hàng đã được dùng để tạo thông tin khác";
+            }
+            else
+            {
+                if (kHACHHANG == null)
+                {
+                    return HttpNotFound();
+                }
             }
             return View(kHACHHANG);
         }
@@ -136,12 +143,31 @@ namespace DrieUnityGarage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            KHACHHANG kHACHHANG = db.KHACHHANGs.Find(id);
-            db.KHACHHANGs.Remove(kHACHHANG);
-            db.SaveChanges();
-            return RedirectToAction("LayDanhSachKhachHang");
-        }
+            bool check = KiemTraKhoaNgoaiKhachHang(id);
+            if (check == true)
+            {
 
+                return XoaKhachHang(id, 0);
+            }
+            else
+            {
+                KHACHHANG kHACHHANG = db.KHACHHANGs.Find(id);
+                db.KHACHHANGs.Remove(kHACHHANG);
+                db.SaveChanges();
+                return RedirectToAction("LayDanhSachKhachHang");
+            }
+        }
+        public bool KiemTraKhoaNgoaiKhachHang(string id)
+        {
+            List<THONGTINTIEPNHAN> tn = db.THONGTINTIEPNHANs.Where(m => m.TN_MaKH.Equals(id)).ToList();
+             List<PHUONGTIEN> pt = db.PHUONGTIENs.Where(m => m.PT_MaKH.Equals(id)).ToList();
+            List<HOADON> hd = db.HOADONs.Where(m => m.HD_MaKH.Equals(id)).ToList();
+            if (pt != null || tn != null||hd!=null)
+                {
+                    return true;
+                }
+                return false;
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

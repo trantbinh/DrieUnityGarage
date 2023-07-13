@@ -119,16 +119,24 @@ namespace DrieUnityGarage.Controllers
         }
 
         // GET: HANGHOA/Delete/5
-        public ActionResult XoaHangHoa(string id)
+        public ActionResult XoaHangHoa(string id, int check)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             HANGHOA hANGHOA = db.HANGHOAs.Find(id);
-            if (hANGHOA == null)
+            if (check == 0)
             {
-                return HttpNotFound();
+                ViewBag.ThongBao = "Không thể xoá hàng hoá này vì mã hàng hoá đã được dùng để tạo thông tin khác";
+            }
+            else
+            {
+
+                if (hANGHOA == null)
+                {
+                    return HttpNotFound();
+                }
             }
             return View(hANGHOA);
         }
@@ -138,12 +146,30 @@ namespace DrieUnityGarage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult XoaHangHoaConfirmed(string id)
         {
-            HANGHOA hANGHOA = db.HANGHOAs.Find(id);
-            db.HANGHOAs.Remove(hANGHOA);
-            db.SaveChanges();
-            return RedirectToAction("LayDanhSachHangHoa");
-        }
+            bool check = KiemTraKhoaNgoaiHangHoa(id);
+            if (check == true)
+            {
 
+                return XoaHangHoa(id, 0);
+            }
+            else
+            {
+                HANGHOA hANGHOA = db.HANGHOAs.Find(id);
+                db.HANGHOAs.Remove(hANGHOA);
+                db.SaveChanges();
+                return RedirectToAction("LayDanhSachHangHoa");
+            }
+        }
+        public bool KiemTraKhoaNgoaiHangHoa(string id)
+        {
+            List<CT_HOADON> tn = db.CT_HOADON.Where(m => m.CTHD_MaHH.Equals(id)).ToList();
+           
+            if (tn != null)
+            {
+                return true;
+            }
+            return false;
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

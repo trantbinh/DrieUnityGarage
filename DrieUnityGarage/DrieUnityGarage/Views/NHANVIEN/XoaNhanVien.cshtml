@@ -14,11 +14,12 @@
             <h2>Xác nhận xoá nhân viên</h2>
         </div>
         <div class="col-lg-3"></div>
+       
     </div>
-
-
     <div class="container col-8">
+        <p style="font-weight:500; color:red; font-size:18px; text-align:center">@ViewBag.ThongBao</p>
         <hr />
+
         <div class="form-horizontal form-decor">
 
             <div class="form-group space-field">
@@ -101,6 +102,8 @@
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
             <div class="form-group" style="margin-top:40px">
                 <div class="row">
                     <div class="col-lg-5 align-bottom">
