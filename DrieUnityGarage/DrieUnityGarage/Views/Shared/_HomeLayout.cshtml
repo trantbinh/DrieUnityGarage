@@ -132,10 +132,9 @@
                                     <img src="~/Images/Icon/icon_QLCSKH28x28.png" class="icon" /> Quản lý CSKH <i class="bi small bi-caret-down-fill"></i>
                                 </a>
                                 <ul class="submenu collapse">
-                                    <li><a class="nav-link" href="#">Submenu item 4 </a></li>
-                                    <li><a class="nav-link" href="#">Submenu item 5 </a></li>
-                                    <li><a class="nav-link" href="#">Submenu item 6 </a></li>
-                                    <li><a class="nav-link" href="#">Submenu item 7 </a></li>
+                                    <li><a class="nav-link" href="#">Danh sách phản hồi dịch vụ </a></li>
+                                    <li><a class="nav-link" href="#">Danh sách số theo dõi bão dưỡng xe </a></li>
+                                    <li><a class="nav-link" href="#">Danh sách bảo hành </a></li>
                                 </ul>
                             </li>
                             <li class="nav-item has-submenu" style="margin-top:8px;">
@@ -143,10 +142,10 @@
                                     <img src="~/Images/Icon/icon_QLHangHoa28x28.png" class="icon" /> Quản lý hàng hoá <i class="bi small bi-caret-down-fill"></i>
                                 </a>
                                 <ul class="submenu collapse">
-                                    <li><a class="nav-link" href="#">Submenu item 4 </a></li>
-                                    <li><a class="nav-link" href="#">Submenu item 5 </a></li>
-                                    <li><a class="nav-link" href="#">Submenu item 6 </a></li>
-                                    <li><a class="nav-link" href="#">Submenu item 7 </a></li>
+                                    <li><a class="nav-link" href="#">Cập nhật giá bán </a></li>
+                                    <li><a class="nav-link" href="@Url.Action("ThemHangHoa", "HANGHOA")">Tạo bảng giá </a></li>
+                                    <li><a class="nav-link" href="@Url.Action("LayDanhSachHangHoa", "HANGHOA")">Danh sách hàng hoá  </a></li>
+                                    <li><a class="nav-link" href="#">Tra cứu hàng hoá </a></li>
                                 </ul>
                             </li>
                             if (Session["IsAdmin"] != null)
@@ -164,11 +163,8 @@
                                         <img src="~/Images/Icon/icon_QLNhanVien28x28.png" class="icon" /> Quản lý nhân viên<i class="bi small bi-caret-down-fill"></i>
                                     </a>
                                     <ul class="submenu collapse">
-                                        <li><a class="nav-link" href="#">Submenu item 4 </a></li>
-                                        <li><a class="nav-link" href="#">Submenu item 5 </a></li>
-                                        <li><a class="nav-link" href="#">Submenu item 6 </a></li>
-                                        <li><a class="nav-link" href="#">Submenu item 7 </a></li>
-                                    </ul>
+                                        <li><a class="nav-link" href="@Url.Action("LayDanhSachNhanVien", "NHANVIEN")">Danh sách nhân viên </a></li>
+                                        <li><a class="nav-link" href="@Url.Action("LayDanhSachTaiKhoan", "NHANVIEN")">Danh sách tài khoản nhân viên </a></li>
                                 </li>
                             }
                             <li class="nav-item" style="margin-top:8px;">
@@ -182,10 +178,10 @@
                                     <img src="~/Images/Icon/icon_QLXuatNhap28x28.png" class="icon" /> Quản lý xuất nhập<i class="bi small bi-caret-down-fill"></i>
                                 </a>
                                 <ul class="submenu collapse">
-                                    <li><a class="nav-link" href="#">Submenu item 4 </a></li>
-                                    <li><a class="nav-link" href="#">Submenu item 5 </a></li>
-                                    <li><a class="nav-link" href="#">Submenu item 6 </a></li>
-                                    <li><a class="nav-link" href="#">Submenu item 7 </a></li>
+                                    <li><a class="nav-link" href="#">Danh sách báo cáo </a></li>
+                                    <li><a class="nav-link" href="#">Danh sách phiếu nhập </a></li>
+                                    <li><a class="nav-link" href="#">Danh sách phiếu xuất </a></li>
+                                    <li><a class="nav-link" href="#">Kiểm kê kho hàng </a></li>
                                 </ul>
                             </li>
 
@@ -194,10 +190,8 @@
                                     <img src="~/Images/Icon/icon_QLTaiChinh28x28.png" class="icon" /> Quản lý tài chính<i class="bi small bi-caret-down-fill"></i>
                                 </a>
                                 <ul class="submenu collapse">
-                                    <li><a class="nav-link" href="#">Submenu item 4 </a></li>
-                                    <li><a class="nav-link" href="#">Submenu item 5 </a></li>
-                                    <li><a class="nav-link" href="#">Submenu item 6 </a></li>
-                                    <li><a class="nav-link" href="#">Submenu item 7 </a></li>
+                                    <li><a class="nav-link" href="#">Danh sách báo cáo doanh thu </a></li>
+                                    <li><a class="nav-link" href="#">Danh sách phiếu thu </a></li>
                                 </ul>
                             </li>
                             <li class="nav-item has-submenu" style="margin-top:8px;">
@@ -205,10 +199,10 @@
                                     <img src="~/Images/Icon/icon_QLDonHang28x28.png" class="icon" /> Quản lý đơn hàng<i class="bi small bi-caret-down-fill"></i>
                                 </a>
                                 <ul class="submenu collapse">
-                                    <li><a class="nav-link" href="#">Submenu item 4 </a></li>
-                                    <li><a class="nav-link" href="#">Submenu item 5 </a></li>
-                                    <li><a class="nav-link" href="#">Submenu item 6 </a></li>
-                                    <li><a class="nav-link" href="#">Submenu item 7 </a></li>
+                                    <li><a class="nav-link" href="@Url.Action("LayDanhSachHoaDon", "HOADON")">Danh sách hóa đơn </a></li>
+                                    <li><a class="nav-link" href="#">Danh sách đánh giá tình trạng xe </a></li>
+                                    <li><a class="nav-link" href="#">Danh sách xác nhận bàn giao xe </a></li>
+                                    <li><a class="nav-link" href="#">Danh sách báo giá </a></li>
                                 </ul>
                             </li>
 
@@ -217,10 +211,8 @@
                                     <img src="~/Images/Icon/icon_QLDichVu28x28.png" class="icon" /> Quản lý dịch vụ<i class="bi small bi-caret-down-fill"></i>
                                 </a>
                                 <ul class="submenu collapse">
-                                    <li><a class="nav-link" href="#">Submenu item 4 </a></li>
-                                    <li><a class="nav-link" href="#">Submenu item 5 </a></li>
-                                    <li><a class="nav-link" href="#">Submenu item 6 </a></li>
-                                    <li><a class="nav-link" href="#">Submenu item 7 </a></li>
+                                    <li><a class="nav-link" href="#">Danh sách trả góp </a></li>
+                                    <li><a class="nav-link" href="#">Danh sách đặt lịch </a></li>
                                 </ul>
                             </li>
 
