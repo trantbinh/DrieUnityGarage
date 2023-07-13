@@ -225,6 +225,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\HomePage_Header\HomePage_Banner.png" />
     <Content Include="Images\HomePage_Header\HomePage_HeaderDescription.png" />
     <Content Include="Images\HomePage_Header\HomePage_HeaderName.png" />
     <Content Include="Images\HomePage_Header\HomePage_HeaderPhoneNum.png" />
@@ -354,7 +355,6 @@
     <Content Include="Views\NHANVIEN\Details.cshtml" />
     <Content Include="Views\NHANVIEN\Edit.cshtml" />
     <Content Include="Views\NHANVIEN\Index.cshtml" />
-
     <Content Include="Views\NHANVIEN\LayDanhSachNhanVien.cshtml" />
     <Content Include="Views\NHANVIEN\LayThongTinNhanVien.cshtml" />
     <Content Include="Views\NHANVIEN\SuaThongTinNhanVien.cshtml" />
