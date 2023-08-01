@@ -32,6 +32,7 @@ namespace DrieUnityGarage.Models
         public virtual DbSet<NHACUNGCAP> NHACUNGCAPs { get; set; }
         public virtual DbSet<NHANVIEN> NHANVIENs { get; set; }
         public virtual DbSet<PHUONGTIEN> PHUONGTIENs { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<THONGTINTHANHTOAN> THONGTINTHANHTOANs { get; set; }
         public virtual DbSet<THONGTINTIEPNHAN> THONGTINTIEPNHANs { get; set; }
     }

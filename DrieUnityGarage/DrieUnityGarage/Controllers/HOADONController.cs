@@ -234,6 +234,7 @@ namespace DrieUnityGarage.Controllers
             if (id != null)
             {
                 idHD = id;
+
                 //Lấy thông tin tiếp nhận
                 var hd = db.HOADONs.FirstOrDefault(m => m.MaHD.Equals(id));
                 String MaTiepNhan = hd.HD_MaTN;

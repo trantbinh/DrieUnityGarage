@@ -181,6 +181,11 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SanPham.cs" />
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\THONGTINKHACHHANG.cs" />
+    <Compile Include="Models\THONGTINPHUONGTIEN.cs" />
     <Compile Include="Models\THONGTINTHANHTOAN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -334,11 +339,6 @@
     <Content Include="Views\HOADON\XemChiTietHoaDon.cshtml" />
     <Content Include="Views\HOADON\XoaHoaDon.cshtml" />
     <Content Include="Views\DrieUnityGarage\HomePage.cshtml" />
-    <Content Include="Views\NHACUNGCAP\Create.cshtml" />
-    <Content Include="Views\NHACUNGCAP\Delete.cshtml" />
-    <Content Include="Views\NHACUNGCAP\Details.cshtml" />
-    <Content Include="Views\NHACUNGCAP\Edit.cshtml" />
-    <Content Include="Views\NHACUNGCAP\Index.cshtml" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
     <Content Include="Views\THONGTINTIEPNHAN\Create.cshtml" />
     <Content Include="Views\THONGTINTIEPNHAN\Delete.cshtml" />
@@ -381,6 +381,7 @@
     <Content Include="Views\NHANVIEN\DangNhap.cshtml" />
     <Content Include="Views\NHANVIEN\LayDanhSachTaiKhoan.cshtml" />
     <Content Include="Views\NHANVIEN\TaoTaiKhoan.cshtml" />
+    <Content Include="Views\THONGTINTIEPNHAN\TaoTTTN_LayThongTinXe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

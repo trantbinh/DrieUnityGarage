@@ -22,43 +22,43 @@
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-<div class="row" style="font-size:17px; margin:0">
-    <div class="col-lg-4" style="padding-left:50px">
-        Mã hoá đơn:
-        <div class="form-control" style="display:inline;">@ViewBag.MaHD</div>
-    </div>
-    <div class="col-lg-4">
-        Ngày lập hoá đơn:
-        <div class="form-control" style="display:inline">
-            @ViewBag.NgayLapHD
-        </div>
-    </div>
-    @if (Session["CheckTN"] == null)
-    {
-
-        <div class="dis-inline col-lg-3" style="margin-top:-6PX">
-            Mã tiếp nhận:
-            @Html.DropDownList("HD_MaTN", null, htmlAttributes: new { @class = "dis-inline form-maTN " })
-            @Html.ValidationMessageFor(model => model.HD_MaTN, "", new { @class = "text-danger" })
-        </div>
-
-
-        <div class="dis-inline col-lg-1" style="margin-top:-6px">
-            <input type="submit" value="Lấy dữ liệu" class="btn btn-primary" />
-        </div>
-    }
-    else
-    {
-          <div class="col-lg-4">
-            Mã tiếp nhận:
-            <div class="form-control" style="display:inline">
-                @ViewBag.MaTN
+        <div class="row" style="font-size:17px; margin:0">
+            <div class="col-lg-4" style="padding-left:50px">
+                Mã hoá đơn:
+                <div class="form-control" style="display:inline;">@ViewBag.MaHD</div>
             </div>
+            <div class="col-lg-4">
+                Ngày lập hoá đơn:
+                <div class="form-control" style="display:inline">
+                    @ViewBag.NgayLapHD
+                </div>
+            </div>
+            @if (Session["CheckTN"] == null)
+            {
+
+                <div class="dis-inline col-lg-3" style="margin-top:-6PX">
+                    Mã tiếp nhận:
+                    @Html.DropDownList("HD_MaTN", null, htmlAttributes: new { @class = "dis-inline form-maTN " })
+                    @Html.ValidationMessageFor(model => model.HD_MaTN, "", new { @class = "text-danger" })
+                </div>
+
+
+                <div class="dis-inline col-lg-1" style="margin-top:-6px">
+                    <input type="submit" value="Lấy dữ liệu" class="btn btn-primary" />
+                </div>
+            }
+            else
+            {
+                <div class="col-lg-4">
+                    Mã tiếp nhận:
+                    <div class="form-control" style="display:inline">
+                        @ViewBag.MaTN
+                    </div>
+                </div>
+
+
+            }
         </div>
-
-
-    }
-</div>
     }
     <div class="row" style="margin-top: 30px; font-size: 17px; margin-left:0; margin-right:0">
 
@@ -83,13 +83,9 @@
     <div class="row" style="margin-top:40px">
         <div class="col-lg-9">
             @Html.Action("Partial_LayChiTietHoaDonList", "HOADON")
-
         </div>
         <div class="col-lg-3">
-
             @Html.Action("Partial_ThemChiTietHoaDon", "HOADON")
-
-
         </div>
     </div>
     <div class="row" style="margin-top:15px">
