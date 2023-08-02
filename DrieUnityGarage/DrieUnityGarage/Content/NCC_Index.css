@@ -1,11 +1,13 @@
 ﻿* {
     margin: 0;
 }
+
 .btn-back {
     text-decoration: none;
     font-size: 20px;
     color: black;
 }
+
 .title {
     text-align: center;
     color: white;
@@ -27,11 +29,13 @@
     font-weight: 500;
     width: 30%
 }
+
 .delete-btn {
     font-size: 20px;
     font-weight: 500;
     width: 35%
 }
+
 .create-formgroup {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -61,7 +65,7 @@ th, td {
     table-layout: fixed;
     width: 100%;
     word-break: break-word;
-    color:black;
+    color: black;
     border-spacing: 10px 10px;
 }
 
@@ -124,8 +128,7 @@ th, td {
 .nonedecor {
     text-decoration: none;
     font-size: 25px;
-    color:black;
-    
+    color: black;
 }
 
 .edit-btn {
@@ -150,21 +153,14 @@ th, td {
     margin-top: 20px;
     font-size: 30px;
 }
-.space-field{
-    margin-top:20px;
+
+.space-field {
+    margin-top: 20px;
 }
+
 .dis-inline {
-   display:inline;
-  
+    display: inline;
 }
-
-
-
-
-
-
-
-
 
 .form-maTN {
     display: inline-block;
@@ -276,6 +272,7 @@ th, td {
 .form-maTN:hover:not(:disabled):not([readonly])::file-selector-button {
     background-color: #dde0e3;
 }
+
 .form-maTN-plaintext {
     display: block;
     width: 100%;
@@ -366,9 +363,9 @@ textarea.form-maTN-lg {
         border-radius: 0.375rem;
     }
 
-    .-color::-webkit-color-swatch {
-        border-radius: 0.375rem;
-    }
+.-color::-webkit-color-swatch {
+    border-radius: 0.375rem;
+}
 
 .form-maTN-color.form-control-sm {
     height: calc(1.5em + 0.5rem + 2px);
@@ -382,7 +379,7 @@ textarea.form-maTN-lg {
 
 
 
-.form-selectSP{
+.form-selectSP {
     display: inline-block;
     width: 50%;
     padding: 0.375rem 0.75rem;
@@ -595,3 +592,444 @@ textarea.form-selectSP-lg {
     height: calc(1.5em + 1rem + 2px);
 }
 
+
+
+.row-general-info-field {
+    font-size: 17px;
+    margin: 0;
+    
+    margin-top:20px;
+}
+
+
+
+
+
+.form-maTN60 {
+    display: inline;
+    width: 60%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.375rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .form-maTN60 {
+        transition: none;
+    }
+}
+
+.form-maTN60[type=file] {
+    overflow: hidden;
+}
+
+    .form-maTN60[type=file]:not(:disabled):not([readonly]) {
+        cursor: pointer;
+    }
+
+.form-maTN60:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.form-maTN60::-webkit-date-and-time-value {
+    height: 1.5em;
+}
+
+.form-maTN60::-moz-placeholder {
+    color: #6c757d;
+    opacity: 1;
+}
+
+.form-maTN60::placeholder {
+    color: #6c757d;
+    opacity: 1;
+}
+
+.form-maTN60:disabled {
+    background-color: #e9ecef;
+    opacity: 1;
+}
+
+.form-maTN60::-webkit-file-upload-button {
+    padding: 0.375rem 0.75rem;
+    margin: -0.375rem -0.75rem;
+    -webkit-margin-end: 0.75rem;
+    margin-inline-end: 0.75rem;
+    color: #212529;
+    background-color: #e9ecef;
+    pointer-events: none;
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+    border-inline-end-width: 1px;
+    border-radius: 0;
+    -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-maTN60::file-selector-button {
+    padding: 0.375rem 0.75rem;
+    margin: -0.375rem -0.75rem;
+    -webkit-margin-end: 0.75rem;
+    margin-inline-end: 0.75rem;
+    color: #212529;
+    background-color: #e9ecef;
+    pointer-events: none;
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+    border-inline-end-width: 1px;
+    border-radius: 0;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .form-maTN60::-webkit-file-upload-button {
+        -webkit-transition: none;
+        transition: none;
+    }
+
+    .form-maTN60::file-selector-button {
+        transition: none;
+    }
+}
+
+.form-maTN60:hover:not(:disabled):not([readonly])::-webkit-file-upload-button {
+    background-color: #dde0e3;
+}
+
+.form-maTN60:hover:not(:disabled):not([readonly])::file-selector-button {
+    background-color: #dde0e3;
+}
+
+.form-maTN60-plaintext {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0;
+    margin-bottom: 0;
+    line-height: 1.5;
+    color: #212529;
+    background-color: transparent;
+    border: solid transparent;
+    border-width: 1px 0;
+}
+
+    .form-maTN60-plaintext:focus {
+        outline: 0;
+    }
+
+    .form-maTN60-plaintext.form-control-sm, .form-control-plaintext.form-control-lg {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+.form-maTN60-sm {
+    min-height: calc(1.5em + 0.5rem + 2px);
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.25rem;
+}
+
+    .form-maTN60-sm::-webkit-file-upload-button {
+        padding: 0.25rem 0.5rem;
+        margin: -0.25rem -0.5rem;
+        -webkit-margin-end: 0.5rem;
+        margin-inline-end: 0.5rem;
+    }
+
+    .form-maTN60-sm::file-selector-button {
+        padding: 0.25rem 0.5rem;
+        margin: -0.25rem -0.5rem;
+        -webkit-margin-end: 0.5rem;
+        margin-inline-end: 0.5rem;
+    }
+
+.form-maTN60-lg {
+    min-height: calc(1.5em + 1rem + 2px);
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    border-radius: 0.5rem;
+}
+
+    .form-maTN60-lg::-webkit-file-upload-button {
+        padding: 0.5rem 1rem;
+        margin: -0.5rem -1rem;
+        -webkit-margin-end: 1rem;
+        margin-inline-end: 1rem;
+    }
+
+    .form-maTN60-lg::file-selector-button {
+        padding: 0.5rem 1rem;
+        margin: -0.5rem -1rem;
+        -webkit-margin-end: 1rem;
+        margin-inline-end: 1rem;
+    }
+
+textarea.form-maTN60 {
+    min-height: calc(1.5em + 0.75rem + 2px);
+}
+
+textarea.form-maTN60-sm {
+    min-height: calc(1.5em + 0.5rem + 2px);
+}
+
+textarea.form-maTN60-lg {
+    min-height: calc(1.5em + 1rem + 2px);
+}
+
+.form-maTN60-color {
+    width: 3rem;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem;
+}
+
+    .form-maTN60-color:not(:disabled):not([readonly]) {
+        cursor: pointer;
+    }
+
+    .form-maTN60-color::-moz-color-swatch {
+        border: 0 !important;
+        border-radius: 0.375rem;
+    }
+
+.-color::-webkit-color-swatch {
+    border-radius: 0.375rem;
+}
+
+.form-maTN60-color.form-control-sm {
+    height: calc(1.5em + 0.5rem + 2px);
+}
+
+.form-maTN60-color.form-control-lg {
+    height: calc(1.5em + 1rem + 2px);
+}
+
+
+
+
+.form-maTN100 {
+    display: inline;
+    min-width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.375rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .form-maTN100 {
+        transition: none;
+    }
+}
+
+.form-maTN100[type=file] {
+    overflow: hidden;
+}
+
+    .form-maTN100[type=file]:not(:disabled):not([readonly]) {
+        cursor: pointer;
+    }
+
+.form-maTN100:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.form-maTN100::-webkit-date-and-time-value {
+    height: 1.5em;
+}
+
+.form-maTN100::-moz-placeholder {
+    color: #6c757d;
+    opacity: 1;
+}
+
+.form-maTN100::placeholder {
+    color: #6c757d;
+    opacity: 1;
+}
+
+.form-maTN100:disabled {
+    background-color: #e9ecef;
+    opacity: 1;
+}
+
+.form-maTN100::-webkit-file-upload-button {
+    padding: 0.375rem 0.75rem;
+    margin: -0.375rem -0.75rem;
+    -webkit-margin-end: 0.75rem;
+    margin-inline-end: 0.75rem;
+    color: #212529;
+    background-color: #e9ecef;
+    pointer-events: none;
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+    border-inline-end-width: 1px;
+    border-radius: 0;
+    -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-maTN100::file-selector-button {
+    padding: 0.375rem 0.75rem;
+    margin: -0.375rem -0.75rem;
+    -webkit-margin-end: 0.75rem;
+    margin-inline-end: 0.75rem;
+    color: #212529;
+    background-color: #e9ecef;
+    pointer-events: none;
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+    border-inline-end-width: 1px;
+    border-radius: 0;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .form-maTN100::-webkit-file-upload-button {
+        -webkit-transition: none;
+        transition: none;
+    }
+
+    .form-maTN100::file-selector-button {
+        transition: none;
+    }
+}
+
+.form-maTN100:hover:not(:disabled):not([readonly])::-webkit-file-upload-button {
+    background-color: #dde0e3;
+}
+
+.form-maTN100:hover:not(:disabled):not([readonly])::file-selector-button {
+    background-color: #dde0e3;
+}
+
+.form-maTN100-plaintext {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0;
+    margin-bottom: 0;
+    line-height: 1.5;
+    color: #212529;
+    background-color: transparent;
+    border: solid transparent;
+    border-width: 1px 0;
+}
+
+    .form-maTN100-plaintext:focus {
+        outline: 0;
+    }
+
+    .form-maTN100-plaintext.form-control-sm, .form-control-plaintext.form-control-lg {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+.form-maTN100-sm {
+    min-height: calc(1.5em + 0.5rem + 2px);
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.25rem;
+}
+
+    .form-maTN100-sm::-webkit-file-upload-button {
+        padding: 0.25rem 0.5rem;
+        margin: -0.25rem -0.5rem;
+        -webkit-margin-end: 0.5rem;
+        margin-inline-end: 0.5rem;
+    }
+
+    .form-maTN100-sm::file-selector-button {
+        padding: 0.25rem 0.5rem;
+        margin: -0.25rem -0.5rem;
+        -webkit-margin-end: 0.5rem;
+        margin-inline-end: 0.5rem;
+    }
+
+.form-maTN100-lg {
+    min-height: calc(1.5em + 1rem + 2px);
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    border-radius: 0.5rem;
+}
+
+    .form-maTN100-lg::-webkit-file-upload-button {
+        padding: 0.5rem 1rem;
+        margin: -0.5rem -1rem;
+        -webkit-margin-end: 1rem;
+        margin-inline-end: 1rem;
+    }
+
+    .form-maTN100-lg::file-selector-button {
+        padding: 0.5rem 1rem;
+        margin: -0.5rem -1rem;
+        -webkit-margin-end: 1rem;
+        margin-inline-end: 1rem;
+    }
+
+textarea.form-maTN100 {
+    min-height: calc(1.5em + 0.75rem + 2px);
+}
+
+textarea.form-maTN100-sm {
+    min-height: calc(1.5em + 0.5rem + 2px);
+}
+
+textarea.form-maTN100-lg {
+    min-height: calc(1.5em + 1rem + 2px);
+}
+
+.form-maTN100-color {
+    width: 3rem;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem;
+}
+
+    .form-maTN100-color:not(:disabled):not([readonly]) {
+        cursor: pointer;
+    }
+
+    .form-maTN100-color::-moz-color-swatch {
+        border: 0 !important;
+        border-radius: 0.375rem;
+    }
+
+.-color::-webkit-color-swatch {
+    border-radius: 0.375rem;
+}
+
+.form-maTN100-color.form-control-sm {
+    height: calc(1.5em + 0.5rem + 2px);
+}
+
+.form-maTN100-color.form-control-lg {
+    height: calc(1.5em + 1rem + 2px);
+}

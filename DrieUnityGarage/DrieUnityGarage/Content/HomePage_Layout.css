@@ -49,6 +49,7 @@ html, main {
 }
 .sidebar_css {
     background-image: linear-gradient(to right,#ACF5F2,#A8E5ED);
+    
     height: 100%;
     position: sticky;
     padding-left: 15px;
