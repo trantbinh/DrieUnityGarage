@@ -155,18 +155,16 @@ namespace DrieUnityGarage.Controllers
             THONGTINTIEPNHAN tHONGTINTIEPNHAN = new THONGTINTIEPNHAN();
             if (ModelState.IsValid)
             {
-                
                 String id = TaoMaTiepNhan();
                 String date = String.Format("{0:dd/MM/yy}", DateTime.Now.ToString());
                 tHONGTINTIEPNHAN.MaTN = id;
+                /* tHONGTINTIEPNHAN.TN_MaNV = Session["MaTaiKhoanNV"].ToString();*/
                 tHONGTINTIEPNHAN.TN_MaNV = "NV001";
                 tHONGTINTIEPNHAN.TN_MaKH = Session["MaKH"].ToString();
                 tHONGTINTIEPNHAN.TN_BienSoXe = lstXe;
                 tHONGTINTIEPNHAN.ThoiGianTiepNhan = DateTime.Now;
                 tHONGTINTIEPNHAN.ThoiGianGiaoDuKien = null;
                 tHONGTINTIEPNHAN.GhiChuKH=GhiChuKH;
-
-
                 db.THONGTINTIEPNHANs.Add(tHONGTINTIEPNHAN);
                 db.SaveChanges();
                 return RedirectToAction("Index");

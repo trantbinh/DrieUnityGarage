@@ -104,7 +104,8 @@
                     <div class="mb-4">
                         @*Ghi chú: <input type="text" name="q" id="txtFrom" class="form-maTN60 input-lg" >*@
                         <label class="form-label" for="GhiChuKH"> Ghi chú của khách hàng: </label>
-                        <textarea type="text" id="GhiChuKH" name="GhiChuKH" class="form-control" rows="3"></textarea>
+                        @*<textarea type="text" id="GhiChuKH" name="GhiChuKH" class="form-control" rows="3"></textarea>*@
+                        @Html.TextAreaFor(m=>m.GhiChuKH,3,1,new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="col-3"></div>
