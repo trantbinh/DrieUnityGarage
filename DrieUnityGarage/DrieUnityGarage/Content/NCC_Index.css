@@ -7,6 +7,9 @@
     font-size: 20px;
     color: black;
 }
+    .btn-back:hover {
+        color: #883000;
+    }
 
 .title {
     text-align: center;
@@ -1032,4 +1035,12 @@ textarea.form-maTN100-lg {
 
 .form-maTN100-color.form-control-lg {
     height: calc(1.5em + 1rem + 2px);
+}
+
+
+
+
+.btn-details {
+    background-color: #138496;
+    color: white;
 }

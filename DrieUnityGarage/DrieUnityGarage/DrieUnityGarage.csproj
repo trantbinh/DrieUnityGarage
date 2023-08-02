@@ -235,6 +235,7 @@
     <Content Include="Images\HomePage_Header\HomePage_HeaderName.png" />
     <Content Include="Images\HomePage_Header\HomePage_HeaderPhoneNum.png" />
     <Content Include="Images\HomePage_Header\HomePage_HeaderRectangle.png" />
+    <Content Include="Images\Icon\iconBack.png" />
     <Content Include="Images\Icon\icon_Avarta.png" />
     <Content Include="Images\Icon\icon_Logout.png" />
     <Content Include="Images\Icon\icon_QLCSKH.png" />

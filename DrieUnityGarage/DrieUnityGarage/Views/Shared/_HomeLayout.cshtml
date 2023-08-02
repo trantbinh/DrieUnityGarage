@@ -67,37 +67,10 @@
     <script src="~/Content/bootstrap5/js/bootstrap.js"></script>
 </head>
 <body class="body-container">
-    <header id="header" id="container-fluid">
+    <div class="container-fluid" style="padding: 0; margin:0">
         <div class="row" style="padding:0; margin:0">
-            <div class="col-lg-2" style="padding:0; margin:0"></div>
-            <div class="header-name-container col-lg-2">
-                <img src="~/Images/HomePage_Header/HomePage_HeaderName.png" alt="Name garage" class="header-name-image" />
-            </div>
-            <div class="col-lg-7"></div>
-            <div class="col-lg-1">
-                <img src="~/Images/Logo/Logo.png" alt="Name garage" class="header-logo" />
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3"></div>
-            <div class="header-name-container col-lg-2">
-                <img src="~/Images/HomePage_Header/HomePage_HeaderDescription.png" alt="Name garage" width="250px" />
-            </div>
-            <div class="col-lg-1"></div>
-            <div class="header-name-container col-lg-3">
-                <img src="~/Images/HomePage_Header/HomePage_HeaderPhoneNum.png" alt="Name garage" width="340px" />
-            </div>
-            <div class="col-lg-2"></div>
-            <div class="col-lg-1" style="margin-left:-20px;">
-                <img src="~/Images/Logo/Logo_Name.png" alt="Name garage" class="header-logoname" />
-            </div>
-        </div>
-    </header>
-    <div class="container-fluid" style="padding:0">
-        <div class="row" style="padding:0">
-            <div class="col-lg-2" style="padding:0; margin:0">
-                <nav class="sidebar_css sidebar" style="padding:25px">
+            <div class="col-lg-2" style="padding:0; margin:0; ">
+                <nav class="sidebar_css sidebar" style=" min-height: 100vh; padding-top:90px; height:100%">
 
                     <ul class="nav flex-column" id="nav_accordion">
                         @if (Session["TaiKhoan"] == null)
@@ -225,7 +198,34 @@
                     </ul>
                 </nav>
             </div>
-            <div class="col-lg-10" style="padding:0; padding-bottom:50px;">
+            <div class="col-lg-10" style="padding:0;">
+                <header id="header">
+                    <div class="row" style="padding:0; margin:0">
+                        @*<div class="col-lg-1" style="padding:0; margin:0"></div>*@
+                        <div class="header-name-container col-lg-3">
+                            <img src="~/Images/HomePage_Header/HomePage_HeaderName.png" alt="Name garage" class="header-name-image" />
+                        </div>
+                        <div class="col-lg-8"></div>
+                        <div class="col-lg-1">
+                            <img src="~/Images/Logo/Logo.png" alt="Name garage" class="header-logo" />
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="header-name-container col-lg-2">
+                            <img src="~/Images/HomePage_Header/HomePage_HeaderDescription.png" alt="Name garage" width="250px" />
+                        </div>
+                        <div class="col-lg-2"></div>
+                        <div class="header-name-container col-lg-3">
+                            <img src="~/Images/HomePage_Header/HomePage_HeaderPhoneNum.png" alt="Name garage" width="340px" />
+                        </div>
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-1" style="margin-left:-20px;">
+                            <img src="~/Images/Logo/Logo_Name.png" alt="Name garage" class="header-logoname" />
+                        </div>
+                    </div>
+                </header>
                 @RenderBody()
             </div>
         </div>

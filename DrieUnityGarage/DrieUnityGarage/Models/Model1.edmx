@@ -128,6 +128,7 @@
           <Property Name="ThoiGianTiepNhan" Type="datetime" />
           <Property Name="ThoiGianGiaoDuKien" Type="datetime" />
           <Property Name="GhiChuKH" Type="nvarchar" MaxLength="200" />
+          <Property Name="TrangThai" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK_CTHOADON_HANGHOA">
           <End Role="HANGHOA" Type="Self.HANGHOA" Multiplicity="1" />
@@ -412,6 +413,7 @@
           <Property Name="ThoiGianTiepNhan" Type="DateTime" Precision="3" />
           <Property Name="ThoiGianGiaoDuKien" Type="DateTime" Precision="3" />
           <Property Name="GhiChuKH" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TrangThai" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="HOADONs" Relationship="Self.FK_HOADON_THONGTINTIEPNHAN" FromRole="THONGTINTIEPNHAN" ToRole="HOADON" />
         </EntityType>
         <Association Name="FK_CTHOADON_HANGHOA">
@@ -690,6 +692,7 @@
                 <ScalarProperty Name="ThoiGianTiepNhan" ColumnName="ThoiGianTiepNhan" />
                 <ScalarProperty Name="ThoiGianGiaoDuKien" ColumnName="ThoiGianGiaoDuKien" />
                 <ScalarProperty Name="GhiChuKH" ColumnName="GhiChuKH" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

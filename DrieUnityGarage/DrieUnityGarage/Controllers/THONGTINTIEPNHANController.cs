@@ -106,10 +106,14 @@ namespace DrieUnityGarage.Controllers
                 ViewBag.selectedKhachHang = Session["selectedKhachHang"];
                 ViewBag.ThoiGianGiaoXe = Session["ThoiGianGiaoXe"];
             }
+            else if (Session["KhongCoThongTinXe"] != null) {
+                ViewBag.ThongBao = "Khách hàng chưa được tạo thông tin phương tiện!";
+            }
             return View();
         }
 
-        public ActionResult TaoTTTN_LayThongTinXe([Bind(Include = "MaTN,TN_MaKH,TN_BienSoXe,TN_MaNV,ThoiGianTiepNhan,ThoiGianGiaoDuKien,GhiChuKH")] THONGTINTIEPNHAN tHONGTINTIEPNHAN, String lstMaKH, DateTime thoiGianGiaoXe)
+        //Hàm được sử dụng sau khi nhấn nút lấy danh sách xe
+        public ActionResult TaoTTTN_LayThongTinXe([Bind(Include = "MaTN,TN_MaKH,TN_BienSoXe,TN_MaNV,ThoiGianTiepNhan,ThoiGianGiaoDuKien,GhiChuKH")] THONGTINTIEPNHAN tHONGTINTIEPNHAN, String lstMaKH/*, DateTime thoiGianGiaoXe*/)
         {
             //Lấy danh sách xe từ database sau đó lọc ra những xe của khách hàng
             var xe = LayDanhSachXeDB();
@@ -128,26 +132,31 @@ namespace DrieUnityGarage.Controllers
             String selectedKH = TTKH.MaKH + " - " + TTKH.DienThoaiKH + " - " + TTKH.HoTenKH;
 
 
-            String date = thoiGianGiaoXe.ToString("dd/MMM/yyyy");
+            //String date = thoiGianGiaoXe.ToString("dd/MMM/yyyy");
 
-            //Check đã lấy thông tin xe
-            Session["DaLayThongTinXe"] = 3;
+            
 
             Session["selectedKhachHang"] = selectedKH;
 
             //Thông tin cần lưu của tiếp nhận
-            Session["ThoiGianGiaoXe"] = date;
+            //Session["ThoiGianGiaoXe"] = date;
             Session["MaTN"] = TaoMaTiepNhan();
-            
             Session["MaKH"] = lstMaKH;
             
             Session.Remove("lstXe");
             Session["lstXe"] = lstXe;
+
+            //Check đã lấy thông tin xe hay chưa, có null không
+            if (lstXe.Count()==0)
+                Session["KhongCoThongTinXe"] = 3;
+            else 
+                Session["DaLayThongTinXe"] = 3;
+
+
             return RedirectToAction("Create");
         }
-        // POST: THONGTINTIEPNHAN/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
+        //Lưu thông tin tiếp nhận vào database
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(String GhiChuKH, String lstXe)
@@ -156,7 +165,6 @@ namespace DrieUnityGarage.Controllers
             if (ModelState.IsValid)
             {
                 String id = TaoMaTiepNhan();
-                String date = String.Format("{0:dd/MM/yy}", DateTime.Now.ToString());
                 tHONGTINTIEPNHAN.MaTN = id;
                 /* tHONGTINTIEPNHAN.TN_MaNV = Session["MaTaiKhoanNV"].ToString();*/
                 tHONGTINTIEPNHAN.TN_MaNV = "NV001";
@@ -165,6 +173,7 @@ namespace DrieUnityGarage.Controllers
                 tHONGTINTIEPNHAN.ThoiGianTiepNhan = DateTime.Now;
                 tHONGTINTIEPNHAN.ThoiGianGiaoDuKien = null;
                 tHONGTINTIEPNHAN.GhiChuKH=GhiChuKH;
+                tHONGTINTIEPNHAN.TrangThai = "Chưa hoàn thành";
                 db.THONGTINTIEPNHANs.Add(tHONGTINTIEPNHAN);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -16,6 +16,7 @@
     </div>
     @using (Html.BeginForm("TaoTTTN_LayThongTinXe", "THONGTINTIEPNHAN"))
     {
+        <p style="font-size:20px; color:red; text-align:center; font-weight:bold">@ViewBag.ThongBao</p>
         <div class="row row-general-info-field">
             <div class="col-3"></div>
             <div class="col-6">
@@ -23,23 +24,19 @@
                 @if (Session["DaLayThongTinXe"] != null)
                 {
                     <div class="mb-3">
-                        @* Mã tiếp nhận:<div class="form-maTN100" style="">@ViewBag.MaTN</div>*@
                         <label for="MaTiepNhan" class="form-label"> Mã tiếp nhận: </label>
                         <div class="form-control" id="MaTiepNhan">@ViewBag.MaTN</div>
                     </div>
                     <div class="mb-3">
-                        @*<div class="form-maTN60" >@ViewBag.ThoiGianTiepNhan</div>*@
                         <label for="ThoiGianTiepNhan" class="form-label"> Thời gian tiếp nhận: </label>
                         <div class="form-control" id="ThoiGianTiepNhan">@ViewBag.ThoiGianTiepNhan</div>
                     </div>
-                    <div class="mb-3">
-                        @*Dự kiến giao hàng:<input type="date" name="q" id="txtFrom" class="form-maTN60 " value="2019-07-18">*@
+                 @*   <div class="mb-3">
                         <label class="form-label"> Dự kiến giao xe: </label>
                         <div class="form-control">@ViewBag.ThoiGianGiaoXe</div>
-                    </div>
+                    </div>*@
 
                     <div class="mb-3">
-                        @* Khách hàng:<div class="form-maTN60">@ViewBag.selectedKhachHang </div>*@
                         <label for="KhachHang" class="form-label"> Khách hàng: </label>
                         <div class="form-control" id="KhachHang">@ViewBag.selectedKhachHang</div>
                     </div>
@@ -47,18 +44,15 @@
                 else
                 {
                     <div class="mb-3">
-                        @* Mã tiếp nhận:<div class="form-maTN100" style="">@ViewBag.MaTN</div>*@
                         <label for="MaTiepNhan" class="form-label"> Mã tiếp nhận: </label>
                         <div class="form-control" id="MaTiepNhan">@ViewBag.MaTN</div>
                     </div>
 
                     <div class="mb-3">
-                        @*Thời gian tiếp nhận:<div class="form-maTN60">@ViewBag.ThoiGianTiepNhan</div>*@
                         <label for="ThoiGianTiepNhan" class="form-label"> Thời gian tiếp nhận: </label>
                         <div class="form-control" id="ThoiGianTiepNhan">@ViewBag.ThoiGianTiepNhan</div>
                     </div>
-                    <div class="mb-3">
-                        @*Dự kiến giao hàng:<input type="date" name="q" id="txtFrom" class="form-maTN60 " value="2019-07-18">*@
+                  @*  <div class="mb-3">
                         <script>
                             $(function () {
                                 $('#thoiGianGiaoXe').datepicker({
@@ -70,15 +64,14 @@
                         <label class="form-label"> Dự kiến giao xe: </label>
                         <input type="date" name="thoiGianGiaoXe" id="thoiGianGiaoXe" class="form-control" value="dd/MM/yyyy" required>
                     </div>
-
+*@
                     <div class="mb-3">
-                        @*Khách hàng: @Html.DropDownList("lstMaKH", null, htmlAttributes: new { @class = "form-maTN" })*@
-                        <label class="form-label"> Khách hàng: </label>
-                        @Html.DropDownList("lstMaKH", null, htmlAttributes: new { @class = "form-control" })
+                        <label class="form-label" for="lstMaKH"> Khách hàng: </label>
+                        @Html.DropDownList("lstMaKH", null,htmlAttributes: new { @class = "form-control" })
                     </div>
                     <div class="mb-3 row" style="margin-left:0;margin-right:0; margin-top:30px;">
                         <div class="col-3"></div>
-                        <input type="submit" value="Lấy danh sách xe" class="col-6 btn btn-primary" />
+                        <input type="submit" value="Lấy danh sách phương tiện" class="col-6 btn btn-primary" />
                         <div class="col-3"></div>
                     </div>
                 }
@@ -97,31 +90,33 @@
                 <div class="col-3"></div>
                 <div class="col-6">
                     <div class="mb-3">
-                        @*Phương tiện:@Html.DropDownList("lstXe", null, htmlAttributes: new { @class = "form-maTN60" })*@
                         <label class="form-label"> Phương tiện: </label>
                         @Html.DropDownList("lstXe", null, htmlAttributes: new { @class = "form-control" })
                     </div>
                     <div class="mb-4">
-                        @*Ghi chú: <input type="text" name="q" id="txtFrom" class="form-maTN60 input-lg" >*@
                         <label class="form-label" for="GhiChuKH"> Ghi chú của khách hàng: </label>
-                        @*<textarea type="text" id="GhiChuKH" name="GhiChuKH" class="form-control" rows="3"></textarea>*@
                         @Html.TextAreaFor(m=>m.GhiChuKH,3,1,new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="col-3"></div>
 
             </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Tạo thông tin" class="btn btn-default" />
+           
+            <div class="row" style="padding-bottom:10px;">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <div class="row" style="margin:auto">
+                        <div class="col-4" >
+                            <img src="~/Images/Icon/iconBack.png" style="width:10%; height:40%"/>
+                            @Html.ActionLink("Quay về", "Index", null,new {@class = "btn-back"})
+                        </div>
+                        <div class="col-4" >
+                            <input type="submit" value="Tạo thông tin" class="btn btn-primary"/>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
+                <div class="col-3"></div>
+            </div> 
         }
-
     }
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
 </div>
