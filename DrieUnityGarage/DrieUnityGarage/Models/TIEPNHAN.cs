@@ -9,6 +9,16 @@ namespace DrieUnityGarage.Models
     public class TIEPNHAN
     {
         DrieUnityGarageEntities db = new DrieUnityGarageEntities();
+        private String maTN;
+        private String maNV;
+        private String maKH;
+        private String bienSoXe;
+        private DateTime thoiGianTiepNhan;
+        private DateTime thoiGianDuKien;
+        private String ghiChuKH;
+        private String trangThai;
+
+
         public String MaTN { get; set; }
         public String MaNV { get; set; }
         public String MaKH { get; set; }

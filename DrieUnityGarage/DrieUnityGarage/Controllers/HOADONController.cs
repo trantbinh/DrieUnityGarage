@@ -207,6 +207,7 @@ namespace DrieUnityGarage.Controllers
 */        // GET: HOADON
         public ActionResult LayDanhSachHoaDon()
         {
+            Session.Remove("DaLayThongTinTiepNhan");
             var hOADONs = db.HOADONs.Include(h => h.KHACHHANG).Include(h => h.PHUONGTIEN).Include(h => h.THONGTINTHANHTOAN).Include(h => h.THONGTINTIEPNHAN);
             return View(hOADONs.ToList());
         }
@@ -225,54 +226,126 @@ namespace DrieUnityGarage.Controllers
             }
             return View(hOADON);
         }
+        public List<THONGTINTIEPNHANXE> LayDanhSachTiepNhanDB()
+        {
+            var newlstKH = new List<THONGTINTIEPNHANXE>();
+            var khDB = db.THONGTINTIEPNHANs.Where(m=>m.TrangThai.Equals("Chưa hoàn thành")).ToList();
+            int c = khDB.Count();
+            for (int i = 0; i < c; i++)
+            {
+
+                newlstKH.Add(new THONGTINTIEPNHANXE(khDB[i].MaTN));
+            }
+            Session.Remove("lstTN");
+            Session["lstTN"] = newlstKH;
+            return newlstKH;
+        }
 
         // GET: HOADON/Create
-        public ActionResult TaoHoaDon(String id)
+        public ActionResult TaoHoaDon()
         {
-            Session["CheckTN"] = 0;
-            String idHD;
-            if (id != null)
-            {
-                idHD = id;
-
-                //Lấy thông tin tiếp nhận
-                var hd = db.HOADONs.FirstOrDefault(m => m.MaHD.Equals(id));
-                String MaTiepNhan = hd.HD_MaTN;
-                var tn = db.THONGTINTIEPNHANs.FirstOrDefault(m => m.MaTN.Equals(MaTiepNhan));
-                ViewBag.MaTN= tn.MaTN;
-
-                Session["MaKH"] = tn.TN_MaKH;
-                Session["MaTN"] = tn.MaTN;
-                Session["MaNV"] = tn.TN_MaNV;
-                Session["BienSoXe"] = tn.TN_BienSoXe;
-
-                //Thông tin khách hàng
-                var kh = db.KHACHHANGs.FirstOrDefault(m => m.MaKH.Equals(tn.TN_MaKH));
-                ViewBag.KhachHang =kh.MaKH + " - "+ kh.HoTenKH;
-                ViewBag.SDT = kh.DienThoaiKH;
-
-                var nv = db.NHANVIENs.FirstOrDefault(m => m.MaNV.Equals(tn.TN_MaNV));
-                ViewBag.NhanVien = nv.MaNV+" - "+nv.HoTenNV;
-            }
-            else
-            { 
-                idHD = TaoMaHoaDon();
-                ViewBag.HD_MaTN = new SelectList(db.THONGTINTIEPNHANs, "MaTN", "MaTN");
-            }
-            
-            HOADON hOADONs = db.HOADONs.Find(id);
-            if (hOADONs == null)
-            {
-                Session["CheckTN"] = null;
-              
-            }
-           
-            ViewBag.MaHD = idHD;
             String date = DateTime.Now.ToString("dd/MM/yyyy");
             ViewBag.NgayLapHD = date;
-            Session["MaHD"] = idHD;
-            return View(hOADONs);
+            String idTN = TaoMaHoaDon();
+            ViewBag.MaHD = idTN;
+
+            List<THONGTINTIEPNHANXE> lstTiepNhan = LayDanhSachTiepNhanDB();
+            ViewBag.lstMaTN = new SelectList(lstTiepNhan, "MaTN", "FullThongTin");
+
+            if (Session["DaLayThongTinTiepNhan"] != null)
+            {
+                ViewBag.selectedTiepNhan = Session["selectedTiepNhan"];
+                ViewBag.KhachHang = Session["KhachHang"];
+                ViewBag.BienSoXe = Session["BienSoXe"];
+                ViewBag.NhanVien = Session["NhanVien"] ;
+            }
+            return View();
+
+
+
+
+            /*            Session["CheckTN"] = 0;
+                        String idHD;
+                        if (id != null)
+                        {
+                            idHD = id;
+
+                            //Lấy thông tin tiếp nhận
+                            var hd = db.HOADONs.FirstOrDefault(m => m.MaHD.Equals(id));
+                            String MaTiepNhan = hd.HD_MaTN;
+                            var tn = db.THONGTINTIEPNHANs.FirstOrDefault(m => m.MaTN.Equals(MaTiepNhan));
+                            ViewBag.MaTN= tn.MaTN;
+
+                            Session["MaKH"] = tn.TN_MaKH;
+                            Session["MaTN"] = tn.MaTN;
+                            Session["MaNV"] = tn.TN_MaNV;
+                            Session["BienSoXe"] = tn.TN_BienSoXe;
+
+                            //Thông tin khách hàng
+                            var kh = db.KHACHHANGs.FirstOrDefault(m => m.MaKH.Equals(tn.TN_MaKH));
+                            ViewBag.KhachHang =kh.MaKH + " - "+ kh.HoTenKH;
+                            ViewBag.SDT = kh.DienThoaiKH;
+
+                            var nv = db.NHANVIENs.FirstOrDefault(m => m.MaNV.Equals(tn.TN_MaNV));
+                            ViewBag.NhanVien = nv.MaNV+" - "+nv.HoTenNV;
+                        }
+                        else
+                        { 
+                            idHD = TaoMaHoaDon();
+                            ViewBag.HD_MaTN = new SelectList(db.THONGTINTIEPNHANs, "MaTN", "MaTN");
+                        }
+
+                        HOADON hOADONs = db.HOADONs.Find(id);
+                        if (hOADONs == null)
+                        {
+                            Session["CheckTN"] = null;
+
+                        }
+
+                        ViewBag.MaHD = idHD;
+                        String date = DateTime.Now.ToString("dd/MM/yyyy");
+                        ViewBag.NgayLapHD = date;
+                        Session["MaHD"] = idHD;
+                        return View(hOADONs);
+            */
         }
+
+        //Hàm được sử dụng sau khi nhấn nút
+        public ActionResult TaoHD_LayThongTinTiepNhan(String lstMaTN/*, DateTime thoiGianGiaoXe*/)
+        {
+            //Lấy ra thông tin của khách hàng có mã khách hàng là từ dropdown
+            THONGTINTIEPNHANXE TTTN = new THONGTINTIEPNHANXE(lstMaTN);
+
+            //Tạo 1 String chứa các thông tin của khách hàng để hiển thị
+            String selectedTN = TTTN.MaTN + " - " + TTTN.MaKH + " - " + TTTN.BienSoXe;
+
+            Session["selectedTiepNhan"] = selectedTN;
+
+            //Thông tin cần lưu của tiếp nhận
+            Session["MaHD"] = TaoMaHoaDon();
+            Session["MaTN"] = lstMaTN;
+
+            //Lấy ra các thông tin cần thiết
+            String tenKH = db.KHACHHANGs.Find(TTTN.MaKH).HoTenKH;
+            String kh = TTTN.MaKH + " - " + tenKH;
+            Session["KhachHang"] =kh ;
+            Session["BienSoXe"] = TTTN.BienSoXe;
+
+            String tenNV = db.NHANVIENs.Find(TTTN.MaNV).HoTenNV; ;
+            String nv = TTTN.MaNV + " - " + tenNV;
+            Session["NhanVien"] = nv;
+
+            //Check đã lấy thông tin xe hay chưa, có null không
+            Session["DaLayThongTinTiepNhan"] = 3;
+
+            return RedirectToAction("TaoHoaDon");
+        }
+
+
+
+
+
+
 
         // POST: HOADON/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 

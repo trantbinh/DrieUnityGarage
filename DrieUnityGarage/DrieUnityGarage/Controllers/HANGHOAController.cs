@@ -18,6 +18,7 @@ namespace DrieUnityGarage.Controllers
         // GET: HANGHOA
         public ActionResult LayDanhSachHangHoa()
         {
+            Session.Remove("KhongTheXoa");
             var hANGHOAs = db.HANGHOAs.Include(h => h.NHACUNGCAP);
             return View(hANGHOAs.ToList());
         }

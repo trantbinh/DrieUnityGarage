@@ -192,6 +192,7 @@
     <Compile Include="Models\THONGTINTIEPNHAN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\THONGTINTIEPNHANXE.cs" />
     <Compile Include="Models\TIEPNHAN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
