@@ -16,7 +16,7 @@
     </div>
     @using (Html.BeginForm())
     {
-        <div class="container col-6">
+        <div class="container col-6" style="margin-top: 10px; font-size:17px;">
 
 
             @Html.AntiForgeryToken()
@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="TN_MaKH" class="form-label"> Khách hàng: </label>
+                    <label for="TN_MaKH" class="form-label"> Chọn khách hàng: [Mã khách hàng - Số điện thoại - Họ tên] </label>
                     <div class="col-12">
                         @Html.DropDownList("TN_MaKH", null, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.TN_MaKH, "", new { @class = "text-danger" })
@@ -52,17 +52,16 @@
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="lstXe" class="form-label"> Phương tiện: </label>
+                    <label for="lstXe" class="form-label"> Chọn xe cần sửa: [Biển số xe] </label>
                     <div class="col-12">
                         @Html.DropDownList("lstXe", null, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.TN_BienSoXe, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="ThoiGianDuKien" class="form-label"> Dự kiến giao xe: </label>
-
+                    <label for="ThoiGianDuKien" class="form-label"> Thời gian giao dự kiến: </label>
                     <div class="col-12">
-                        <input type="date" id="ThoiGianDuKien" name="ThoiGianDuKien" class="form-control" value="@ViewBag.ThoiGianGiaoDuKien">
+                        <input type="date" id="ThoiGianDuKien" name="ThoiGianDuKien" required class="form-control" value="@ViewBag.ThoiGianGiaoDuKien">
                     </div>
                 </div>
             </div>
@@ -81,7 +80,7 @@
                 <div class="row" style="margin:0">
                     <div class="col-4">
                         <img src="~/Images/Icon/iconBack.png" style="width:10%; height:40%" />
-                        @Html.ActionLink("Quay về", "Index", null, new { @class = "btn-back" })
+                        @Html.ActionLink("Quay về", "LayDanhSachThongTinTiepNhan", null, new { @class = "btn-back" })
                     </div>
                     <div class="col-4" style="text-align:center">
                         <input type="submit" value="Lưu chỉnh sửa" class="btn btn-primary" />

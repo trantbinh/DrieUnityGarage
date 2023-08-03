@@ -15,7 +15,7 @@
         <div class="col-lg-5">
         </div>
         <div class="col-lg-2">
-            @Html.ActionLink("Tạo mới", "Create",null, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Tạo mới", "TaoThongTinTiepNhan",null, new { @class = "btn btn-primary" })
         </div>
     </div>
     <table class="table index-table" style="margin-top:20px;">
@@ -74,14 +74,14 @@
                 </td>
                 <td>
 
-                    @Html.ActionLink("Sửa", "Edit", new { id = item.MaTN }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Sửa", "SuaThongTinTiepNhan", new { id = item.MaTN }, new { @class = "btn btn-success" })
                 </td>
                 <td>
-                    @Html.ActionLink("Chi tiết", "Details", new { id = item.MaTN }, new { @class = "btn btn-details" })
+                    @Html.ActionLink("Chi tiết", "LayThongTinTiepNhan", new { id = item.MaTN }, new { @class = "btn btn-details" })
                 </td>
                 <td>
 
-                    @Html.ActionLink("Xoá", "Delete", new { id = item.MaTN }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Xoá", "XoaThongTinTiepNhan", new { id = item.MaTN }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
         }

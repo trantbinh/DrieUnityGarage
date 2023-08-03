@@ -17,9 +17,8 @@
     @using (Html.BeginForm("TaoTTTN_LayThongTinXe", "THONGTINTIEPNHAN"))
     {
         <p style="font-size:20px; color:red; text-align:center; font-weight:bold">@ViewBag.ThongBao</p>
-        <div class="row row-general-info-field">
-            <div class="col-3"></div>
-            <div class="col-6">
+            <div class="container col-6" style="margin-top: 10px; font-size:17px;">
+                <hr />
                 @*Đã nhấn lấy thông tin xe*@
                 @if (Session["DaLayThongTinXe"] != null)
                 {
@@ -31,10 +30,6 @@
                         <label for="ThoiGianTiepNhan" class="form-label"> Thời gian tiếp nhận: </label>
                         <div class="form-control" id="ThoiGianTiepNhan">@ViewBag.ThoiGianTiepNhan</div>
                     </div>
-                 @*   <div class="mb-3">
-                        <label class="form-label"> Dự kiến giao xe: </label>
-                        <div class="form-control">@ViewBag.ThoiGianGiaoXe</div>
-                    </div>*@
 
                     <div class="mb-3">
                         <label for="KhachHang" class="form-label"> Khách hàng: </label>
@@ -52,21 +47,8 @@
                         <label for="ThoiGianTiepNhan" class="form-label"> Thời gian tiếp nhận: </label>
                         <div class="form-control" id="ThoiGianTiepNhan">@ViewBag.ThoiGianTiepNhan</div>
                     </div>
-                  @*  <div class="mb-3">
-                        <script>
-                            $(function () {
-                                $('#thoiGianGiaoXe').datepicker({
-                                    autoclose: true
-                                })
-                            })
-                        </script>
-
-                        <label class="form-label"> Dự kiến giao xe: </label>
-                        <input type="date" name="thoiGianGiaoXe" id="thoiGianGiaoXe" class="form-control" value="dd/MM/yyyy" required>
-                    </div>
-*@
                     <div class="mb-3">
-                        <label class="form-label" for="lstMaKH"> Khách hàng: </label>
+                        <label class="form-label" for="lstMaKH"> Chọn khách hàng: [Mã khách hàng - Số điện thoại - Họ tên]</label>
                         @Html.DropDownList("lstMaKH", null,htmlAttributes: new { @class = "form-control" })
                     </div>
                     <div class="mb-3 row" style="margin-left:0;margin-right:0; margin-top:30px;">
@@ -76,12 +58,11 @@
                     </div>
                 }
             </div>
-            <div class="col-3"></div>
-        </div>
+      
     }
     @if (Session["DaLayThongTinXe"] != null)
     {
-        using (Html.BeginForm("Create", "THONGTINTIEPNHAN"))
+        using (Html.BeginForm("TaoThongTinTiepNhan", "THONGTINTIEPNHAN"))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -90,7 +71,7 @@
                 <div class="col-3"></div>
                 <div class="col-6">
                     <div class="mb-3">
-                        <label class="form-label"> Phương tiện: </label>
+                        <label class="form-label"> Chọn xe cần sửa: [Biển số xe] </label>
                         @Html.DropDownList("lstXe", null, htmlAttributes: new { @class = "form-control" })
                     </div>
                     <div class="mb-4">
@@ -108,7 +89,7 @@
                     <div class="row" style="margin:auto">
                         <div class="col-4">
                             <img src="~/Images/Icon/iconBack.png" style="width:10%; height:40%" />
-                            @Html.ActionLink("Quay về", "Index", null, new { @class = "btn-back" })
+                            @Html.ActionLink("Quay về", "LayDanhSachThongTinTiepNhan", null, new { @class = "btn-back" })
                         </div>
                         <div class="col-4" style="text-align:center">
                             <input type="submit" value="Tạo thông tin" class="btn btn-primary" />
@@ -117,7 +98,6 @@
 
                     </div>
                 </div>
-                <div class="col-3"></div>
             </div> 
         }
     }

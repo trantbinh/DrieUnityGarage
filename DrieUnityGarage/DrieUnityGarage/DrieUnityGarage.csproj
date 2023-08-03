@@ -341,11 +341,11 @@
     <Content Include="Views\HOADON\XoaHoaDon.cshtml" />
     <Content Include="Views\DrieUnityGarage\HomePage.cshtml" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
-    <Content Include="Views\THONGTINTIEPNHAN\Create.cshtml" />
-    <Content Include="Views\THONGTINTIEPNHAN\Delete.cshtml" />
-    <Content Include="Views\THONGTINTIEPNHAN\Details.cshtml" />
-    <Content Include="Views\THONGTINTIEPNHAN\Edit.cshtml" />
-    <Content Include="Views\THONGTINTIEPNHAN\Index.cshtml" />
+    <Content Include="Views\THONGTINTIEPNHAN\TaoThongTinTiepNhan.cshtml" />
+    <Content Include="Views\THONGTINTIEPNHAN\XoaThongTinTiepNhan.cshtml" />
+    <Content Include="Views\THONGTINTIEPNHAN\LayThongTinTiepNhan.cshtml" />
+    <Content Include="Views\THONGTINTIEPNHAN\SuaThongTinTiepNhan.cshtml" />
+    <Content Include="Views\THONGTINTIEPNHAN\LayDanhSachThongTinTiepNhan.cshtml" />
     <Content Include="Views\KHACHHANG\Create.cshtml" />
     <Content Include="Views\KHACHHANG\Delete.cshtml" />
     <Content Include="Views\KHACHHANG\Details.cshtml" />

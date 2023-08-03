@@ -13,28 +13,6 @@ namespace DrieUnityGarage.Controllers
     public class THONGTINTIEPNHANController : Controller
     {
         private DrieUnityGarageEntities db = new DrieUnityGarageEntities();
-
-
-        public TIEPNHAN LayThongTinTiepNhan()
-        {
-            TIEPNHAN lstTN = Session["TiepNhan"] as TIEPNHAN;
-            if (lstTN == null)
-            {
-                Session["TiepNhan"] = lstTN;
-            }
-            return lstTN;
-        }
-        public ActionResult ThemThongTinTiepNhan(String id)
-        {
-            TIEPNHAN lstTN = LayThongTinTiepNhan();
-            TIEPNHAN newTN;
-            if (lstTN == null)
-            {
-                newTN = new TIEPNHAN(id);
-            }
-            return RedirectToAction("Create");
-        }
-
         //Lấy danh sách khách hàng
         public List<THONGTINKHACHHANG> LayDanhSachKhachHangDB()
         {
@@ -69,13 +47,15 @@ namespace DrieUnityGarage.Controllers
 
 
         // GET: THONGTINTIEPNHAN
-        public ActionResult Index()
+        public ActionResult LayDanhSachThongTinTiepNhan()
         {
+            Session["DaLayThongTinXe"] = null;
+            Session["KhongCoThongTinXe"] = null;
             return View(db.THONGTINTIEPNHANs.ToList());
         }
 
-        // GET: THONGTINTIEPNHAN/Details/5
-        public ActionResult Details(string id)
+        // GET: THONGTINTIEPNHAN/LayThongTinTiepNhan/5
+        public ActionResult LayThongTinTiepNhan(string id)
         {
             if (id == null)
             {
@@ -89,8 +69,8 @@ namespace DrieUnityGarage.Controllers
             return View(tHONGTINTIEPNHAN);
         }
 
-        // GET: THONGTINTIEPNHAN/Create
-        public ActionResult Create()
+        // GET: THONGTINTIEPNHAN/TaoThongTinTiepNhan
+        public ActionResult TaoThongTinTiepNhan()
         {
             String date = DateTime.Now.ToString("dd/MM/yyyy");
             ViewBag.ThoiGianTiepNhan = date;
@@ -153,13 +133,13 @@ namespace DrieUnityGarage.Controllers
                 Session["DaLayThongTinXe"] = 3;
 
 
-            return RedirectToAction("Create");
+            return RedirectToAction("TaoThongTinTiepNhan");
         }
 
         //Lưu thông tin tiếp nhận vào database
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(String GhiChuKH, String lstXe)
+        public ActionResult TaoThongTinTiepNhan(String GhiChuKH, String lstXe)
         {
             THONGTINTIEPNHAN tHONGTINTIEPNHAN = new THONGTINTIEPNHAN();
             if (ModelState.IsValid)
@@ -176,13 +156,13 @@ namespace DrieUnityGarage.Controllers
                 tHONGTINTIEPNHAN.TrangThai = "Chưa hoàn thành";
                 db.THONGTINTIEPNHANs.Add(tHONGTINTIEPNHAN);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("LayDanhSachThongTinTiepNhan");
             }
 
             return View(tHONGTINTIEPNHAN);
         }
-        // GET: THONGTINTIEPNHAN/Edit/5
-        public ActionResult Edit(string id)
+        // GET: THONGTINTIEPNHAN/SuaThongTinTiepNhan/5
+        public ActionResult SuaThongTinTiepNhan(string id)
         {
             if (id == null)
             {
@@ -193,7 +173,9 @@ namespace DrieUnityGarage.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.TN_MaKH = new SelectList(db.KHACHHANGs, "MaKH", "HoTenKH", tHONGTINTIEPNHAN.TN_MaKH);
+
+            List<THONGTINKHACHHANG> lstKhachHang = LayDanhSachKhachHangDB();
+            ViewBag.TN_MaKH = new SelectList(lstKhachHang, "MaKH", "ThongTin", tHONGTINTIEPNHAN.TN_MaKH);
 
             //Lấy danh sách xe từ database sau đó lọc ra những xe của khách hàng
             var xe = LayDanhSachXeDB();
@@ -218,30 +200,31 @@ namespace DrieUnityGarage.Controllers
             return View(tHONGTINTIEPNHAN);
         }
 
-        // POST: THONGTINTIEPNHAN/Edit/5
+        // POST: THONGTINTIEPNHAN/SuaThongTinTiepNhan/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(THONGTINTIEPNHAN tHONGTINTIEPNHAN
+        public ActionResult SuaThongTinTiepNhan(THONGTINTIEPNHAN tHONGTINTIEPNHAN
             ,String TN_MaKH, String lstXe,  String GhiChuKH, DateTime ThoiGianDuKien)
         {
             if (ModelState.IsValid)
             {
                 tHONGTINTIEPNHAN.TN_MaKH = TN_MaKH;
                 tHONGTINTIEPNHAN.TN_BienSoXe = lstXe;
-                tHONGTINTIEPNHAN.ThoiGianGiaoDuKien = (DateTime)ThoiGianDuKien;
+                
+                    tHONGTINTIEPNHAN.ThoiGianGiaoDuKien = (DateTime)ThoiGianDuKien;
                 tHONGTINTIEPNHAN.GhiChuKH = GhiChuKH;
 
                 db.Entry(tHONGTINTIEPNHAN).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("LayDanhSachThongTinTiepNhan");
             }
             return View(tHONGTINTIEPNHAN);
         }
 
-        // GET: THONGTINTIEPNHAN/Delete/5
-        public ActionResult Delete(string id)
+        // GET: THONGTINTIEPNHAN/XoaThongTinTiepNhan/5
+        public ActionResult XoaThongTinTiepNhan(string id)
         {
             if (id == null)
             {
@@ -255,15 +238,15 @@ namespace DrieUnityGarage.Controllers
             return View(tHONGTINTIEPNHAN);
         }
 
-        // POST: THONGTINTIEPNHAN/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: THONGTINTIEPNHAN/XoaThongTinTiepNhan/5
+        [HttpPost, ActionName("XoaThongTinTiepNhan")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
             THONGTINTIEPNHAN tHONGTINTIEPNHAN = db.THONGTINTIEPNHANs.Find(id);
             db.THONGTINTIEPNHANs.Remove(tHONGTINTIEPNHAN);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("LayDanhSachThongTinTiepNhan");
         }
 
         protected override void Dispose(bool disposing)
