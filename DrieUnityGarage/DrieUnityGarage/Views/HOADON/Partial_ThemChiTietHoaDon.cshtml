@@ -16,23 +16,39 @@
         </div>
         <div style="margin-top:30px;">
 
+            <script>
+                function myFunction() {
+                    alert("Vui lòng lấy dữ liệu tiếp nhận trước khi thêm hoá đơn");
+                }
+            </script>
+            <script>
+                function myFunction2() {
+                    alert("Không thể thêm! Số lượng sản phẩm vượt số lượng còn trong kho");
+                }
+            </script>
 
-            @if (Session["CheckTN"] == null)
+
+            @if (Session["DaLayThongTinTiepNhan"] == null)
             {
-                <script>
-                    function myFunction() {
-                        alert("Vui lòng lấy dữ liệu tiếp nhận trước khi thêm hoá đơn");
-                    }
-                </script>
                 <button onclick="myFunction()" class="btn btn-info">Thêm vào hoá đơn</button>
-
             }
             else
-            {<input type="submit" value="Thêm vào hoá đơn" class="btn btn-info" />
+            {
+                <input type="submit" value="Thêm vào hoá đơn" class="btn btn-info" />
+
+            }
+            @*else if (Session["QuaTonKho"] != null)
+        {
+            <button onclick="myFunction2()" class="btn btn-info">Thêm vào hoá đơn</button>
+
 
 
             }
-
+            else if(Session["DaLayThongTinTiepNhan"] != null)
+            {
+            <input type="submit" value="Thêm vào hoá đơn" class="btn btn-info" />
+        }
+            *@
         </div>
 
 

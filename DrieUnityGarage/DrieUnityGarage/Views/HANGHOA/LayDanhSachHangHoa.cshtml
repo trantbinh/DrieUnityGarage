@@ -24,6 +24,10 @@
                 Mã hàng hoá
             </th>
             <th>
+                Hình ảnh
+            </th>
+
+            <th>
                 Tên hàng hoá
             </th>
             <th>
@@ -50,6 +54,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.MaHH)
                 </td>
+                <td>
+                    <img src="~/Uploads/HangHoa/@item.HinhAnh" class="center" style="width: 80%; height: 80%;" />
+                </td>
+
                 <td>
                     @Html.DisplayFor(modelItem => item.TenHH)
                 </td>

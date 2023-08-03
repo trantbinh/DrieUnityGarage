@@ -186,6 +186,7 @@
     </Compile>
     <Compile Include="Models\THONGTINKHACHHANG.cs" />
     <Compile Include="Models\THONGTINPHUONGTIEN.cs" />
+    <Compile Include="Models\THONGTINSANPHAM.cs" />
     <Compile Include="Models\THONGTINTHANHTOAN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -238,6 +239,8 @@
     <Content Include="Images\HomePage_Header\HomePage_HeaderRectangle.png" />
     <Content Include="Images\Icon\iconBack.png" />
     <Content Include="Images\Icon\icon_Avarta.png" />
+    <Content Include="Images\Icon\icon_Delete.png" />
+    <Content Include="Images\Icon\icon_Edit.png" />
     <Content Include="Images\Icon\icon_Logout.png" />
     <Content Include="Images\Icon\icon_QLCSKH.png" />
     <Content Include="Images\Icon\icon_QLCSKH28x28.png" />

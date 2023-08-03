@@ -53,7 +53,7 @@
                     @Html.DropDownList("lstMaTN", null, htmlAttributes: new { @class = "form-control w-100" })
                 </div>
 
-                <div class="mb-3 col-2" style="margin-left:0;margin-right:0; margin-top:10px;">
+                <div class="mb-3 col-2" style="margin-left:0;margin-right:0; margin-top:30px;">
                     <input type="submit" value="Lấy thông tin tiếp nhận" class="btn btn-primary" />
                 </div>
             }
@@ -78,11 +78,9 @@
         </div>
 
     }
-    <p style="font-size:20px; font-weight:bold; margin-top:30px;">CHI TIẾT HOÁ ĐƠN:</p>
 
-
-
-    <div class="row" style="margin-top:40px">
+    <p style="font-size:20px; font-weight:bold; margin-top:10px;">CHI TIẾT HOÁ ĐƠN:</p>
+    <div class="row">
         <div class="col-lg-9">
             @Html.Action("Partial_LayChiTietHoaDonList", "HOADON")
         </div>
@@ -104,28 +102,4 @@
     </div>
 </div>
 
-    }
-
-
-        @*<script type="text/javascript">
-                $(document).ready(function () {
-                    $("#HD_MaTN").change(function () {
-                        $.ajax({
-
-                            url: '@Url.Action("LayThongTinTiepNhan", "HOADON")',
-                            type: 'POST',
-                            contentType: 'application/json',
-                            dataType: 'json',
-                            data: { id: $("#HD_MaTN").val() },
-                            success: function (data) {
-                                $("#txtMaKH").val(data
-                                ) ;
-                            }
-                        });
-
-                      /*  var e = document.getElementById("HD_MaTN");
-                        var value = e.value;*/
-                    });
-                });
-
-            </script>*@
+ 
