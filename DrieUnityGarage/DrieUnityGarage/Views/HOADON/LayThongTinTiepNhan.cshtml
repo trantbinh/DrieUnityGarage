@@ -1,9 +1,0 @@
-﻿@using DrieUnityGarage.Models
-
-@foreach (var hdh in Model)
-{
-    <div class="form-group">
-        Tên khách hàng: @Html.Action("Extensions_LayThongTinKhachHang","HOADON", new {id = hdh.TN_MaKH})
-
-    </div>
-}

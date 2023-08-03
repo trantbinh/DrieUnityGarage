@@ -50,7 +50,7 @@ namespace DrieUnityGarage.Controllers
                 else
                     currentProduct.SoLuong++;
             }
-            return RedirectToAction("TaoHoaDon", "HOADON");
+            return RedirectToAction("ThemHoaDon", "HOADON");
         }
 
         //Tính tổng số lượng sản phẩm
@@ -83,9 +83,9 @@ namespace DrieUnityGarage.Controllers
             if (pro != null)
             {
                 myCart.RemoveAll(n => n.MaSP.Equals(id));
-                return RedirectToAction("TaoHoaDon", "HOADON", new { id = Session["MaHD"] });
+                return RedirectToAction("ThemHoaDon", "HOADON", new { id = Session["MaHD"] });
             }
-            return RedirectToAction("TaoHoaDon", "HOADON", new { id = Session["MaHD"] });
+            return RedirectToAction("ThemHoaDon", "HOADON", new { id = Session["MaHD"] });
 
         }
 
@@ -101,10 +101,10 @@ namespace DrieUnityGarage.Controllers
             return Redirect(Request.UrlReferrer.ToString());
         }
 
-        //--------------------------VIEW TAOHOADON-------------------------------\\
+        //--------------------------VIEW ThemHoaDon-------------------------------\\
 
         //Hiển thị danh sách CTHD
-        public ActionResult Partial_LayChiTietHoaDonList()
+        public ActionResult Partial_TaoHD_LayChiTietHoaDon()
         {
             List<THONGTINSANPHAM> myCart = CTHD_LayDanhSachSanPham();
             ViewBag.TotalNumber = TinhTongSoLuong();
@@ -113,16 +113,16 @@ namespace DrieUnityGarage.Controllers
         }
 
         //Thêm sản phẩm vào chi tiết hoá đơn
-        public ActionResult Partial_ThemChiTietHoaDon()
+        public ActionResult Partial_TaoHD_ThemChiTietHoaDon()
         {
             ViewBag.CTHD_MaHH = new SelectList(db.HANGHOAs, "MaHH", "TenHH");
             return PartialView();
         }
         [HttpPost]
-        public ActionResult Partial_ThemChiTietHoaDon(CT_HOADON hh)
+        public ActionResult Partial_TaoHD_ThemChiTietHoaDon(CT_HOADON hh)
         {
             if (Session["DaLayThongTinTiepNhan"] ==null)
-                return RedirectToAction("TaoHoaDon", "HOADON");
+                return RedirectToAction("ThemHoaDon", "HOADON");
             else
             {
                 ViewBag.CTHD_MaHH = new SelectList(db.HANGHOAs, "MaHH", "TenHH");
@@ -134,7 +134,7 @@ namespace DrieUnityGarage.Controllers
         }
  
         [HttpPost]
-        public ActionResult CTDH_TaoHoaDon(HOADON hd, [Bind(Include = "MaKH,HoTenKH,DienThoaiKH,NgaySinh,GioiTinh,Email,DiemThanhVien,DiaChi")] KHACHHANG kHACHHANG)
+        public ActionResult CTDH_ThemHoaDon(HOADON hd, [Bind(Include = "MaKH,HoTenKH,DienThoaiKH,NgaySinh,GioiTinh,Email,DiemThanhVien,DiaChi")] KHACHHANG kHACHHANG)
         {
             var tongtien = TinhTongTien();
             List<THONGTINSANPHAM> lstSP = CTHD_LayDanhSachSanPham();
@@ -201,7 +201,7 @@ namespace DrieUnityGarage.Controllers
         }
 
         // GET: HOADON/Details/5
-        public ActionResult XemChiTietHoaDon(string id)
+        public ActionResult XemThongTinHoaDon(string id)
         {
             if (id == null)
             {
@@ -275,7 +275,7 @@ namespace DrieUnityGarage.Controllers
         }
 
         // GET: HOADON/Create
-        public ActionResult TaoHoaDon()
+        public ActionResult ThemHoaDon()
         {
             String date = DateTime.Now.ToString("dd/MM/yyyy");
             ViewBag.NgayLapHD = date;
@@ -325,7 +325,7 @@ namespace DrieUnityGarage.Controllers
             //Check đã lấy thông tin xe hay chưa, có null không
             Session["DaLayThongTinTiepNhan"] = 3;
 
-            return RedirectToAction("TaoHoaDon");
+            return RedirectToAction("ThemHoaDon");
         }
 
 
@@ -335,7 +335,7 @@ namespace DrieUnityGarage.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult TaoHoaDon([Bind(Include = "MaHD,NgayLap,HD_MaKH,HD_BienSoXe,TongThanhToan,HD_MaTT,HD_MaTN")] HOADON hOADON)
+        public ActionResult ThemHoaDon([Bind(Include = "MaHD,NgayLap,HD_MaKH,HD_BienSoXe,TongThanhToan,HD_MaTT,HD_MaTN")] HOADON hOADON)
         {
             if (ModelState.IsValid)
             {
@@ -349,7 +349,7 @@ namespace DrieUnityGarage.Controllers
                 hOADON.HD_MaTT = null;
                 db.HOADONs.Add(hOADON);
                 db.SaveChanges();
-                return RedirectToAction("TaoHoaDon", "HOADON", new {id = idHD});
+                return RedirectToAction("ThemHoaDon", "HOADON", new {id = idHD});
             }
             ViewBag.HD_MaTN = new SelectList(db.THONGTINTIEPNHANs, "MaTN", "MaTN", hOADON.HD_MaTN);
             return View(hOADON);
@@ -357,7 +357,7 @@ namespace DrieUnityGarage.Controllers
 
 
 
-        public ActionResult Partial_LayChiTietHoaDonDB(string id)
+        public ActionResult Partial_CapNhatHD_LayChiTietHoaDon(string id)
         {
             List<THONGTINSANPHAM> lstSp;
             if (Session["c"] == null)
@@ -382,7 +382,7 @@ namespace DrieUnityGarage.Controllers
         }
 
         // GET: HOADON/Edit/5
-        public ActionResult CapNhatHoaDon(string id)
+        public ActionResult SuaHoaDon(string id)
         {
             if (id == null)
             {
@@ -442,9 +442,9 @@ namespace DrieUnityGarage.Controllers
             if (pro != null)
             {
                 myCart.RemoveAll(n => n.MaSP.Equals(id));
-                return RedirectToAction("CapNhatHoaDon", "HOADON", new { id = Session["MaHD"] });
+                return RedirectToAction("SuaHoaDon", "HOADON", new { id = Session["MaHD"] });
             }
-            return RedirectToAction("CapNhatHoaDon", "HOADON", new { id = Session["MaHD"] });
+            return RedirectToAction("SuaHoaDon", "HOADON", new { id = Session["MaHD"] });
 
         }
 
@@ -457,12 +457,12 @@ namespace DrieUnityGarage.Controllers
             {
                 pro.SoLuong = int.Parse(f["changequantity"].ToString());
             }
-            return RedirectToAction("CapNhatHoaDon", new { id = Session["MaHD"] });
+            return RedirectToAction("SuaHoaDon", new { id = Session["MaHD"] });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CapNhatHoaDon([Bind(Include = "MaHD,NgayLap,HD_MaKH,HD_BienSoXe,TongThanhToan,HD_MaTT,HD_MaTN")] HOADON hd)
+        public ActionResult SuaHoaDon([Bind(Include = "MaHD,NgayLap,HD_MaKH,HD_BienSoXe,TongThanhToan,HD_MaTT,HD_MaTN")] HOADON hd)
         {
             if (ModelState.IsValid)
             {
@@ -519,7 +519,7 @@ namespace DrieUnityGarage.Controllers
                 Session.Remove("CheckTN");
                 Session.Remove("lstSPHD");
                 Session.Remove("c");
-                return RedirectToAction("CapNhatHoaDon");
+                return RedirectToAction("SuaHoaDon");
             }
             
             return View(hd);

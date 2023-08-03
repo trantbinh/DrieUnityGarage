@@ -15,7 +15,7 @@
         <div class="col-lg-5">
         </div>
         <div class="col-lg-2">
-            @Html.ActionLink("Tạo mới", "TaoHoaDon", null, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Tạo mới", "ThemHoaDon", null, new { @class = "btn btn-primary" })
         </div>
     </div>
     <table class="table">
@@ -77,11 +77,11 @@
                     @Html.DisplayFor(modelItem => item.THONGTINTIEPNHAN.TN_MaNV)
                 </td>
                 <td>
-                    @Html.ActionLink("Sửa", "CapNhatHoaDon", new { id = item.MaHD }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Sửa", "SuaHoaDon", new { id = item.MaHD }, new { @class = "btn btn-success" })
 
                 </td>
                 <td>
-                    @Html.ActionLink("Chi tiết", "XemChiTietHoaDon", new { id = item.MaHD }, new { @class = "btn btn-details" })
+                    @Html.ActionLink("Chi tiết", "XemThongTinHoaDon", new { id = item.MaHD }, new { @class = "btn btn-details" })
 
                 </td>
                 <td>

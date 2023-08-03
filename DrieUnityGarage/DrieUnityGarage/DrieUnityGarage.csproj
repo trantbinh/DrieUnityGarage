@@ -378,16 +378,13 @@
     <Content Include="Views\CT_HOADON\Details.cshtml" />
     <Content Include="Views\CT_HOADON\Edit.cshtml" />
     <Content Include="Views\CT_HOADON\Index.cshtml" />
-    <Content Include="Views\HOADON\CapNhatHoaDon.cshtml" />
-    <Content Include="Views\HOADON\Extensions_LayThongTinKhachHang.cshtml" />
+    <Content Include="Views\HOADON\SuaHoaDon.cshtml" />
     <Content Include="Views\HOADON\LayDanhSachHoaDon.cshtml" />
-    <Content Include="Views\HOADON\LayThongTinTiepNhan.cshtml" />
-    <Content Include="Views\HOADON\Partial_LayChiTietHoaDonList.cshtml" />
+    <Content Include="Views\HOADON\Partial_TaoHD_LayChiTietHoaDon.cshtml" />
     <Content Include="Views\HOADON\Partial_LayChiTietHoaDonDB.cshtml" />
-    <Content Include="Views\HOADON\Partial_LayThongTinTiepNhan.cshtml" />
-    <Content Include="Views\HOADON\Partial_ThemChiTietHoaDon.cshtml" />
-    <Content Include="Views\HOADON\TaoHoaDon.cshtml" />
-    <Content Include="Views\HOADON\XemChiTietHoaDon.cshtml" />
+    <Content Include="Views\HOADON\Partial_TaoHD_ThemChiTietHoaDon.cshtml" />
+    <Content Include="Views\HOADON\ThemHoaDon.cshtml" />
+    <Content Include="Views\HOADON\XemThongTinHoaDon.cshtml" />
     <Content Include="Views\HOADON\XoaHoaDon.cshtml" />
     <Content Include="Views\DrieUnityGarage\HomePage.cshtml" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
@@ -433,6 +430,7 @@
     <Content Include="Views\NHANVIEN\LayDanhSachTaiKhoan.cshtml" />
     <Content Include="Views\NHANVIEN\TaoTaiKhoan.cshtml" />
     <Content Include="Views\HOADON\Partial_XemHD_LayDuLieuCTHD.cshtml" />
+    <Content Include="Views\HOADON\Partial_CapNhatHD_LayChiTietHoaDon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
