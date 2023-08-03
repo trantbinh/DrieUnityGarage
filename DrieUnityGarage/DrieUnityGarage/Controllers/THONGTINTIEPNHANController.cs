@@ -193,6 +193,28 @@ namespace DrieUnityGarage.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.TN_MaKH = new SelectList(db.KHACHHANGs, "MaKH", "HoTenKH", tHONGTINTIEPNHAN.TN_MaKH);
+
+            //Lấy danh sách xe từ database sau đó lọc ra những xe của khách hàng
+            var xe = LayDanhSachXeDB();
+            List<THONGTINPHUONGTIEN> lstXe = new List<THONGTINPHUONGTIEN>();
+            int c = xe.Count();
+            for (int i = 0; i < c; i++)
+            {
+                if (xe[i].TTPT_MaKH.Equals(tHONGTINTIEPNHAN.TN_MaKH))
+                    lstXe.Add(new THONGTINPHUONGTIEN(xe[i].BienSoXe));
+            }
+
+            ViewBag.lstXe = new SelectList(lstXe, "BienSoXe", "BienSoXe");
+            DateTime date;
+            if (tHONGTINTIEPNHAN.ThoiGianGiaoDuKien != null)
+            {
+                date = (DateTime)tHONGTINTIEPNHAN.ThoiGianGiaoDuKien;
+                ViewBag.ThoiGianGiaoDuKien = date.ToString("dd/MM/yyyy");
+            }
+            
+           
+           
             return View(tHONGTINTIEPNHAN);
         }
 

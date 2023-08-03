@@ -25,7 +25,6 @@ namespace DrieUnityGarage.Models
         public string Model { get => model; set => model = value; }
         public string MauXe { get => mauXe; set => mauXe = value; }
         public string TTPT_MaKH { get => tTPT_MaKH; set => tTPT_MaKH = value; }
-
         public THONGTINPHUONGTIEN(String id)
         {
             this.BienSoXe = id;
