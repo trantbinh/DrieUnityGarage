@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<DrieUnityGarage.Models.THONGTINTIEPNHAN>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh sách thông tin đã tiếp nhận";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 <link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
@@ -28,10 +28,11 @@
                 Mã nhân viên
             </th>
             <th>
-                Biển số xe
-            </th>
-            <th>
                 Mã khách hàng
+            </th>
+
+            <th>
+                Biển số xe
             </th>
 
             <th>
@@ -47,7 +48,6 @@
             <th></th>
             <th></th>
         </tr>
-
         @foreach (var item in Model)
         {
             <tr>
@@ -58,12 +58,11 @@
                     @Html.DisplayFor(modelItem => item.TN_MaNV)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TN_BienSoXe)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.TN_MaKH)
                 </td>
-
+                <td>
+                    @Html.DisplayFor(modelItem => item.TN_BienSoXe)
+                </td>
                 <td>
                     @String.Format("{0:dd/MM/yyyy}", item.ThoiGianTiepNhan)
                 </td>
@@ -78,10 +77,10 @@
                     @Html.ActionLink("Sửa", "Edit", new { id = item.MaTN }, new { @class = "btn btn-success" })
                 </td>
                 <td>
-                    @Html.ActionLink("Chi tiết", "Details", new { id = item.MaTN }, new { @class = "btn btn-details"}) 
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.MaTN }, new { @class = "btn btn-details" })
                 </td>
                 <td>
-                    
+
                     @Html.ActionLink("Xoá", "Delete", new { id = item.MaTN }, new { @class = "btn btn-danger" })
                 </td>
             </tr>

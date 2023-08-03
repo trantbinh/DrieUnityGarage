@@ -205,12 +205,12 @@ namespace DrieUnityGarage.Controllers
                     lstXe.Add(new THONGTINPHUONGTIEN(xe[i].BienSoXe));
             }
 
-            ViewBag.lstXe = new SelectList(lstXe, "BienSoXe", "BienSoXe");
+            ViewBag.lstXe = new SelectList(lstXe, "BienSoXe", "BienSoXe", tHONGTINTIEPNHAN.TN_BienSoXe);
             DateTime date;
             if (tHONGTINTIEPNHAN.ThoiGianGiaoDuKien != null)
             {
                 date = (DateTime)tHONGTINTIEPNHAN.ThoiGianGiaoDuKien;
-                ViewBag.ThoiGianGiaoDuKien = date.ToString("dd/MM/yyyy");
+                ViewBag.ThoiGianGiaoDuKien = date.ToString("yyyy/MM/dd");
             }
             
            
@@ -223,10 +223,16 @@ namespace DrieUnityGarage.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaTN,TN_MaKH,TN_BienSoXe,TN_MaNV,ThoiGianTiepNhan,ThoiGianGiaoDuKien,GhiChuKH")] THONGTINTIEPNHAN tHONGTINTIEPNHAN)
+        public ActionResult Edit(THONGTINTIEPNHAN tHONGTINTIEPNHAN
+            ,String TN_MaKH, String lstXe,  String GhiChuKH, DateTime ThoiGianDuKien)
         {
             if (ModelState.IsValid)
             {
+                tHONGTINTIEPNHAN.TN_MaKH = TN_MaKH;
+                tHONGTINTIEPNHAN.TN_BienSoXe = lstXe;
+                tHONGTINTIEPNHAN.ThoiGianGiaoDuKien = (DateTime)ThoiGianDuKien;
+                tHONGTINTIEPNHAN.GhiChuKH = GhiChuKH;
+
                 db.Entry(tHONGTINTIEPNHAN).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
