@@ -88,18 +88,26 @@
             @Html.Action("Partial_ThemChiTietHoaDon", "HOADON")
         </div>
     </div>
-    <div class="row" style="margin-top:15px">
-        <div class="col-lg-5 align-bottom">
-            @Html.ActionLink("< Quay về", "LayDanhSachHoaDon", null, new { @class = "nonedecor" })
+    <div class="row" style="padding-bottom:10px;">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="row" style="margin:auto">
+                <div class="col-4">
+                    @Html.ActionLink("< Quay về", "LayDanhSachHoaDon", null, new { @class = "btn-back" })
+                </div>
+            
+                <div class="col-4" style="text-align:center">
+                    @using (Html.BeginForm("CTDH_TaoHoaDon", "HOADON"))
+                    {
+
+                        <input type="submit" value="Tạo hoá đơn" class="btn btn-primary" />  }
+                    </div>
+                  
+                    <div class="col-4"></div>
+                </div>
         </div>
-        @using (Html.BeginForm("CTDH_TaoHoaDon", "HOADON"))
-        {
-            <div class="col-lg-7">
-
-                <input type="submit" value="Tạo mới" class="btn btn-info create-btn" />
-
-            </div>}
     </div>
+
 </div>
 
  

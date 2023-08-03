@@ -1,10 +1,9 @@
 ﻿@model IEnumerable<DrieUnityGarage.Models.HOADON>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh sách hoá đơn";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
-
 <link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/Content/HoaDon_Index.css" />
 
@@ -34,16 +33,16 @@
                 Mã tiếp nhận
             </th>
             <th>
-                Họ tên khách hàng
+                Khách hàng
             </th>
             <th>
-                Số máy
+                Biển số xe
             </th>
             <th>
                 Mã thanh toán
             </th>
             <th>
-                Mã khách hàng
+                Mã nhân viên
             </th>
             <th></th>
             <th></th>
@@ -75,7 +74,7 @@
                     @Html.DisplayFor(modelItem => item.THONGTINTHANHTOAN.TT_MaKH)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.THONGTINTIEPNHAN.TN_MaKH)
+                    @Html.DisplayFor(modelItem => item.THONGTINTIEPNHAN.TN_MaNV)
                 </td>
                 <td>
                     @Html.ActionLink("Sửa", "CapNhatHoaDon", new { id = item.MaHD }, new { @class = "btn btn-success" })

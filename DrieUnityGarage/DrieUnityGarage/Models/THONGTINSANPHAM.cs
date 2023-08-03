@@ -38,6 +38,18 @@ namespace DrieUnityGarage.Models
             HinhAnh = sp.HinhAnh;
             TonKho =(int) sp.SoLuongTon;
         }
+        public THONGTINSANPHAM(String newMaSP, int? sl)
+        {
+            MaSP = newMaSP;
+            var sp = db.HANGHOAs.Single(s => s.MaHH.Equals(newMaSP));
+            TenSP = sp.TenHH;
+            DonViTinh = sp.DonViTinh;
+            DonGia = sp.DonGia;
+            SoLuong =(int) sl;
+            HinhAnh = sp.HinhAnh;
+            TonKho = (int)sp.SoLuongTon;
+        }
+
 
     }
 }
