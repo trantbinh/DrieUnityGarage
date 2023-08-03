@@ -14,8 +14,6 @@
     </div>
     <div class="container col-6" style="margin-top: 10px; font-size:17px;">
         <hr />
-
-
         <div class="form-group mb-3">
             <label for="TN_MaNV" class="form-label"> Nhân viên phụ trách: </label>
             <div class="col-12 form-control">
@@ -58,8 +56,7 @@
         <div class="col-6">
             <div class="row" style="margin:0">
                 <div class="col-4">
-                    <img src="~/Images/Icon/iconBack.png" style="width:10%; height:40%" />
-                    @Html.ActionLink("Quay về", "LayDanhSachThongTinTiepNhan", null, new { @class = "btn-back" })
+                    @Html.ActionLink("< Quay về", "LayDanhSachThongTinTiepNhan", null, new { @class = "btn-back" })
                 </div>
                 <div class="col-4" style="text-align:center">
                     @Html.ActionLink("Chỉnh sửa thông tin", "SuaThongTinTiepNhan", new { id = Model.MaTN }, new { @class = "btn btn-primary" })
