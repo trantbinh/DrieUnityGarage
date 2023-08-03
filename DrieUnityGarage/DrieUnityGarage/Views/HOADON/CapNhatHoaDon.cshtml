@@ -11,65 +11,66 @@
 
 <div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
     <div class="row">
-        <div class="col-lg-3"></div>
-        <div class="col-lg-6" style="text-align:center">
+        <div class="col-lg-12" style="text-align:center; ">
             <h2>Cập nhật hoá đơn</h2>
         </div>
-        <div class="col-lg-3"></div>
     </div>
-    <p style="font-size:20px; font-weight:bold">Thông tin chung:</p>
-
-    @using (Html.BeginForm("CapNhatHoaDon"))
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.MaHD)
-        @Html.HiddenFor(model => model.NgayLap)
-        @Html.HiddenFor(model => model.TongThanhToan)
-        @Html.HiddenFor(model => model.HD_MaTT)
-        <div class="row" style="font-size:17px; margin:0">
-            <div class="col-lg-4" style="padding-left:50px">
-                Mã hoá đơn:
-                <div class="form-control" style="display:inline;">@Model.MaHD</div>
-            </div>
-            <div class="col-lg-4">
-                Ngày lập hoá đơn:
-                <div class="form-control" style="display:inline">
-                    @Model.NgayLap
-                </div>
-            </div>
-
-            <div class="dis-inline col-lg-3" style="margin-top:-6PX">
-                Mã tiếp nhận:
-                @Html.DropDownList("HD_MaTN", null, htmlAttributes: new { @class = "dis-inline form-maTN " })
-                @Html.ValidationMessageFor(model => model.HD_MaTN, "", new { @class = "text-danger" })
-            </div>
-
+    <p style="font-size:20px; font-weight:bold">THÔNG TIN CHUNG: </p>
+    <div class="row " style="margin: 0; margin-top: 10px; font-size: 17px;">
+        <div class="form-group mb-3 col-4">
+            <label for="MaHD" class="form-label"> Mã hoá đơn: </label>
+            <div class="form-control w-75" id="MaHD">@ViewBag.MaHD</div>
         </div>
-        <div class="row" style="margin-top: 30px; font-size: 17px; margin-left:0; margin-right:0">
-
-            <div class="col-lg-4" style="padding-left:50px">
-                Khách hàng:
-                <div class="form-control" style="display:inline">@ViewBag.KhachHang</div>
-            </div>
-            <div class="col-lg-4">
-                Số điện thoại: <div class="form-control" style="display:inline">@ViewBag.SDT </div>
-
-            </div>
-            <div class="col-lg-4" style="margin-left:0; margin-right:0px">
-                Nhân viên:
-                <div class="form-control" style="display:inline">@ViewBag.NhanVien </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+        <div class="form-group mb-3 col-4">
+            <label for="NgayLapHD" class="form-label"> Ngày lập hoá đơn: </label>
+            <div class="form-control w-75" id="NgayLapHD">@ViewBag.NgayLapHD</div>
         </div>
 
-    }
+
+        <div class="form-group mb-3 col-4">
+            <label class="form-label" for="lstMaKH">Chọn thông tin tiếp nhận:</label>
+            @Html.DropDownList("lstMaTN", null, htmlAttributes: new { @class = "form-control w-75" })
+        </div>
+
+    </div>
+    <div class="row " style="margin: 0; font-size: 17px;">
+
+        <div class="form-group mb-3 col-4">
+            <label for="KhachHang" class="form-label"> Khách hàng: </label>
+            <div class="form-control w-75" id="KhachHang">@ViewBag.KhachHang</div>
+        </div>
+        <div class="form-group mb-3 col-4">
+            <label for="BienSoXe" class="form-label"> Biển số xe: </label>
+            <div class="form-control w-75" id="BienSoXe">@ViewBag.BienSoXe</div>
+        </div>
+        <div class="form-group mb-3 col-4">
+            <label for="NhanVien" class="form-label">  Nhân viên: </label>
+            <div class="form-control w-75" id="NhanVien">@ViewBag.NhanVien</div>
+        </div>
+    </div>
+    <p style="font-size:20px; font-weight:bold; margin-top:10px;">CHI TIẾT HOÁ ĐƠN:</p>
+
+
     @Html.Action("Partial_LayChiTietHoaDonDB", "HOADON", new { id = Model.MaHD })
-    <div>
-        @Html.ActionLink("Quay về", "LayDanhSachHoaDon")
+    <div class="row" style="padding-bottom:10px;">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="row" style="margin:auto">
+                <div class="col-4">
+                    @Html.ActionLink("< Quay về", "LayDanhSachHoaDon", null, new { @class = "btn-back" })
+                </div>
+
+                <div class="col-4" style="text-align:center">
+                    @using (Html.BeginForm("CapNhatHoaDon", "HOADON"))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <input type="submit" value="Cập nhật hoá đơn" class="btn btn-success" />}
+                </div>
+
+                <div class="col-4"></div>
+            </div>
+        </div>
     </div>
 </div>

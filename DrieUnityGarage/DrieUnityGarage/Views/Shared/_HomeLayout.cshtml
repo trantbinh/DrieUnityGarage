@@ -67,38 +67,10 @@
     <script src="~/Content/bootstrap5/js/bootstrap.js"></script>
 </head>
 <body class="body-container">
-    <header id="header" id="container-fluid">
+    <div class="container-fluid" style="padding: 0; margin:0">
         <div class="row" style="padding:0; margin:0">
-            <div class="col-lg-2" style="padding:0; margin:0"></div>
-            <div class="header-name-container col-lg-2">
-                <img src="~/Images/HomePage_Header/HomePage_HeaderName.png" alt="Name garage" class="header-name-image" />
-            </div>
-            <div class="col-lg-7"></div>
-            <div class="col-lg-1">
-                <img src="~/Images/Logo/Logo.png" alt="Name garage" class="header-logo" />
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3"></div>
-            <div class="header-name-container col-lg-2">
-                <img src="~/Images/HomePage_Header/HomePage_HeaderDescription.png" alt="Name garage" width="250px" />
-            </div>
-            <div class="col-lg-1"></div>
-            <div class="header-name-container col-lg-3">
-                <img src="~/Images/HomePage_Header/HomePage_HeaderPhoneNum.png" alt="Name garage" width="340px" />
-            </div>
-            <div class="col-lg-2"></div>
-            <div class="col-lg-1" style="margin-left:-20px;">
-                <img src="~/Images/Logo/Logo_Name.png" alt="Name garage" class="header-logoname" />
-
-            </div>
-        </div>
-    </header>
-    <div class="container-fluid" style="padding:0">
-        <div class="row" style="padding:0">
-            <div class="col-lg-2" style="padding:0; margin:0">
-                <nav class="sidebar_css sidebar" style="padding:25px">
+            <div class="col-lg-2" style="padding:0; margin:0; ">
+                <nav class="sidebar_css sidebar" style=" min-height: 100vh; padding-top:90px; height:100%">
 
                     <ul class="nav flex-column" id="nav_accordion">
                         @if (Session["TaiKhoan"] == null)
@@ -165,6 +137,7 @@
                                     <ul class="submenu collapse">
                                         <li><a class="nav-link" href="@Url.Action("LayDanhSachNhanVien", "NHANVIEN")">Danh sách nhân viên </a></li>
                                         <li><a class="nav-link" href="@Url.Action("LayDanhSachTaiKhoan", "NHANVIEN")">Danh sách tài khoản nhân viên </a></li>
+                                        </ul>
                                 </li>
                             }
                             <li class="nav-item" style="margin-top:8px;">
@@ -199,10 +172,14 @@
                                     <img src="~/Images/Icon/icon_QLDonHang28x28.png" class="icon" /> Quản lý đơn hàng<i class="bi small bi-caret-down-fill"></i>
                                 </a>
                                 <ul class="submenu collapse">
-                                    <li><a class="nav-link" href="@Url.Action("LayDanhSachHoaDon", "HOADON")">Danh sách hóa đơn </a></li>
-                                    <li><a class="nav-link" href="#">Danh sách đánh giá tình trạng xe </a></li>
-                                    <li><a class="nav-link" href="#">Danh sách xác nhận bàn giao xe </a></li>
-                                    <li><a class="nav-link" href="#">Danh sách báo giá </a></li>
+                                    <li><a class="nav-link" href="#">Quản lý thông tin tiếp nhận</a></li>
+                                    <li><a class="nav-link" href="#">Quản lý đánh giá tình trạng xe </a></li>
+
+                                    <li><a class="nav-link" href="#">Quản lý báo giá </a></li>
+
+                                    <li><a class="nav-link" href="@Url.Action("LayDanhSachHoaDon", "HOADON")">Quản lý hóa đơn </a></li>
+
+                                    <li><a class="nav-link" href="#">Quản lý bàn giao xe </a></li>
                                 </ul>
                             </li>
 
@@ -213,6 +190,8 @@
                                 <ul class="submenu collapse">
                                     <li><a class="nav-link" href="#">Danh sách trả góp </a></li>
                                     <li><a class="nav-link" href="#">Danh sách đặt lịch </a></li>
+                                    <li><a class="nav-link" href="#">Quản lý phiếu bảo hành</a></li>
+
                                 </ul>
                             </li>
 
@@ -226,12 +205,36 @@
                     </ul>
                 </nav>
             </div>
-            <div class="col-lg-10" style="padding:0; padding-bottom:50px;">
+            <div class="col-lg-10" style="padding:0;">
+                <header id="header">
+                    <div class="row" style="padding:0; margin:0">
+                        @*<div class="col-lg-1" style="padding:0; margin:0"></div>*@
+                        <div class="header-name-container col-lg-3">
+                            <img src="~/Images/HomePage_Header/HomePage_HeaderName.png" alt="Name garage" class="header-name-image" />
+                        </div>
+                        <div class="col-lg-8"></div>
+                        <div class="col-lg-1">
+                            <img src="~/Images/Logo/Logo.png" alt="Name garage" class="header-logo" />
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="header-name-container col-lg-2">
+                            <img src="~/Images/HomePage_Header/HomePage_HeaderDescription.png" alt="Name garage" width="250px" />
+                        </div>
+                        <div class="col-lg-2"></div>
+                        <div class="header-name-container col-lg-3">
+                            <img src="~/Images/HomePage_Header/HomePage_HeaderPhoneNum.png" alt="Name garage" width="340px" />
+                        </div>
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-1" style="margin-left:-20px;">
+                            <img src="~/Images/Logo/Logo_Name.png" alt="Name garage" class="header-logoname" />
+                        </div>
+                    </div>
+                </header>
                 @RenderBody()
             </div>
-
-
-
         </div>
 
 

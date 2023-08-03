@@ -1,0 +1,90 @@
+﻿@model IEnumerable<DrieUnityGarage.Models.THONGTINTIEPNHAN>
+
+@{
+    ViewBag.Title = "Danh sách thông tin đã tiếp nhận";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-5">
+            <h2>Danh sách thông tin đã tiếp nhận</h2>
+        </div>
+        <div class="col-lg-5">
+        </div>
+        <div class="col-lg-2">
+            @Html.ActionLink("Tạo mới", "TaoThongTinTiepNhan",null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+    <table class="table index-table" style="margin-top:20px;">
+        <tr>
+            <th>
+                Mã tiếp nhận
+            </th>
+
+            <th>
+                Mã nhân viên
+            </th>
+            <th>
+                Mã khách hàng
+            </th>
+
+            <th>
+                Biển số xe
+            </th>
+
+            <th>
+                Thời gian tiếp nhận
+            </th>
+            <th>
+                Thời gian giao dự kiến
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaTN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TN_MaNV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TN_MaKH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TN_BienSoXe)
+                </td>
+                <td>
+                    @String.Format("{0:dd/MM/yyyy}", item.ThoiGianTiepNhan)
+                </td>
+                <td>
+                    @String.Format("{0:dd/MM/yyyy}", item.ThoiGianGiaoDuKien)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrangThai)
+                </td>
+                <td>
+
+                    @Html.ActionLink("Sửa", "SuaThongTinTiepNhan", new { id = item.MaTN }, new { @class = "btn btn-success" })
+                </td>
+                <td>
+                    @Html.ActionLink("Chi tiết", "LayThongTinTiepNhan", new { id = item.MaTN }, new { @class = "btn btn-details" })
+                </td>
+                <td>
+
+                    @Html.ActionLink("Xoá", "XoaThongTinTiepNhan", new { id = item.MaTN }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

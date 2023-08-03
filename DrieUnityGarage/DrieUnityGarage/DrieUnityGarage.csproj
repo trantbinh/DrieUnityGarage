@@ -181,12 +181,19 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SanPham.cs" />
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\THONGTINKHACHHANG.cs" />
+    <Compile Include="Models\THONGTINPHUONGTIEN.cs" />
+    <Compile Include="Models\THONGTINSANPHAM.cs" />
     <Compile Include="Models\THONGTINTHANHTOAN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\THONGTINTIEPNHAN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\THONGTINTIEPNHANXE.cs" />
     <Compile Include="Models\TIEPNHAN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -213,6 +220,51 @@
     <Content Include="Content\bootstrap5\js\bootstrap.esm.min.js" />
     <Content Include="Content\bootstrap5\js\bootstrap.js" />
     <Content Include="Content\bootstrap5\js\bootstrap.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\css\dataTables.bootstrap.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\css\dataTables.bootstrap.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\css\dataTables.bootstrap4.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\css\dataTables.bootstrap5.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\css\dataTables.bootstrap5.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\css\dataTables.bulma.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\css\dataTables.bulma.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\css\dataTables.dataTables.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\css\dataTables.dataTables.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\css\dataTables.foundation.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\css\dataTables.foundation.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\css\dataTables.jqueryui.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\css\dataTables.jqueryui.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\css\dataTables.semanticui.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\css\dataTables.semanticui.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\css\jquery.dataTables.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\css\jquery.dataTables.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\images\sort_asc.png" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\images\sort_asc_disabled.png" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\images\sort_both.png" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\images\sort_desc.png" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\images\sort_desc_disabled.png" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\js\dataTables.bootstrap.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\js\dataTables.bootstrap.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\js\dataTables.bootstrap4.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\js\dataTables.bootstrap5.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\js\dataTables.bootstrap5.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\js\dataTables.bulma.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\js\dataTables.bulma.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\js\dataTables.dataTables.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\js\dataTables.dataTables.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\js\dataTables.foundation.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\js\dataTables.foundation.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\js\dataTables.jqueryui.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\js\dataTables.jqueryui.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\js\dataTables.semanticui.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\js\dataTables.semanticui.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\js\jquery.dataTables.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.6\js\jquery.dataTables.min.js" />
+    <Content Include="Content\DataTables\datatables.css" />
+    <Content Include="Content\DataTables\datatables.js" />
+    <Content Include="Content\DataTables\datatables.min.css" />
+    <Content Include="Content\DataTables\datatables.min.js" />
     <Content Include="Content\HangHoa_Index.css" />
     <Content Include="Content\HoaDon_Index.css" />
     <Content Include="Content\HomePage_Layout.css" />
@@ -230,7 +282,10 @@
     <Content Include="Images\HomePage_Header\HomePage_HeaderName.png" />
     <Content Include="Images\HomePage_Header\HomePage_HeaderPhoneNum.png" />
     <Content Include="Images\HomePage_Header\HomePage_HeaderRectangle.png" />
+    <Content Include="Images\Icon\iconBack.png" />
     <Content Include="Images\Icon\icon_Avarta.png" />
+    <Content Include="Images\Icon\icon_Delete.png" />
+    <Content Include="Images\Icon\icon_Edit.png" />
     <Content Include="Images\Icon\icon_Logout.png" />
     <Content Include="Images\Icon\icon_QLCSKH.png" />
     <Content Include="Images\Icon\icon_QLCSKH28x28.png" />
@@ -307,6 +362,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\UploadImage.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -334,17 +390,12 @@
     <Content Include="Views\HOADON\XemChiTietHoaDon.cshtml" />
     <Content Include="Views\HOADON\XoaHoaDon.cshtml" />
     <Content Include="Views\DrieUnityGarage\HomePage.cshtml" />
-    <Content Include="Views\NHACUNGCAP\Create.cshtml" />
-    <Content Include="Views\NHACUNGCAP\Delete.cshtml" />
-    <Content Include="Views\NHACUNGCAP\Details.cshtml" />
-    <Content Include="Views\NHACUNGCAP\Edit.cshtml" />
-    <Content Include="Views\NHACUNGCAP\Index.cshtml" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
-    <Content Include="Views\THONGTINTIEPNHAN\Create.cshtml" />
-    <Content Include="Views\THONGTINTIEPNHAN\Delete.cshtml" />
-    <Content Include="Views\THONGTINTIEPNHAN\Details.cshtml" />
-    <Content Include="Views\THONGTINTIEPNHAN\Edit.cshtml" />
-    <Content Include="Views\THONGTINTIEPNHAN\Index.cshtml" />
+    <Content Include="Views\THONGTINTIEPNHAN\TaoThongTinTiepNhan.cshtml" />
+    <Content Include="Views\THONGTINTIEPNHAN\XoaThongTinTiepNhan.cshtml" />
+    <Content Include="Views\THONGTINTIEPNHAN\LayThongTinTiepNhan.cshtml" />
+    <Content Include="Views\THONGTINTIEPNHAN\SuaThongTinTiepNhan.cshtml" />
+    <Content Include="Views\THONGTINTIEPNHAN\LayDanhSachThongTinTiepNhan.cshtml" />
     <Content Include="Views\KHACHHANG\Create.cshtml" />
     <Content Include="Views\KHACHHANG\Delete.cshtml" />
     <Content Include="Views\KHACHHANG\Details.cshtml" />
@@ -381,10 +432,13 @@
     <Content Include="Views\NHANVIEN\DangNhap.cshtml" />
     <Content Include="Views\NHANVIEN\LayDanhSachTaiKhoan.cshtml" />
     <Content Include="Views\NHANVIEN\TaoTaiKhoan.cshtml" />
+    <Content Include="Views\HOADON\Partial_XemHD_LayDuLieuCTHD.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
+    <Folder Include="Images\HangHoa\" />
+    <Folder Include="Uploads\HangHoa\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

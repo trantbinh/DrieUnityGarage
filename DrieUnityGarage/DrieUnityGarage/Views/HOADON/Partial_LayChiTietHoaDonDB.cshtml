@@ -1,16 +1,31 @@
-﻿@model List<DrieUnityGarage.Models.SanPham>
+﻿@model List<DrieUnityGarage.Models.THONGTINSANPHAM>
 
 <link rel="stylesheet" href="~/Content/TaoHoaDon.css" />
 <link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/Content/NCC_Index.css" />
-<p class="tr-chitiethd">CHI TIẾT HOÁ ĐƠN</p>
-<table class="table index-table" style="margin-top:20px;">
+<style>
+    #hinh {
+        background: white url(/Images/Icon/icon_Edit.png) left no-repeat;
+        padding-left: 17px;
+    }
+
+    #hinh2 {
+        background: white url(/Images/Icon/icon_Delete.png) left no-repeat;
+        padding-left: 17px;
+    }
+</style>
+
+
+<table class="table index-table">
     <tr>
         <th>
-            Mã
+            Hình ảnh
         </th>
         <th>
-            Tên
+            Mã hàng hoá
+        </th>
+        <th>
+            Tên hàng hoá
         </th>
         <th>
             ĐVT
@@ -24,15 +39,26 @@
         <th>
             Thành tiền
         </th>
+        <th>
+            Cập nhật số lượng
+        </th>
+        <th>
+            Xoá 
+        </th>
+
 
     </tr>
 
     @foreach (var item in Model)
     {
-        using (Html.BeginForm("CTDH_CapNhatSoLuong", "HOADON", new { id = item.MaSP }))
+        using (Html.BeginForm("CapNhatHD_CapNhatSoLuong", "HOADON", new { id = item.MaSP }))
         {
 
             <tr>
+                <td>
+                    <img src="~/Uploads/HangHoa/@item.HinhAnh" class="center" style="width: 50%; height: 50%;" />
+
+                </td>
                 <td>
                     @item.MaSP
                 </td>
@@ -46,21 +72,28 @@
 
                 <td>
 
-                    @item.SoLuong
+                    <input type="number" min="1" max="@item.TonKho" name="changequantity" value="@item.SoLuong"
+                           data-id="@item.MaSP" class="quantity quantity-form" />
                 </td>
 
 
                 <td>
-                    @String.Format("{0:0,0}", item.DonGia)
+                    @String.Format("{0:0,0}đ", item.DonGia)
 
                 </td>
 
                 <td>
-                    @String.Format("{0:0,0}", item.FinalPrice())
+                    @String.Format("{0:0,0}đ", item.FinalPrice())
 
+                </td>
+                <td><input type="submit" id="hinh" class="btn" value="" /></td>
+                <td>
+                    <a href="@Url.Action("CapNhatHD_XoaSP","HOADON", new { id = item.MaSP })" class="btn" style="padding:0">
+                        <img alt="" src="@Url.Content("~/Images/Icon/icon_Delete.png")">
+
+                    </a>
                 </td>
             </tr>
-
         }
     }
     @if (Session["lstSPHD"] != null)
@@ -74,9 +107,9 @@
             <td class="soluong">@ViewBag.TotalNumber</td>
             <td></td>
             <td class="tongthanhtoan">
-                @String.Format("{0:0,0}", @ViewBag.TotalPrice)
+                @String.Format("{0:0,0}đ", @ViewBag.TotalPrice)
             </td>
-            <td colspan="2"></td>
+            <td colspan="3"></td>
 
         </tr>
 

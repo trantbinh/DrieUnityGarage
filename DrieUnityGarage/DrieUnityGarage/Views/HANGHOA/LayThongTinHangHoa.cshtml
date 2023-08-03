@@ -1,6 +1,6 @@
 ﻿@model DrieUnityGarage.Models.HANGHOA
 @{
-    ViewBag.Title = "LayThongTinHangHoa";
+    ViewBag.Title = "Chi tiết thông tin hàng hoá";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 <link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
@@ -8,62 +8,75 @@
 
 <div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
     <div class="row">
-        <div class="col-lg-3"></div>
-        <div class="col-lg-6" style="text-align:center">
-            <h2>Thông tin hàng hoá</h2>
+        <div class="col-lg-12" style="text-align:center">
+            <h2>Chi tiết thông tin hàng hoá</h2>
         </div>
-        <div class="col-lg-3"></div>
     </div>
-    <div class="container col-6">
+    <div class="container col-6" style="margin-top: 10px; font-size:17px;">
         <hr />
-        <div class="form-horizontal form-decor">
+        <div class="form-group mb-3">
+            <label for="MaHH" class="form-label"> Mã hàng hoá: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.MaHH)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="TenHH" class="form-label"> Tên hàng hoá: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.TenHH)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="DonGia" class="form-label"> Đơn giá: </label>
+            <div class="col-12 form-control">
+                @String.Format("{0:0,0}đ", Model.DonGia)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="DonViTinh" class="form-label"> Đơn vị tính: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.DonViTinh)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="DonViTinh" class="form-label"> Loại hàng hoá: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.LoaiHang)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="SoLuongTon" class="form-label"> Số lượng tồn: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.SoLuongTon)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="TenNCC" class="form-label"> Nhà cung cấp hàng hoá: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.NHACUNGCAP.TenNCC)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="HinhAnhHienTai" class="form-label"> Hình ảnh hàng hoá: </label>
+            <div>
+                <img src="~/Uploads/HangHoa/@Model.HinhAnh" class="center" style="width: 50%; height: 50%;" />
+            </div>
+        </div>
+    </div>
 
-            <div class="form-group space-field">
-                Tên hàng hoá:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.TenHH)
+    <div class="row" style="padding-bottom:10px;">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="row" style="margin:0">
+                <div class="col-4">
+                    @Html.ActionLink("< Quay về", "LayDanhSachHangHoa", null, new { @class = "btn-back" })
                 </div>
-            </div>
-            <div class="form-group space-field">
-                Đơn giá:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.DonGia)
+                <div class="col-4" style="text-align:center">
+                    @Html.ActionLink("Chỉnh sửa thông tin", "SuaThongTinHangHoa", new { id = Model.MaHH }, new { @class = "btn btn-success" })
                 </div>
-            </div>
-            <div class="form-group space-field">
-                Đơn vị tính:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.DonViTinh)
-                </div>
-            </div>
-            <div class="form-group space-field">
-                Loại hàng:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.LoaiHang)
-                </div>
-            </div>
-            <div class="form-group space-field">
-                Số lượng tồn:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.SoLuongTon)
-                </div>
-            </div>
-            <div class="form-group space-field">
-                Tên nhà cung cấp:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.NHACUNGCAP.TenNCC)
-                </div>
+                <div class="col-4"></div>
             </div>
         </div>
-        <div class="form-group" style="margin-top:40px">
-            <div class="row">
-                <div class="col-lg-4 align-bottom">
-                    @Html.ActionLink("< Quay về", "LayDanhSachHangHoa", null, new { @class = "nonedecor" })
-                </div>
-                <div class="col-lg-8">
-                    @Html.ActionLink("Chỉnh sửa", "SuaThongTinHangHoa", new { id = Model.MaHH }, new { @class = "btn btn-primary btn-success create-btn" })
-                </div>
-            </div>
-        </div>
+        <div class="col-3"></div>
     </div>
 </div>

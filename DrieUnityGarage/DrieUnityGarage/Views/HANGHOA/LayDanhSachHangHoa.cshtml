@@ -5,12 +5,12 @@
 }
 
 <link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
-<link rel="stylesheet" href="~/Content/HangHoa_Index.css" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
 
 <div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
     <div class="row">
         <div class="col-lg-5">
-            <h2>Danh sách hàng hoá </h2>
+            <h2>Danh sách hàng hoá</h2>
         </div>
         <div class="col-lg-5">
         </div>
@@ -23,6 +23,10 @@
             <th>
                 Mã hàng hoá
             </th>
+            <th>
+                Hình ảnh
+            </th>
+
             <th>
                 Tên hàng hoá
             </th>
@@ -51,10 +55,14 @@
                     @Html.DisplayFor(modelItem => item.MaHH)
                 </td>
                 <td>
+                    <img src="~/Uploads/HangHoa/@item.HinhAnh" class="center" style="width: 80%; height: 80%;" />
+                </td>
+
+                <td>
                     @Html.DisplayFor(modelItem => item.TenHH)
                 </td>
                 <td>
-                    @String.Format("{0:0,0}", item.DonGia)
+                    @String.Format("{0:0,0}đ", item.DonGia)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DonViTinh)
@@ -73,11 +81,11 @@
 
                 </td>
                 <td>
-                    @Html.ActionLink("Chi tiết", "LayThongTinHangHoa", new { id = item.MaHH }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Chi tiết", "LayThongTinHangHoa", new { id = item.MaHH }, new { @class = "btn btn-details" })
 
                 </td>
                 <td>
-                    @Html.ActionLink("Xoá", "XoaHangHoa", new { id = item.MaHH, check =1 }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Xoá", "XoaHangHoa", new { id = item.MaHH, check = 1 }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
         }
