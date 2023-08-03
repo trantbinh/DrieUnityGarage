@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="form-group mb-3">
-            <label for="DonViTinh" class="form-label"> Loại hàng: </label>
+            <label for="DonViTinh" class="form-label"> Loại hàng hoá: </label>
             <div class="col-12 form-control">
                 @Html.DisplayFor(model => model.LoaiHang)
             </div>
@@ -51,9 +51,15 @@
             </div>
         </div>
         <div class="form-group mb-3">
-            <label for="TenNCC" class="form-label"> Nhà cung cấp: </label>
+            <label for="TenNCC" class="form-label"> Nhà cung cấp hàng hoá: </label>
             <div class="col-12 form-control">
                 @Html.DisplayFor(model => model.NHACUNGCAP.TenNCC)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="HinhAnhHienTai" class="form-label"> Hình ảnh hàng hoá: </label>
+            <div>
+                <img src="~/Uploads/HangHoa/@Model.HinhAnh" class="center" style="width: 50%; height: 50%;" />
             </div>
         </div>
     </div>

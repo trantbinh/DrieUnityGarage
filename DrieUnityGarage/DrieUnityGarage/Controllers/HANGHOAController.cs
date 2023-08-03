@@ -131,19 +131,26 @@ namespace DrieUnityGarage.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             HANGHOA hANGHOA = db.HANGHOAs.Find(id);
-            if (check == 0)
+            if (Session["KhongTheXoa"] == null)
             {
-                ViewBag.ThongBao = "Không thể xoá hàng hoá này vì mã hàng hoá đã được dùng để tạo thông tin khác";
+                if (check == 0)
+                {
+                    Session["KhongTheXoa"] = 3;
+                    ViewBag.ThongBao = "!Lưu ý: Dữ liệu có liên quan đến các dữ liệu khác. Chắc chắn muốn xoá toàn bộ dữ liệu liên quan?";
+                }
+                else
+                {
+                    if (hANGHOA == null)
+                    {
+                        return HttpNotFound();
+                    }
+                }
+                return View(hANGHOA);
             }
             else
             {
-
-                if (hANGHOA == null)
-                {
-                    return HttpNotFound();
-                }
+                return RedirectToAction("XoaHangHoa_ToanBo", new {id=id});
             }
-            return View(hANGHOA);
         }
 
         // POST: HANGHOA/Delete/5
@@ -154,7 +161,6 @@ namespace DrieUnityGarage.Controllers
             bool check = KiemTraKhoaNgoaiHangHoa(id);
             if (check == true)
             {
-
                 return XoaHangHoa(id, 0);
             }
             else
@@ -162,18 +168,42 @@ namespace DrieUnityGarage.Controllers
                 HANGHOA hANGHOA = db.HANGHOAs.Find(id);
                 db.HANGHOAs.Remove(hANGHOA);
                 db.SaveChanges();
-                return RedirectToAction("LayDanhSachHangHoa");
             }
+            return RedirectToAction("LayDanhSachHangHoa");
         }
+        //Kiểm tra xem có mã hàng hoá nào đã được tạo trong CTDH không, vì nếu có xoá sẽ bị lỗi
         public bool KiemTraKhoaNgoaiHangHoa(string id)
         {
             List<CT_HOADON> tn = db.CT_HOADON.Where(m => m.CTHD_MaHH.Equals(id)).ToList();
-           
-            if (tn != null)
+            if (tn.Count()==0)
             {
-                return true;
+                return false;
             }
-            return false;
+            return true;
+        }
+
+        // POST: HANGHOA/Delete/5
+        public ActionResult XoaHangHoa_ToanBo(string id)
+        {
+            bool check;
+            List<CT_HOADON> tn = db.CT_HOADON.Where(m => m.CTHD_MaHH.Equals(id)).ToList();
+            if(tn.Count()!=0) {
+                for (int i = 0; i < tn.Count(); i++)
+                {
+                    check = XoaChiTietHD(tn[i].CTHD_MaHD);
+                }
+            }
+            HANGHOA hANGHOA = db.HANGHOAs.Find(id);
+            db.HANGHOAs.Remove(hANGHOA);
+            db.SaveChanges();
+            return RedirectToAction("LayDanhSachHangHoa");
+        }
+        private bool XoaChiTietHD(string id)
+        {
+            CT_HOADON cT_HOADON = db.CT_HOADON.FirstOrDefault(m => m.CTHD_MaHD.Equals(id));
+            db.CT_HOADON.Remove(cT_HOADON);
+            db.SaveChanges();
+            return true;
         }
         protected override void Dispose(bool disposing)
         {
@@ -183,10 +213,9 @@ namespace DrieUnityGarage.Controllers
             }
             base.Dispose(disposing);
         }
-
         private String TaoMaHangHoa()
         {
-            String idHD = "";
+            String idHD;
             //Tạo mã nhà cung cấp String
             List<HANGHOA> lstHD = db.HANGHOAs.ToList();
             int countLst = lstHD.Count();
@@ -208,6 +237,5 @@ namespace DrieUnityGarage.Controllers
             }
             return (idHD);
         }
-
     }
 }

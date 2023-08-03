@@ -29,16 +29,11 @@
 
                 <div class="form-group mb-3">
                     <label for="ThoiGianTiepNhan" class="form-label"> Thời gian tiếp nhận: </label>
-                    <div class="col-12 form-control">
-                        @String.Format("{0: HH:mm:ss, dd/MM/yyyy}", @Model.ThoiGianTiepNhan)
-                        @Html.ValidationMessageFor(model => model.ThoiGianTiepNhan, "", new { @class = "text-danger" })
-                    </div>
+                    <input class="col-12 form-control" value="@String.Format("{0: HH:mm:ss, dd/MM/yyyy}", @Model.ThoiGianTiepNhan)" disabled/>
                 </div>
                 <div class="form-group mb-3">
                     <label for="TN_MaNV" class="form-label"> Nhân viên phụ trách: </label>
-                    <div class="col-12 form-control">
-                        @Model.TN_MaNV
-                    </div>
+                    <input class="col-12 form-control" value=" @Model.TN_MaNV" disabled/>   
                 </div>
 
                 <div class="form-group mb-3">
@@ -77,8 +72,7 @@
             <div class="col-6">
                 <div class="row" style="margin:0">
                     <div class="col-4">
-                        <img src="~/Images/Icon/iconBack.png" style="width:10%; height:40%" />
-                        @Html.ActionLink("Quay về", "LayDanhSachThongTinTiepNhan", null, new { @class = "btn-back" })
+                        @Html.ActionLink("< Quay về", "LayDanhSachThongTinTiepNhan", null, new { @class = "btn-back" })
                     </div>
                     <div class="col-4" style="text-align:center">
                         <input type="submit" value="Lưu chỉnh sửa" class="btn btn-success" />
