@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 <link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
-<link rel="stylesheet" href="~/Content/HoaDon_Index.css" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
 
 <div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
     <div class="row">
@@ -81,11 +81,11 @@
 
                 </td>
                 <td>
-                    @Html.ActionLink("Chi tiết", "XemChiTietHoaDon", new { id = item.MaHD }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Chi tiết", "XemChiTietHoaDon", new { id = item.MaHD }, new { @class = "btn btn-details" })
 
                 </td>
                 <td>
-                    @Html.ActionLink("Xoá", "XoaHoaDon", new { id = item.MaHD }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Xoá", "XoaHoaDon", new { id = item.MaHD }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
         }

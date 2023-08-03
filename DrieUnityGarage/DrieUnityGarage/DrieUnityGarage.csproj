@@ -432,6 +432,7 @@
     <Content Include="Views\NHANVIEN\DangNhap.cshtml" />
     <Content Include="Views\NHANVIEN\LayDanhSachTaiKhoan.cshtml" />
     <Content Include="Views\NHANVIEN\TaoTaiKhoan.cshtml" />
+    <Content Include="Views\HOADON\Partial_XemHD_LayDuLieuCTHD.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

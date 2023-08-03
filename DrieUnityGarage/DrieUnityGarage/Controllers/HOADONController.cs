@@ -212,8 +212,54 @@ namespace DrieUnityGarage.Controllers
             {
                 return HttpNotFound();
             }
+
+            //Lấy ra thông tin của khách hàng có mã khách hàng là từ dropdown
+            THONGTINTIEPNHANXE TTTN = new THONGTINTIEPNHANXE(hOADON.HD_MaTN);
+
+            //Tạo 1 String chứa các thông tin của khách hàng để hiển thị
+            String selectedTN = TTTN.MaTN + " - " + TTTN.MaKH + " - " + TTTN.BienSoXe;
+
+           ViewBag.selectedTiepNhan= selectedTN;
+
+            //Lấy ra các thông tin cần thiết
+            String tenKH = db.KHACHHANGs.Find(TTTN.MaKH).HoTenKH;
+            String kh = TTTN.MaKH + " - " + tenKH;
+            ViewBag.KhachHang = kh;
+            ViewBag.BienSoXe = TTTN.BienSoXe;
+
+            String tenNV = db.NHANVIENs.Find(TTTN.MaNV).HoTenNV; ;
+            String nv = TTTN.MaNV + " - " + tenNV;
+            ViewBag.NhanVien = nv;
+
             return View(hOADON);
         }
+        public ActionResult Partial_XemHD_LayDuLieuCTHD(String id)
+        {
+            var cthd = db.CT_HOADON.Where(m => m.CTHD_MaHD.Equals(id)).ToList();
+            List<THONGTINSANPHAM> lstHH = new List<THONGTINSANPHAM>();
+            for(int i =0; i< cthd.Count(); i++)
+            {
+                lstHH.Add(new THONGTINSANPHAM(cthd[i].CTHD_MaHH, cthd[i].SoLuong));
+            }
+                int totalNumber = 0;
+                
+                if (lstHH != null)
+                    totalNumber = lstHH.Sum(sp => sp.SoLuong);
+
+                decimal totalPrice = 0;
+                if (lstHH != null)
+                    totalPrice = lstHH.Sum(sp => sp.FinalPrice());
+            
+
+            ViewBag.TotalNumber = totalNumber;
+            ViewBag.TotalPrice = totalPrice;
+
+            return PartialView(lstHH);
+        }
+
+
+
+
         public List<THONGTINTIEPNHANXE> LayDanhSachTiepNhanDB()
         {
             var newlstKH = new List<THONGTINTIEPNHANXE>();
@@ -491,21 +537,23 @@ namespace DrieUnityGarage.Controllers
             {
                 return HttpNotFound();
             }
-            //Lấy thông tin tiếp nhận
-            var hd = db.HOADONs.FirstOrDefault(m => m.MaHD.Equals(id));
-            String MaTiepNhan = hd.HD_MaTN;
-            var tn = db.THONGTINTIEPNHANs.FirstOrDefault(m => m.MaTN.Equals(MaTiepNhan));
-            ViewBag.MaTN = tn.MaTN;
+            //Lấy ra thông tin của khách hàng có mã khách hàng là từ dropdown
+            THONGTINTIEPNHANXE TTTN = new THONGTINTIEPNHANXE(hOADON.HD_MaTN);
 
-            Session["MaHD"] = id;
+            //Tạo 1 String chứa các thông tin của khách hàng để hiển thị
+            String selectedTN = TTTN.MaTN + " - " + TTTN.MaKH + " - " + TTTN.BienSoXe;
 
-            //Thông tin khách hàng
-            var kh = db.KHACHHANGs.FirstOrDefault(m => m.MaKH.Equals(tn.TN_MaKH));
-            ViewBag.KhachHang = kh.MaKH + " - " + kh.HoTenKH;
-            ViewBag.SDT = kh.DienThoaiKH;
+            ViewBag.selectedTiepNhan = selectedTN;
 
-            var nv = db.NHANVIENs.FirstOrDefault(m => m.MaNV.Equals(tn.TN_MaNV));
-            ViewBag.NhanVien = nv.MaNV + " - " + nv.HoTenNV;
+            //Lấy ra các thông tin cần thiết
+            String tenKH = db.KHACHHANGs.Find(TTTN.MaKH).HoTenKH;
+            String kh = TTTN.MaKH + " - " + tenKH;
+            ViewBag.KhachHang = kh;
+            ViewBag.BienSoXe = TTTN.BienSoXe;
+
+            String tenNV = db.NHANVIENs.Find(TTTN.MaNV).HoTenNV; ;
+            String nv = TTTN.MaNV + " - " + tenNV;
+            ViewBag.NhanVien = nv;
 
             return View(hOADON);
         }
@@ -533,22 +581,7 @@ namespace DrieUnityGarage.Controllers
             
             
         }
-     /*   // GET: CT_HOADON/Delete/5
-        public ActionResult XoaChiTietHD (string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CT_HOADON cT_HOADON = db.CT_HOADON.Find(id);
-            if (cT_HOADON == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cT_HOADON);
-        }*/
 
-        // POST: CT_HOADON/Delete/5
         public bool XoaChiTietHD(string id)
         {
             CT_HOADON cT_HOADON = db.CT_HOADON.FirstOrDefault(m=>m.CTHD_MaHD.Equals(id));
@@ -592,17 +625,5 @@ namespace DrieUnityGarage.Controllers
             }
             return (idHD);
         }
-        public ActionResult Extensions_LayTenKhachHang(string id)
-        {
-            var lstThongTin = db.KHACHHANGs.Where(m => m.MaKH.Equals(id)).ToList();
-            return PartialView(lstThongTin);
-        }
-        public ActionResult Extensions_LayThongTinKhachHang(string id)
-        {
-            var lstThongTin = db.KHACHHANGs.Where(m => m.MaKH.Equals(id)).ToList();
-            return PartialView(lstThongTin);
-        }
-
-
     }
 }
