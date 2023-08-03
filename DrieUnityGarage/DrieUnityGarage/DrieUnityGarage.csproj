@@ -313,6 +313,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\UploadImage.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -382,11 +383,12 @@
     <Content Include="Views\NHANVIEN\DangNhap.cshtml" />
     <Content Include="Views\NHANVIEN\LayDanhSachTaiKhoan.cshtml" />
     <Content Include="Views\NHANVIEN\TaoTaiKhoan.cshtml" />
-    <Content Include="Views\THONGTINTIEPNHAN\TaoTTTN_LayThongTinXe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
+    <Folder Include="Images\HangHoa\" />
+    <Folder Include="Uploads\HangHoa\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

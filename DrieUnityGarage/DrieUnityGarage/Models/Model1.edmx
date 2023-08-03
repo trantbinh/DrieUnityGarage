@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DrieUnityGarageModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DrieUnityGarageModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CT_HOADON">
           <Key>
             <PropertyRef Name="CTHD_MaHH" />
@@ -25,6 +25,7 @@
           <Property Name="DonViTinh" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LoaiHang" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SoLuongTon" Type="int" />
+          <Property Name="HinhAnh" Type="nvarchar" MaxLength="400" />
           <Property Name="HH_MaNCC" Type="varchar" MaxLength="5" />
         </EntityType>
         <EntityType Name="HOADON">
@@ -270,8 +271,7 @@
             <End Role="PHUONGTIEN" EntitySet="PHUONGTIEN" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DrieUnityGarageModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -285,7 +285,7 @@
           <Property Name="SoLuong" Type="Int32" />
           <Property Name="ThanhTien" Type="Decimal" Precision="18" Scale="2" />
           <NavigationProperty Name="HANGHOA" Relationship="Self.FK_CTHOADON_HANGHOA" FromRole="CT_HOADON" ToRole="HANGHOA" />
-          <NavigationProperty Name="HOADON" Relationship="Self.FK_CTHOADON_HOADON" FromRole="CT_HOADON" ToRole="HOADON" />
+          <NavigationProperty Name="HOADON" Relationship="DrieUnityGarageModel.FK_CTHOADON_HOADON" FromRole="CT_HOADON" ToRole="HOADON" />
         </EntityType>
         <EntityType Name="HANGHOA">
           <Key>
@@ -297,9 +297,10 @@
           <Property Name="DonViTinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LoaiHang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SoLuongTon" Type="Int32" />
+          <Property Name="HinhAnh" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
           <Property Name="HH_MaNCC" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CT_HOADON" Relationship="Self.FK_CTHOADON_HANGHOA" FromRole="HANGHOA" ToRole="CT_HOADON" />
-          <NavigationProperty Name="NHACUNGCAP" Relationship="Self.FK_HANGHOA_NCC" FromRole="HANGHOA" ToRole="NHACUNGCAP" />
+          <NavigationProperty Name="NHACUNGCAP" Relationship="DrieUnityGarageModel.FK_HANGHOA_NCC" FromRole="HANGHOA" ToRole="NHACUNGCAP" />
         </EntityType>
         <EntityType Name="HOADON">
           <Key>
@@ -312,11 +313,11 @@
           <Property Name="TongThanhToan" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="HD_MaTT" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="HD_MaTN" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="CT_HOADON" Relationship="Self.FK_CTHOADON_HOADON" FromRole="HOADON" ToRole="CT_HOADON" />
           <NavigationProperty Name="KHACHHANG" Relationship="Self.FK_HOADON_KHACHHANG" FromRole="HOADON" ToRole="KHACHHANG" />
           <NavigationProperty Name="PHUONGTIEN" Relationship="Self.FK_HOADON_PHUONGTIEN" FromRole="HOADON" ToRole="PHUONGTIEN" />
           <NavigationProperty Name="THONGTINTHANHTOAN" Relationship="Self.FK_HOADON_THONGTINTHANHTOAN" FromRole="HOADON" ToRole="THONGTINTHANHTOAN" />
           <NavigationProperty Name="THONGTINTIEPNHAN" Relationship="Self.FK_HOADON_THONGTINTIEPNHAN" FromRole="HOADON" ToRole="THONGTINTIEPNHAN" />
+          <NavigationProperty Name="CT_HOADON" Relationship="DrieUnityGarageModel.FK_CTHOADON_HOADON" FromRole="HOADON" ToRole="CT_HOADON" />
         </EntityType>
         <EntityType Name="KHACHHANG">
           <Key>
@@ -345,7 +346,7 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LoaiHinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HoTenNguoiDaiDien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="HANGHOAs" Relationship="Self.FK_HANGHOA_NCC" FromRole="NHACUNGCAP" ToRole="HANGHOA" />
+          <NavigationProperty Name="HANGHOAs" Relationship="DrieUnityGarageModel.FK_HANGHOA_NCC" FromRole="NHACUNGCAP" ToRole="HANGHOA" />
         </EntityType>
         <EntityType Name="NHANVIEN">
           <Key>
@@ -428,30 +429,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CTHOADON_HOADON">
-          <End Role="HOADON" Type="Self.HOADON" Multiplicity="1" />
-          <End Role="CT_HOADON" Type="Self.CT_HOADON" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HOADON">
-              <PropertyRef Name="MaHD" />
-            </Principal>
-            <Dependent Role="CT_HOADON">
-              <PropertyRef Name="CTHD_MaHD" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HANGHOA_NCC">
-          <End Role="NHACUNGCAP" Type="Self.NHACUNGCAP" Multiplicity="0..1" />
-          <End Role="HANGHOA" Type="Self.HANGHOA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NHACUNGCAP">
-              <PropertyRef Name="MaNCC" />
-            </Principal>
-            <Dependent Role="HANGHOA">
-              <PropertyRef Name="HH_MaNCC" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_HOADON_KHACHHANG">
           <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
           <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
@@ -527,14 +504,6 @@
             <End Role="HANGHOA" EntitySet="HANGHOAs" />
             <End Role="CT_HOADON" EntitySet="CT_HOADON" />
           </AssociationSet>
-          <AssociationSet Name="FK_CTHOADON_HOADON" Association="Self.FK_CTHOADON_HOADON">
-            <End Role="HOADON" EntitySet="HOADONs" />
-            <End Role="CT_HOADON" EntitySet="CT_HOADON" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HANGHOA_NCC" Association="Self.FK_HANGHOA_NCC">
-            <End Role="NHACUNGCAP" EntitySet="NHACUNGCAPs" />
-            <End Role="HANGHOA" EntitySet="HANGHOAs" />
-          </AssociationSet>
           <AssociationSet Name="FK_HOADON_KHACHHANG" Association="Self.FK_HOADON_KHACHHANG">
             <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
             <End Role="HOADON" EntitySet="HOADONs" />
@@ -555,7 +524,39 @@
             <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
             <End Role="PHUONGTIEN" EntitySet="PHUONGTIENs" />
           </AssociationSet>
+          <AssociationSet Name="FK_HANGHOA_NCC" Association="DrieUnityGarageModel.FK_HANGHOA_NCC">
+            <End Role="NHACUNGCAP" EntitySet="NHACUNGCAPs" />
+            <End Role="HANGHOA" EntitySet="HANGHOAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CTHOADON_HOADON" Association="DrieUnityGarageModel.FK_CTHOADON_HOADON">
+            <End Role="HOADON" EntitySet="HOADONs" />
+            <End Role="CT_HOADON" EntitySet="CT_HOADON" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_HANGHOA_NCC">
+          <End Type="DrieUnityGarageModel.NHACUNGCAP" Role="NHACUNGCAP" Multiplicity="0..1" />
+          <End Type="DrieUnityGarageModel.HANGHOA" Role="HANGHOA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHACUNGCAP">
+              <PropertyRef Name="MaNCC" />
+            </Principal>
+            <Dependent Role="HANGHOA">
+              <PropertyRef Name="HH_MaNCC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CTHOADON_HOADON">
+          <End Type="DrieUnityGarageModel.HOADON" Role="HOADON" Multiplicity="1" />
+          <End Type="DrieUnityGarageModel.CT_HOADON" Role="CT_HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOADON">
+              <PropertyRef Name="MaHD" />
+            </Principal>
+            <Dependent Role="CT_HOADON">
+              <PropertyRef Name="CTHD_MaHD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -581,6 +582,7 @@
                 <ScalarProperty Name="DonViTinh" ColumnName="DonViTinh" />
                 <ScalarProperty Name="LoaiHang" ColumnName="LoaiHang" />
                 <ScalarProperty Name="SoLuongTon" ColumnName="SoLuongTon" />
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
                 <ScalarProperty Name="HH_MaNCC" ColumnName="HH_MaNCC" />
               </MappingFragment>
             </EntityTypeMapping>

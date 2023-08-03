@@ -26,6 +26,7 @@ namespace DrieUnityGarage.Models
         public string DonViTinh { get; set; }
         public string LoaiHang { get; set; }
         public Nullable<int> SoLuongTon { get; set; }
+        public string HinhAnh { get; set; }
         public string HH_MaNCC { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

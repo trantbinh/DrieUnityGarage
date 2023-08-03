@@ -79,6 +79,7 @@ namespace DrieUnityGarage.Controllers
 
             List<THONGTINKHACHHANG> lstKhachHang = LayDanhSachKhachHangDB();
             ViewBag.lstMaKH = new SelectList(lstKhachHang, "MaKH", "ThongTin");
+
             if (Session["DaLayThongTinXe"] != null)
             {
                 List<THONGTINPHUONGTIEN> a = Session["lstXe"] as List<THONGTINPHUONGTIEN>;
@@ -113,8 +114,6 @@ namespace DrieUnityGarage.Controllers
 
 
             //String date = thoiGianGiaoXe.ToString("dd/MMM/yyyy");
-
-            
 
             Session["selectedKhachHang"] = selectedKH;
 

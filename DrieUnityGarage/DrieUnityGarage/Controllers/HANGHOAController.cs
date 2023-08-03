@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -39,7 +40,8 @@ namespace DrieUnityGarage.Controllers
         // GET: HANGHOA/Create
         public ActionResult ThemHangHoa()
         {
-            ViewBag.HH_MaNCC = new SelectList(db.NHACUNGCAPs, "MaNCC", "TenNCC");
+            ViewBag.HH_MaNCC = new SelectList(db.NHACUNGCAPs, "MaNCC", "TenNCC","NC000");
+            ViewBag.MaHH = TaoMaHangHoa();
             return View();
         }
 
@@ -48,34 +50,21 @@ namespace DrieUnityGarage.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ThemHangHoa([Bind(Include = "MaHH,TenHH,DonGia,DonViTinh,LoaiHang,SoLuongTon,HH_MaNCC")] HANGHOA hANGHOA)
+        public ActionResult ThemHangHoa([Bind(Include = "MaHH,TenHH,DonGia,DonViTinh,LoaiHang,SoLuongTon,HH_MaNCC,HinhAnh")] HANGHOA hANGHOA
+            ,HttpPostedFileBase HinhAnh)
         {
             if (ModelState.IsValid)
             {
-                //Tạo mã nhà cung cấp String
-                List<HANGHOA> lstHH = db.HANGHOAs.ToList();
-                int countLst = lstHH.Count();
-                if (countLst == 0)
+                if (HinhAnh != null)
                 {
-                    hANGHOA.MaHH = "HH001";
+                    var fileName = Path.GetFileName(HinhAnh.FileName);
+
+                    var path = Path.Combine(Server.MapPath("~/Uploads/HangHoa/"), fileName);
+                    hANGHOA.HinhAnh= fileName;
+                    HinhAnh.SaveAs(path);
                 }
-                else
-                {
-                    HANGHOA lastHH = lstHH[countLst - 1];
-                    String lastMHH = lastHH.MaHH;
-                    int lastMaHHNum = int.Parse(lastMHH.Substring(2));
-                    int newMaHH = lastMaHHNum + 1;
-                    if (newMaHH < 10)
-                    {
-                        hANGHOA.MaHH = "HH00" + newMaHH.ToString();
-                    }
-                
-                    else {
-                        hANGHOA.MaHH = "HH0" + newMaHH.ToString();
-                    
-                    }
-                    
-                }
+
+                hANGHOA.MaHH= TaoMaHangHoa();
                 hANGHOA.SoLuongTon = 0;
                 db.HANGHOAs.Add(hANGHOA);
                 db.SaveChanges();
@@ -106,12 +95,28 @@ namespace DrieUnityGarage.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SuaThongTinHangHoa([Bind(Include = "MaHH,TenHH,DonGia,DonViTinh,LoaiHang,SoLuongTon,HH_MaNCC")] HANGHOA hANGHOA)
+        public ActionResult SuaThongTinHangHoa([Bind(Include = "MaHH,TenHH,DonGia,DonViTinh,LoaiHang,SoLuongTon,HH_MaNCC, HinhAnh")] HANGHOA hANGHOA, HttpPostedFileBase HinhAnh)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(hANGHOA).State = EntityState.Modified;
-                db.SaveChanges();
+                //Xet xem có nhập dữ liệu mới cho hình ảnh không
+                if (HinhAnh != null)
+                {
+                    var fileName = Path.GetFileName(HinhAnh.FileName);
+
+                    var path = Path.Combine(Server.MapPath("~/Uploads/HangHoa/"), fileName);
+                    hANGHOA.HinhAnh = fileName;
+                    HinhAnh.SaveAs(path);
+                    db.Entry(hANGHOA).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    db.Entry(hANGHOA).State = EntityState.Modified;
+                    db.Entry(hANGHOA).Property(s=>s.HinhAnh).IsModified= false; //Không sửa đổi field hình ảnh
+                    db.SaveChanges();
+                }
+
                 return RedirectToAction("LayDanhSachHangHoa");
             }
             ViewBag.HH_MaNCC = new SelectList(db.NHACUNGCAPs, "MaNCC", "TenNCC", hANGHOA.HH_MaNCC);
@@ -178,5 +183,31 @@ namespace DrieUnityGarage.Controllers
             }
             base.Dispose(disposing);
         }
+
+        private String TaoMaHangHoa()
+        {
+            String idHD = "";
+            //Tạo mã nhà cung cấp String
+            List<HANGHOA> lstHD = db.HANGHOAs.ToList();
+            int countLst = lstHD.Count();
+            if (countLst == 0)
+            {
+                idHD = "HH001";
+            }
+            else
+            {
+                HANGHOA lastHD = lstHD[countLst - 1];
+                String lastMaHD = lastHD.MaHH;
+                int lastMaHDNum = int.Parse(lastMaHD.Substring(2));
+                int newMaHD = lastMaHDNum + 1;
+                if (newMaHD < 10)
+                {
+                    idHD = "HH00" + newMaHD.ToString();
+                }
+                else { idHD = "HH0" + newMaHD.ToString(); }
+            }
+            return (idHD);
+        }
+
     }
 }
