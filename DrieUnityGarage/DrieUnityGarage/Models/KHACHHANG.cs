@@ -17,6 +17,7 @@ namespace DrieUnityGarage.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public KHACHHANG()
         {
+            this.BAOGIAs = new HashSet<BAOGIA>();
             this.HOADONs = new HashSet<HOADON>();
             this.PHUONGTIENs = new HashSet<PHUONGTIEN>();
         }
@@ -30,6 +31,8 @@ namespace DrieUnityGarage.Models
         public Nullable<int> DiemThanhVien { get; set; }
         public string DiaChi { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BAOGIA> BAOGIAs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HOADON> HOADONs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

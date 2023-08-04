@@ -1,0 +1,58 @@
+﻿@model IEnumerable<DrieUnityGarage.Models.XUATKHO>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayLap)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LyDoXuat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoChungTu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BAOGIA.BG_MaKH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NHANVIEN.HoTenNV)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayLap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LyDoXuat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoChungTu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BAOGIA.BG_MaKH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NHANVIEN.HoTenNV)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaXK }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaXK }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaXK })
+        </td>
+    </tr>
+}
+
+</table>

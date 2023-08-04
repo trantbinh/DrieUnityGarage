@@ -340,7 +340,6 @@ namespace DrieUnityGarage.Controllers
             if (ModelState.IsValid)
             {
                 String idHD = TaoMaHoaDon();
-                String date = String.Format("{0:dd/MM/yy}", DateTime.Now.ToString());
                 hOADON.MaHD = idHD;
                 hOADON.NgayLap = DateTime.Now;
                 hOADON.HD_MaKH = null;

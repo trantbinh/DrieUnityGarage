@@ -14,6 +14,13 @@ namespace DrieUnityGarage.Models
     
     public partial class NHANVIEN
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public NHANVIEN()
+        {
+            this.NHAPKHOes = new HashSet<NHAPKHO>();
+            this.XUATKHOes = new HashSet<XUATKHO>();
+        }
+    
         public string MaNV { get; set; }
         public string HoTenNV { get; set; }
         public string DienThoaiNV { get; set; }
@@ -26,5 +33,10 @@ namespace DrieUnityGarage.Models
         public string TenDangNhap { get; set; }
         public string MatKhau { get; set; }
         public Nullable<System.DateTime> NgayTaoTK { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NHAPKHO> NHAPKHOes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<XUATKHO> XUATKHOes { get; set; }
     }
 }
