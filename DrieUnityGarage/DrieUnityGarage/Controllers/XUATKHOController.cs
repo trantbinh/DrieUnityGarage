@@ -84,7 +84,7 @@ namespace DrieUnityGarage.Controllers
 
         {
             ViewBag.MaXK = TaoMaPhieuXuatKho();
-            ViewBag.MaNV = "NV001";
+            ViewBag.MaNV = Session["MaTaiKhoanNV"].ToString();
             ViewBag.NgayLap = DateTime.Now.ToString("hh:mm:ss, dd/MM/yyyy");
             ViewBag.LyDoXuat = Session["LyDoXuat"];
             ViewBag.SoCT = Session["SoCT"];
@@ -202,7 +202,7 @@ namespace DrieUnityGarage.Controllers
             if (ModelState.IsValid)
             {
                 xUATKHO.MaXK = id;
-                xUATKHO.XK_MaNV = "NV001";
+                xUATKHO.XK_MaNV = Session["MaTaiKhoanNV"].ToString();
                 xUATKHO.XK_MaBG =null;
                 xUATKHO.NgayLap = DateTime.Now;
                 xUATKHO.LyDoXuat = Session["LyDoXuat"].ToString();
@@ -284,7 +284,7 @@ namespace DrieUnityGarage.Controllers
             ViewBag.MaXK = TaoMaPhieuXuatKho();
             ViewBag.LyDoXuat = "Xuất theo báo giá";
             ViewBag.MaBG = idBG;
-            ViewBag.MaNV = "NV001";
+            ViewBag.MaNV = Session["MaTaiKhoanNV"].ToString();
             ViewBag.NgayLap = DateTime.Now.ToString("hh:mm:ss, dd/MM/yyyy");
             /*var bg = db.HOADONs.Find(idBG);*/
             return View();

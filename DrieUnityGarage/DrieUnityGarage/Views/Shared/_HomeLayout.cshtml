@@ -65,6 +65,10 @@
     <link rel="stylesheet" href="~/Content/HomePage_Layout.css" />
     <link rel="stylesheet" href="~/Content/bootstrap5/css/bootstrap.css" />
     <script src="~/Content/bootstrap5/js/bootstrap.js"></script>
+    <script src="~/Scripts/UploadImage.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body class="body-container">
     <div class="container-fluid" style="padding: 0; margin:0">
@@ -153,7 +157,7 @@
                                 <ul class="submenu collapse">
                                     <li><a class="nav-link" href="#">Danh sách báo cáo </a></li>
                                     <li><a class="nav-link" href="#">Danh sách phiếu nhập </a></li>
-                                    <li><a class="nav-link" href="#">Danh sách phiếu xuất </a></li>
+                                    <li><a class="nav-link" href="@Url.Action("LayDanhSachPhieuXuatKho", "XUATKHO")">Danh sách phiếu xuất </a></li>
                                     <li><a class="nav-link" href="#">Kiểm kê kho hàng </a></li>
                                 </ul>
                             </li>
@@ -172,7 +176,7 @@
                                     <img src="~/Images/Icon/icon_QLDonHang28x28.png" class="icon" /> Quản lý đơn hàng<i class="bi small bi-caret-down-fill"></i>
                                 </a>
                                 <ul class="submenu collapse">
-                                    <li><a class="nav-link" href="#">Quản lý thông tin tiếp nhận</a></li>
+                                    <li><a class="nav-link" href="@Url.Action("LayDanhSachThongTinTiepNhan", "THONGTINTIEPNHAN")">Quản lý thông tin tiếp nhận</a></li>
                                     <li><a class="nav-link" href="#">Quản lý đánh giá tình trạng xe </a></li>
 
                                     <li><a class="nav-link" href="@Url.Action("LayDanhSachBaoGia", "BAOGIA")">Quản lý báo giá </a></li>

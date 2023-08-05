@@ -4,9 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-
-    <Schema Namespace="DrieUnityGarageModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-
+      <Schema Namespace="DrieUnityGarageModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BAOGIA">
           <Key>
             <PropertyRef Name="MaBG" />
@@ -57,16 +55,6 @@
           <Property Name="CTXK_MaXK" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="SoLuongXuatKho" Type="int" />
         </EntityType>
-        <EntityType Name="CT_NHAPKHO">
-          <Key>
-            <PropertyRef Name="CTNK_MaHH" />
-            <PropertyRef Name="CTNK_MaNK" />
-          </Key>
-          <Property Name="CTNK_MaHH" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="CTNK_MaNK" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="SoLuongYeuCau" Type="int" />
-          <Property Name="SoLuongThucNhap" Type="int" />
-        </EntityType>
         <EntityType Name="HANGHOA">
           <Key>
             <PropertyRef Name="MaHH" />
@@ -89,9 +77,9 @@
           <Property Name="NgayLap" Type="datetime" />
           <Property Name="HD_MaKH" Type="varchar" MaxLength="5" />
           <Property Name="HD_BienSoXe" Type="varchar" MaxLength="20" />
-          <Property Name="TongThanhToan" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TongThanhToan" Type="decimal" Precision="18" Scale="0" />
           <Property Name="HD_MaTT" Type="varchar" MaxLength="5" />
-          <Property Name="HD_MaTN" Type="varchar" MaxLength="5" />
+          <Property Name="HD_MaTN" Type="varchar" MaxLength="5" Nullable="false" />
         </EntityType>
         <EntityType Name="KHACHHANG">
           <Key>
@@ -145,9 +133,7 @@
           <Property Name="NK_MaNCC" Type="varchar" MaxLength="5" />
           <Property Name="HoTenNguoiGiao" Type="nvarchar" MaxLength="50" />
           <Property Name="SoChungTu" Type="varchar" MaxLength="20" />
-
           <Property Name="NK_MaNV" Type="varchar" MaxLength="5" />
-
         </EntityType>
         <EntityType Name="PHUONGTIEN">
           <Key>
@@ -197,7 +183,6 @@
           <Property Name="GhiChuKH" Type="nvarchar" MaxLength="200" />
           <Property Name="TrangThai" Type="nvarchar" MaxLength="100" />
         </EntityType>
-
         <EntityType Name="XUATKHO">
           <Key>
             <PropertyRef Name="MaXK" />
@@ -209,7 +194,6 @@
           <Property Name="XK_MaBG" Type="varchar" MaxLength="5" />
           <Property Name="SoChungTu" Type="varchar" MaxLength="20" />
         </EntityType>
-
         <Association Name="FK_BAOGIA_KHACHHANG">
           <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
           <End Role="BAOGIA" Type="Self.BAOGIA" Multiplicity="*" />
@@ -318,7 +302,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-
         <Association Name="FK_CTXUATKHO_HANGHOA">
           <End Role="HANGHOA" Type="Self.HANGHOA" Multiplicity="1" />
           <End Role="CT_XUATKHO" Type="Self.CT_XUATKHO" Multiplicity="*" />
@@ -343,7 +326,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-
         <Association Name="FK_HANGHOA_NCC">
           <End Role="NHACUNGCAP" Type="Self.NHACUNGCAP" Multiplicity="0..1" />
           <End Role="HANGHOA" Type="Self.HANGHOA" Multiplicity="*" />
@@ -393,7 +375,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_HOADON_THONGTINTIEPNHAN">
-          <End Role="THONGTINTIEPNHAN" Type="Self.THONGTINTIEPNHAN" Multiplicity="0..1" />
+          <End Role="THONGTINTIEPNHAN" Type="Self.THONGTINTIEPNHAN" Multiplicity="1" />
           <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="THONGTINTIEPNHAN">
@@ -416,7 +398,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-
         <Association Name="FK_NHAPKHO_NHANVIEN">
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
           <End Role="NHAPKHO" Type="Self.NHAPKHO" Multiplicity="*" />
@@ -429,7 +410,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-
         <Association Name="FK_PHUONGTIEN_KHACHHANG">
           <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
           <End Role="PHUONGTIEN" Type="Self.PHUONGTIEN" Multiplicity="*" />
@@ -471,9 +451,7 @@
           <EntitySet Name="CT_BAOGIA" EntityType="Self.CT_BAOGIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CT_HOADON" EntityType="Self.CT_HOADON" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CT_NHAPKHO" EntityType="Self.CT_NHAPKHO" Schema="dbo" store:Type="Tables" />
-
           <EntitySet Name="CT_XUATKHO" EntityType="Self.CT_XUATKHO" Schema="dbo" store:Type="Tables" />
-
           <EntitySet Name="HANGHOA" EntityType="Self.HANGHOA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
@@ -484,9 +462,7 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THONGTINTHANHTOAN" EntityType="Self.THONGTINTHANHTOAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THONGTINTIEPNHAN" EntityType="Self.THONGTINTIEPNHAN" Schema="dbo" store:Type="Tables" />
-
           <EntitySet Name="XUATKHO" EntityType="Self.XUATKHO" Schema="dbo" store:Type="Tables" />
-
           <AssociationSet Name="FK_BAOGIA_KHACHHANG" Association="Self.FK_BAOGIA_KHACHHANG">
             <End Role="KHACHHANG" EntitySet="KHACHHANG" />
             <End Role="BAOGIA" EntitySet="BAOGIA" />
@@ -523,7 +499,6 @@
             <End Role="NHAPKHO" EntitySet="NHAPKHO" />
             <End Role="CT_NHAPKHO" EntitySet="CT_NHAPKHO" />
           </AssociationSet>
-
           <AssociationSet Name="FK_CTXUATKHO_HANGHOA" Association="Self.FK_CTXUATKHO_HANGHOA">
             <End Role="HANGHOA" EntitySet="HANGHOA" />
             <End Role="CT_XUATKHO" EntitySet="CT_XUATKHO" />
@@ -532,7 +507,6 @@
             <End Role="XUATKHO" EntitySet="XUATKHO" />
             <End Role="CT_XUATKHO" EntitySet="CT_XUATKHO" />
           </AssociationSet>
-
           <AssociationSet Name="FK_HANGHOA_NCC" Association="Self.FK_HANGHOA_NCC">
             <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
             <End Role="HANGHOA" EntitySet="HANGHOA" />
@@ -557,12 +531,10 @@
             <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
             <End Role="NHAPKHO" EntitySet="NHAPKHO" />
           </AssociationSet>
-
           <AssociationSet Name="FK_NHAPKHO_NHANVIEN" Association="Self.FK_NHAPKHO_NHANVIEN">
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
             <End Role="NHAPKHO" EntitySet="NHAPKHO" />
           </AssociationSet>
-
           <AssociationSet Name="FK_PHUONGTIEN_KHACHHANG" Association="Self.FK_PHUONGTIEN_KHACHHANG">
             <End Role="KHACHHANG" EntitySet="KHACHHANG" />
             <End Role="PHUONGTIEN" EntitySet="PHUONGTIEN" />
@@ -595,9 +567,7 @@
           <NavigationProperty Name="PHUONGTIEN" Relationship="Self.FK_BAOGIA_PHUONGTIEN" FromRole="BAOGIA" ToRole="PHUONGTIEN" />
           <NavigationProperty Name="THONGTINTIEPNHAN" Relationship="Self.FK_BAOGIA_THONGTINTIEPNHAN" FromRole="BAOGIA" ToRole="THONGTINTIEPNHAN" />
           <NavigationProperty Name="CT_BAOGIA" Relationship="Self.FK_CTBAOGIA_BAOGIA" FromRole="BAOGIA" ToRole="CT_BAOGIA" />
-
           <NavigationProperty Name="XUATKHOes" Relationship="Self.FK_XUATKHO_BAOGIA" FromRole="BAOGIA" ToRole="XUATKHO" />
-
         </EntityType>
         <EntityType Name="CT_BAOGIA">
           <Key>
@@ -634,7 +604,6 @@
           <Property Name="SoLuongThucNhap" Type="Int32" />
           <NavigationProperty Name="HANGHOA" Relationship="Self.FK_CTNHAPKHO_HANGHOA" FromRole="CT_NHAPKHO" ToRole="HANGHOA" />
           <NavigationProperty Name="NHAPKHO" Relationship="Self.FK_CTNHAPKHO_NHAPKHO" FromRole="CT_NHAPKHO" ToRole="NHAPKHO" />
-
         </EntityType>
         <EntityType Name="CT_XUATKHO">
           <Key>
@@ -646,7 +615,6 @@
           <Property Name="SoLuongXuatKho" Type="Int32" />
           <NavigationProperty Name="HANGHOA" Relationship="Self.FK_CTXUATKHO_HANGHOA" FromRole="CT_XUATKHO" ToRole="HANGHOA" />
           <NavigationProperty Name="XUATKHO" Relationship="Self.FK_CTXUATKHO_XUATKHO" FromRole="CT_XUATKHO" ToRole="XUATKHO" />
-
         </EntityType>
         <EntityType Name="HANGHOA">
           <Key>
@@ -658,16 +626,14 @@
           <Property Name="DonViTinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LoaiHang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SoLuongTon" Type="Int32" />
+          <Property Name="SoLuongTmp" Type="Int32" />
           <Property Name="HinhAnh" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
           <Property Name="HH_MaNCC" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CT_BAOGIA" Relationship="Self.FK_CTBAOGIA_HANGHOA" FromRole="HANGHOA" ToRole="CT_BAOGIA" />
           <NavigationProperty Name="CT_HOADON" Relationship="Self.FK_CTHOADON_HANGHOA" FromRole="HANGHOA" ToRole="CT_HOADON" />
           <NavigationProperty Name="CT_NHAPKHO" Relationship="Self.FK_CTNHAPKHO_HANGHOA" FromRole="HANGHOA" ToRole="CT_NHAPKHO" />
-
           <NavigationProperty Name="CT_XUATKHO" Relationship="Self.FK_CTXUATKHO_HANGHOA" FromRole="HANGHOA" ToRole="CT_XUATKHO" />
           <NavigationProperty Name="NHACUNGCAP" Relationship="Self.FK_HANGHOA_NCC" FromRole="HANGHOA" ToRole="NHACUNGCAP" />
-          <Property Name="SoLuongTmp" Type="Int32" />
-
         </EntityType>
         <EntityType Name="HOADON">
           <Key>
@@ -677,9 +643,9 @@
           <Property Name="NgayLap" Type="DateTime" Precision="3" />
           <Property Name="HD_MaKH" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="HD_BienSoXe" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="TongThanhToan" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TongThanhToan" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="HD_MaTT" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="HD_MaTN" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="HD_MaTN" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="CT_HOADON" Relationship="Self.FK_CTHOADON_HOADON" FromRole="HOADON" ToRole="CT_HOADON" />
           <NavigationProperty Name="KHACHHANG" Relationship="Self.FK_HOADON_KHACHHANG" FromRole="HOADON" ToRole="KHACHHANG" />
           <NavigationProperty Name="PHUONGTIEN" Relationship="Self.FK_HOADON_PHUONGTIEN" FromRole="HOADON" ToRole="PHUONGTIEN" />
@@ -750,18 +716,6 @@
           <NavigationProperty Name="NHACUNGCAP" Relationship="Self.FK_NHAPKHO_NHACUNGCAP" FromRole="NHAPKHO" ToRole="NHACUNGCAP" />
           <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_NHAPKHO_NHANVIEN" FromRole="NHAPKHO" ToRole="NHANVIEN" />
         </EntityType>
-        <EntityType Name="NHAPKHO">
-          <Key>
-            <PropertyRef Name="MaNK" />
-          </Key>
-          <Property Name="MaNK" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NgayLap" Type="DateTime" Precision="3" />
-          <Property Name="NK_MaNCC" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="HoTenNguoiGiao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SoChungTu" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="CT_NHAPKHO" Relationship="Self.FK_CTNHAPKHO_NHAPKHO" FromRole="NHAPKHO" ToRole="CT_NHAPKHO" />
-          <NavigationProperty Name="NHACUNGCAP" Relationship="Self.FK_NHAPKHO_NHACUNGCAP" FromRole="NHAPKHO" ToRole="NHACUNGCAP" />
-        </EntityType>
         <EntityType Name="PHUONGTIEN">
           <Key>
             <PropertyRef Name="BienSoXe" />
@@ -816,7 +770,6 @@
           <NavigationProperty Name="BAOGIAs" Relationship="Self.FK_BAOGIA_THONGTINTIEPNHAN" FromRole="THONGTINTIEPNHAN" ToRole="BAOGIA" />
           <NavigationProperty Name="HOADONs" Relationship="Self.FK_HOADON_THONGTINTIEPNHAN" FromRole="THONGTINTIEPNHAN" ToRole="HOADON" />
         </EntityType>
-
         <EntityType Name="XUATKHO">
           <Key>
             <PropertyRef Name="MaXK" />
@@ -831,7 +784,6 @@
           <NavigationProperty Name="CT_XUATKHO" Relationship="Self.FK_CTXUATKHO_XUATKHO" FromRole="XUATKHO" ToRole="CT_XUATKHO" />
           <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_XUATKHO_NHANVIEN" FromRole="XUATKHO" ToRole="NHANVIEN" />
         </EntityType>
-
         <Association Name="FK_BAOGIA_KHACHHANG">
           <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
           <End Role="BAOGIA" Type="Self.BAOGIA" Multiplicity="*" />
@@ -880,7 +832,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-
         <Association Name="FK_XUATKHO_BAOGIA">
           <End Role="BAOGIA" Type="Self.BAOGIA" Multiplicity="0..1" />
           <End Role="XUATKHO" Type="Self.XUATKHO" Multiplicity="*" />
@@ -893,7 +844,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-
         <Association Name="FK_CTBAOGIA_HANGHOA">
           <End Role="HANGHOA" Type="Self.HANGHOA" Multiplicity="1" />
           <End Role="CT_BAOGIA" Type="Self.CT_BAOGIA" Multiplicity="*" />
@@ -954,7 +904,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-
         <Association Name="FK_CTXUATKHO_HANGHOA">
           <End Role="HANGHOA" Type="Self.HANGHOA" Multiplicity="1" />
           <End Role="CT_XUATKHO" Type="Self.CT_XUATKHO" Multiplicity="*" />
@@ -979,7 +928,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-
         <Association Name="FK_HANGHOA_NCC">
           <End Role="NHACUNGCAP" Type="Self.NHACUNGCAP" Multiplicity="0..1" />
           <End Role="HANGHOA" Type="Self.HANGHOA" Multiplicity="*" />
@@ -1029,7 +977,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_HOADON_THONGTINTIEPNHAN">
-          <End Role="THONGTINTIEPNHAN" Type="Self.THONGTINTIEPNHAN" Multiplicity="0..1" />
+          <End Role="THONGTINTIEPNHAN" Type="Self.THONGTINTIEPNHAN" Multiplicity="1" />
           <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="THONGTINTIEPNHAN">
@@ -1064,7 +1012,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-
         <Association Name="FK_NHAPKHO_NHANVIEN">
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
           <End Role="NHAPKHO" Type="Self.NHAPKHO" Multiplicity="*" />
@@ -1089,15 +1036,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-
         <EntityContainer Name="DrieUnityGarageEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BAOGIAs" EntityType="Self.BAOGIA" />
           <EntitySet Name="CT_BAOGIA" EntityType="Self.CT_BAOGIA" />
           <EntitySet Name="CT_HOADON" EntityType="Self.CT_HOADON" />
           <EntitySet Name="CT_NHAPKHO" EntityType="Self.CT_NHAPKHO" />
-
           <EntitySet Name="CT_XUATKHO" EntityType="Self.CT_XUATKHO" />
-
           <EntitySet Name="HANGHOAs" EntityType="Self.HANGHOA" />
           <EntitySet Name="HOADONs" EntityType="Self.HOADON" />
           <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
@@ -1108,9 +1052,7 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="THONGTINTHANHTOANs" EntityType="Self.THONGTINTHANHTOAN" />
           <EntitySet Name="THONGTINTIEPNHANs" EntityType="Self.THONGTINTIEPNHAN" />
-
           <EntitySet Name="XUATKHOes" EntityType="Self.XUATKHO" />
-
           <AssociationSet Name="FK_BAOGIA_KHACHHANG" Association="Self.FK_BAOGIA_KHACHHANG">
             <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
             <End Role="BAOGIA" EntitySet="BAOGIAs" />
@@ -1127,12 +1069,10 @@
             <End Role="BAOGIA" EntitySet="BAOGIAs" />
             <End Role="CT_BAOGIA" EntitySet="CT_BAOGIA" />
           </AssociationSet>
-
           <AssociationSet Name="FK_XUATKHO_BAOGIA" Association="Self.FK_XUATKHO_BAOGIA">
             <End Role="BAOGIA" EntitySet="BAOGIAs" />
             <End Role="XUATKHO" EntitySet="XUATKHOes" />
           </AssociationSet>
-
           <AssociationSet Name="FK_CTBAOGIA_HANGHOA" Association="Self.FK_CTBAOGIA_HANGHOA">
             <End Role="HANGHOA" EntitySet="HANGHOAs" />
             <End Role="CT_BAOGIA" EntitySet="CT_BAOGIA" />
@@ -1153,7 +1093,6 @@
             <End Role="NHAPKHO" EntitySet="NHAPKHOes" />
             <End Role="CT_NHAPKHO" EntitySet="CT_NHAPKHO" />
           </AssociationSet>
-
           <AssociationSet Name="FK_CTXUATKHO_HANGHOA" Association="Self.FK_CTXUATKHO_HANGHOA">
             <End Role="HANGHOA" EntitySet="HANGHOAs" />
             <End Role="CT_XUATKHO" EntitySet="CT_XUATKHO" />
@@ -1162,7 +1101,6 @@
             <End Role="XUATKHO" EntitySet="XUATKHOes" />
             <End Role="CT_XUATKHO" EntitySet="CT_XUATKHO" />
           </AssociationSet>
-
           <AssociationSet Name="FK_HANGHOA_NCC" Association="Self.FK_HANGHOA_NCC">
             <End Role="NHACUNGCAP" EntitySet="NHACUNGCAPs" />
             <End Role="HANGHOA" EntitySet="HANGHOAs" />
@@ -1190,7 +1128,6 @@
           <AssociationSet Name="FK_NHAPKHO_NHACUNGCAP" Association="Self.FK_NHAPKHO_NHACUNGCAP">
             <End Role="NHACUNGCAP" EntitySet="NHACUNGCAPs" />
             <End Role="NHAPKHO" EntitySet="NHAPKHOes" />
-
           </AssociationSet>
           <AssociationSet Name="FK_NHAPKHO_NHANVIEN" Association="Self.FK_NHAPKHO_NHANVIEN">
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
@@ -1199,7 +1136,6 @@
           <AssociationSet Name="FK_XUATKHO_NHANVIEN" Association="Self.FK_XUATKHO_NHANVIEN">
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
             <End Role="XUATKHO" EntitySet="XUATKHOes" />
-
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -1250,7 +1186,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-
           <EntitySetMapping Name="CT_XUATKHO">
             <EntityTypeMapping TypeName="DrieUnityGarageModel.CT_XUATKHO">
               <MappingFragment StoreEntitySet="CT_XUATKHO">
@@ -1260,17 +1195,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-
           <EntitySetMapping Name="HANGHOAs">
             <EntityTypeMapping TypeName="DrieUnityGarageModel.HANGHOA">
               <MappingFragment StoreEntitySet="HANGHOA">
-                <ScalarProperty Name="SoLuongTmp" ColumnName="SoLuongTmp" />
                 <ScalarProperty Name="MaHH" ColumnName="MaHH" />
                 <ScalarProperty Name="TenHH" ColumnName="TenHH" />
                 <ScalarProperty Name="DonGia" ColumnName="DonGia" />
                 <ScalarProperty Name="DonViTinh" ColumnName="DonViTinh" />
                 <ScalarProperty Name="LoaiHang" ColumnName="LoaiHang" />
                 <ScalarProperty Name="SoLuongTon" ColumnName="SoLuongTon" />
+                <ScalarProperty Name="SoLuongTmp" ColumnName="SoLuongTmp" />
                 <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
                 <ScalarProperty Name="HH_MaNCC" ColumnName="HH_MaNCC" />
               </MappingFragment>

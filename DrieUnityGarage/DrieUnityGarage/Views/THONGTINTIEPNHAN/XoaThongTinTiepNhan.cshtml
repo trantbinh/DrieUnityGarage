@@ -13,6 +13,7 @@
         </div>
     </div>
     <div class="container col-6" style="margin-top: 10px; font-size:17px;">
+        <p style="font-weight:500; color:red; font-size:18px; text-align:center">@ViewBag.ThongBao</p>
         <hr />
         <div class="form-group mb-3">
             <label for="TN_MaNV" class="form-label"> Nhân viên phụ trách: </label>
@@ -48,25 +49,29 @@
             <label for="GhiChuKH" class="form-label"> Ghi chú của khách hàng: </label>
             <textarea class="col-12 form-control" rows="3" disabled style="background-color:white">@Model.GhiChuKH.Trim()</textarea>
         </div>
-
-
     </div>
-
-
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-
         <div class="row" style="padding-bottom:10px;">
             <div class="col-3"></div>
             <div class="col-6">
                 <div class="row" style="margin:0">
-                    <div class="col-4">
-                        @Html.ActionLink("< Quay về", "LayDanhSachThongTinTiepNhan", null, new { @class = "btn-back" })
-                    </div>
-                    <div class="col-4" style="text-align:center">
-                        <input type="submit" value="Xác nhận xoá" class="btn btn-danger" />
-                    </div>
+                        <div class="col-4">
+                            @Html.ActionLink("< Quay về", "LayDanhSachThongTinTiepNhan", null, new { @class = "btn-back" })
+                        </div>
+                        <div class="col-4" style="text-align:center">
+                            @{
+                                <input type="submit" value="Xác nhận xoá" class="btn btn-danger" onclick="clicked(event)" />
+                                <script>
+                                    function clicked(e) {
+                                        if (!confirm('Xác nhận xoá thông tin tiếp nhận?')) {
+                                            e.preventDefault();
+                                        }
+                                      
+                                    }</script>
+                            }
+                        </div>
                     <div class="col-4"></div>
                 </div>
             </div>

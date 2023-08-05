@@ -39,7 +39,11 @@ namespace DrieUnityGarage.Models
             this.MaKH = tn.TN_MaKH;
             this.BienSoXe = tn.TN_BienSoXe;
             this.ThoiGianTiepNhan = (DateTime)tn.ThoiGianTiepNhan;
-            this.ThoiGianDuKien = (DateTime)tn.ThoiGianGiaoDuKien;
+            if(tn.ThoiGianGiaoDuKien== null)
+            {
+                ThoiGianDuKien = DateTime.Now;
+            }
+            else { this.ThoiGianDuKien = (DateTime)tn.ThoiGianGiaoDuKien; }
             this.GhiChuKH = tn.GhiChuKH;
             this.TrangThai= tn.TrangThai;
             this.FullThongTin = tn.MaTN + " - " + tn.TN_MaKH + " - " + tn.TN_BienSoXe;

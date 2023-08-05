@@ -72,7 +72,7 @@ namespace DrieUnityGarage.Controllers
         // GET: THONGTINTIEPNHAN/TaoThongTinTiepNhan
         public ActionResult TaoThongTinTiepNhan()
         {
-            String date = DateTime.Now.ToString("dd/MM/yyyy");
+            String date = DateTime.Now.ToString("hh:mm:ss, dd/MM/yyyy");
             ViewBag.ThoiGianTiepNhan = date;
             String idTN = TaoMaTiepNhan();
             ViewBag.MaTN = idTN;
@@ -145,8 +145,8 @@ namespace DrieUnityGarage.Controllers
             {
                 String id = TaoMaTiepNhan();
                 tHONGTINTIEPNHAN.MaTN = id;
-                /* tHONGTINTIEPNHAN.TN_MaNV = Session["MaTaiKhoanNV"].ToString();*/
-                tHONGTINTIEPNHAN.TN_MaNV = "NV001";
+                tHONGTINTIEPNHAN.TN_MaNV = Session["MaTaiKhoanNV"].ToString();
+               
                 tHONGTINTIEPNHAN.TN_MaKH = Session["MaKH"].ToString();
                 tHONGTINTIEPNHAN.TN_BienSoXe = lstXe;
                 tHONGTINTIEPNHAN.ThoiGianTiepNhan = DateTime.Now;
@@ -223,18 +223,36 @@ namespace DrieUnityGarage.Controllers
         }
 
         // GET: THONGTINTIEPNHAN/XoaThongTinTiepNhan/5
-        public ActionResult XoaThongTinTiepNhan(string id)
+        public ActionResult XoaThongTinTiepNhan(string id, int check)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             THONGTINTIEPNHAN tHONGTINTIEPNHAN = db.THONGTINTIEPNHANs.Find(id);
-            if (tHONGTINTIEPNHAN == null)
-            {
-                return HttpNotFound();
-            }
+                if (check == 0)
+                {
+                    ViewBag.ThongBao = "!Lưu ý: Dữ liệu có liên quan đến các dữ liệu khác. Không thể xoá";
+                }
+                else
+                {
+                if (tHONGTINTIEPNHAN == null)
+                {
+                    return HttpNotFound();
+                }
+            }           
             return View(tHONGTINTIEPNHAN);
+        }
+        
+        public bool KiemTraKhoaNgoai(string id)
+        {
+            List<HOADON> tn = db.HOADONs.Where(m => m.HD_MaTN.Equals(id)).ToList();
+            List<BAOGIA> bg = db.BAOGIAs.Where(m => m.BG_MaTN.Equals(id)).ToList();
+            if (tn.Count() == 0 && bg.Count()==0)
+            {
+                return false;
+            }
+            return true;
         }
 
         // POST: THONGTINTIEPNHAN/XoaThongTinTiepNhan/5
@@ -242,9 +260,18 @@ namespace DrieUnityGarage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            THONGTINTIEPNHAN tHONGTINTIEPNHAN = db.THONGTINTIEPNHANs.Find(id);
-            db.THONGTINTIEPNHANs.Remove(tHONGTINTIEPNHAN);
-            db.SaveChanges();
+            bool check = KiemTraKhoaNgoai(id);
+            if (check == true)
+            {
+                return XoaThongTinTiepNhan(id, 0);
+            }
+            else
+            {
+                THONGTINTIEPNHAN tHONGTINTIEPNHAN = db.THONGTINTIEPNHANs.Find(id);
+                db.THONGTINTIEPNHANs.Remove(tHONGTINTIEPNHAN);
+                db.SaveChanges();
+            }
+          
             return RedirectToAction("LayDanhSachThongTinTiepNhan");
         }
 

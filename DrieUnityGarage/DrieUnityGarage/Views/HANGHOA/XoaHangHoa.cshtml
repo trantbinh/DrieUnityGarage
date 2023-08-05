@@ -75,7 +75,6 @@
 
                 @if (Session["KhongTheXoa"] != null)
                 {
-
                     <div class="col-3">
                         @Html.ActionLink("< Quay về", "LayDanhSachHangHoa", null, new { @class = "btn-back" })
                     </div>
@@ -85,8 +84,7 @@
                     
                         <div class="col-6" style="text-align:right">
                             <input type="submit" value="Xoá toàn bộ dữ liệu liên quan" class="btn btn-warning" />
-                        </div>
-                    
+                        </div>       
                 }
                 else
                 {

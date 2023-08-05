@@ -30,7 +30,6 @@ namespace DrieUnityGarage.Models
         public virtual DbSet<CT_HOADON> CT_HOADON { get; set; }
         public virtual DbSet<CT_NHAPKHO> CT_NHAPKHO { get; set; }
         public virtual DbSet<CT_XUATKHO> CT_XUATKHO { get; set; }
-
         public virtual DbSet<HANGHOA> HANGHOAs { get; set; }
         public virtual DbSet<HOADON> HOADONs { get; set; }
         public virtual DbSet<KHACHHANG> KHACHHANGs { get; set; }
