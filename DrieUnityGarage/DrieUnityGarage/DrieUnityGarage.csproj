@@ -131,14 +131,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BAOGIAController.cs" />
-    <Compile Include="Controllers\CT_BAOGIAController.cs" />
-    <Compile Include="Controllers\CT_HOADONController.cs" />
     <Compile Include="Controllers\HANGHOAController.cs" />
     <Compile Include="Controllers\HOADONController.cs" />
     <Compile Include="Controllers\DrieUnityGarageController.cs" />
     <Compile Include="Controllers\KHACHHANGController.cs" />
     <Compile Include="Controllers\NHACUNGCAPController.cs" />
     <Compile Include="Controllers\NHANVIENController.cs" />
+    <Compile Include="Controllers\NHAPKHOController.cs" />
     <Compile Include="Controllers\THONGTINTIEPNHANController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\XUATKHOController.cs" />
@@ -172,7 +171,6 @@
     <Compile Include="Models\DATLICH.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DONHANG.cs" />
     <Compile Include="Models\HANGHOA.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -213,6 +211,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\THONGTINKHACHHANG.cs" />
+    <Compile Include="Models\THONGTINNHACUNGCAP.cs" />
     <Compile Include="Models\THONGTINNHANVIEN.cs" />
     <Compile Include="Models\THONGTINPHUONGTIEN.cs" />
     <Compile Include="Models\THONGTINSANPHAM.cs" />
@@ -407,11 +406,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\CT_HOADON\Create.cshtml" />
-    <Content Include="Views\CT_HOADON\Delete.cshtml" />
-    <Content Include="Views\CT_HOADON\Details.cshtml" />
-    <Content Include="Views\CT_HOADON\Edit.cshtml" />
-    <Content Include="Views\CT_HOADON\Index.cshtml" />
     <Content Include="Views\HOADON\SuaHoaDon.cshtml" />
     <Content Include="Views\HOADON\LayDanhSachHoaDon.cshtml" />
     <Content Include="Views\HOADON\Partial_TaoHD_LayChiTietHoaDon.cshtml" />
@@ -465,11 +459,6 @@
     <Content Include="Views\NHANVIEN\TaoTaiKhoan.cshtml" />
     <Content Include="Views\HOADON\Partial_XemHD_LayDuLieuCTHD.cshtml" />
     <Content Include="Views\HOADON\Partial_CapNhatHD_LayChiTietHoaDon.cshtml" />
-    <Content Include="Views\CT_BAOGIA\Index.cshtml" />
-    <Content Include="Views\CT_BAOGIA\Details.cshtml" />
-    <Content Include="Views\CT_BAOGIA\Create.cshtml" />
-    <Content Include="Views\CT_BAOGIA\Edit.cshtml" />
-    <Content Include="Views\CT_BAOGIA\Delete.cshtml" />
     <Content Include="Views\BAOGIA\Partial_TaoBG_LayChiTietBaoGia.cshtml" />
     <Content Include="Views\BAOGIA\Partial_TaoBG_ThemChiTietBaoGia.cshtml" />
     <Content Include="Views\BAOGIA\LayDanhSachBaoGia.cshtml" />
@@ -490,6 +479,15 @@
     <Content Include="Views\XUATKHO\Partial_TaoXK_ThemChiTietPhieuXK.cshtml" />
     <Content Include="Views\XUATKHO\Partial_SuaXK_LayChiTietXK.cshtml" />
     <Content Include="Views\XUATKHO\Partial_XemXK_LayDuLieuCTXK.cshtml" />
+    <Content Include="Views\NHAPKHO\TaoPhieuNhapKho.cshtml" />
+    <Content Include="Views\NHAPKHO\XoaPhieuNhapKho.cshtml" />
+    <Content Include="Views\NHAPKHO\LayThongTinPhieuNhapKho.cshtml" />
+    <Content Include="Views\NHAPKHO\SuaPhieuNhapKho.cshtml" />
+    <Content Include="Views\NHAPKHO\LayDanhSachPhieuNhapKho.cshtml" />
+    <Content Include="Views\NHAPKHO\Partial_TaoNK_LayChiTietPhieuNK.cshtml" />
+    <Content Include="Views\NHAPKHO\Partial_TaoNK_ThemChiTietPhieuNK.cshtml" />
+    <Content Include="Views\NHAPKHO\Partial_SuaNK_LayChiTietNK.cshtml" />
+    <Content Include="Views\NHAPKHO\Partial_XemNK_LayDuLieuCTNK.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -36,7 +36,7 @@
                     <input class="col-12 form-control" value="@String.Format("{0: HH:mm:ss, dd/MM/yyyy}", @Model.ThoiGianTiepNhan)" disabled />
                 </div>
                 <div class="form-group mb-3">
-                    <label for="TN_MaNV" class="form-label"> Nhân viên phụ trách: [Mã nhân viên - Tên nhân viên - Chức vụ]</label>
+                    <label for="TN_MaNV" class="form-label"> Chọn nhân viên phụ trách: [Mã nhân viên - Tên nhân viên - Chức vụ]</label>
                     <div class="col-12">
                         @Html.DropDownList("TN_MaNV", null, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.TN_MaNV, "", new { @class = "text-danger" })

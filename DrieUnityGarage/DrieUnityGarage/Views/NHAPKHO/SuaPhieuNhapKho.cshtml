@@ -1,0 +1,93 @@
+﻿@model DrieUnityGarage.Models.NHAPKHO
+
+@{
+    ViewBag.Title = "Sửa phiếu nhập kho";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center; ">
+            <h2>Sửa phiếu nhập kho</h2>
+        </div>
+    </div>
+    <p style="font-size:20px; font-weight:bold">THÔNG TIN CHUNG:</p>
+    <div class="row " style="margin: 0; margin-top: 10px; font-size: 17px;">
+        <div class="form-group mb-3 col-4">
+            <label for="MaNK" class="form-label"> Mã phiếu nhập kho: </label>
+            <input class="form-control w-75" id="MaNK" name="MaXK" disabled value="@Model.MaNK" />
+        </div>
+        <div class="form-group mb-3 col-4">
+            <label for="NgayLap" class="form-label"> Thời gian lập: </label>
+            <input class="form-control w-75" id="NgayLap" name="NgayLap" disabled value="@Model.NgayLap" />
+
+        </div>
+        <div class="form-group mb-3 col-4">
+            <label for="MaNV" class="form-label"> Nhân viên thực hiện: </label>
+            <input class="form-control w-75" id="MaNV" name="MaNV" disabled value="@Model.NK_MaNV " />
+        </div>
+    </div>
+    <div class="row " style="margin: 0; margin-top: 10px; font-size: 17px;">
+        <div class="form-group mb-3 col-4">
+            <label for="lstNCC" class="form-label"> Nhà cung cấp:</label>
+            <input class="form-control w-75" id="MaNV" name="MaNV" disabled value="@ViewBag.selectedNCC " />
+        </div>
+        <div class="form-group mb-3 col-4">
+            <label for="NguoiGiao" class="form-label"> Họ tên người giao: </label>
+            <input class="form-control w-75" id="NguoiGiao" name="NguoiGiao" disabled value="@Model.HoTenNguoiGiao" />
+        </div>
+        <div class="form-group mb-3 col-4">
+            <label for="SoCT" class="form-label"> Số chứng từ kèm theo (nếu có): </label>
+            <input class="form-control w-75" id="SoCT" name="SoCT" disabled value="@Model.SoChungTu" />
+        </div>
+    </div>
+    <p style="font-size:20px; font-weight:bold; margin-top:10px;">CHI TIẾT NHẬP KHO:</p>
+    @Html.Action("Partial_SuaNK_LayChiTietNK", "NHAPKHO", new { id = Model.MaNK })
+    <div class="row" style="padding-bottom:10px;">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="row" style="margin:auto">
+                <div class="col-4">
+                    @Html.ActionLink("< Quay về", "LayDanhSachPhieuNhapKho", null, new { @class = "btn-back" })
+                </div>
+
+                <div class="col-4" style="text-align:center">
+                    @using (Html.BeginForm("SuaPhieuNhapKho", "NHAPKHO"))
+                    {@Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    {
+                        var a = Session["lstSP"] as List<DrieUnityGarage.Models.THONGTINSANPHAM>;
+                        if (a.Count != 0)
+                        {
+                            <input type="submit" value="Sửa phiếu" class="btn btn-success" onclick="myFunctionXK()" />
+                            <script>
+                                function myFunctionXK() {
+                                    alert("Đã cập nhật phiếu nhập kho!");
+                                }
+                            </script>
+                        }
+                        else
+                        {
+                            <input type="submit" value="Sửa phiếu" class="btn btn-success" onclick="clicked(event)" />
+                            <script>
+                                function clicked(e) {
+                                    if (!confirm('Không có chi tiết phiếu, thông tin phiếu nhập kho sẽ bị xoá khỏi cơ sở dữ liệu! Bạn chắc chắn muốn xoá?')) {
+                                        e.preventDefault();
+                                    }
+                                    else {
+                                        alert("Đã xoá phiếu nhập kho!");
+                                    }
+                                }</script>
+                        }
+                    }
+                }
+                </div>
+                <div class="col-2"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
