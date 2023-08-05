@@ -31,6 +31,7 @@ namespace DrieUnityGarage.Models
         public Nullable<int> SoLuongTon { get; set; }
         public string HinhAnh { get; set; }
         public string HH_MaNCC { get; set; }
+        public Nullable<int> SoLuongTmp { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CT_BAOGIA> CT_BAOGIA { get; set; }

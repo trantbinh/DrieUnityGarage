@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.EnterpriseServices.CompensatingResourceManager;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -29,6 +30,9 @@ namespace DrieUnityGarage.Controllers
         public ActionResult Index()
         {
             Session.Remove("lstSP");
+            Session.Remove("c");
+            Session.Remove("LyDoXuat");
+            Session.Remove("SoCT");
             var xUATKHOes = db.XUATKHOes.Include(x => x.BAOGIA).Include(x => x.NHANVIEN);
             return View(xUATKHOes.ToList());
         }
@@ -144,14 +148,16 @@ namespace DrieUnityGarage.Controllers
         //Thêm sản phẩm vào chi tiết hoá đơn
         public ActionResult Partial_TaoXK_ThemChiTietPhieuXK()
         {
-            ViewBag.CTXK_MaHH = new SelectList(db.HANGHOAs, "MaHH", "TenHH");
+            var lstHH = db.HANGHOAs.Where(m => m.SoLuongTon > 0).ToList();
+            ViewBag.CTXK_MaHH = new SelectList(lstHH, "MaHH", "TenHH");
             return PartialView();
         }
         [HttpPost]
         public ActionResult Partial_TaoXK_ThemChiTietPhieuXK(CT_XUATKHO hh, String LyDoXuat, String SoCT)
         {
-                ViewBag.CTXK_MaHH  = new SelectList(db.HANGHOAs, "MaHH", "TenHH");
-                ViewBag.Selected = hh.CTXK_MaXK;
+            var lstHH = db.HANGHOAs.Where(m => m.SoLuongTon > 0).ToList();
+            ViewBag.CTXK_MaHH = new SelectList(lstHH, "MaHH", "TenHH");
+            ViewBag.Selected = hh.CTXK_MaXK;
                 Session["MaHH"] = hh.CTXK_MaHH;
                 Session["LyDoXuat"] = LyDoXuat;
                 Session["SoCT"] = SoCT;
@@ -184,6 +190,31 @@ namespace DrieUnityGarage.Controllers
                     details.SoLuongXuatKho = item.SoLuong;
                     details.CTXK_MaHH = item.MaSP;
                     db.CT_XUATKHO.Add(details);
+
+                    //Tính số lượng tồn kho
+                    HANGHOA hANGHOA = db.HANGHOAs.FirstOrDefault(m => m.MaHH.Equals(item.MaSP));
+                    int slTon = (int)hANGHOA.SoLuongTon;
+                    int slTonMoi = (int)(slTon - item.SoLuong);
+                    if (slTon == 0 || slTonMoi < 0)
+                    {
+                        hANGHOA.SoLuongTon = 0;
+                        hANGHOA.SoLuongTmp = 0;
+                    }
+                    else { hANGHOA.SoLuongTon = slTonMoi;
+                        hANGHOA.SoLuongTmp = slTonMoi;
+                    }
+
+                    hANGHOA.DonGia = 0;
+                    hANGHOA.MaHH = item.MaSP;
+                    hANGHOA.DonViTinh = "";
+                    hANGHOA.LoaiHang = "";
+                    hANGHOA.HH_MaNCC = "";
+                    hANGHOA.HinhAnh = "";
+                    hANGHOA.TenHH = "";
+                    
+                    db.HANGHOAs.Attach(hANGHOA);
+                    db.Entry(hANGHOA).Property(s => s.SoLuongTon).IsModified = true;
+                    db.Entry(hANGHOA).Property(s => s.SoLuongTmp).IsModified = true;
                     db.SaveChanges();
                 }
                 return RedirectToAction("Index");
@@ -259,6 +290,23 @@ namespace DrieUnityGarage.Controllers
                     details.SoLuongXuatKho = item.SoLuong;
                     details.CTXK_MaHH = item.MaSP;
                     db.CT_XUATKHO.Add(details);
+
+                    //Tính số lượng tồn kho
+                    //Tính số lượng tồn kho
+                    HANGHOA hANGHOA = db.HANGHOAs.FirstOrDefault(m => m.MaHH.Equals(item.MaSP));
+                    int slTon = (int)hANGHOA.SoLuongTmp;
+                    hANGHOA.SoLuongTon = slTon;
+                    hANGHOA.DonGia = 0;
+                    hANGHOA.MaHH = item.MaSP;
+                    hANGHOA.DonViTinh = "";
+                    hANGHOA.LoaiHang = "";
+                    hANGHOA.HH_MaNCC = "";
+                    hANGHOA.HinhAnh = "";
+                    hANGHOA.TenHH = "";
+                    hANGHOA.SoLuongTmp = 0;
+                    db.HANGHOAs.Attach(hANGHOA);
+                    db.Entry(hANGHOA).Property(s => s.SoLuongTon).IsModified = true;
+
                     db.SaveChanges();
                 }
                 return RedirectToAction("Index");
@@ -334,7 +382,7 @@ namespace DrieUnityGarage.Controllers
             {
                 return HttpNotFound();
             }
-            Session["MaXK"] = id;
+            Session["MaXK"] = xUATKHO.MaXK;
             ViewBag.NgayLap = ((DateTime)xUATKHO.NgayLap).ToString("hh:mm:ss, dd/MM/yyyy");
             return View(xUATKHO);
         }
@@ -346,27 +394,96 @@ namespace DrieUnityGarage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit()
         {
-            XUATKHO xUATKHO = new XUATKHO();
             String maXK = Session["MaXK"].ToString();
-            if (ModelState.IsValid)
+            var a = Session["lstSP"] as List<THONGTINSANPHAM>;
+            if (a.Count != 0)
             {
-                xUATKHO.MaXK = maXK;
-                xUATKHO.XK_MaNV = ""; 
-                xUATKHO.NgayLap = DateTime.Now;
-                xUATKHO.XK_MaBG = "";
-                xUATKHO.LyDoXuat = "";
-                xUATKHO.SoChungTu = "";
+                XUATKHO xUATKHO = new XUATKHO();
 
-                db.Entry(xUATKHO).State = EntityState.Modified;
-                db.Entry(xUATKHO).Property(s => s.XK_MaNV).IsModified = false;
-                db.Entry(xUATKHO).Property(s => s.XK_MaNV).IsModified = false;
-                db.Entry(xUATKHO).Property(s => s.NgayLap).IsModified = false;
-                db.Entry(xUATKHO).Property(s => s.XK_MaBG).IsModified = false;
-                db.Entry(xUATKHO).Property(s => s.LyDoXuat).IsModified = false;
-                db.Entry(xUATKHO).Property(s => s.SoChungTu).IsModified = false;
-                db.SaveChanges();
+                List<THONGTINSANPHAM> lstSP = LayDanhSachSanPhamList();
+                if (ModelState.IsValid)
+                {
+                    xUATKHO.MaXK = maXK;
+                    xUATKHO.XK_MaNV = "";
+                    xUATKHO.NgayLap = DateTime.Now;
+                    xUATKHO.XK_MaBG = "";
+                    xUATKHO.LyDoXuat = "";
+                    xUATKHO.SoChungTu = "";
+                    db.Entry(xUATKHO).State = EntityState.Modified;
+                    db.Entry(xUATKHO).Property(s => s.XK_MaNV).IsModified = false;
+                    db.Entry(xUATKHO).Property(s => s.XK_MaNV).IsModified = false;
+                    db.Entry(xUATKHO).Property(s => s.NgayLap).IsModified = false;
+                    db.Entry(xUATKHO).Property(s => s.XK_MaBG).IsModified = false;
+                    db.Entry(xUATKHO).Property(s => s.LyDoXuat).IsModified = false;
+                    db.Entry(xUATKHO).Property(s => s.SoChungTu).IsModified = false;
+
+                    bool check;
+                    List<CT_XUATKHO> cthd = db.CT_XUATKHO.Where(m => m.CTXK_MaXK.Equals(maXK)).ToList();
+                    if (cthd != null)
+                    {
+                        for (int i = 0; i < cthd.Count(); i++)
+                        {
+                            check = XoaChiTietXK(cthd[i].CTXK_MaXK);
+                        }
+                    }
+                    foreach (var item in lstSP)
+                    {
+                        var details = new CT_XUATKHO();
+                        details.CTXK_MaXK = maXK;
+                        details.SoLuongXuatKho = item.SoLuong;
+                        details.CTXK_MaHH = item.MaSP;
+                        db.CT_XUATKHO.Add(details);
+
+                        //Tính số lượng tồn kho
+                        HANGHOA hANGHOA = db.HANGHOAs.FirstOrDefault(m => m.MaHH.Equals(item.MaSP));
+                        int slTon = (int)hANGHOA.SoLuongTon;
+                        int slTonMoi = (int)(slTon - item.SoLuong);
+                        if (slTonMoi < 0)
+                        {
+                            hANGHOA.SoLuongTon = 0;
+                            hANGHOA.SoLuongTmp = 0;
+                        }
+                        else
+                        {
+                            hANGHOA.SoLuongTon = slTonMoi;
+                            hANGHOA.SoLuongTmp = slTonMoi;
+                        }
+                        hANGHOA.DonGia = 0;
+                        hANGHOA.MaHH = item.MaSP;
+                        hANGHOA.DonViTinh = "";
+                        hANGHOA.LoaiHang = "";
+                        hANGHOA.HH_MaNCC = "";
+                        hANGHOA.HinhAnh = "";
+                        hANGHOA.TenHH = "";
+                        db.HANGHOAs.Attach(hANGHOA);
+                        db.Entry(hANGHOA).Property(s => s.SoLuongTon).IsModified = true;
+                        db.Entry(hANGHOA).Property(s => s.SoLuongTmp).IsModified = true;
+
+                        db.SaveChanges();
+                    }
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(xUATKHO);
             }
-            return View(xUATKHO);
+            else
+            {
+                bool check;
+                List<CT_XUATKHO> cthd = db.CT_XUATKHO.Where(m => m.CTXK_MaXK.Equals(maXK)).ToList();
+                if (cthd != null)
+                {
+                    for (int i = 0; i < cthd.Count(); i++)
+                    {
+                        check = XoaChiTietXK(cthd[i].CTXK_MaXK);
+                    }
+                }
+
+                XUATKHO xUATKHO = db.XUATKHOes.Find(maXK);
+                db.XUATKHOes.Remove(xUATKHO);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+
+            }
         }
 
         // GET: XUATKHO/Delete/5
@@ -389,10 +506,52 @@ namespace DrieUnityGarage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
+            bool check;
+            List<CT_XUATKHO> cthd = db.CT_XUATKHO.Where(m => m.CTXK_MaXK.Equals(id)).ToList();
+            if (cthd != null)
+            {
+                for (int i = 0; i < cthd.Count(); i++)
+                {
+                    check = XoaChiTietXK(cthd[i].CTXK_MaXK);
+                }
+            }
+
             XUATKHO xUATKHO = db.XUATKHOes.Find(id);
             db.XUATKHOes.Remove(xUATKHO);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public bool XoaChiTietXK(string id)
+        {
+            CT_XUATKHO cT_XUATKHO = db.CT_XUATKHO.FirstOrDefault(m => m.CTXK_MaXK.Equals(id));
+            db.CT_XUATKHO.Remove(cT_XUATKHO);
+
+            //Tính số lượng tồn kho
+            String maSP = cT_XUATKHO.CTXK_MaHH;
+            HANGHOA hANGHOA = db.HANGHOAs.FirstOrDefault(m => m.MaHH.Equals(maSP));
+            int slTon = (int)hANGHOA.SoLuongTmp;
+            int slTonMoi = (int)(slTon + cT_XUATKHO.SoLuongXuatKho);
+            if (slTonMoi < 0)
+            {
+                hANGHOA.SoLuongTon = 0;
+                hANGHOA.SoLuongTmp = 0;
+            }
+            else { hANGHOA.SoLuongTon = slTonMoi;
+                hANGHOA.SoLuongTmp = slTonMoi;
+            }
+
+            hANGHOA.DonGia = 0;
+            hANGHOA.MaHH = maSP;
+            hANGHOA.DonViTinh = "";
+            hANGHOA.LoaiHang = "";
+            hANGHOA.HH_MaNCC = "";
+            hANGHOA.HinhAnh = "";
+            hANGHOA.TenHH = "";
+            db.HANGHOAs.Attach(hANGHOA);
+            db.Entry(hANGHOA).Property(s => s.SoLuongTon).IsModified = true;
+            db.Entry(hANGHOA).Property(s => s.SoLuongTmp).IsModified = true;
+            db.SaveChanges();
+            return true;
         }
 
         protected override void Dispose(bool disposing)

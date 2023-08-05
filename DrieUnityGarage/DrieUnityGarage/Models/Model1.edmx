@@ -34,7 +34,7 @@
           <Property Name="CTHD_MaHH" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="CTHD_MaHD" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="SoLuong" Type="int" />
-          <Property Name="ThanhTien" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ThanhTien" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="CT_NHAPKHO">
           <Key>
@@ -65,6 +65,7 @@
           <Property Name="DonViTinh" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LoaiHang" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SoLuongTon" Type="int" />
+          <Property Name="SoLuongTmp" Type="int" />
           <Property Name="HinhAnh" Type="nvarchar" MaxLength="400" />
           <Property Name="HH_MaNCC" Type="varchar" MaxLength="5" />
         </EntityType>
@@ -587,7 +588,7 @@
           <Property Name="CTHD_MaHH" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CTHD_MaHD" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SoLuong" Type="Int32" />
-          <Property Name="ThanhTien" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ThanhTien" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="HANGHOA" Relationship="Self.FK_CTHOADON_HANGHOA" FromRole="CT_HOADON" ToRole="HANGHOA" />
           <NavigationProperty Name="HOADON" Relationship="Self.FK_CTHOADON_HOADON" FromRole="CT_HOADON" ToRole="HOADON" />
         </EntityType>
@@ -631,6 +632,7 @@
           <NavigationProperty Name="CT_NHAPKHO" Relationship="Self.FK_CTNHAPKHO_HANGHOA" FromRole="HANGHOA" ToRole="CT_NHAPKHO" />
           <NavigationProperty Name="CT_XUATKHO" Relationship="Self.FK_CTXUATKHO_HANGHOA" FromRole="HANGHOA" ToRole="CT_XUATKHO" />
           <NavigationProperty Name="NHACUNGCAP" Relationship="Self.FK_HANGHOA_NCC" FromRole="HANGHOA" ToRole="NHACUNGCAP" />
+          <Property Name="SoLuongTmp" Type="Int32" />
         </EntityType>
         <EntityType Name="HOADON">
           <Key>
@@ -1195,6 +1197,7 @@
           <EntitySetMapping Name="HANGHOAs">
             <EntityTypeMapping TypeName="DrieUnityGarageModel.HANGHOA">
               <MappingFragment StoreEntitySet="HANGHOA">
+                <ScalarProperty Name="SoLuongTmp" ColumnName="SoLuongTmp" />
                 <ScalarProperty Name="MaHH" ColumnName="MaHH" />
                 <ScalarProperty Name="TenHH" ColumnName="TenHH" />
                 <ScalarProperty Name="DonGia" ColumnName="DonGia" />

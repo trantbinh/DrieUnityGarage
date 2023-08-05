@@ -115,7 +115,8 @@ namespace DrieUnityGarage.Controllers
         //Thêm sản phẩm vào chi tiết hoá đơn
         public ActionResult Partial_TaoHD_ThemChiTietHoaDon()
         {
-            ViewBag.CTHD_MaHH = new SelectList(db.HANGHOAs, "MaHH", "TenHH");
+            var lstHH = db.HANGHOAs.Where(m => m.SoLuongTmp > 0).ToList();
+            ViewBag.CTHD_MaHH = new SelectList(lstHH, "MaHH", "TenHH");
             return PartialView();
         }
         [HttpPost]
@@ -125,7 +126,7 @@ namespace DrieUnityGarage.Controllers
                 return RedirectToAction("ThemHoaDon", "HOADON");
             else
             {
-                var lstHH = db.HANGHOAs.Where(m => m.SoLuongTon > 0).ToList();
+                var lstHH = db.HANGHOAs.Where(m => m.SoLuongTmp > 0).ToList();
                 ViewBag.CTHD_MaHH = new SelectList(lstHH, "MaHH", "TenHH");
                 ViewBag.Selected = hh.CTHD_MaHH;
                 Session["MaHH"] = hh.CTHD_MaHH;
@@ -137,79 +138,89 @@ namespace DrieUnityGarage.Controllers
         [HttpPost]
         public ActionResult CTDH_ThemHoaDon(HOADON hd)
         {
-            var tongtien = TinhTongTien();
-            List<THONGTINSANPHAM> lstSP = CTHD_LayDanhSachSanPham();
-            if (ModelState.IsValid)
+            var lstSPHD = Session["lstSPHD"] as List<THONGTINSANPHAM>;
+            if (Session["DaLayThongTinTiepNhan"] != null && lstSPHD.Count()!=0)
             {
-                hd.MaHD = Session["MaHD"].ToString();     
-                hd.NgayLap = DateTime.Now;  
-                hd.TongThanhToan = tongtien;
-                hd.HD_BienSoXe =Session["BienSoXe"].ToString();
-                hd.HD_MaKH = Session["MaKH"].ToString();
-                hd.HD_MaTN =Session["MaTN"].ToString();
-                hd.HD_MaTT = null;
-                db.HOADONs.Add(hd);
+                var tongtien = TinhTongTien();
+                List<THONGTINSANPHAM> lstSP = CTHD_LayDanhSachSanPham();
+                if (ModelState.IsValid)
+                {
+                    hd.MaHD = Session["MaHD"].ToString();
+                    hd.NgayLap = DateTime.Now;
+                    hd.TongThanhToan = tongtien;
+                    hd.HD_BienSoXe = Session["BienSoXe"].ToString();
+                    hd.HD_MaKH = Session["MaKH"].ToString();
+                    hd.HD_MaTN = Session["MaTN"].ToString();
+                    hd.HD_MaTT = null;
+                    db.HOADONs.Add(hd);
 
-                String maKH = Session["MaKH"].ToString();
-                KHACHHANG kHACHHANG = db.KHACHHANGs.FirstOrDefault(m => m.MaKH.Equals(maKH));
-                int diemThanhVien = (int)tongtien * 10 / 100;
+                    String maKH = Session["MaKH"].ToString();
+                    KHACHHANG kHACHHANG = db.KHACHHANGs.FirstOrDefault(m => m.MaKH.Equals(maKH));
+                    int diemThanhVien = (int)tongtien * 10 / 100;
 
-                if (kHACHHANG.DiemThanhVien == null)
-                    kHACHHANG.DiemThanhVien = diemThanhVien;
-                else kHACHHANG.DiemThanhVien = kHACHHANG.DiemThanhVien + (int)diemThanhVien;
+                    if (kHACHHANG.DiemThanhVien == null)
+                        kHACHHANG.DiemThanhVien = diemThanhVien;
+                    else kHACHHANG.DiemThanhVien = kHACHHANG.DiemThanhVien + (int)diemThanhVien;
 
-                kHACHHANG.MaKH = maKH;
-                kHACHHANG.HoTenKH = "";
-                kHACHHANG.DienThoaiKH = "";
-                kHACHHANG.NgaySinh = DateTime.Now;
-                kHACHHANG.GioiTinh = "";
-                kHACHHANG.Email = "";
-                kHACHHANG.DiaChi = "";
+                    kHACHHANG.MaKH = maKH;
+                    kHACHHANG.HoTenKH = "";
+                    kHACHHANG.DienThoaiKH = "";
+                    kHACHHANG.NgaySinh = DateTime.Now;
+                    kHACHHANG.GioiTinh = "";
+                    kHACHHANG.Email = "";
+                    kHACHHANG.DiaChi = "";
 
-                db.KHACHHANGs.Attach(kHACHHANG);
-                db.Entry(kHACHHANG).Property(s => s.DiemThanhVien).IsModified = true;
-
-                db.SaveChanges();
-
-                foreach (var item in lstSP) { 
-                    var details = new CT_HOADON();
-                    details.CTHD_MaHD= Session["MaHD"].ToString();
-                    details.SoLuong = item.SoLuong;
-                    details.CTHD_MaHH = item.MaSP;
-                    details.ThanhTien = item.FinalPrice();
-                    db.CT_HOADON.Add(details);
-
-                    //Tính số lượng tồn kho
-                    HANGHOA hANGHOA = db.HANGHOAs.FirstOrDefault(m => m.MaHH.Equals(item.MaSP));
-                    int slTon =(int) hANGHOA.SoLuongTon;
-                    int slTonMoi = (int)(slTon - item.SoLuong);
-                    if (slTon == 0 || slTonMoi < 0)
-                    {
-                        hANGHOA.SoLuongTon = 0;
-                    }
-                    else hANGHOA.SoLuongTon = slTonMoi;
-                    hANGHOA.DonGia = 0;
-                    hANGHOA.MaHH= item.MaSP;
-                    hANGHOA.DonViTinh = "";
-                    hANGHOA.LoaiHang = "";
-                    hANGHOA.HH_MaNCC = "";
-                    hANGHOA.HinhAnh = "";
-                    hANGHOA.TenHH = "";
-                    db.HANGHOAs.Attach(hANGHOA);
-                    db.Entry(hANGHOA).Property(s => s.SoLuongTon).IsModified = true;
+                    db.KHACHHANGs.Attach(kHACHHANG);
+                    db.Entry(kHACHHANG).Property(s => s.DiemThanhVien).IsModified = true;
 
                     db.SaveChanges();
+
+                    foreach (var item in lstSP)
+                    {
+                        var details = new CT_HOADON();
+                        details.CTHD_MaHD = Session["MaHD"].ToString();
+                        details.SoLuong = item.SoLuong;
+                        details.CTHD_MaHH = item.MaSP;
+                        details.ThanhTien = item.FinalPrice();
+                        db.CT_HOADON.Add(details);
+
+                        //Tính số lượng tồn kho
+                        HANGHOA hANGHOA = db.HANGHOAs.FirstOrDefault(m => m.MaHH.Equals(item.MaSP));
+                        int slTon = (int)hANGHOA.SoLuongTmp;
+                        int slTonMoi = (int)(slTon - item.SoLuong);
+                        if (slTon == 0 || slTonMoi < 0)
+                        {
+                            hANGHOA.SoLuongTmp = 0;
+                        }
+                        else hANGHOA.SoLuongTmp = slTonMoi;
+                        hANGHOA.DonGia = 0;
+                        hANGHOA.MaHH = item.MaSP;
+                        hANGHOA.DonViTinh = "";
+                        hANGHOA.LoaiHang = "";
+                        hANGHOA.HH_MaNCC = "";
+                        hANGHOA.HinhAnh = "";
+                        hANGHOA.TenHH = "";
+                        db.HANGHOAs.Attach(hANGHOA);
+                        db.Entry(hANGHOA).Property(s => s.SoLuongTmp).IsModified = true;
+
+                        db.SaveChanges();
+                    }
                 }
+                Session.Remove("MaHD");
+                Session.Remove("MaKH");
+                Session.Remove("MaTN");
+                Session.Remove("BienSoXe");
+                Session.Remove("CheckTN");
+                Session.Remove("lstSPHD");
+
+                return RedirectToAction("LayDanhSachHoaDon", "HOADON");
 
             }
-            Session.Remove("MaHD");
-            Session.Remove("MaKH");
-            Session.Remove("MaTN");
-            Session.Remove("BienSoXe");
-            Session.Remove("CheckTN");
-            Session.Remove("lstSPHD");
+            else
+            {
+                return RedirectToAction("ThemHoaDon", "HOADON");
 
-            return RedirectToAction("LayDanhSachHoaDon", "HOADON");
+            }
         }
     // GET: HOADON
         public ActionResult LayDanhSachHoaDon()
@@ -519,8 +530,28 @@ namespace DrieUnityGarage.Controllers
                         details.SoLuong = item.SoLuong;
                         details.CTHD_MaHH = item.MaSP;
                         details.ThanhTien = item.FinalPrice();
-                    db.CT_HOADON.Add(details);
-                    db.SaveChanges();
+                         db.CT_HOADON.Add(details);
+
+                        //Tính số lượng tồn kho
+                        HANGHOA hANGHOA = db.HANGHOAs.FirstOrDefault(m => m.MaHH.Equals(item.MaSP));
+                        int slTon = (int)hANGHOA.SoLuongTmp;
+                        int slTonMoi = (int)(slTon - item.SoLuong);
+                        if (slTonMoi < 0)
+                        {
+                            hANGHOA.SoLuongTmp = 0;
+                        }
+                        else hANGHOA.SoLuongTmp = slTonMoi;
+                        hANGHOA.DonGia = 0;
+                        hANGHOA.MaHH = item.MaSP;
+                        hANGHOA.DonViTinh = "";
+                        hANGHOA.LoaiHang = "";
+                        hANGHOA.HH_MaNCC = "";
+                        hANGHOA.HinhAnh = "";
+                        hANGHOA.TenHH = "";
+                        db.HANGHOAs.Attach(hANGHOA);
+                        db.Entry(hANGHOA).Property(s => s.SoLuongTmp).IsModified = true;
+
+                        db.SaveChanges();
                     }
                     String maKH = Session["MaKH"].ToString(); 
                     KHACHHANG kHACHHANG= db.KHACHHANGs.FirstOrDefault(m=>m.MaKH.Equals(maKH));
@@ -634,6 +665,27 @@ namespace DrieUnityGarage.Controllers
         {
             CT_HOADON cT_HOADON = db.CT_HOADON.FirstOrDefault(m=>m.CTHD_MaHD.Equals(id));
             db.CT_HOADON.Remove(cT_HOADON);
+
+            //Tính số lượng tồn kho
+            String maSP = cT_HOADON.CTHD_MaHH;
+            HANGHOA hANGHOA = db.HANGHOAs.FirstOrDefault(m => m.MaHH.Equals(maSP));
+            int slTon = (int)hANGHOA.SoLuongTmp;
+            int slTonMoi = (int)(slTon + cT_HOADON.SoLuong);
+            if (slTonMoi < 0)
+            {
+                hANGHOA.SoLuongTmp = 0;
+            }
+            else hANGHOA.SoLuongTmp = slTonMoi;
+            hANGHOA.DonGia = 0;
+            hANGHOA.MaHH = maSP;
+            hANGHOA.DonViTinh = "";
+            hANGHOA.LoaiHang = "";
+            hANGHOA.HH_MaNCC = "";
+            hANGHOA.HinhAnh = "";
+            hANGHOA.TenHH = "";
+            db.HANGHOAs.Attach(hANGHOA);
+            db.Entry(hANGHOA).Property(s => s.SoLuongTmp).IsModified = true;
+
             db.SaveChanges();
             return true;
         }

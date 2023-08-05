@@ -77,7 +77,6 @@
         </div>
 
     }
-
     <p style="font-size:20px; font-weight:bold; margin-top:10px;">CHI TIẾT HOÁ ĐƠN:</p>
     <div class="row">
         <div class="col-lg-9">
@@ -94,19 +93,36 @@
                 <div class="col-4">
                     @Html.ActionLink("< Quay về", "LayDanhSachHoaDon", null, new { @class = "btn-back" })
                 </div>
-            
+
                 <div class="col-4" style="text-align:center">
                     @using (Html.BeginForm("CTDH_ThemHoaDon", "HOADON"))
                     {
+                        <script>
+                            function myFunction() {
+                                alert("Không thể tạo hoá đơn, vui lòng nhập đầy đủ thông tin cần thiết cho hoá đơn!");
+                            }
+                        </script>
+                        {
+                            var a = Session["lstSPHD"] as List<DrieUnityGarage.Models.THONGTINSANPHAM>;
 
-                        <input type="submit" value="Tạo hoá đơn" class="btn btn-primary" />  }
-                    </div>
-                  
-                    <div class="col-4"></div>
+
+                            if (Session["DaLayThongTinTiepNhan"] == null || a.Count() == 0)
+                            {
+                                <button onclick="myFunction()" class="btn btn-primary">Tạo hoá đơn</button>
+                            }
+                            else
+                            {
+                                <input type="submit" value="Tạo hoá đơn" class="btn btn-primary" />
+
+                            }
+                        }
+                    }
                 </div>
+
+                <div class="col-4"></div>
+            </div>
         </div>
     </div>
 
 </div>
 
- 

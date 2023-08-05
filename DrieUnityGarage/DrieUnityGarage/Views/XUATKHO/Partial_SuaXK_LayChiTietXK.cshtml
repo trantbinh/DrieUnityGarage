@@ -51,11 +51,10 @@
     {
         using (Html.BeginForm("SuaXK_CapNhatSoLuong", "XUATKHO", new { id = item.MaSP }))
         {
-   
+
             <tr>
                 <td>
                     <img src="~/Uploads/HangHoa/@item.HinhAnh" class="center" style="width: 50%; height: 50%;" />
-
                 </td>
                 <td>
                     @item.MaSP
@@ -86,7 +85,7 @@
                 </td>
                 <td><input type="submit" id="hinh" class="btn" value="" /></td>
                 <td>
-                    <a href="@Url.Action("SuaXK_XoaSP","XUATKHO", new { id = item.MaSP })" class="btn" style="padding:0">
+                    <a href="@Url.Action("SuaXK_XoaSP", "XUATKHO", new { id = item.MaSP })" class="btn" style="padding:0">
                         <img alt="" src="@Url.Content("~/Images/Icon/icon_Delete.png")">
 
                     </a>
@@ -94,23 +93,25 @@
             </tr>
         }
     }
-    @if (Session["lstSP"] != null)
-    {
-        <tr style="font-weight:bold">
-            <td>
-                Tổng
-            </td>
-            <td colspan="2"></td>
+    @{ var a = Session["lstSP"] as List<DrieUnityGarage.Models.THONGTINSANPHAM>;
 
-            <td class="soluong">@ViewBag.TotalNumber</td>
-            <td></td>
-            <td class="tongthanhtoan">
-                @String.Format("{0:0,0}đ", @ViewBag.TotalPrice)
-            </td>
-            <td colspan="3"></td>
+        if (a.Count != 0)
+        {
+            <tr style="font-weight:bold">
+                <td colspan="2">
+                    Tổng cộng
+                </td>
+                <td colspan="2"></td>
 
-        </tr>
+                <td class="soluong">@ViewBag.TotalNumber</td>
+                <td></td>
+                <td class="tongthanhtoan" colspan="3" style="text-align:left; padding-left:40px">
+                    @String.Format("{0:0,0}đ", @ViewBag.TotalPrice)
+                </td>
 
-    }
 
-</table>
+            </tr>
+
+            }
+        }
+    </table>
