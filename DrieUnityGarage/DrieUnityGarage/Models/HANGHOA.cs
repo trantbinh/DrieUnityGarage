@@ -17,6 +17,7 @@ namespace DrieUnityGarage.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public HANGHOA()
         {
+            this.BAOHANHs = new HashSet<BAOHANH>();
             this.CT_BAOGIA = new HashSet<CT_BAOGIA>();
             this.CT_HOADON = new HashSet<CT_HOADON>();
             this.CT_NHAPKHO = new HashSet<CT_NHAPKHO>();
@@ -33,6 +34,8 @@ namespace DrieUnityGarage.Models
         public string HinhAnh { get; set; }
         public string HH_MaNCC { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BAOHANH> BAOHANHs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CT_BAOGIA> CT_BAOGIA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

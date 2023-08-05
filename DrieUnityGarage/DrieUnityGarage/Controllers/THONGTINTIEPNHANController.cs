@@ -29,6 +29,37 @@ namespace DrieUnityGarage.Controllers
             return newlstKH;
         }
 
+        //Lấy danh sách khách hàng
+        public List<THONGTINNHANVIEN> LayDanhSachNhanVienDB()
+        {
+            var newlstNV = new List<THONGTINNHANVIEN>();
+            var nvDB = db.NHANVIENs.ToList();
+            int c = nvDB.Count();
+            for (int i = 0; i < c; i++)
+            {
+                if (nvDB[i].ChucVu.Equals("Quản lý"))
+                    continue;
+                else
+                newlstNV.Add(new THONGTINNHANVIEN(nvDB[i].MaNV));
+            }
+            Session["lstNV"] = newlstNV;
+            return newlstNV;
+        }
+        public List<THONGTINNHANVIEN> LayDanhSachToanBoNhanVienDB()
+        {
+            var newlstNV = new List<THONGTINNHANVIEN>();
+            var nvDB = db.NHANVIENs.ToList();
+            int c = nvDB.Count();
+            for (int i = 0; i < c; i++)
+            {
+
+                newlstNV.Add(new THONGTINNHANVIEN(nvDB[i].MaNV));
+            }
+            Session["lstNV"] = newlstNV;
+            return newlstNV;
+        }
+
+
         //Lấy danh sách xe
         public List<THONGTINPHUONGTIEN> LayDanhSachXeDB()
         {
@@ -43,8 +74,6 @@ namespace DrieUnityGarage.Controllers
             Session["lstXe"] = newlstKH;
             return newlstKH;
         }
-
-
 
         // GET: THONGTINTIEPNHAN
         public ActionResult LayDanhSachThongTinTiepNhan()
@@ -80,11 +109,16 @@ namespace DrieUnityGarage.Controllers
             List<THONGTINKHACHHANG> lstKhachHang = LayDanhSachKhachHangDB();
             ViewBag.lstMaKH = new SelectList(lstKhachHang, "MaKH", "ThongTin");
 
+            List<THONGTINNHANVIEN> lstNhanVien = LayDanhSachNhanVienDB();
+            ViewBag.lstNhanVien = new SelectList(lstNhanVien, "MaNV", "ThongTin");
+
+
             if (Session["DaLayThongTinXe"] != null)
             {
                 List<THONGTINPHUONGTIEN> a = Session["lstXe"] as List<THONGTINPHUONGTIEN>;
                 ViewBag.lstXe = new SelectList(a, "BienSoXe", "BienSoXe");
                 ViewBag.selectedKhachHang = Session["selectedKhachHang"];
+                ViewBag.selectedNhanVien = Session["selectedNhanVien"];
                 ViewBag.ThoiGianGiaoXe = Session["ThoiGianGiaoXe"];
             }
             else if (Session["KhongCoThongTinXe"] != null) {
@@ -94,7 +128,7 @@ namespace DrieUnityGarage.Controllers
         }
 
         //Hàm được sử dụng sau khi nhấn nút lấy danh sách xe
-        public ActionResult TaoTTTN_LayThongTinXe([Bind(Include = "MaTN,TN_MaKH,TN_BienSoXe,TN_MaNV,ThoiGianTiepNhan,ThoiGianGiaoDuKien,GhiChuKH")] THONGTINTIEPNHAN tHONGTINTIEPNHAN, String lstMaKH/*, DateTime thoiGianGiaoXe*/)
+        public ActionResult TaoTTTN_LayThongTinXe(String lstNhanVien, String lstMaKH/*, DateTime thoiGianGiaoXe*/)
         {
             //Lấy danh sách xe từ database sau đó lọc ra những xe của khách hàng
             var xe = LayDanhSachXeDB();
@@ -112,16 +146,21 @@ namespace DrieUnityGarage.Controllers
             //Tạo 1 String chứa các thông tin của khách hàng để hiển thị
             String selectedKH = TTKH.MaKH + " - " + TTKH.DienThoaiKH + " - " + TTKH.HoTenKH;
 
-
-            //String date = thoiGianGiaoXe.ToString("dd/MMM/yyyy");
-
             Session["selectedKhachHang"] = selectedKH;
+
+            //Lấy ra thông tin của khách hàng có mã khách hàng là từ dropdown
+            THONGTINNHANVIEN TTNV = new THONGTINNHANVIEN(lstNhanVien);
+
+            //Tạo 1 String chứa các thông tin của khách hàng để hiển thị
+            String selectedNV = TTNV.MaNV + " - " + TTNV.HoTenNV + " - " + TTNV.ChucVu;
+
+            Session["selectedNhanVien"] = selectedNV;
 
             //Thông tin cần lưu của tiếp nhận
             //Session["ThoiGianGiaoXe"] = date;
             Session["MaTN"] = TaoMaTiepNhan();
             Session["MaKH"] = lstMaKH;
-            
+            Session["MaNV"] = lstNhanVien;
             Session.Remove("lstXe");
             Session["lstXe"] = lstXe;
 
@@ -134,7 +173,6 @@ namespace DrieUnityGarage.Controllers
 
             return RedirectToAction("TaoThongTinTiepNhan");
         }
-
         //Lưu thông tin tiếp nhận vào database
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -145,8 +183,7 @@ namespace DrieUnityGarage.Controllers
             {
                 String id = TaoMaTiepNhan();
                 tHONGTINTIEPNHAN.MaTN = id;
-                tHONGTINTIEPNHAN.TN_MaNV = Session["MaTaiKhoanNV"].ToString();
-               
+                tHONGTINTIEPNHAN.TN_MaNV = Session["MaNV"].ToString();
                 tHONGTINTIEPNHAN.TN_MaKH = Session["MaKH"].ToString();
                 tHONGTINTIEPNHAN.TN_BienSoXe = lstXe;
                 tHONGTINTIEPNHAN.ThoiGianTiepNhan = DateTime.Now;
@@ -176,6 +213,9 @@ namespace DrieUnityGarage.Controllers
             List<THONGTINKHACHHANG> lstKhachHang = LayDanhSachKhachHangDB();
             ViewBag.TN_MaKH = new SelectList(lstKhachHang, "MaKH", "ThongTin", tHONGTINTIEPNHAN.TN_MaKH);
 
+            List<THONGTINNHANVIEN> lstNhanVien = LayDanhSachNhanVienDB();
+            ViewBag.TN_MaNV = new SelectList(lstNhanVien, "MaNV", "ThongTin", tHONGTINTIEPNHAN.TN_MaNV);
+
             //Lấy danh sách xe từ database sau đó lọc ra những xe của khách hàng
             var xe = LayDanhSachXeDB();
             List<THONGTINPHUONGTIEN> lstXe = new List<THONGTINPHUONGTIEN>();
@@ -193,9 +233,7 @@ namespace DrieUnityGarage.Controllers
                 date = (DateTime)tHONGTINTIEPNHAN.ThoiGianGiaoDuKien;
                 ViewBag.ThoiGianGiaoDuKien = date.ToString("yyyy/MM/dd");
             }
-            
-           
-           
+             
             return View(tHONGTINTIEPNHAN);
         }
 
@@ -205,14 +243,14 @@ namespace DrieUnityGarage.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SuaThongTinTiepNhan(THONGTINTIEPNHAN tHONGTINTIEPNHAN
-            ,String TN_MaKH, String lstXe,  String GhiChuKH, DateTime ThoiGianDuKien)
+            ,String TN_MaKH, String lstXe,  String GhiChuKH, DateTime ThoiGianDuKien, String TN_MaNV)
         {
             if (ModelState.IsValid)
             {
                 tHONGTINTIEPNHAN.TN_MaKH = TN_MaKH;
                 tHONGTINTIEPNHAN.TN_BienSoXe = lstXe;
-                
-                    tHONGTINTIEPNHAN.ThoiGianGiaoDuKien = (DateTime)ThoiGianDuKien;
+                tHONGTINTIEPNHAN.TN_MaNV = TN_MaNV;
+                tHONGTINTIEPNHAN.ThoiGianGiaoDuKien = (DateTime)ThoiGianDuKien;
                 tHONGTINTIEPNHAN.GhiChuKH = GhiChuKH;
 
                 db.Entry(tHONGTINTIEPNHAN).State = EntityState.Modified;

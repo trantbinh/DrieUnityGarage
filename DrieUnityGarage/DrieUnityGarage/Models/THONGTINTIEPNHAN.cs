@@ -17,7 +17,9 @@ namespace DrieUnityGarage.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public THONGTINTIEPNHAN()
         {
+            this.BANGIAOXEs = new HashSet<BANGIAOXE>();
             this.BAOGIAs = new HashSet<BAOGIA>();
+            this.DANHGIADICHVUs = new HashSet<DANHGIADICHVU>();
             this.HOADONs = new HashSet<HOADON>();
         }
     
@@ -31,8 +33,15 @@ namespace DrieUnityGarage.Models
         public string TrangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BANGIAOXE> BANGIAOXEs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BAOGIA> BAOGIAs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DANHGIADICHVU> DANHGIADICHVUs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HOADON> HOADONs { get; set; }
+        public virtual KHACHHANG KHACHHANG { get; set; }
+        public virtual NHANVIEN NHANVIEN { get; set; }
+        public virtual PHUONGTIEN PHUONGTIEN { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace DrieUnityGarage.Models
         public NHANVIEN()
         {
             this.NHAPKHOes = new HashSet<NHAPKHO>();
+            this.THONGTINTIEPNHANs = new HashSet<THONGTINTIEPNHAN>();
             this.XUATKHOes = new HashSet<XUATKHO>();
         }
     
@@ -36,6 +37,8 @@ namespace DrieUnityGarage.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NHAPKHO> NHAPKHOes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<THONGTINTIEPNHAN> THONGTINTIEPNHANs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<XUATKHO> XUATKHOes { get; set; }
     }

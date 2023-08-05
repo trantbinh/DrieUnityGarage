@@ -23,17 +23,24 @@
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.MaTN)
-                @Html.HiddenFor(model => model.TN_MaNV)
                 @Html.HiddenFor(model => model.ThoiGianTiepNhan)
                 @Html.HiddenFor(model => model.TrangThai)
 
                 <div class="form-group mb-3">
+                    <label for="MaTN" class="form-label"> Mã tiếp nhận: </label>
+                    <input class="col-12 form-control" name="MaTN" id="MaTN" value="@Model.MaTN" disabled />
+                </div>
+
+                <div class="form-group mb-3">
                     <label for="ThoiGianTiepNhan" class="form-label"> Thời gian tiếp nhận: </label>
-                    <input class="col-12 form-control" value="@String.Format("{0: HH:mm:ss, dd/MM/yyyy}", @Model.ThoiGianTiepNhan)" disabled/>
+                    <input class="col-12 form-control" value="@String.Format("{0: HH:mm:ss, dd/MM/yyyy}", @Model.ThoiGianTiepNhan)" disabled />
                 </div>
                 <div class="form-group mb-3">
-                    <label for="TN_MaNV" class="form-label"> Nhân viên phụ trách: </label>
-                    <input class="col-12 form-control" value=" @Model.TN_MaNV" disabled/>   
+                    <label for="TN_MaNV" class="form-label"> Nhân viên phụ trách: [Mã nhân viên - Tên nhân viên - Chức vụ]</label>
+                    <div class="col-12">
+                        @Html.DropDownList("TN_MaNV", null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.TN_MaNV, "", new { @class = "text-danger" })
+                    </div>
                 </div>
 
                 <div class="form-group mb-3">
