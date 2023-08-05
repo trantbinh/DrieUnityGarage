@@ -66,7 +66,6 @@
                 </td>
 
                 <td>
-
                     <input type="number" min="1" max="@item.TonKho" name="changequantity" value="@item.SoLuong"
                            data-id="@item.MaSP" class="quantity quantity-form" />
                 </td>
@@ -100,9 +99,11 @@
             <td colspan="2"></td>
             <td class="soluong">@ViewBag.TotalNumber</td>
             <td></td>
-            <td class="tongthanhtoan" colspan="3" style="text-align:left; ">
+            <td class="tongthanhtoan" colspan="2" style="text-align:left; padding-left:15px;">
                 @String.Format("{0:0,0}đ", @ViewBag.TotalPrice)
             </td>
+            <td colspan="1"></td>
+
         </tr>
             }
         }

@@ -49,7 +49,6 @@
 
                 @item.SoLuong
             </td>
-
             <td>
                 @String.Format("{0:0,0}đ", item.DonGia)
 
@@ -61,23 +60,16 @@
             </td>
         </tr>
     }
-    @{ var a = Session["lstSP"] as List<DrieUnityGarage.Models.THONGTINSANPHAM>;
-        if (a.Count != 0)
-        {
+    <tr style="font-weight:bold">
+        <td colspan="2">
+            Tổng cộng
+        </td>
+        <td colspan="2"></td>
 
-            <tr style="font-weight:bold">
-                <td>
-                    Tổng cộng
-                </td>
-                <td colspan="2"></td>
-
-                <td class="soluong">@ViewBag.TotalNumber</td>
-                <td></td>
-                <td class="tongthanhtoan">
-                    @String.Format("{0:0,0}đ", @ViewBag.TotalPrice)
-                </td>
-                <td colspan="1"></td>
-            </tr>
-            }
-        }
-        </table>
+        <td class="soluong">@ViewBag.TotalNumber</td>
+        <td></td>
+        <td class="tongthanhtoan">
+            @String.Format("{0:0,0}đ", @ViewBag.TotalPrice)
+        </td>
+    </tr>
+</table>

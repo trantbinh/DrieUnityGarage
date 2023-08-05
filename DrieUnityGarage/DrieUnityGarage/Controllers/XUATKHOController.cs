@@ -49,9 +49,36 @@ namespace DrieUnityGarage.Controllers
             {
                 return HttpNotFound();
             }
+            Session["MaXK"] = xUATKHO.MaXK;
+            ViewBag.NgayLap = ((DateTime)xUATKHO.NgayLap).ToString("hh:mm:ss, dd/MM/yyyy");
             return View(xUATKHO);
         }
+        public ActionResult Partial_XemXK_LayDuLieuCTXK(String id)
+        {
+            var cthd = db.CT_XUATKHO.Where(m => m.CTXK_MaXK.Equals(id)).ToList();
+            List<THONGTINSANPHAM> lstHH = new List<THONGTINSANPHAM>();
+            for (int i = 0; i < cthd.Count(); i++)
+            {
+                lstHH.Add(new THONGTINSANPHAM(cthd[i].CTXK_MaHH, cthd[i].SoLuongXuatKho));
+            }
+            int totalNumber = 0;
 
+            if (lstHH != null)
+                totalNumber = lstHH.Sum(sp => sp.SoLuong);
+
+            decimal totalPrice = 0;
+            if (lstHH != null)
+                totalPrice = lstHH.Sum(sp => sp.FinalPrice());
+
+
+            ViewBag.TotalNumber = totalNumber;
+            ViewBag.TotalPrice = totalPrice;
+
+            return PartialView(lstHH);
+        }
+
+
+        //--------------------------TẠO PHIẾU XUẤT KHO------------------------ 
         // GET: XUATKHO/Create
         public ActionResult Create()
 
@@ -225,7 +252,7 @@ namespace DrieUnityGarage.Controllers
             return View(xUATKHO);
         }
 
-        //----------TẠO PHIẾU TỪ BÁO GIÁ------------------------ (Tạm thời đang test trên hoá đơn)
+        //-------------------------------TẠO PHIẾU TỪ BÁO GIÁ------------------------ (Tạm thời đang test trên hoá đơn)
         //Partial Danh sách hàng hoá
         public ActionResult Partial_TaoBG_LayDuLieuCTBG(String id)
         {
@@ -318,7 +345,7 @@ namespace DrieUnityGarage.Controllers
         }
 
 
-
+        //--------------------------SỬA PHIẾU XUẤT KHO------------------------
         public ActionResult Partial_SuaXK_LayChiTietXK(string id)
         {
             List<THONGTINSANPHAM> lstSp;
@@ -367,8 +394,6 @@ namespace DrieUnityGarage.Controllers
             }
             return RedirectToAction("Edit", new { id = Session["MaXK"] });
         }
-
-
 
         // GET: XUATKHO/Edit/5
         public ActionResult Edit(string id)
@@ -498,6 +523,9 @@ namespace DrieUnityGarage.Controllers
             {
                 return HttpNotFound();
             }
+            Session["MaXK"] = xUATKHO.MaXK;
+            ViewBag.NgayLap = ((DateTime)xUATKHO.NgayLap).ToString("hh:mm:ss, dd/MM/yyyy");
+
             return View(xUATKHO);
         }
 
