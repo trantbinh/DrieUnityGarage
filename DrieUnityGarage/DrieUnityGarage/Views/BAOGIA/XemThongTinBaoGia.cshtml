@@ -1,0 +1,67 @@
+﻿@model DrieUnityGarage.Models.BAOGIA
+@{
+    ViewBag.Title = "XemThongTinBaoGia";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center; ">
+            <h2>Chi tiết báo giá</h2>
+        </div>
+    </div>
+    <p style="font-size:20px; font-weight:bold">THÔNG TIN CHUNG: </p>
+    <div class="row " style="margin: 0; margin-top: 10px; font-size: 17px;">
+        <div class="form-group mb-3 col-4">
+            <label for="MaHD" class="form-label"> Mã hoá đơn: </label>
+            <div class="form-control w-75" id="MaHD">@Model.MaBG</div>
+        </div>
+        <div class="form-group mb-3 col-4">
+            <label for="NgayLapHD" class="form-label"> Ngày lập hoá đơn: </label>
+            <div class="form-control w-75" id="NgayLapHD">@Model.NgayLap</div>
+        </div>
+
+
+        <div class="form-group mb-3 col-4">
+            <label class="form-label" for="lstMaKH">Thông tin tiếp nhận:</label>
+            <div class="form-control w-75" id="lstMaKH">@ViewBag.selectedTiepNhan</div>
+        </div>
+    </div>
+
+    <div class="row " style="margin: 0; font-size: 17px;">
+        <div class="form-group mb-3 col-4">
+            <label for="KhachHang" class="form-label"> Khách hàng: </label>
+            <div class="form-control w-75" id="KhachHang">@ViewBag.KhachHang</div>
+        </div>
+        <div class="form-group mb-3 col-4">
+            <label for="BienSoXe" class="form-label"> Biển số xe: </label>
+            <div class="form-control w-75" id="BienSoXe">@ViewBag.BienSoXe</div>
+        </div>
+        <div class="form-group mb-3 col-4">
+            <label for="NhanVien" class="form-label">  Nhân viên: </label>
+            <div class="form-control w-75" id="NhanVien">@ViewBag.NhanVien</div>
+        </div>
+    </div>
+    <p style="font-size:20px; font-weight:bold; margin-top:10px;">CHI TIẾT BÁO GIÁ:</p>
+
+    @Html.Action("Partial_XemBG_LayDuLieuCTBG", "BAOGIA", new { id = Model.MaBG })
+    <div class="row" style="padding-bottom:10px;">
+
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="row" style="margin:0">
+                <div class="col-4">
+                    @Html.ActionLink("< Quay về", "LayDanhSachBaoGia", null, new { @class = "btn-back" })
+                </div>
+                <div class="col-4" style="text-align:center">
+                    @Html.ActionLink("Chỉnh sửa thông tin", "SuaBaoGia", new { id = Model.MaBG }, new { @class = "btn btn-success" })
+                </div>
+                <div class="col-4"></div>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>

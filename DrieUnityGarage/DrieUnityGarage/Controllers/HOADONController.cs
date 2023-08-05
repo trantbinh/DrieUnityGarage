@@ -86,8 +86,8 @@ namespace DrieUnityGarage.Controllers
                 return RedirectToAction("ThemHoaDon", "HOADON", new { id = Session["MaHD"] });
             }
             return RedirectToAction("ThemHoaDon", "HOADON", new { id = Session["MaHD"] });
-
         }
+
 
         // Cập nhật lại số lượng sản phẩm
         public ActionResult CTDH_CapNhatSoLuong(String id, FormCollection f)

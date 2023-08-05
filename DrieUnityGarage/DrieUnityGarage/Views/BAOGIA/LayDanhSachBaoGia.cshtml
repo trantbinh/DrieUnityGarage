@@ -1,0 +1,88 @@
+﻿@model IEnumerable<DrieUnityGarage.Models.BAOGIA>
+@{
+    ViewBag.Title = "LayDanhSachBaoGia";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-5">
+            <h2>Danh sách báo giá </h2>
+        </div>
+        <div class="col-lg-5">
+        </div>
+        <div class="col-lg-2">
+            @Html.ActionLink("Tạo mới", "ThemBaoGia", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                Mã báo giá
+            </th>
+            <th>
+                Ngày lập
+            </th>
+            <th>
+                Tổng thanh toán
+            </th>
+            <th>
+                Mã tiếp nhận
+            </th>
+            <th>
+                Khách hàng
+            </th>
+            <th>
+                Biển số xe
+            </th>
+            <th>
+                Mã nhân viên
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaBG)
+                </td>
+                <td>
+                    @String.Format("{0:dd/MM/yyyy}", item.NgayLap)
+                </td>
+                <td>
+                    @String.Format("{0:0,0}", item.TongThanhToan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BG_MaTN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KHACHHANG.HoTenKH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PHUONGTIEN.BienSoXe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.THONGTINTIEPNHAN.TN_MaNV)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "SuaBaoGia", new { id = item.MaBG }, new { @class = "btn btn-success" })
+
+                </td>
+                <td>
+                    @Html.ActionLink("Chi tiết", "XemThongTinBaoGia", new { id = item.MaBG }, new { @class = "btn btn-details" })
+
+                </td>
+                <td>
+                    @Html.ActionLink("Xoá", "XoaBaoGia", new { id = item.MaBG }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

@@ -26,10 +26,13 @@ namespace DrieUnityGarage.Models
         public string HoTenNguoiGiao { get; set; }
         public string SoChungTu { get; set; }
         public string NK_MaNV { get; set; }
+
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CT_NHAPKHO> CT_NHAPKHO { get; set; }
         public virtual NHACUNGCAP NHACUNGCAP { get; set; }
+
         public virtual NHANVIEN NHANVIEN { get; set; }
+
     }
 }

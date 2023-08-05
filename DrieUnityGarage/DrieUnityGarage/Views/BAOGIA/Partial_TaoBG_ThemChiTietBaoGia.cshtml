@@ -1,0 +1,57 @@
+﻿@model DrieUnityGarage.Models.CT_BAOGIA
+
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+@using (Html.BeginForm("Partial_TaoBG_ThemChiTietBaoGia", "BAOGIA"))
+{
+    <div style="border: solid 1px black; padding-left: 5px; padding-right: 5px; padding-top:15px; padding-bottom:15px; align-items: center; justify-content: center; text-align: center ">
+        <p style="text-align:center; font-size:20px; font-weight:bold">Thêm sản phẩm</p>
+
+        <div class="col-12 dis-inline">
+            Sản phẩm:
+            <div class=" dis-inline" style="padding-left:20px">
+                @Html.DropDownList("CTBG_MaHH", null, htmlAttributes: new { @class = "form-selectSP" })
+                @Html.ValidationMessageFor(model => model.CTBG_MaHH, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div style="margin-top:30px;">
+
+            <script>
+                function myFunction() {
+                    alert("Vui lòng lấy dữ liệu tiếp nhận trước khi thêm hoá đơn");
+                }
+            </script>
+            <script>
+                function myFunction2() {
+                    alert("Không thể thêm! Số lượng sản phẩm vượt số lượng còn trong kho");
+                }
+            </script>
+
+
+            @if (Session["DaLayThongTinTiepNhan"] == null)
+            {
+                <button onclick="myFunction()" class="btn btn-info">Thêm vào báo giá</button>
+            }
+            else
+            {
+                <input type="submit" value="Thêm vào hoá đơn" class="btn btn-info" />
+
+            }
+            @*else if (Session["QuaTonKho"] != null)
+                {
+                    <button onclick="myFunction2()" class="btn btn-info">Thêm vào hoá đơn</button>
+
+
+
+                    }
+                    else if(Session["DaLayThongTinTiepNhan"] != null)
+                    {
+                    <input type="submit" value="Thêm vào hoá đơn" class="btn btn-info" />
+                }
+            *@
+        </div>
+
+
+    </div>
+}
