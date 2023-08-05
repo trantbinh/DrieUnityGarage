@@ -28,7 +28,7 @@
             </script>
 
 
-            @if (Session["DaLayThongTinTiepNhan"] == null)
+            @if (Session["DaLayThongTinTiepNhan"] == null )
             {
                 <button onclick="myFunction()" class="btn btn-info">Thêm vào hoá đơn</button>
             }
@@ -37,18 +37,6 @@
                 <input type="submit" value="Thêm vào hoá đơn" class="btn btn-info" />
 
             }
-            @*else if (Session["QuaTonKho"] != null)
-        {
-            <button onclick="myFunction2()" class="btn btn-info">Thêm vào hoá đơn</button>
-
-
-
-            }
-            else if(Session["DaLayThongTinTiepNhan"] != null)
-            {
-            <input type="submit" value="Thêm vào hoá đơn" class="btn btn-info" />
-        }
-            *@
         </div>
 
 

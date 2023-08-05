@@ -29,6 +29,8 @@ namespace DrieUnityGarage.Models
         public virtual DbSet<CT_BAOGIA> CT_BAOGIA { get; set; }
         public virtual DbSet<CT_HOADON> CT_HOADON { get; set; }
         public virtual DbSet<CT_NHAPKHO> CT_NHAPKHO { get; set; }
+        public virtual DbSet<CT_XUATKHO> CT_XUATKHO { get; set; }
+
         public virtual DbSet<HANGHOA> HANGHOAs { get; set; }
         public virtual DbSet<HOADON> HOADONs { get; set; }
         public virtual DbSet<KHACHHANG> KHACHHANGs { get; set; }
@@ -39,5 +41,6 @@ namespace DrieUnityGarage.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<THONGTINTHANHTOAN> THONGTINTHANHTOANs { get; set; }
         public virtual DbSet<THONGTINTIEPNHAN> THONGTINTIEPNHANs { get; set; }
+        public virtual DbSet<XUATKHO> XUATKHOes { get; set; }
     }
 }

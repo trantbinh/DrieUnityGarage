@@ -42,8 +42,9 @@ namespace DrieUnityGarage.Controllers
 
                         Session["TenDN"] = check.TenDangNhap;
 
-                        Session["MaTaiKhoanNV"] = check.MaNV;
-
+                        /*                        Session["MaTaiKhoanNV"] = check.MaNV;
+                        */
+                        Session["MaTaiKhoanNV"] = "NV001";
                         if (check.ChucVu.Equals("Quản lý"))
                         {
                             Session["IsAdmin"] = 1;

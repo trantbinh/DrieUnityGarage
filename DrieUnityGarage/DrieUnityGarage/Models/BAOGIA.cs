@@ -18,6 +18,8 @@ namespace DrieUnityGarage.Models
         public BAOGIA()
         {
             this.CT_BAOGIA = new HashSet<CT_BAOGIA>();
+            this.XUATKHOes = new HashSet<XUATKHO>();
+
         }
     
         public string MaBG { get; set; }
@@ -32,5 +34,9 @@ namespace DrieUnityGarage.Models
         public virtual THONGTINTIEPNHAN THONGTINTIEPNHAN { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CT_BAOGIA> CT_BAOGIA { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<XUATKHO> XUATKHOes { get; set; }
+
     }
 }

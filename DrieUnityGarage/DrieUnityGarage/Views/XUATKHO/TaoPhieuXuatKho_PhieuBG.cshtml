@@ -1,0 +1,71 @@
+﻿@model DrieUnityGarage.Models.XUATKHO
+@{
+    ViewBag.Title = "TaoPhieuXuatKho_PhieuBG";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+<div class="container-fluid" style="margin-top:30px; padding-left:60px; padding-right:60px">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center; ">
+            <h2>Phiếu xuất kho</h2>
+        </div>
+    </div>
+    @using (Html.BeginForm("TaoPhieuXuatKho_PhieuBG", "XUATKHO"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <p style="font-size:20px; font-weight:bold">THÔNG TIN CHUNG:</p>
+            <div class="row " style="margin: 0; margin-top: 10px; font-size: 17px;">
+                <div class="form-group mb-3 col-4">
+                    <label for="MaXK" class="form-label"> Mã phiếu xuất kho: </label>
+                    <input class="form-control w-75" id="MaXK"name="MaXK" readonly value="@ViewBag.MaXK" />
+                </div>
+                <div class="form-group mb-3 col-4">
+                    <label for="NgayLap" class="form-label"> Thời gian lập: </label>
+                    <input class="form-control w-75" id="NgayLap"name="NgayLap" readonly value="@ViewBag.NgayLap" />
+
+                </div>
+                <div class="form-group mb-3 col-4">
+                    <label for="MaNV" class="form-label"> Nhân viên thực hiện: </label>
+                    <input class="form-control w-75" id="MaNV"name="MaNV" readonly value="@ViewBag.MaNV " />
+                </div>
+            </div>
+            <div class="row " style="margin: 0; margin-top: 10px; font-size: 17px;">
+                <div class="form-group mb-3 col-4">
+                    <label for="MaBG" class="form-label"> Báo giá yêu cầu xuất kho: </label>
+                    <input class="form-control w-75" id="MaBG" name="MaBG" readonly value="@ViewBag.MaBG" />
+                </div>
+                <div class="form-group mb-3 col-4">
+                    <label for="LyDoXuat" class="form-label"> Lý do xuất kho: </label>
+                    <input class="form-control w-75" id="LyDoXuat" name="LyDoXuat" readonly value="@ViewBag.LyDoXuat" />
+                </div>
+                <div class="form-group mb-3 col-4">
+                    <label for="SoCT" class="form-label"> Số chứng từ kèm theo (nếu có): </label>
+                    <input class="form-control w-75" id="SoCT" name="SoCT"/>
+                </div>
+            </div>
+
+    
+    <p style="font-size:20px; font-weight:bold; margin-top:10px;">CHI TIẾT HÀNG HOÁ XUẤT KHO:</p>
+
+    @Html.Action("Partial_TaoXKTuBG_LayChiTietXK", "XUATKHO", new { id = @ViewBag.MaBG })
+<div class="row" style="padding-bottom:10px;">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <div class="row" style="margin:auto">
+            <div class="col-4" style="text-align:left">
+                @Html.ActionLink("< Quay về", "LayDanhSachXuatKho", null, new { @class = "btn-back" })
+            </div>
+            <div class="col-4" style="text-align:center">
+                <input type="submit" value="Tạo phiếu xuất kho" class="btn btn-primary" />
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+    <div class="col-2"></div>
+
+</div>
+    }
+</div>
