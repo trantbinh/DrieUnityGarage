@@ -125,7 +125,8 @@ namespace DrieUnityGarage.Controllers
                 return RedirectToAction("ThemHoaDon", "HOADON");
             else
             {
-                ViewBag.CTHD_MaHH = new SelectList(db.HANGHOAs, "MaHH", "TenHH");
+                var lstHH = db.HANGHOAs.Where(m => m.SoLuongTon > 0).ToList();
+                ViewBag.CTHD_MaHH = new SelectList(lstHH, "MaHH", "TenHH");
                 ViewBag.Selected = hh.CTHD_MaHH;
                 Session["MaHH"] = hh.CTHD_MaHH;
                 return RedirectToAction("CTHD_ThemSP", "HOADON", new { id = Session["MaHH"].ToString() });
@@ -134,22 +135,40 @@ namespace DrieUnityGarage.Controllers
         }
  
         [HttpPost]
-        public ActionResult CTDH_ThemHoaDon(HOADON hd, [Bind(Include = "MaKH,HoTenKH,DienThoaiKH,NgaySinh,GioiTinh,Email,DiemThanhVien,DiaChi")] KHACHHANG kHACHHANG)
+        public ActionResult CTDH_ThemHoaDon(HOADON hd)
         {
             var tongtien = TinhTongTien();
             List<THONGTINSANPHAM> lstSP = CTHD_LayDanhSachSanPham();
             if (ModelState.IsValid)
             {
-                hd.MaHD = Session["MaHD"].ToString();
-                
-                hd.NgayLap = DateTime.Now;
-               
+                hd.MaHD = Session["MaHD"].ToString();     
+                hd.NgayLap = DateTime.Now;  
                 hd.TongThanhToan = tongtien;
                 hd.HD_BienSoXe =Session["BienSoXe"].ToString();
                 hd.HD_MaKH = Session["MaKH"].ToString();
                 hd.HD_MaTN =Session["MaTN"].ToString();
                 hd.HD_MaTT = null;
                 db.HOADONs.Add(hd);
+
+                String maKH = Session["MaKH"].ToString();
+                KHACHHANG kHACHHANG = db.KHACHHANGs.FirstOrDefault(m => m.MaKH.Equals(maKH));
+                int diemThanhVien = (int)tongtien * 10 / 100;
+
+                if (kHACHHANG.DiemThanhVien == null)
+                    kHACHHANG.DiemThanhVien = diemThanhVien;
+                else kHACHHANG.DiemThanhVien = kHACHHANG.DiemThanhVien + (int)diemThanhVien;
+
+                kHACHHANG.MaKH = maKH;
+                kHACHHANG.HoTenKH = "";
+                kHACHHANG.DienThoaiKH = "";
+                kHACHHANG.NgaySinh = DateTime.Now;
+                kHACHHANG.GioiTinh = "";
+                kHACHHANG.Email = "";
+                kHACHHANG.DiaChi = "";
+
+                db.KHACHHANGs.Attach(kHACHHANG);
+                db.Entry(kHACHHANG).Property(s => s.DiemThanhVien).IsModified = true;
+
                 db.SaveChanges();
 
                 foreach (var item in lstSP) { 
@@ -159,25 +178,28 @@ namespace DrieUnityGarage.Controllers
                     details.CTHD_MaHH = item.MaSP;
                     details.ThanhTien = item.FinalPrice();
                     db.CT_HOADON.Add(details);
+
+                    //Tính số lượng tồn kho
+                    HANGHOA hANGHOA = db.HANGHOAs.FirstOrDefault(m => m.MaHH.Equals(item.MaSP));
+                    int slTon =(int) hANGHOA.SoLuongTon;
+                    int slTonMoi = (int)(slTon - item.SoLuong);
+                    if (slTon == 0 || slTonMoi < 0)
+                    {
+                        hANGHOA.SoLuongTon = 0;
+                    }
+                    else hANGHOA.SoLuongTon = slTonMoi;
+                    hANGHOA.DonGia = 0;
+                    hANGHOA.MaHH= item.MaSP;
+                    hANGHOA.DonViTinh = "";
+                    hANGHOA.LoaiHang = "";
+                    hANGHOA.HH_MaNCC = "";
+                    hANGHOA.HinhAnh = "";
+                    hANGHOA.TenHH = "";
+                    db.HANGHOAs.Attach(hANGHOA);
+                    db.Entry(hANGHOA).Property(s => s.SoLuongTon).IsModified = true;
+
                     db.SaveChanges();
                 }
-
-                int diemThanhVien =(int) tongtien * 10 / 100;
-                if (kHACHHANG.DiemThanhVien == null)
-                    kHACHHANG.DiemThanhVien = diemThanhVien;
-                else kHACHHANG.DiemThanhVien += (int)diemThanhVien;
-                kHACHHANG.MaKH= Session["MaKH"].ToString(); ;
-                kHACHHANG.HoTenKH = "A";
-                kHACHHANG.DienThoaiKH = "A";
-                kHACHHANG.NgaySinh = (DateTime)DateTime.Now;
-                kHACHHANG.GioiTinh = "A";
-                kHACHHANG.Email = "A";
-                kHACHHANG.DiaChi= "A";
-                
-                db.KHACHHANGs.Attach(kHACHHANG);
-                db.Entry(kHACHHANG).Property(s => s.DiemThanhVien).IsModified = true;
-                db.SaveChanges();
-
 
             }
             Session.Remove("MaHD");
@@ -466,10 +488,11 @@ namespace DrieUnityGarage.Controllers
             if (ModelState.IsValid)
             {
                 var tongtien = TinhTongTien();
+                String id= Session["MaHD"].ToString();
                 List<THONGTINSANPHAM> lstSP = CTHD_LayDanhSachSanPham();
                 if (ModelState.IsValid)
                 {
-                    hd.MaHD = Session["MaHD"].ToString();
+                    hd.MaHD = id;
                     hd.NgayLap = DateTime.Now;
                     hd.TongThanhToan = tongtien;
                     hd.HD_BienSoXe = Session["BienSoXe"].ToString();
@@ -480,6 +503,15 @@ namespace DrieUnityGarage.Controllers
                     db.Entry(hd).Property(s => s.TongThanhToan).IsModified = true;
                     db.SaveChanges();
 
+                    bool check;
+                    List<CT_HOADON> cthd = db.CT_HOADON.Where(m => m.CTHD_MaHD.Equals(id)).ToList();
+                    if (cthd != null)
+                    {
+                        for (int i = 0; i < cthd.Count(); i++)
+                        {
+                            check = XoaChiTietHD(cthd[i].CTHD_MaHD);
+                        }
+                    }
                     foreach (var item in lstSP)
                     {
                         var details = new CT_HOADON();
@@ -487,17 +519,18 @@ namespace DrieUnityGarage.Controllers
                         details.SoLuong = item.SoLuong;
                         details.CTHD_MaHH = item.MaSP;
                         details.ThanhTien = item.FinalPrice();
-                        db.CT_HOADON.Attach(details);
-                        db.Entry(details).Property(s => s.SoLuong).IsModified = true;
-                        db.Entry(details).Property(s => s.ThanhTien).IsModified = true;
-                        db.SaveChanges();
+                    db.CT_HOADON.Add(details);
+                    db.SaveChanges();
                     }
-                    KHACHHANG kHACHHANG=new KHACHHANG();
+                    String maKH = Session["MaKH"].ToString(); 
+                    KHACHHANG kHACHHANG= db.KHACHHANGs.FirstOrDefault(m=>m.MaKH.Equals(maKH));
                     int diemThanhVien = (int)tongtien * 10 / 100;
+                    
                     if (kHACHHANG.DiemThanhVien == null)
                         kHACHHANG.DiemThanhVien = diemThanhVien;
-                    else kHACHHANG.DiemThanhVien += (int)diemThanhVien;
-                    kHACHHANG.MaKH = Session["MaKH"].ToString(); ;
+                    else kHACHHANG.DiemThanhVien = kHACHHANG.DiemThanhVien + (int)diemThanhVien;
+
+                    kHACHHANG.MaKH = maKH;
                     kHACHHANG.HoTenKH = "A";
                     kHACHHANG.DienThoaiKH = "A";
                     kHACHHANG.NgaySinh = (DateTime)DateTime.Now;
@@ -508,8 +541,6 @@ namespace DrieUnityGarage.Controllers
                     db.KHACHHANGs.Attach(kHACHHANG);
                     db.Entry(kHACHHANG).Property(s => s.DiemThanhVien).IsModified = true;
                     db.SaveChanges();
-
-
                 }
                 Session.Remove("MaHD");
                 Session.Remove("MaKH");
@@ -563,6 +594,28 @@ namespace DrieUnityGarage.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             bool check;
+
+            //Điểm thành viên
+            String maKH = db.HOADONs.FirstOrDefault(m=>m.MaHD.Equals(id)).HD_MaKH;
+            KHACHHANG kHACHHANG = db.KHACHHANGs.FirstOrDefault(m => m.MaKH.Equals(maKH));
+            decimal tongTien = (decimal) db.HOADONs.Find(id).TongThanhToan;
+            int diemTV = (int) tongTien * 10 / 100;
+            int diemMoi = (int)(kHACHHANG.DiemThanhVien - diemTV);
+            if (kHACHHANG.DiemThanhVien<=0 || kHACHHANG.DiemThanhVien == null||diemMoi<=0)
+            {
+                kHACHHANG.DiemThanhVien = 0;
+            }
+            else kHACHHANG.DiemThanhVien -= (int)diemTV;
+            kHACHHANG.MaKH =maKH ;
+            kHACHHANG.HoTenKH ="";
+            kHACHHANG.DienThoaiKH = "";
+            kHACHHANG.NgaySinh =DateTime.Now;
+            kHACHHANG.GioiTinh = "";
+            kHACHHANG.Email = "";
+            kHACHHANG.DiaChi = "";
+            db.KHACHHANGs.Attach(kHACHHANG);
+            db.Entry(kHACHHANG).Property(s => s.DiemThanhVien).IsModified = true;
+
             List<CT_HOADON> cthd = db.CT_HOADON.Where(m => m.CTHD_MaHD.Equals(id)).ToList();
             if (cthd != null)
             {
@@ -571,14 +624,10 @@ namespace DrieUnityGarage.Controllers
                     check = XoaChiTietHD(cthd[i].CTHD_MaHD);
                 }
             }
-            
-               
                 HOADON hOADON = db.HOADONs.Find(id);
                 db.HOADONs.Remove(hOADON);
                 db.SaveChanges();
-                return RedirectToAction("LayDanhSachHoaDon");
-            
-            
+            return RedirectToAction("LayDanhSachHoaDon");
         }
 
         public bool XoaChiTietHD(string id)

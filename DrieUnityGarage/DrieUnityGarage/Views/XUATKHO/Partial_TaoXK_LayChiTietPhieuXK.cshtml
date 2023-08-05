@@ -1,4 +1,4 @@
-﻿﻿@model List<DrieUnityGarage.Models.THONGTINSANPHAM>
+﻿@model List<DrieUnityGarage.Models.THONGTINSANPHAM>
 
 <link rel="stylesheet" href="~/Content/TaoHoaDon.css" />
 <link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
@@ -20,10 +20,10 @@
             Hình ảnh
         </th>
         <th>
-            Mã hàng hoá
+            Mã
         </th>
         <th>
-            Tên hàng hoá
+            Tên
         </th>
         <th>
             ĐVT
@@ -47,12 +47,14 @@
 
     @foreach (var item in Model)
     {
-        using (Html.BeginForm("CapNhatHD_CapNhatSoLuong", "HOADON", new { id = item.MaSP }))
+        using (Html.BeginForm("CTXK_CapNhatSoLuong", "XUATKHO", new { id = item.MaSP }))
         {
+
             <tr>
                 <td>
                     <img src="~/Uploads/HangHoa/@item.HinhAnh" class="center" style="width: 50%; height: 50%;" />
                 </td>
+
                 <td>
                     @item.MaSP
                 </td>
@@ -63,10 +65,14 @@
                 <td>
                     @item.DonViTinh
                 </td>
+
                 <td>
+
                     <input type="number" min="1" max="@item.TonKho" name="changequantity" value="@item.SoLuong"
                            data-id="@item.MaSP" class="quantity quantity-form" />
                 </td>
+
+
                 <td>
                     @String.Format("{0:0,0}đ", item.DonGia)
 
@@ -78,7 +84,7 @@
                 </td>
                 <td><input type="submit" id="hinh" class="btn" value="" /></td>
                 <td>
-                    <a href="@Url.Action("CapNhatHD_XoaSP","HOADON", new { id = item.MaSP })" class="btn" style="padding:0">
+                    <a href="@Url.Action("CTXK_XoaSP","XUATKHO", new { id = item.MaSP })" class="btn" style="padding:0">
                         <img alt="" src="@Url.Content("~/Images/Icon/icon_Delete.png")">
 
                     </a>
@@ -86,20 +92,22 @@
             </tr>
         }
     }
-    @if (Session["lstSPHD"] != null)
+    @if (Session["lstSP"] != null)
     {
         <tr style="font-weight:bold">
             <td>
                 Tổng
             </td>
             <td colspan="2"></td>
-
             <td class="soluong">@ViewBag.TotalNumber</td>
             <td></td>
             <td class="tongthanhtoan">
                 @String.Format("{0:0,0}đ", @ViewBag.TotalPrice)
             </td>
             <td colspan="3"></td>
+
         </tr>
+
     }
+
 </table>

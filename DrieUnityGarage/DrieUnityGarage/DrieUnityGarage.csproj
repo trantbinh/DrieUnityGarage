@@ -454,6 +454,9 @@
     <Content Include="Views\XUATKHO\Index.cshtml" />
     <Content Include="Views\XUATKHO\TaoPhieuXuatKho_PhieuBG.cshtml" />
     <Content Include="Views\XUATKHO\Partial_TaoBG_LayDuLieuCTBG.cshtml" />
+    <Content Include="Views\XUATKHO\Partial_TaoXK_LayChiTietPhieuXK.cshtml" />
+    <Content Include="Views\XUATKHO\Partial_TaoXK_ThemChiTietPhieuXK.cshtml" />
+    <Content Include="Views\XUATKHO\Partial_SuaXK_LayChiTietXK.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

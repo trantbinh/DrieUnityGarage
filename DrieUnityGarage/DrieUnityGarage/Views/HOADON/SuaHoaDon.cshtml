@@ -25,16 +25,12 @@
             <label for="NgayLapHD" class="form-label"> Ngày lập hoá đơn: </label>
             <div class="form-control w-75" id="NgayLapHD">@ViewBag.NgayLapHD</div>
         </div>
-
-
         <div class="form-group mb-3 col-4">
             <label class="form-label" for="lstMaKH">Thông tin tiếp nhận:</label>
             <div class="form-control w-75" id="NgayLapHD">@ViewBag.selectedTiepNhan</div>
         </div>
-
     </div>
     <div class="row " style="margin: 0; font-size: 17px;">
-
         <div class="form-group mb-3 col-4">
             <label for="KhachHang" class="form-label"> Khách hàng: </label>
             <div class="form-control w-75" id="KhachHang">@ViewBag.KhachHang</div>
@@ -59,16 +55,21 @@
                 <div class="col-4">
                     @Html.ActionLink("< Quay về", "LayDanhSachHoaDon", null, new { @class = "btn-back" })
                 </div>
-
                 <div class="col-4" style="text-align:center">
                     @using (Html.BeginForm("SuaHoaDon", "HOADON"))
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                        <input type="submit" value="Cập nhật hoá đơn" class="btn btn-success" />}
-                </div>
+                        <input type="submit" value="Cập nhật hoá đơn" class="btn btn-success" onclick="myFunction()" />
+                        <script>
+                            function myFunction() {
+                                alert("Đã cập nhật hoá đơn!");
+                            }
+                        </script>
 
+                    }
+                </div>
                 <div class="col-4"></div>
             </div>
         </div>
