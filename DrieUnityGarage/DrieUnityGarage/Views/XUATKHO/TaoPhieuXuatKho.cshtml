@@ -1,7 +1,7 @@
 ﻿@model DrieUnityGarage.Models.XUATKHO
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Tạo phiếu xuất kho";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
@@ -62,11 +62,11 @@
         <div class="col-8">
             <div class="row" style="margin:auto">
                 <div class="col-4">
-                    @Html.ActionLink("< Quay về", "Index", null, new { @class = "btn-back" })
+                    @Html.ActionLink("< Quay về", "LayDanhSachPhieuXuatKho", null, new { @class = "btn-back" })
                 </div>
 
                 <div class="col-4" style="text-align:center">
-                    @using (Html.BeginForm("Create", "XUATKHO"))
+                    @using (Html.BeginForm("TaoPhieuXuatKho", "XUATKHO"))
                     {
                         @Html.AntiForgeryToken()
 

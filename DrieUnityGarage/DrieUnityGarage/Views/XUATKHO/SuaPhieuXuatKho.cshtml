@@ -51,11 +51,11 @@
         <div class="col-8">
             <div class="row" style="margin:auto">
                 <div class="col-4">
-                    @Html.ActionLink("< Quay về", "Index", null, new { @class = "btn-back" })
+                    @Html.ActionLink("< Quay về", "LayDanhSachPhieuXuatKho", null, new { @class = "btn-back" })
                 </div>
 
                 <div class="col-4" style="text-align:center">
-                    @using (Html.BeginForm("Edit", "XUATKHO"))
+                    @using (Html.BeginForm("SuaPhieuXuatKho", "XUATKHO"))
                     {@Html.AntiForgeryToken()
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     { var a = Session["lstSP"] as List<DrieUnityGarage.Models.THONGTINSANPHAM>;

@@ -413,7 +413,7 @@ namespace DrieUnityGarage.Controllers
             return PartialView(lstSp);
         }
 
-        // GET: HOADON/Edit/5
+        // GET: HOADON/SuaHoaDon/5
         public ActionResult SuaHoaDon(string id)
         {
             if (id == null)

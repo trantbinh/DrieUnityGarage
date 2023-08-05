@@ -1,7 +1,7 @@
 ﻿@model DrieUnityGarage.Models.XUATKHO
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Chi tiết phiếu xuất kho";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
@@ -11,7 +11,7 @@
 <div class="container-fluid" style="margin-top:30px; padding-left:50px; padding-right:50px">
     <div class="row">
         <div class="col-lg-12" style="text-align:center; ">
-            <h2 style="color: red">Xác nhận xoá thông tin</h2>
+            <h2>Chi tiết phiếu xuất kho</h2>
         </div>
     </div>
     <p style="font-size:20px; font-weight:bold">THÔNG TIN CHUNG:</p>
@@ -47,36 +47,20 @@
 
     <p style="font-size:20px; font-weight:bold; margin-top:10px;">CHI TIẾT XUẤT KHO:</p>
     @Html.Action("Partial_XemXK_LayDuLieuCTXK", "XUATKHO", new { id = Model.MaXK })
+    <div class="row" style="padding-bottom:10px;">
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        <div class="row" style="padding-bottom:10px;">
-            <div class="col-2"></div>
-            <div class="col-8">
-                <div class="row" style="margin:0">
-                    <div class="col-4">
-                        @Html.ActionLink("< Quay về", "Index", null, new { @class = "btn-back" })
-                    </div>
-                    <div class="col-4" style="text-align:center">
-                        @{
-                            <input type="submit" value="Xác nhận xoá" class="btn btn-danger" onclick="clicked(event)"/>
-                            <script>
-                                function clicked(e) {
-                                    if (!confirm('Xác nhận xoá phiếu xuất kho?')) {
-                                        e.preventDefault();
-                                    }
-                                    else {
-                                        alert("Đã xoá phiếu xuất kho!");
-                                    }
-                                }</script>
-                        }
-
-                    </div>
-                    <div class="col-4"></div>
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="row" style="margin:0">
+                <div class="col-4">
+                    @Html.ActionLink("< Quay về", "LayDanhSachPhieuXuatKho", null, new { @class = "btn-back" })
                 </div>
+                <div class="col-4" style="text-align:center">
+                    @Html.ActionLink("Chỉnh sửa thông tin", "SuaPhieuXuatKho", new { id = Model.MaXK }, new { @class = "btn btn-success" })
+                </div>
+                <div class="col-4"></div>
             </div>
-            <div class="col-2"></div>
         </div>
-    }
+        <div class="col-2"></div>
+    </div>
 </div>

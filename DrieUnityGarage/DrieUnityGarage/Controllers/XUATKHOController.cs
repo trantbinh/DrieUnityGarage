@@ -27,7 +27,7 @@ namespace DrieUnityGarage.Controllers
         }
 
         // GET: XUATKHO
-        public ActionResult Index()
+        public ActionResult LayDanhSachPhieuXuatKho()
         {
             Session.Remove("lstSP");
             Session.Remove("c");
@@ -37,8 +37,8 @@ namespace DrieUnityGarage.Controllers
             return View(xUATKHOes.ToList());
         }
 
-        // GET: XUATKHO/Details/5
-        public ActionResult Details(string id)
+        // GET: XUATKHO/LayThongTinPhieuXuatKho/5
+        public ActionResult LayThongTinPhieuXuatKho(string id)
         {
             if (id == null)
             {
@@ -79,8 +79,8 @@ namespace DrieUnityGarage.Controllers
 
 
         //--------------------------TẠO PHIẾU XUẤT KHO------------------------ 
-        // GET: XUATKHO/Create
-        public ActionResult Create()
+        // GET: XUATKHO/TaoPhieuXuatKho
+        public ActionResult TaoPhieuXuatKho()
 
         {
             ViewBag.MaXK = TaoMaPhieuXuatKho();
@@ -91,9 +91,9 @@ namespace DrieUnityGarage.Controllers
             return View();
         }
 
-        // POST: XUATKHO/Create
+        // POST: XUATKHO/TaoPhieuXuatKho
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.        //Thêm một sản phẩm vào CTHD
+        // more LayThongTinPhieuXuatKho see https://go.microsoft.com/fwlink/?LinkId=317598.        //Thêm một sản phẩm vào CTHD
         public ActionResult CTXK_ThemSP(String id)
         {
             Session.Remove("QuaTonKho");
@@ -113,7 +113,7 @@ namespace DrieUnityGarage.Controllers
                 else
                     currentProduct.SoLuong++;
             }
-            return RedirectToAction("Create", "XUATKHO");
+            return RedirectToAction("TaoPhieuXuatKho", "XUATKHO");
         }
 
         //Tính tổng số lượng sản phẩm
@@ -146,9 +146,9 @@ namespace DrieUnityGarage.Controllers
             if (pro != null)
             {
                 myCart.RemoveAll(n => n.MaSP.Equals(id));
-                return RedirectToAction("Create", "XUATKHO");
+                return RedirectToAction("TaoPhieuXuatKho", "XUATKHO");
             }
-            return RedirectToAction("Create", "XUATKHO");
+            return RedirectToAction("TaoPhieuXuatKho", "XUATKHO");
 
         }
 
@@ -194,7 +194,7 @@ namespace DrieUnityGarage.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(String MaXK)
+        public ActionResult TaoPhieuXuatKho(String MaXK)
         {
             XUATKHO xUATKHO = new XUATKHO();
             List<THONGTINSANPHAM> lstXK = LayDanhSachSanPhamList();
@@ -244,7 +244,7 @@ namespace DrieUnityGarage.Controllers
                     db.Entry(hANGHOA).Property(s => s.SoLuongTmp).IsModified = true;
                     db.SaveChanges();
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("LayDanhSachPhieuXuatKho");
             }
 
             ViewBag.XK_MaBG = new SelectList(db.BAOGIAs, "MaBG", "BG_MaKH", xUATKHO.XK_MaBG);
@@ -254,7 +254,7 @@ namespace DrieUnityGarage.Controllers
 
         //-------------------------------TẠO PHIẾU TỪ BÁO GIÁ------------------------ (Tạm thời đang test trên hoá đơn)
         //Partial Danh sách hàng hoá
-        public ActionResult Partial_TaoBG_LayDuLieuCTBG(String id)
+        public ActionResult Partial_TaoXKTuBG_LayChiTietXK(String id)
         {
             var cthd = db.CT_HOADON.Where(m => m.CTHD_MaHD.Equals(id)).ToList();
             List<THONGTINSANPHAM> lstHH = new List<THONGTINSANPHAM>();
@@ -278,7 +278,7 @@ namespace DrieUnityGarage.Controllers
             return PartialView(lstHH);
         }
 
-        // GET: XUATKHO/Create
+        // GET: XUATKHO/TaoPhieuXuatKho
         public ActionResult TaoPhieuXuatKho_PhieuBG(String idBG)
         {
             ViewBag.MaXK = TaoMaPhieuXuatKho();
@@ -290,7 +290,7 @@ namespace DrieUnityGarage.Controllers
             return View();
         }
 
-        // POST: XUATKHO/Create
+        // POST: XUATKHO/TaoPhieuXuatKho
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -336,7 +336,7 @@ namespace DrieUnityGarage.Controllers
 
                     db.SaveChanges();
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("LayDanhSachPhieuXuatKho");
             }
 
             ViewBag.XK_MaBG = new SelectList(db.BAOGIAs, "MaBG", "MaBG", xUATKHO.XK_MaBG);
@@ -377,9 +377,9 @@ namespace DrieUnityGarage.Controllers
             if (pro != null)
             {
                 myCart.RemoveAll(n => n.MaSP.Equals(id));
-                return RedirectToAction("Edit", "XUATKHO", new { id = Session["MaXK"] });
+                return RedirectToAction("SuaPhieuXuatKho", "XUATKHO", new { id = Session["MaXK"] });
             }
-            return RedirectToAction("Edit", "XUATKHO", new { id = Session["MaXK"] });
+            return RedirectToAction("SuaPhieuXuatKho", "XUATKHO", new { id = Session["MaXK"] });
 
         }
 
@@ -392,11 +392,11 @@ namespace DrieUnityGarage.Controllers
             {
                 pro.SoLuong = int.Parse(f["changequantity"].ToString());
             }
-            return RedirectToAction("Edit", new { id = Session["MaXK"] });
+            return RedirectToAction("SuaPhieuXuatKho", new { id = Session["MaXK"] });
         }
 
-        // GET: XUATKHO/Edit/5
-        public ActionResult Edit(string id)
+        // GET: XUATKHO/SuaPhieuXuatKho/5
+        public ActionResult SuaPhieuXuatKho(string id)
         {
             if (id == null)
             {
@@ -412,12 +412,12 @@ namespace DrieUnityGarage.Controllers
             return View(xUATKHO);
         }
 
-        // POST: XUATKHO/Edit/5
+        // POST: XUATKHO/SuaPhieuXuatKho/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit()
+        public ActionResult SuaPhieuXuatKho()
         {
             String maXK = Session["MaXK"].ToString();
             var a = Session["lstSP"] as List<THONGTINSANPHAM>;
@@ -487,7 +487,7 @@ namespace DrieUnityGarage.Controllers
                         db.SaveChanges();
                     }
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("LayDanhSachPhieuXuatKho");
                 }
                 return View(xUATKHO);
             }
@@ -506,13 +506,13 @@ namespace DrieUnityGarage.Controllers
                 XUATKHO xUATKHO = db.XUATKHOes.Find(maXK);
                 db.XUATKHOes.Remove(xUATKHO);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("LayDanhSachPhieuXuatKho");
 
             }
         }
 
-        // GET: XUATKHO/Delete/5
-        public ActionResult Delete(string id)
+        // GET: XUATKHO/XoaPhieuXuatKho/5
+        public ActionResult XoaPhieuXuatKho(string id)
         {
             if (id == null)
             {
@@ -529,10 +529,10 @@ namespace DrieUnityGarage.Controllers
             return View(xUATKHO);
         }
 
-        // POST: XUATKHO/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: XUATKHO/XoaPhieuXuatKho/5
+        [HttpPost, ActionName("XoaPhieuXuatKho")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult XoaPhieuXuatKhoConfirmed(string id)
         {
             bool check;
             List<CT_XUATKHO> cthd = db.CT_XUATKHO.Where(m => m.CTXK_MaXK.Equals(id)).ToList();
@@ -547,7 +547,7 @@ namespace DrieUnityGarage.Controllers
             XUATKHO xUATKHO = db.XUATKHOes.Find(id);
             db.XUATKHOes.Remove(xUATKHO);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("LayDanhSachPhieuXuatKho");
         }
         public bool XoaChiTietXK(string id)
         {
