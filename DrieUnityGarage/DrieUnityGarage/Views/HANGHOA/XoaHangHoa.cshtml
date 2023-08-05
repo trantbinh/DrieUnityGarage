@@ -73,29 +73,22 @@
         <div class="col-6">
             <div class="row" style="margin:0">
 
-                @if (Session["KhongTheXoa"] != null)
-                {
-                    <div class="col-3">
-                        @Html.ActionLink("< Quay về", "LayDanhSachHangHoa", null, new { @class = "btn-back" })
-                    </div>
-                    <div class="col-3" >
-                        <input type="submit" value="Xác nhận xoá" class="btn btn-danger" />
-                    </div>
-                    
-                        <div class="col-6" style="text-align:right">
-                            <input type="submit" value="Xoá toàn bộ dữ liệu liên quan" class="btn btn-warning" />
-                        </div>       
-                }
-                else
-                {
                     <div class="col-4">
                         @Html.ActionLink("< Quay về", "LayDanhSachHangHoa", null, new { @class = "btn-back" })
                     </div>
                     <div class="col-4" style="text-align:center">
-                        <input type="submit" value="Xác nhận xoá" class="btn btn-danger" />
+                        @{
+                            <input type="submit" value="Xác nhận xoá" class="btn btn-danger" onclick="clicked(event)" />
+                            <script>
+                                    function clicked(e) {
+                                        if (!confirm('Xác nhận xoá thông tin tiếp nhận?')) {
+                                            e.preventDefault();
+                                        }
+
+                                    }</script>
+                        }
                     </div>
                     <div class="col-4"></div>
-                }
             </div>
         </div>
         <div class= "col-3" ></div >

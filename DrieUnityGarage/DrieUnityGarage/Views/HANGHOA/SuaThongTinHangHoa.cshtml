@@ -6,6 +6,7 @@
 }
 <link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/Content/NCC_Index.css" />
+<script src="~/Scripts/UploadImage.js"></script>
 
 <div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
     <div class="row">
@@ -13,7 +14,7 @@
             <h2>Chỉnh sửa thông tin hàng hoá</h2>
         </div>
     </div>
-    @using (Html.BeginForm("SuaThongTinHangHoa","HANGHOA", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("SuaThongTinHangHoa", "HANGHOA", FormMethod.Post, new { @enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 
@@ -43,7 +44,7 @@
                 </div>
                 @{
                     var lstDVT = new List<SelectListItem>()
-                                                                    {
+                                                                            {
                    new SelectListItem()
                     {
                        Text ="Cái",
@@ -75,7 +76,7 @@
                 @*Tạo dropdown líst*@
                 @{
                     var lstLoaiHang = new List<SelectListItem>()
-                                                            {
+                                                                    {
                     new SelectListItem()
                     {
                        Text ="Phụ tùng",
@@ -117,6 +118,7 @@
                         <input name="HinhAnh" type="file" accept="image/*" id="HinhAnh" class="form-control" />
                     </div>
                     <img id="previewnen" class="d-none center" src="#" style="width:50%; height:50%; margin-top:20px;" />
+
                     @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
                 </div>
             </div>

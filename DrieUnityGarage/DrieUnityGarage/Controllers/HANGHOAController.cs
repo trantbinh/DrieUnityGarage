@@ -133,12 +133,9 @@ namespace DrieUnityGarage.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             HANGHOA hANGHOA = db.HANGHOAs.Find(id);
-            if (Session["KhongTheXoa"] == null)
-            {
                 if (check == 0)
                 {
-                    Session["KhongTheXoa"] = 3;
-                    ViewBag.ThongBao = "!Lưu ý: Dữ liệu có liên quan đến các dữ liệu khác. Chắc chắn muốn xoá toàn bộ dữ liệu liên quan?";
+                    ViewBag.ThongBao = "!Lưu ý: Dữ liệu có liên quan đến các dữ liệu khác. Không thể xoá hàng hoá này";
                 }
                 else
                 {
@@ -148,11 +145,6 @@ namespace DrieUnityGarage.Controllers
                     }
                 }
                 return View(hANGHOA);
-            }
-            else
-            {
-                return RedirectToAction("XoaHangHoa_ToanBo", new {id=id});
-            }
         }
 
         // POST: HANGHOA/Delete/5
@@ -177,7 +169,10 @@ namespace DrieUnityGarage.Controllers
         public bool KiemTraKhoaNgoaiHangHoa(string id)
         {
             List<CT_HOADON> tn = db.CT_HOADON.Where(m => m.CTHD_MaHH.Equals(id)).ToList();
-            if (tn.Count()==0)
+            List<CT_BAOGIA> bg = db.CT_BAOGIA.Where(m => m.CTBG_MaHH.Equals(id)).ToList();
+            List<CT_XUATKHO> xk = db.CT_XUATKHO.Where(m => m.CTXK_MaHH.Equals(id)).ToList();
+            List<CT_NHAPKHO> nk = db.CT_NHAPKHO.Where(m => m.CTNK_MaHH.Equals(id)).ToList();
+            if (tn.Count()==0&& bg.Count() == 0&& xk.Count() == 0&& nk.Count() == 0)
             {
                 return false;
             }

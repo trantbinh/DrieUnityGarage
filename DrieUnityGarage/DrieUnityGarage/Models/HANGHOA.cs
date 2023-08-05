@@ -21,7 +21,6 @@ namespace DrieUnityGarage.Models
             this.CT_HOADON = new HashSet<CT_HOADON>();
             this.CT_NHAPKHO = new HashSet<CT_NHAPKHO>();
             this.CT_XUATKHO = new HashSet<CT_XUATKHO>();
-
         }
     
         public string MaHH { get; set; }
@@ -30,9 +29,9 @@ namespace DrieUnityGarage.Models
         public string DonViTinh { get; set; }
         public string LoaiHang { get; set; }
         public Nullable<int> SoLuongTon { get; set; }
+        public Nullable<int> SoLuongTmp { get; set; }
         public string HinhAnh { get; set; }
         public string HH_MaNCC { get; set; }
-        public Nullable<int> SoLuongTmp { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CT_BAOGIA> CT_BAOGIA { get; set; }
@@ -40,9 +39,8 @@ namespace DrieUnityGarage.Models
         public virtual ICollection<CT_HOADON> CT_HOADON { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CT_NHAPKHO> CT_NHAPKHO { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CT_XUATKHO> CT_XUATKHO { get; set; }
-  public virtual NHACUNGCAP NHACUNGCAP { get; set; }
+        public virtual NHACUNGCAP NHACUNGCAP { get; set; }
     }
 }
