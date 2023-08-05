@@ -60,7 +60,18 @@
                         @Html.ActionLink("< Quay về", "LayDanhSachHoaDon", null, new { @class = "btn-back" })
                     </div>
                     <div class="col-4" style="text-align:center">
-                        <input type="submit" value="Xác nhận xoá" class="btn btn-danger" />
+                        @{
+                            <input type="submit" value="Xác nhận xoá" class="btn btn-danger" onclick="clicked(event)" />
+                            <script>
+                                function clicked(e) {
+                                    if (!confirm('Xác nhận xoá hoá đơn?')) {
+                                        e.preventDefault();
+                                    }
+                                    else {
+                                        alert("Đã xoá hoá đơn!");
+                                    }
+                                }</script>
+                        }
                     </div>
                     <div class="col-4"></div>
                 </div>

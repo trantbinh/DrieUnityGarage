@@ -67,6 +67,7 @@ namespace DrieUnityGarage.Controllers
 
                 hANGHOA.MaHH= TaoMaHangHoa();
                 hANGHOA.SoLuongTon = 0;
+                hANGHOA.SoLuongTmp = 0;
                 db.HANGHOAs.Add(hANGHOA);
                 db.SaveChanges();
                 return RedirectToAction("LayDanhSachHangHoa");

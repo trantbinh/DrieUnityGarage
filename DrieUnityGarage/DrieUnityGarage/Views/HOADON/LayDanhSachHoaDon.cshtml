@@ -38,12 +38,7 @@
             <th>
                 Biển số xe
             </th>
-            <th>
-                Mã thanh toán
-            </th>
-            <th>
-                Mã nhân viên
-            </th>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -71,12 +66,6 @@
                     @Html.DisplayFor(modelItem => item.PHUONGTIEN.BienSoXe)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.THONGTINTHANHTOAN.TT_MaKH)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.THONGTINTIEPNHAN.TN_MaNV)
-                </td>
-                <td>
                     @Html.ActionLink("Sửa", "SuaHoaDon", new { id = item.MaHD }, new { @class = "btn btn-success" })
 
                 </td>
@@ -87,6 +76,10 @@
                 <td>
                     @Html.ActionLink("Xoá", "XoaHoaDon", new { id = item.MaHD }, new { @class = "btn btn-danger" })
                 </td>
+                <td>
+                    @Html.ActionLink("Xuất kho", "TaoPhieuXuatKho_PhieuBG","XUATKHO", new { idBG = item.MaHD}, new { @class = "btn btn-warning" })
+                </td>
+
             </tr>
         }
 

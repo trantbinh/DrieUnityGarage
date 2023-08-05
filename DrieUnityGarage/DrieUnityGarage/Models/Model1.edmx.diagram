@@ -4,25 +4,44 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0060b1fafd514ef1aea036ddf6b75688" Name="Diagram1">
-        <EntityTypeShape EntityType="DrieUnityGarageModel.CT_HOADON" Width="1.5" PointX="8" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DrieUnityGarageModel.HANGHOA" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="DrieUnityGarageModel.HOADON" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DrieUnityGarageModel.KHACHHANG" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DrieUnityGarageModel.NHACUNGCAP" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DrieUnityGarageModel.NHANVIEN" Width="1.5" PointX="7.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DrieUnityGarageModel.PHUONGTIEN" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="DrieUnityGarageModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DrieUnityGarageModel.THONGTINTHANHTOAN" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DrieUnityGarageModel.THONGTINTIEPNHAN" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+      <Diagram DiagramId="c1b6fc0b5b3a44d6bf2195d2b0896c81" Name="Diagram1" ZoomLevel="109">
+        <EntityTypeShape EntityType="DrieUnityGarageModel.BAOGIA" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="DrieUnityGarageModel.CT_BAOGIA" Width="1.5" PointX="10.5" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DrieUnityGarageModel.CT_HOADON" Width="1.5" PointX="10.5" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DrieUnityGarageModel.CT_NHAPKHO" Width="1.5" PointX="9.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DrieUnityGarageModel.CT_XUATKHO" Width="1.5" PointX="9.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DrieUnityGarageModel.HANGHOA" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DrieUnityGarageModel.HOADON" Width="1.5" PointX="8.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DrieUnityGarageModel.KHACHHANG" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="DrieUnityGarageModel.NHACUNGCAP" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DrieUnityGarageModel.NHANVIEN" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DrieUnityGarageModel.NHAPKHO" Width="1.5" PointX="12.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DrieUnityGarageModel.PHUONGTIEN" Width="1.5" PointX="3" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DrieUnityGarageModel.sysdiagram" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DrieUnityGarageModel.THONGTINTHANHTOAN" Width="1.5" PointX="6" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DrieUnityGarageModel.THONGTINTIEPNHAN" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="DrieUnityGarageModel.XUATKHO" Width="1.5" PointX="7.5" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="DrieUnityGarageModel.FK_BAOGIA_KHACHHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="DrieUnityGarageModel.FK_BAOGIA_PHUONGTIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="DrieUnityGarageModel.FK_BAOGIA_THONGTINTIEPNHAN" ManuallyRouted="false" />
+        <AssociationConnector Association="DrieUnityGarageModel.FK_CTBAOGIA_BAOGIA" ManuallyRouted="false" />
+        <AssociationConnector Association="DrieUnityGarageModel.FK_XUATKHO_BAOGIA" ManuallyRouted="false" />
+        <AssociationConnector Association="DrieUnityGarageModel.FK_CTBAOGIA_HANGHOA" ManuallyRouted="false" />
         <AssociationConnector Association="DrieUnityGarageModel.FK_CTHOADON_HANGHOA" ManuallyRouted="false" />
+        <AssociationConnector Association="DrieUnityGarageModel.FK_CTHOADON_HOADON" ManuallyRouted="false" />
+        <AssociationConnector Association="DrieUnityGarageModel.FK_CTNHAPKHO_HANGHOA" ManuallyRouted="false" />
+        <AssociationConnector Association="DrieUnityGarageModel.FK_CTNHAPKHO_NHAPKHO" ManuallyRouted="false" />
+        <AssociationConnector Association="DrieUnityGarageModel.FK_CTXUATKHO_HANGHOA" ManuallyRouted="false" />
+        <AssociationConnector Association="DrieUnityGarageModel.FK_CTXUATKHO_XUATKHO" ManuallyRouted="false" />
+        <AssociationConnector Association="DrieUnityGarageModel.FK_HANGHOA_NCC" ManuallyRouted="false" />
         <AssociationConnector Association="DrieUnityGarageModel.FK_HOADON_KHACHHANG" ManuallyRouted="false" />
         <AssociationConnector Association="DrieUnityGarageModel.FK_HOADON_PHUONGTIEN" ManuallyRouted="false" />
         <AssociationConnector Association="DrieUnityGarageModel.FK_HOADON_THONGTINTHANHTOAN" ManuallyRouted="false" />
         <AssociationConnector Association="DrieUnityGarageModel.FK_HOADON_THONGTINTIEPNHAN" ManuallyRouted="false" />
         <AssociationConnector Association="DrieUnityGarageModel.FK_PHUONGTIEN_KHACHHANG" ManuallyRouted="false" />
-        <AssociationConnector Association="DrieUnityGarageModel.FK_HANGHOA_NCC" />
-        <AssociationConnector Association="DrieUnityGarageModel.FK_CTHOADON_HOADON" />
+        <AssociationConnector Association="DrieUnityGarageModel.FK_NHAPKHO_NHACUNGCAP" ManuallyRouted="false" />
+        <AssociationConnector Association="DrieUnityGarageModel.FK_NHAPKHO_NHANVIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="DrieUnityGarageModel.FK_XUATKHO_NHANVIEN" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

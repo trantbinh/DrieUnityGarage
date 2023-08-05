@@ -24,10 +24,10 @@
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.MaHH)
                 @Html.HiddenFor(model => model.SoLuongTon)
-
+                @Html.HiddenFor(model => model.SoLuongTmp)
                 <div class="form-group mb-3">
                     <label for="MaHH" class="form-label"> Mã hàng hoá: </label>
-                    <input class="form-control" id="MaHH" value="@Model.MaHH" disabled/>
+                    <input class="form-control" id="MaHH" value="@Model.MaHH" disabled />
                 </div>
 
                 <div class="form-group mb-3">
@@ -43,7 +43,7 @@
                 </div>
                 @{
                     var lstDVT = new List<SelectListItem>()
-                                                                {
+                                                                    {
                    new SelectListItem()
                     {
                        Text ="Cái",
@@ -75,7 +75,7 @@
                 @*Tạo dropdown líst*@
                 @{
                     var lstLoaiHang = new List<SelectListItem>()
-                                                        {
+                                                            {
                     new SelectListItem()
                     {
                        Text ="Phụ tùng",

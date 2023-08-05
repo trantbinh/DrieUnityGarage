@@ -139,11 +139,23 @@
     <Compile Include="Controllers\NHANVIENController.cs" />
     <Compile Include="Controllers\THONGTINTIEPNHANController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\XUATKHOController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CTHD.cs" />
+    <Compile Include="Models\BAOGIA.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CT_BAOGIA.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CT_HOADON.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CT_NHAPKHO.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CT_XUATKHO.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DONHANG.cs" />
@@ -177,10 +189,12 @@
     <Compile Include="Models\NHANVIEN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\NHAPKHO.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PHUONGTIEN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SanPham.cs" />
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -194,7 +208,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\THONGTINTIEPNHANXE.cs" />
-    <Compile Include="Models\TIEPNHAN.cs" />
+    <Compile Include="Models\XUATKHO.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -431,6 +447,17 @@
     <Content Include="Views\NHANVIEN\TaoTaiKhoan.cshtml" />
     <Content Include="Views\HOADON\Partial_XemHD_LayDuLieuCTHD.cshtml" />
     <Content Include="Views\HOADON\Partial_CapNhatHD_LayChiTietHoaDon.cshtml" />
+    <Content Include="Views\XUATKHO\TaoPhieuXuatKho.cshtml" />
+    <Content Include="Views\XUATKHO\XoaPhieuXuatKho.cshtml" />
+    <Content Include="Views\XUATKHO\LayThongTinPhieuXuatKho.cshtml" />
+    <Content Include="Views\XUATKHO\SuaPhieuXuatKho.cshtml" />
+    <Content Include="Views\XUATKHO\LayDanhSachPhieuXuatKho.cshtml" />
+    <Content Include="Views\XUATKHO\TaoPhieuXuatKho_PhieuBG.cshtml" />
+    <Content Include="Views\XUATKHO\Partial_TaoXKTuBG_LayChiTietXK.cshtml" />
+    <Content Include="Views\XUATKHO\Partial_TaoXK_LayChiTietPhieuXK.cshtml" />
+    <Content Include="Views\XUATKHO\Partial_TaoXK_ThemChiTietPhieuXK.cshtml" />
+    <Content Include="Views\XUATKHO\Partial_SuaXK_LayChiTietXK.cshtml" />
+    <Content Include="Views\XUATKHO\Partial_XemXK_LayDuLieuCTXK.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
