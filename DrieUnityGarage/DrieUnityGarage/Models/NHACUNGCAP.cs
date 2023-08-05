@@ -18,6 +18,7 @@ namespace DrieUnityGarage.Models
         public NHACUNGCAP()
         {
             this.HANGHOAs = new HashSet<HANGHOA>();
+            this.NHAPKHOes = new HashSet<NHAPKHO>();
         }
     
         public string MaNCC { get; set; }
@@ -31,5 +32,7 @@ namespace DrieUnityGarage.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HANGHOA> HANGHOAs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NHAPKHO> NHAPKHOes { get; set; }
     }
 }

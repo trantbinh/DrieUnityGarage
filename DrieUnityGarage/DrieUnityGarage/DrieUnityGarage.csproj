@@ -130,6 +130,8 @@
     <Compile Include="App_Start\BundleConfig2.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BAOGIAController.cs" />
+    <Compile Include="Controllers\CT_BAOGIAController.cs" />
     <Compile Include="Controllers\CT_HOADONController.cs" />
     <Compile Include="Controllers\HANGHOAController.cs" />
     <Compile Include="Controllers\HOADONController.cs" />
@@ -142,8 +144,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BAOGIA.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CTHD.cs" />
+    <Compile Include="Models\CT_BAOGIA.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CT_HOADON.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CT_NHAPKHO.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DONHANG.cs" />
@@ -175,6 +186,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\NHANVIEN.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NHAPKHO.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PHUONGTIEN.cs">
@@ -431,6 +445,20 @@
     <Content Include="Views\NHANVIEN\TaoTaiKhoan.cshtml" />
     <Content Include="Views\HOADON\Partial_XemHD_LayDuLieuCTHD.cshtml" />
     <Content Include="Views\HOADON\Partial_CapNhatHD_LayChiTietHoaDon.cshtml" />
+    <Content Include="Views\CT_BAOGIA\Index.cshtml" />
+    <Content Include="Views\CT_BAOGIA\Details.cshtml" />
+    <Content Include="Views\CT_BAOGIA\Create.cshtml" />
+    <Content Include="Views\CT_BAOGIA\Edit.cshtml" />
+    <Content Include="Views\CT_BAOGIA\Delete.cshtml" />
+    <Content Include="Views\BAOGIA\Partial_TaoBG_LayChiTietBaoGia.cshtml" />
+    <Content Include="Views\BAOGIA\Partial_TaoBG_ThemChiTietBaoGia.cshtml" />
+    <Content Include="Views\BAOGIA\LayDanhSachBaoGia.cshtml" />
+    <Content Include="Views\BAOGIA\XemThongTinBaoGia.cshtml" />
+    <Content Include="Views\BAOGIA\Partial_XemBG_LayDuLieuCTBG.cshtml" />
+    <Content Include="Views\BAOGIA\ThemBaoGia.cshtml" />
+    <Content Include="Views\BAOGIA\Partial_CapNhatBG_LayChiTietBaoGia.cshtml" />
+    <Content Include="Views\BAOGIA\SuaBaoGia.cshtml" />
+    <Content Include="Views\BAOGIA\XoaBaoGia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

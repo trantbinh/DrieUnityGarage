@@ -1,15 +1,14 @@
-﻿@model DrieUnityGarage.Models.CT_HOADON
-
+﻿@model DrieUnityGarage.Models.CT_BAOGIA
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
-<h2>Delete</h2>
+<h2>Details</h2>
 
-<h3>Bạn có chắc muốn xoá?</h3>
+
 <div>
-    <h4>CT_HOADON</h4>
+    <h4>CT_BAOGIA</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -37,21 +36,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.HOADON.HD_MaKH)
+            @Html.DisplayNameFor(model => model.BAOGIA.BG_MaKH)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.HOADON.HD_MaKH)
+            @Html.DisplayFor(model => model.BAOGIA.BG_MaKH)
         </dd>
 
     </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
 </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

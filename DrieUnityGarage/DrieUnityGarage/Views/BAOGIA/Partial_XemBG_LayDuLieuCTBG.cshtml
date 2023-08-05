@@ -1,0 +1,78 @@
+﻿@model List<DrieUnityGarage.Models.THONGTINSANPHAM>
+<link rel="stylesheet" href="~/Content/TaoHoaDon.css" />
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+<table class="table index-table">
+    <tr>
+        <th>
+            Hình ảnh
+        </th>
+        <th>
+            Mã
+        </th>
+        <th>
+            Tên
+        </th>
+        <th>
+            ĐVT
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Đơn giá
+        </th>
+        <th>
+            Thành tiền
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="~/Uploads/HangHoa/@item.HinhAnh" class="center" style="width: 50%; height: 50%;" />
+            </td>
+
+            <td>
+                @item.MaSP
+            </td>
+            <td>
+                @item.TenSP
+            </td>
+
+            <td>
+                @item.DonViTinh
+            </td>
+
+            <td>
+
+                @item.SoLuong
+            </td>
+
+
+            <td>
+                @String.Format("{0:0,0}đ", item.DonGia)
+
+            </td>
+
+            <td>
+                @String.Format("{0:0,0}đ", item.FinalPrice())
+
+            </td>
+        </tr>
+    }
+    <tr style="font-weight:bold">
+        <td>
+            Tổng
+        </td>
+        <td colspan="2"></td>
+
+        <td class="soluong">@ViewBag.TotalNumber</td>
+        <td></td>
+        <td class="tongthanhtoan">
+            @String.Format("{0:0,0}đ", @ViewBag.TotalPrice)
+        </td>
+        <td colspan="1"></td>
+    </tr>
+</table>

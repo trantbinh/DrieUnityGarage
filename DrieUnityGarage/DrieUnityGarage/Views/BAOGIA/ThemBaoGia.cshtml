@@ -1,0 +1,110 @@
+﻿@model DrieUnityGarage.Models.BAOGIA
+@{
+    ViewBag.Title = "ThemBaoGia";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center; ">
+            <h2>Thêm báo giá</h2>
+        </div>
+    </div>
+    <p style="font-size:20px; font-weight:bold">THÔNG TIN CHUNG:</p>
+
+    @using (Html.BeginForm("TaoBG_LayThongTinTiepNhan", "BAOGIA"))
+    {
+        <p style="font-size:20px; color:red; text-align:center; font-weight:bold">@ViewBag.ThongBao</p>
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row " style="margin: 0; margin-top: 10px; font-size: 17px;">
+            @if (Session["DaLayThongTinTiepNhan"] != null)
+            {
+                <div class="form-group mb-3 col-4">
+                    <label for="MaBG" class="form-label"> Mã báo giá: </label>
+                    <div class="form-control w-75" id="MaHD">@ViewBag.MaBG</div>
+                </div>
+                <div class="form-group mb-3 col-4">
+                    <label for="NgayLapBG" class="form-label"> Ngày lập báo giá: </label>
+                    <div class="form-control w-75" id="NgayLapHD">@ViewBag.NgayLapBG</div>
+                </div>
+                <div class="form-group mb-3 col-4">
+                    <label for="MaTN" class="form-label">  Thông tin tiếp nhận: </label>
+                    <div class="form-control w-75" id="MaTN">@ViewBag.selectedTiepNhan</div>
+                </div>
+            }
+            else
+            {
+                <div class="form-group mb-3 col-3">
+                    <label for="MaBG" class="form-label"> Mã báo giá: </label>
+                    <div class="form-control w-75" id="MaHD">@ViewBag.MaBG</div>
+                </div>
+                <div class="form-group mb-3 col-3">
+                    <label for="NgayLapBG" class="form-label"> Ngày lập báo giá: </label>
+                    <div class="form-control w-75" id="NgayLapHD">@ViewBag.NgayLapBG</div>
+                </div>
+
+
+                <div class="form-group mb-3 col-4">
+                    <label class="form-label" for="lstMaKH">Chọn thông tin tiếp nhận:</label>
+                    @Html.DropDownList("lstMaTN", null, htmlAttributes: new { @class = "form-control w-100" })
+                </div>
+
+                <div class="mb-3 col-2" style="margin-left:0;margin-right:0; margin-top:30px;">
+                    <input type="submit" value="Lấy thông tin tiếp nhận" class="btn btn-primary" />
+                </div>
+            }
+        </div>
+    }
+    @if (Session["DaLayThongTinTiepNhan"] != null)
+    {
+        <div class="row " style="margin: 0; font-size: 17px;">
+            <div class="form-group mb-3 col-4">
+                <label for="KhachHang" class="form-label"> Khách hàng: </label>
+                <div class="form-control w-75" id="KhachHang">@ViewBag.KhachHang</div>
+            </div>
+            <div class="form-group mb-3 col-4">
+                <label for="BienSoXe" class="form-label"> Biển số xe: </label>
+                <div class="form-control w-75" id="BienSoXe">@ViewBag.BienSoXe</div>
+            </div>
+            <div class="form-group mb-3 col-4">
+                <label for="NhanVien" class="form-label">  Nhân viên: </label>
+                <div class="form-control w-75" id="NhanVien">@ViewBag.NhanVien</div>
+            </div>
+        </div>
+
+    }
+
+    <p style="font-size:20px; font-weight:bold; margin-top:10px;">CHI TIẾT BÁO GIÁ:</p>
+    <div class="row">
+        <div class="col-lg-9">
+            @Html.Action("Partial_TaoBG_LayChiTietBaoGia", "BAOGIA")
+        </div>
+        <div class="col-lg-3">
+            @Html.Action("Partial_TaoBG_ThemChiTietBaoGia", "BAOGIA")
+        </div>
+    </div>
+    <div class="row" style="padding-bottom:10px;">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="row" style="margin:auto">
+                <div class="col-4">
+                    @Html.ActionLink("< Quay về", "LayDanhSachBaoGia", null, new { @class = "btn-back" })
+                </div>
+
+                <div class="col-4" style="text-align:center">
+                    @using (Html.BeginForm("CTBG_ThemBaoGia", "BAOGIA"))
+                    {
+
+                        <input type="submit" value="Tạo báo giá" class="btn btn-primary" />}
+                </div>
+
+                <div class="col-4"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
