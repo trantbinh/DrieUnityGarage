@@ -133,7 +133,6 @@
     <Compile Include="Controllers\BAOGIAController.cs" />
     <Compile Include="Controllers\DATLICHController.cs" />
     <Compile Include="Controllers\DANHGIATINHTRANGController.cs" />
-
     <Compile Include="Controllers\HANGHOAController.cs" />
     <Compile Include="Controllers\HOADONController.cs" />
     <Compile Include="Controllers\DrieUnityGarageController.cs" />
@@ -480,13 +479,11 @@
     <Content Include="Views\XUATKHO\Partial_TaoXK_ThemChiTietPhieuXK.cshtml" />
     <Content Include="Views\XUATKHO\Partial_SuaXK_LayChiTietXK.cshtml" />
     <Content Include="Views\XUATKHO\Partial_XemXK_LayDuLieuCTXK.cshtml" />
-
     <Content Include="Views\DatLich\LayDanhSachThongTinDatLich.cshtml" />
     <Content Include="Views\DatLich\LayThongTinDatLich.cshtml" />
     <Content Include="Views\DatLich\TaoThongTinDatLich.cshtml" />
     <Content Include="Views\DatLich\SuaThongTinDatLich.cshtml" />
     <Content Include="Views\DatLich\XoaThongTinDatLich.cshtml" />
-
     <Content Include="Views\NHAPKHO\TaoPhieuNhapKho.cshtml" />
     <Content Include="Views\NHAPKHO\XoaPhieuNhapKho.cshtml" />
     <Content Include="Views\NHAPKHO\LayThongTinPhieuNhapKho.cshtml" />
@@ -508,7 +505,7 @@
     <Content Include="Views\NHANVIEN\SuaTaiKhoan.cshtml" />
     <Content Include="Views\NHANVIEN\LayThongTinTaiKhoan.cshtml" />
     <Content Include="Views\NHANVIEN\XoaTaiKhoan.cshtml" />
-
+    <Content Include="Views\HANGHOA\TraCuuHangHoa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

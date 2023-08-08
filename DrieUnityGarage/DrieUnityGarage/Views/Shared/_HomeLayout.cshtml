@@ -102,7 +102,7 @@
                                 </a>
                                 <ul class="submenu collapse">
                                     <li><a class="nav-link" href="@Url.Action("LayDanhSachThongTinTiepNhan", "THONGTINTIEPNHAN")">Quản lý thông tin tiếp nhận</a></li>
-                                    <li><a class="nav-link" href="#">Quản lý đánh giá tình trạng xe </a></li>
+                                    <li><a class="nav-link" href="@Url.Action("LayDanhSachDanhGiaTinhTrang", "DANHGIATINHTRANG")">Quản lý đánh giá tình trạng xe </a></li>
                                     <li><a class="nav-link" href="@Url.Action("LayDanhSachBaoGia", "BAOGIA")">Quản lý báo giá </a></li>
                                     <li><a class="nav-link" href="@Url.Action("LayDanhSachHoaDon", "HOADON")">Quản lý hóa đơn </a></li>
                                     <li><a class="nav-link" href="#">Quản lý bàn giao xe </a></li>
@@ -116,23 +116,13 @@
                             </li>
                             <li class="nav-item has-submenu" style="margin-top:8px;">
                                 <a class="nav-link" href="#" style="padding-left:0">
-                                    <img src="~/Images/Icon/icon_QLCSKH28x28.png" class="icon" /> Quản lý CSKH <i class="bi small bi-caret-down-fill"></i>
-                                </a>
-                                <ul class="submenu collapse">
-                                    <li><a class="nav-link" href="#">Quản lý phản hồi dịch vụ </a></li>
-                                    <li><a class="nav-link" href="#">Quản lý số theo dõi bão dưỡng xe </a></li>
-                                    <li><a class="nav-link" href="#">Quản lý bảo hành phụ tùng</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item has-submenu" style="margin-top:8px;">
-                                <a class="nav-link" href="#" style="padding-left:0">
                                     <img src="~/Images/Icon/icon_QLHangHoa28x28.png" class="icon" /> Quản lý hàng hoá <i class="bi small bi-caret-down-fill"></i>
                                 </a>
                                 <ul class="submenu collapse">
                                     <li><a class="nav-link" href="#">Cập nhật giá bán </a></li>
                                     <li><a class="nav-link" href="#">Tạo bảng giá </a></li>
                                     <li><a class="nav-link" href="@Url.Action("LayDanhSachHangHoa", "HANGHOA")">Danh sách hàng hoá  </a></li>
-                                    <li><a class="nav-link" href="#">Tra cứu hàng hoá </a></li>
+                                    <li><a class="nav-link" href="@Url.Action("TraCuuHangHoa", "HANGHOA")">Tra cứu hàng hoá </a></li>
                                 </ul>
                             </li>
                             if (Session["IsAdmin"] != null)
@@ -190,6 +180,8 @@
                                 <ul class="submenu collapse">
                                     <li><a class="nav-link" href="#">Quản lý trả góp </a></li>
                                     <li><a class="nav-link" href="@Url.Action("LayDanhSachThongTinDatLich", "DATLICH")">Quản lý đặt lịch </a></li>
+                                    <li><a class="nav-link" href="#">Quản lý phản hồi dịch vụ </a></li>
+                                    <li><a class="nav-link" href="#">Quản lý bảo hành phụ tùng</a></li>
                                     <li><a class="nav-link" href="#">Quản lý phiếu bảo hành</a></li>
 
                                 </ul>

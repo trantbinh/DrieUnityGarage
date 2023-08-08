@@ -22,7 +22,35 @@ namespace DrieUnityGarage.Controllers
             var hANGHOAs = db.HANGHOAs.Include(h => h.NHACUNGCAP);
             return View(hANGHOAs.ToList());
         }
+        public ActionResult TraCuuHangHoa(String searchString, String LoaiHang = null, String lstDVT = null, String TinhTrang = null)
+        {
+            var hANGHOAs = db.HANGHOAs.Include(h => h.NHACUNGCAP);
+            ViewBag.Keyword = searchString;
+            ViewBag.lstDVT = new SelectList(db.HANGHOAs, "DonViTinh", "DonViTinh");
 
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                searchString = searchString.ToLower();
+                hANGHOAs = hANGHOAs.Where(b => b.TenHH.ToLower().Contains(searchString));
+            }
+            if (LoaiHang != null)
+            {
+                hANGHOAs = hANGHOAs.Where(c => c.LoaiHang.Equals(LoaiHang));
+            }
+            if (lstDVT != null)
+            {
+                hANGHOAs = hANGHOAs.Where(c => c.DonViTinh.Equals(lstDVT));
+            }
+            if (TinhTrang != null)
+            {
+                if (TinhTrang.Equals("Cần nhập hàng"))
+                    hANGHOAs = hANGHOAs.Where(c => c.SoLuongTon <= 5);
+                else hANGHOAs = hANGHOAs.Where(c => c.SoLuongTon > 5);
+
+            }
+            return View(hANGHOAs.ToList());
+
+        }
         // GET: HANGHOA/Details/5
         public ActionResult LayThongTinHangHoa(string id)
         {
