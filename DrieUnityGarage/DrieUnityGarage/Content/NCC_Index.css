@@ -1053,3 +1053,10 @@ textarea.form-maTN100-lg {
     margin-right: auto;
     width: 50%;
 }
+
+
+.horizontal-radio-button {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}

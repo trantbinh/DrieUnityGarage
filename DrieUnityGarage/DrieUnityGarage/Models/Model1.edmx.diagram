@@ -60,6 +60,8 @@
         <AssociationConnector Association="DrieUnityGarageModel.FK_XUATKHO_NHANVIEN" ManuallyRouted="false" />
         <AssociationConnector Association="DrieUnityGarageModel.FK_THONGTINTIEPNHAN_PHUONGTIEN" ManuallyRouted="false" />
         <AssociationConnector Association="DrieUnityGarageModel.FK_THONGTINTHANHTOAN_TRAGOP" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DrieUnityGarageModel.DANHGIATINHTRANG" Width="1.5" PointX="10.5" PointY="31.5" />
+        <AssociationConnector Association="DrieUnityGarageModel.FK_DANHGIATINHTRANG_THONGTINTIEPNHAN" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

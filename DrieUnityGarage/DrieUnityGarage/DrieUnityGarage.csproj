@@ -131,6 +131,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BAOGIAController.cs" />
+    <Compile Include="Controllers\DANHGIATINHTRANGController.cs" />
     <Compile Include="Controllers\HANGHOAController.cs" />
     <Compile Include="Controllers\HOADONController.cs" />
     <Compile Include="Controllers\DrieUnityGarageController.cs" />
@@ -166,6 +167,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DANHGIADICHVU.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DANHGIATINHTRANG.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DATLICH.cs">
@@ -492,6 +496,11 @@
     <Content Include="Views\HOADON\Partial_TaoHD_PhieuBG_LayChiTietHoaDon.cshtml" />
     <Content Include="Views\HOADON\Partial_TaoHD_PhieuBG_ThemChiTietHoaDon.cshtml" />
     <Content Include="Views\BAOGIA\Partial_CapNhatBG_ThemChiTietBaoGia.cshtml" />
+    <Content Include="Views\DANHGIATINHTRANG\Create.cshtml" />
+    <Content Include="Views\DANHGIATINHTRANG\Delete.cshtml" />
+    <Content Include="Views\DANHGIATINHTRANG\Details.cshtml" />
+    <Content Include="Views\DANHGIATINHTRANG\Edit.cshtml" />
+    <Content Include="Views\DANHGIATINHTRANG\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

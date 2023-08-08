@@ -1,0 +1,771 @@
+﻿@model DrieUnityGarage.Models.DANHGIATINHTRANG
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+<style>
+    .input {
+        display: table-cell;
+        vertical-align: middle
+    }
+    input[type="radio"] {
+        vertical-align: middle;
+        margin-left:50%;
+
+    }
+</style>
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center; ">
+            <h2>Đánh giá tình trạng xe</h2>
+        </div>
+    </div>
+    <p style="font-size:20px; font-weight:bold">THÔNG TIN CHUNG:</p>
+
+
+    @using (Html.BeginForm("TaoDG_LayThongTinTiepNhan", "DANHGIATINHTRANG"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        if (Session["DaLayThongTinTiepNhan"] != null)
+        {
+
+            <div class="row " style="margin: 0; margin-top: 10px; font-size: 17px;">
+                <div class="form-group mb-3 col-4">
+                    <label for="MaHD" class="form-label"> Mã phiếu đánh giá: </label>
+                    <div class="form-control w-75" id="MaHD">@ViewBag.MaDG</div>
+                </div>
+                <div class="form-group mb-3 col-4">
+                    <label for="NgayLapHD" class="form-label"> Ngày lập phiếu: </label>
+                    <div class="form-control w-75" id="NgayLapHD">@ViewBag.NgayLapHD</div>
+                </div>
+                <div class="form-group mb-3 col-4">
+                    <label for="MaTN" class="form-label">  Thông tin tiếp nhận: </label>
+                    <div class="form-control w-75" id="MaTN">@ViewBag.selectedTiepNhan</div>
+                </div>
+            </div>
+            <div class="row " style="margin: 0; font-size: 17px;">
+                <div class="form-group mb-3 col-4">
+                    <label for="KhachHang" class="form-label"> Khách hàng: </label>
+                    <div class="form-control w-75" id="KhachHang">@ViewBag.KhachHang</div>
+                </div>
+                <div class="form-group mb-3 col-4">
+                    <label for="BienSoXe" class="form-label"> Biển số xe: </label>
+                    <div class="form-control w-75" id="BienSoXe">@ViewBag.BienSoXe</div>
+                </div>
+                <div class="form-group mb-3 col-4">
+                    <label for="NhanVien" class="form-label">  Nhân viên phụ trách: </label>
+                    <div class="form-control w-75" id="NhanVien">@ViewBag.NhanVien</div>
+                </div>
+            </div>
+
+        }
+        else
+        {
+            <div class="row " style="margin: 0; margin-top: 10px; font-size: 17px;">
+
+                <div class="form-group mb-3 col-3">
+                    <label for="MaHD" class="form-label"> Mã phiếu đánh giá: </label>
+                    <div class="form-control w-75" id="MaHD">@ViewBag.MaDG</div>
+                </div>
+                <div class="form-group mb-3 col-3">
+                    <label for="NgayLapHD" class="form-label"> Ngày lập phiếu: </label>
+                    <div class="form-control w-75" id="NgayLapHD">@ViewBag.NgayLapHD</div>
+                </div>
+
+
+                <div class="form-group mb-3 col-4">
+                    <label class="form-label" for="lstMaKH">Chọn thông tin tiếp nhận:</label>
+                    @Html.DropDownList("lstMaTN", null, htmlAttributes: new { @class = "form-control w-100" })
+                </div>
+
+                <div class="mb-3 col-2" style="margin-left:0;margin-right:0; margin-top:30px;">
+                    <input type="submit" value="Lấy thông tin tiếp nhận" class="btn btn-primary" />
+                </div>
+            </div>
+
+        }
+    }
+    @if (Session["DaLayThongTinTiepNhan"] != null)
+    {
+
+        using (Html.BeginForm("Create"))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <p style="font-size:20px; font-weight:bold; margin-top:10px;">HẠNG MỤC ĐÁNH GIÁ:</p>
+
+            <table class="table table-bordered index-table" style="margin-top:20px;">
+                <tr>
+                    <th width="5%" rowspan="2">
+                        STT
+                    </th>
+                    <th width="35%" rowspan="2">
+                        Tên hạng mục
+                    </th>
+                    <td colspan="3" style="font-weight:bold;">Tình trạng</td>
+                </tr>
+                <tr>
+                    <th width="20%" style="font-weight:bold;">
+                        Bình thường
+                    </th>
+                    <th width="20%" style="font-weight:bold;">
+                        Theo dõi
+                    </th>
+                    <th width="20%" style="font-weight:bold;">
+                        Thay thế
+                    </th>
+
+                </tr>
+                <tr>
+                    <td colspan="5" style="font-weight:bold; font-size:18px;text-align:left">Nội và ngoại thất</td>
+                </tr>
+                <tr>
+                    <td width="5%">
+                        1
+                    </td>
+                    <td width="35%">
+                        Ngoại thất
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="NgoaiThat" id="NgoaiThat" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="NgoaiThat" id="NgoaiThat" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="NgoaiThat" id="NgoaiThat" value="3">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="5%">
+                        2
+                    </td>
+                    <td width="35%">
+                        Kính chắn gió/ Gương
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="KinhChanGio" id="KinhChanGio" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="KinhChanGio" id="KinhChanGio" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="KinhChanGio" id="KinhChanGio" value="3">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="5%">
+                        3
+                    </td>
+                    <td width="35%">
+                        Gạt mưa
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="GatMua" id="GatMua" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="GatMua" id="GatMua" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="GatMua" id="GatMua" value="3">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="5%">
+                        4
+                    </td>
+                    <td width="35%">
+                        Hệ thống đèn chiếu sáng & tín hiệu
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="HeThongDen" id="HeThongDen" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="HeThongDen" id="HeThongDen" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="HeThongDen" id="HeThongDen" value="3">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="5%">
+                        5
+                    </td>
+                    <td width="35%">
+                        Hệ thống điều hoà
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="HeThongDieuHoa" id="HeThongDieuHoa" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="HeThongDieuHoa" id="HeThongDieuHoa" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="HeThongDieuHoa" id="HeThongDieuHoa" value="3">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="font-weight:bold; font-size:18px; text-align:left">Khoang động cơ</td>
+                </tr>
+                <tr>
+                    <td width="5%">
+                        6
+                    </td>
+                    <td width="35%">
+                        Dầu động cơ
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="DauDongCo" id="DauDongCo" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="DauDongCo" id="DauDongCo" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="DauDongCo" id="DauDongCo" value="3">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="5%">
+                        7
+                    </td>
+                    <td width="35%">
+                        Dầu phanh
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="DauPhanh" id="DauPhanh" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="DauPhanh" id="DauPhanh" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="DauPhanh" id="DauPhanh" value="3">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="5%">
+                        8
+                    </td>
+                    <td width="35%">
+                        Dầu trợ lực lái
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="DauTroLucLai" id="DauTroLucLai" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="DauTroLucLai" id="DauTroLucLai" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="DauTroLucLai" id="DauTroLucLai" value="3">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="5%">
+                        9
+                    </td>
+                    <td width="35%">
+                        Nước rửa kính
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="NuocRuaKinh" id="NuocRuaKinh" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="NuocRuaKinh" id="NuocRuaKinh" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="NuocRuaKinh" id="NuocRuaKinh" value="3">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="5%">
+                        10
+                    </td>
+                    <td width="35%">
+                        Nước làm mát
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="NuocLamMat" id="NuocLamMat" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="NuocLamMat" id="NuocLamMat" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="NuocLamMat" id="NuocLamMat" value="3">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="5%">
+                        11
+                    </td>
+                    <td width="35%">
+                        Lọc gió động cơ
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="LocGioDongCo" id="LocGioDongCo" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="LocGioDongCo" id="LocGioDongCo" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="LocGioDongCo" id="LocGioDongCo" value="3">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="5%">
+                        12
+                    </td>
+                    <td width="35%">
+                        Lọc gió điều hoà
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="LocGioDieuHoa" id="LocGioDieuHoa" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="LocGioDieuHoa" id="LocGioDieuHoa" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="LocGioDieuHoa" id="LocGioDieuHoa" value="3">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="font-weight:bold; font-size:18px;text-align:left">Ác quy</td>
+                </tr>
+                <tr>
+                    <td width="5%">
+                        13
+                    </td>
+                    <td width="35%">
+                        Tình trạng ác quy
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="Acquy" id="Acquy" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="Acquy" id="Acquy" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="Acquy" id="Acquy" value="3">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="5%">
+                        14
+                    </td>
+                    <td width="35%">
+                        Tình trạng hệ thống sạc
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="HeThongSac" id="HeThongSac" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="HeThongSac" id="HeThongSac" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="HeThongSac" id="HeThongSac" value="3">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="5%">
+                        15
+                    </td>
+                    <td width="35%">
+                        Dây cáp và đầu cực
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="DauCap" id="DauCap" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="DauCap" id="DauCap" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="DauCap" id="DauCap" value="3">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="font-weight:bold; font-size:18px;text-align:left">Hệ thống gầm</td>
+                </tr>
+                <tr>
+                    <td width="5%">
+                        16
+                    </td>
+                    <td width="35%">
+                        Má phanh
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="MaPhanh" id="MaPhanh" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="MaPhanh" id="MaPhanh" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="MaPhanh" id="MaPhanh" value="3">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="5%">
+                        17
+                    </td>
+                    <td width="35%">
+                        Đĩa phanh
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="DiaPhanh" id="DiaPhanh" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="DiaPhanh" id="DiaPhanh" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="DiaPhanh" id="DiaPhanh" value="3">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="5%">
+                        18
+                    </td>
+                    <td width="35%">
+                        Hệ thống lái
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="HeThongLai" id="HeThongLai" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="HeThongLai" id="HeThongLai" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="HeThongLai" id="HeThongLai" value="3">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="5%">
+                        19
+                    </td>
+                    <td width="35%">
+                        Hệ thống treo
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="HeThongTreo" id="HeThongTreo" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="HeThongTreo" id="HeThongTreo" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="HeThongTreo" id="HeThongTreo" value="3">
+                        </div>
+                    </td>
+                <tr>
+                    <td colspan="5" style="font-weight:bold; font-size:18px; text-align:left">Lốp xe</td>
+                </tr>
+                <tr>
+                    <td rowspan="2" colspan="2" style="font-weight:bold">Độ sâu gai lốp</td>
+                    <td colspan="3">Độ sâu</td>
+                </tr>
+                <tr>
+                    <td>> 4mm</td>
+                    <td>3 - 4mm</td>
+                    <td>1.6 - 3mm</td>
+                </tr>
+
+                <tr>
+                    <td width="5%">
+                        20
+                    </td>
+                    <td width="35%">
+                        Bánh trái phía trước
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="BanhTraiTruoc" id="BanhTraiTruoc" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="BanhTraiTruoc" id="BanhTraiTruoc" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="BanhTraiTruoc" id="BanhTraiTruoc" value="3">
+                        </div>
+                    </td>
+                <tr>
+                <tr>
+                    <td width="5%">
+                        21
+                    </td>
+                    <td width="35%">
+                        Bánh trái phía sau
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="BanhTraiSau" id="BanhTraiSau" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="BanhTraiSau" id="BanhTraiSau" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="BanhTraiSau" id="BanhTraiSau" value="3">
+                        </div>
+                    </td>
+                <tr>
+                <tr>
+                    <td width="5%">
+                        22
+                    </td>
+                    <td width="35%">
+                        Bánh phải phía trước
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="BanhPhaiTruoc" id="BanhPhaiTruoc" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="BanhPhaiTruoc" id="BanhPhaiTruoc" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="BanhPhaiTruoc" id="BanhPhaiTruoc" value="3">
+                        </div>
+                    </td>
+                <tr>
+                <tr>
+                    <td width="5%">
+                        22
+                    </td>
+                    <td width="35%">
+                        Bánh phải phía sau
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="BanhPhaiSau" id="BanhPhaiSau" value="1" checked>
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="BanhPhaiSau" id="BanhPhaiSau" value="2">
+                        </div>
+                    </td>
+                    <td width="20%">
+                        <div class="form-check horizontal-radio-button">
+                            <input class="form-check-input" type="radio" name="BanhPhaiSau" id="BanhPhaiSau" value="3">
+                        </div>
+                    </td>
+                <tr>
+                <tr>
+                    <td colspan="5" style="font-weight:bold; font-size:18px; text-align:left">Khuyến cáo</td>
+                </tr>
+                <tr>
+                    <td width="5%">
+                        23
+                    </td>
+                    <td width="35%" colspan="4">
+                        <div class="form-check" style="text-align: left; margin-left:30px;">
+                            <input class="form-check-input" type="checkbox" value="1" id="CanChinhThuocLai" name="CanChinhThuocLai">
+                            <label class="form-check-label" for="CanChinhThuocLai">
+                                Cân chỉnh thước lái
+                            </label>
+                        </div>
+
+                    </td>
+                <tr>
+                <tr>
+                    <td width="5%">
+                        24
+                    </td>
+                    <td width="35%" colspan="4">
+                        <div class="form-check" style="text-align: left; margin-left:30px;">
+                            <input class="form-check-input" type="checkbox" value="1" id="CanBangDong" name="CanBangDong">
+                            <label class="form-check-label" for="CanBangDong">
+                                Cân bằng động
+                            </label>
+                        </div>
+
+                    </td>
+                <tr>
+                <tr>
+                    <td width="5%">
+                        25
+                    </td>
+                    <td width="35%" colspan="4">
+                        <div class="form-check" style="text-align: left; margin-left:30px;">
+                            <input class="form-check-input" type="checkbox" value="1" id="DaoLop" name="DaoLop">
+                            <label class="form-check-label" for="DaoLop">
+                                Đảo lốp
+                            </label>
+                        </div>
+
+                    </td>
+                <tr>
+                <tr>
+                    <td width="5%">
+                        26
+                    </td>
+                    <td width="35%" colspan="4">
+                        <div class="form-check" style="text-align: left; margin-left:30px;">
+                            <input class="form-check-input" type="checkbox" value="1" id="ThayThe" name="ThayThe">
+                            <label class="form-check-label" for="ThayThe">
+                                Thay thế
+                            </label>
+                        </div>
+
+                    </td>
+                <tr>
+
+
+
+
+            </table>
+            <div class="mb-3">
+                <label for="GhiChu" class="form-label" style="font-weight:bold; font-size:18px; text-align:left">Nhận xét</label>
+                <textarea class="form-control" id="GhiChu" name="GhiChu" rows="4" required></textarea>
+            </div>
+            <div class="row" style="padding-bottom:10px;">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <div class="row" style="margin:auto">
+                        <div class="col-4">
+                            @Html.ActionLink("< Quay về", "Index", null, new { @class = "btn-back" })
+                        </div>
+
+                        <div class="col-4" style="text-align:center">
+                            <input type="submit" value="Tạo đánh giá" class="btn btn-primary" />
+
+                        </div>
+
+                        <div class="col-4"></div>
+                    </div>
+                    <div class="col-2"></div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                </div>
+            </div>
+        }
+    }
+</div>

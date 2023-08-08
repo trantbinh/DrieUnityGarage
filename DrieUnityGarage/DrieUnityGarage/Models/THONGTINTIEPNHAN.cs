@@ -21,6 +21,7 @@ namespace DrieUnityGarage.Models
             this.BAOGIAs = new HashSet<BAOGIA>();
             this.DANHGIADICHVUs = new HashSet<DANHGIADICHVU>();
             this.HOADONs = new HashSet<HOADON>();
+            this.DANHGIATINHTRANGs = new HashSet<DANHGIATINHTRANG>();
         }
     
         public string MaTN { get; set; }
@@ -43,5 +44,7 @@ namespace DrieUnityGarage.Models
         public virtual KHACHHANG KHACHHANG { get; set; }
         public virtual NHANVIEN NHANVIEN { get; set; }
         public virtual PHUONGTIEN PHUONGTIEN { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DANHGIATINHTRANG> DANHGIATINHTRANGs { get; set; }
     }
 }
