@@ -1,16 +1,17 @@
-﻿using System;
+﻿using DrieUnityGarage.Models;
+using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Web;
 using System.Web.Mvc;
-using DrieUnityGarage.Models;
 
 namespace DrieUnityGarage.Controllers
 {
-    public class DATLICHController : Controller
+    public class BAOHANHController : Controller
     {
         private DrieUnityGarageEntities db = new DrieUnityGarageEntities();
         //Lấy danh sách khách hàng
@@ -21,44 +22,12 @@ namespace DrieUnityGarage.Controllers
             int c = khDB.Count();
             for (int i = 0; i < c; i++)
             {
-
                 newlstKH.Add(new THONGTINKHACHHANG(khDB[i].MaKH));
             }
             Session.Remove("lstKH");
             Session["lstKH"] = newlstKH;
             return newlstKH;
         }
-
-        //Lấy danh sách nhân viên
-        public List<THONGTINNHANVIEN> LayDanhSachNhanVienDB()
-        {
-            var newlstNV = new List<THONGTINNHANVIEN>();
-            var nvDB = db.NHANVIENs.ToList();
-            int c = nvDB.Count();
-            for (int i = 0; i < c; i++)
-            {
-                if (nvDB[i].ChucVu.Equals("Quản lý"))
-                    continue;
-                else
-                    newlstNV.Add(new THONGTINNHANVIEN(nvDB[i].MaNV));
-            }
-            Session["lstNV"] = newlstNV;
-            return newlstNV;
-        }
-        public List<THONGTINNHANVIEN> LayDanhSachToanBoNhanVienDB()
-        {
-            var newlstNV = new List<THONGTINNHANVIEN>();
-            var nvDB = db.NHANVIENs.ToList();
-            int c = nvDB.Count();
-            for (int i = 0; i < c; i++)
-            {
-
-                newlstNV.Add(new THONGTINNHANVIEN(nvDB[i].MaNV));
-            }
-            Session["lstNV"] = newlstNV;
-            return newlstNV;
-        }
-
         //Lấy danh sách xe
         public List<THONGTINPHUONGTIEN> LayDanhSachXeDB()
         {
@@ -73,49 +42,48 @@ namespace DrieUnityGarage.Controllers
             Session["lstXe"] = newlstKH;
             return newlstKH;
         }
+        //Lấy danh sách hàng hoá
 
-        // GET: THONGTINTIEPNHAN
-        public ActionResult LayDanhSachThongTinDatLich()
+        public ActionResult LayDanhSachThongTinBaoHanh()
         {
             Session["DaLayThongTinXe"] = null;
             Session["KhongCoThongTinXe"] = null;
-            return View(db.DATLICHes.ToList());
+            return View(db.BAOHANHs.ToList());
         }
 
-        // GET: THONGTINTIEPNHAN/LayThongTinTiepNhan/5
-        public ActionResult LayThongTinDatLich(string id)
+        public ActionResult LayThongTinBaoHanh(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DATLICH dATLICH = db.DATLICHes.Find(id);
-            if (dATLICH == null)
+            BAOHANH bAOHANH = db.BAOHANHs.Find(id);
+            if (bAOHANH == null)
             {
                 return HttpNotFound();
             }
-            return View(dATLICH);
+            return View(bAOHANH);
         }
 
 
-        // GET: THONGTINTIEPNHAN/TaoThongTinTiepNhan
-        public ActionResult TaoThongTinDatLich()
+        public ActionResult TaoThongTinBaoHanh()
         {
             String date = DateTime.Now.ToString("dd/MM/yyyy");
-            ViewBag.NgayLap = date;
-            String idDL = TaoMaDatLich();
-            ViewBag.MaDL = idDL;
+            ViewBag.ThoiGianBatDau = date;
+
+            String idBH = TaoMaBaoHanh();
+            ViewBag.MaBH = idBH;
             List<THONGTINKHACHHANG> lstKhachHang = LayDanhSachKhachHangDB();
             ViewBag.lstMaKH = new SelectList(lstKhachHang, "MaKH", "ThongTin");
 
-
+            ViewBag.lstHH = new SelectList(db.HANGHOAs, "MaHH", "TenHH", "HH000");
+            
+ 
             if (Session["DaLayThongTinXe"] != null)
             {
                 List<THONGTINPHUONGTIEN> a = Session["lstXe"] as List<THONGTINPHUONGTIEN>;
                 ViewBag.lstXe = new SelectList(a, "BienSoXe", "BienSoXe");
-                ViewBag.selectedKhachHang = Session["selectedKhachHang"];
-                ViewBag.selectedNhanVien = Session["selectedNhanVien"];
-                ViewBag.ThoiGianGiaoXe = Session["ThoiGianGiaoXe"];
+
             }
             else if (Session["KhongCoThongTinXe"] != null)
             {
@@ -123,8 +91,9 @@ namespace DrieUnityGarage.Controllers
             }
             return View();
         }
+
         //Hàm được sử dụng sau khi nhấn nút lấy danh sách xe
-        public ActionResult TaoTTDL_LayThongTinXe(String lstNhanVien, String lstMaKH)
+        public ActionResult TaoTTBH_LayThongTinXe(String lstMaKH)
         {
             //Lấy danh sách xe từ database sau đó lọc ra những xe của khách hàng
             var xe = LayDanhSachXeDB();
@@ -145,7 +114,7 @@ namespace DrieUnityGarage.Controllers
             Session["selectedKhachHang"] = selectedKH;
 
             //Thông tin cần lưu của đặt lịch
-            Session["MaDL"] = TaoMaDatLich();
+            Session["MaBH"] = TaoMaBaoHanh();
             Session["MaKH"] = lstMaKH;
             Session.Remove("lstXe");
             Session["lstXe"] = lstXe;
@@ -156,50 +125,49 @@ namespace DrieUnityGarage.Controllers
             else
                 Session["DaLayThongTinXe"] = 3;
 
-
-            return RedirectToAction("TaoThongTinDatLich");
+            return RedirectToAction("TaoThongTinBaoHanh");
         }
-
         //Lưu thông tin tiếp nhận vào database
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult TaoThongTinDatLich(String GhiChuKH, String lstXe,String TinhTrangXe,DateTime NgayHen)
+        public ActionResult TaoThongTinBaoHanh(String lstXe,int ThoiHanBaoHanh,DateTime ThoiGianKetThuc,String NoiBH, String lstHH)
         {
-            DATLICH dATLICH = new DATLICH();
+            BAOHANH bAOHANH = new BAOHANH();
             if (ModelState.IsValid)
             {
-                String id = TaoMaDatLich();
-                dATLICH.MaDL = id;
-                dATLICH.DL_MaKH = Session["MaKH"].ToString();
-                dATLICH.DL_BienSoXe = lstXe;
-                dATLICH.TinhTrangXe = TinhTrangXe;
-                dATLICH.NgayLap = DateTime.Now;
-                dATLICH.NgayHen = NgayHen;
-                dATLICH.GhiChuKH = GhiChuKH;
-                db.DATLICHes.Add(dATLICH);
+                String id = TaoMaBaoHanh();
+                bAOHANH.MaBH = id;
+                bAOHANH.BH_MaKH = Session["MaKH"].ToString();
+                bAOHANH.BH_BienSoXe = lstXe;
+                bAOHANH.BH_MaHH = lstHH;
+                bAOHANH.ThoiHanBaoHanh = ThoiHanBaoHanh;
+                bAOHANH.ThoiGianBatDau = DateTime.Now;
+                bAOHANH.ThoiGianKetThuc = ThoiGianKetThuc;
+                bAOHANH.NoiBaoHanh = NoiBH;
+                db.BAOHANHs.Add(bAOHANH);
                 db.SaveChanges();
-                return RedirectToAction("LayDanhSachThongTinDatLich");
+                return RedirectToAction("LayDanhSachThongTinBaoHanh");
             }
-
-            return View(dATLICH);
+            ViewBag.BH_MaHH = new SelectList(db.HANGHOAs, "MaHH", "MaHH");
+            return View(bAOHANH);
         }
 
         // GET: THONGTINTIEPNHAN/SuaThongTinTiepNhan/5
-        public ActionResult SuaThongTinDatLich(string id)
+        public ActionResult SuaThongTinBaoHanh(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DATLICH dATLICH = db.DATLICHes.Find(id);
-            if (dATLICH == null)
+            BAOHANH bAOHANH = db.BAOHANHs.Find(id);
+            if (bAOHANH == null)
             {
                 return HttpNotFound();
             }
 
             List<THONGTINKHACHHANG> lstKhachHang = LayDanhSachKhachHangDB();
-            ViewBag.DL_MaKH = new SelectList(lstKhachHang, "MaKH", "ThongTin", dATLICH.DL_MaKH);
-
+            ViewBag.BH_MaKH = new SelectList(lstKhachHang, "MaKH", "ThongTin", bAOHANH.BH_MaKH);
+            ViewBag.BH_MaHH = new SelectList(db.HANGHOAs, "MaHH", "MaHH");
 
             //Lấy danh sách xe từ database sau đó lọc ra những xe của khách hàng
             var xe = LayDanhSachXeDB();
@@ -207,19 +175,19 @@ namespace DrieUnityGarage.Controllers
             int c = xe.Count();
             for (int i = 0; i < c; i++)
             {
-                if (xe[i].TTPT_MaKH.Equals(dATLICH.DL_MaKH))
+                if (xe[i].TTPT_MaKH.Equals(bAOHANH.BH_MaKH))
                     lstXe.Add(new THONGTINPHUONGTIEN(xe[i].BienSoXe));
             }
 
-            ViewBag.lstXe = new SelectList(lstXe, "BienSoXe", "BienSoXe", dATLICH.DL_BienSoXe);
+            ViewBag.lstXe = new SelectList(lstXe, "BienSoXe", "BienSoXe", bAOHANH.BH_BienSoXe);
             DateTime date;
-            if (dATLICH.NgayHen != null)
+            if (bAOHANH.ThoiGianKetThuc != null)
             {
-                date = (DateTime)dATLICH.NgayHen;
-                ViewBag.NgayHen = date.ToString("yyyy/MM/dd");
+                date = (DateTime)bAOHANH.ThoiGianKetThuc;
+                ViewBag.ThoiGianKetThuc = date.ToString("yyyy/MM/dd");
             }
 
-            return View(dATLICH);
+            return View(bAOHANH);
         }
 
 
@@ -228,56 +196,64 @@ namespace DrieUnityGarage.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SuaThongTinDatLich(DATLICH dATLICH
-            , String DL_MaKH, String lstXe, String GhiChuKH, DateTime NgayHen,String TinhTrangXe)
+        public ActionResult SuaThongTinBaoHanh(BAOHANH bAOHANH
+            , String BH_MaKH, String lstXe,  int ThoiHanBaoHanh, DateTime ThoiGianKetThuc,String NoiBh)
         {
             if (ModelState.IsValid)
             {
-                dATLICH.DL_MaKH = DL_MaKH;
-                dATLICH.DL_BienSoXe = lstXe;
-                dATLICH.NgayHen = (DateTime)NgayHen;
-                dATLICH.TinhTrangXe = TinhTrangXe;
-                dATLICH.GhiChuKH = GhiChuKH;
-                db.Entry(dATLICH).State = EntityState.Modified;
+                bAOHANH.BH_MaKH = BH_MaKH;
+                bAOHANH.BH_BienSoXe = lstXe;
+                bAOHANH.ThoiHanBaoHanh = ThoiHanBaoHanh;
+                bAOHANH.ThoiGianBatDau = DateTime.Now;
+                bAOHANH.ThoiGianKetThuc = ThoiGianKetThuc;
+                bAOHANH.NoiBaoHanh = NoiBh;
+                db.Entry(bAOHANH).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("LayDanhSachThongTinDatLich");
+                return RedirectToAction("LayDanhSachThongTinBaoHanh");
             }
-            return View(dATLICH);
+            ViewBag.BH_MaHH = new SelectList(db.HANGHOAs, "MaHH", "MaHH");
+            return View(bAOHANH);
         }
 
-
         // GET: THONGTINTIEPNHAN/XoaThongTinTiepNhan/5
-        public ActionResult XoaThongTinDatLich(string id, int check)
+        public ActionResult XoaThongTinBaoHanh(string id, int check)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DATLICH dATLICH = db.DATLICHes.Find(id);
+            BAOHANH bAOHANH = db.BAOHANHs.Find(id);
             if (check == 0)
             {
                 ViewBag.ThongBao = "!Lưu ý: Dữ liệu có liên quan đến các dữ liệu khác. Không thể xoá";
             }
             else
             {
-                if (dATLICH == null)
+               
+                if (bAOHANH == null)
                 {
                     return HttpNotFound();
                 }
             }
-            return View(dATLICH);
+            DateTime date;
+            if(bAOHANH.ThoiGianBatDau == DateTime.Now)
+            {
+                date = (DateTime)bAOHANH.ThoiGianKetThuc;
+                ViewBag.ThoiGianKetThuc = date.ToString("yyyy/MM/dd");
+            }
+            return View(bAOHANH);
         }
 
 
         // POST: THONGTINTIEPNHAN/XoaThongTinTiepNhan/5
-        [HttpPost, ActionName("XoaThongTinDatLich")]
+        [HttpPost, ActionName("XoaThongTinBaoHanh")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            DATLICH dATLICH = db.DATLICHes.Find(id);
-            db.DATLICHes.Remove(dATLICH);
+            BAOHANH bAOHANH = db.BAOHANHs.Find(id);
+            db.BAOHANHs.Remove(bAOHANH);
             db.SaveChanges();
-            return RedirectToAction("LayDanhSachThongTinDatLich");
+            return RedirectToAction("LayDanhSachThongTinBaoHanh");
         }
 
         protected override void Dispose(bool disposing)
@@ -288,29 +264,29 @@ namespace DrieUnityGarage.Controllers
             }
             base.Dispose(disposing);
         }
-        private String TaoMaDatLich()
+        private String TaoMaBaoHanh()
         {
-            String idDL = "";
+            String idBH = "";
             //Tạo mã nhà cung cấp String
-            List<DATLICH> lstDL = db.DATLICHes.ToList();
-            int countLst = lstDL.Count();
+            List<BAOHANH> lstBH = db.BAOHANHs.ToList();
+            int countLst = lstBH.Count();
             if (countLst == 0)
             {
-                idDL = "DL001";
+                idBH = "BH001";
             }
             else
             {
-                DATLICH lastDL = lstDL[countLst - 1];
-                String lastMaDL = lastDL.MaDL;
-                int lastMaDLNum = int.Parse(lastMaDL.Substring(2));
-                int newMaDL = lastMaDLNum + 1;
-                if (newMaDL < 10)
+                BAOHANH lastBH = lstBH[countLst - 1];
+                String lastMaBH = lastBH.MaBH;
+                int lastMaBHNum = int.Parse(lastMaBH.Substring(2));
+                int newMaBH = lastMaBHNum + 1;
+                if (newMaBH < 10)
                 {
-                    idDL = "DL00" + newMaDL.ToString();
+                    idBH = "BH00" + newMaBH.ToString();
                 }
-                else { idDL = "DLN0" + newMaDL.ToString(); }
+                else { idBH = "BHN0" + newMaBH.ToString(); }
             }
-            return (idDL);
+            return (idBH);
         }
 
     }

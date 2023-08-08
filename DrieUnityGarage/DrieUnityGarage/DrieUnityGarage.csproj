@@ -131,6 +131,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BAOGIAController.cs" />
+    <Compile Include="Controllers\BAOHANHController.cs" />
     <Compile Include="Controllers\CT_BAOGIAController.cs" />
     <Compile Include="Controllers\CT_HOADONController.cs" />
     <Compile Include="Controllers\DATLICHController.cs" />
@@ -496,6 +497,11 @@
     <Content Include="Views\DatLich\TaoThongTinDatLich.cshtml" />
     <Content Include="Views\DatLich\SuaThongTinDatLich.cshtml" />
     <Content Include="Views\DatLich\XoaThongTinDatLich.cshtml" />
+    <Content Include="Views\BAOHANH\LayDanhSachThongTinBaoHanh.cshtml" />
+    <Content Include="Views\BAOHANH\LayThongTinBaoHanh.cshtml" />
+    <Content Include="Views\BAOHANH\TaoThongTinBaoHanh.cshtml" />
+    <Content Include="Views\BAOHANH\SuaThongTinBaoHanh.cshtml" />
+    <Content Include="Views\BAOHANH\XoaThongTinBaoHanh.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
