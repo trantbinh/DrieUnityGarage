@@ -1,0 +1,81 @@
+﻿@model DrieUnityGarage.Models.NHAPKHO
+
+@{
+    ViewBag.Title = "Xoá phiếu nhập kho";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center; ">
+            <h2 style="color: red">Xác nhận xoá thông tin</h2>
+        </div>
+    </div>
+    <p style="font-size:20px; font-weight:bold">THÔNG TIN CHUNG:</p>
+    <div class="row " style="margin: 0; margin-top: 10px; font-size: 17px;">
+        <div class="form-group mb-3 col-4">
+            <label for="MaNK" class="form-label"> Mã phiếu nhập kho: </label>
+            <input class="form-control w-75" id="MaNK" name="MaXK" readonly value="@Model.MaNK" />
+        </div>
+        <div class="form-group mb-3 col-4">
+            <label for="NgayLap" class="form-label"> Thời gian lập: </label>
+            <input class="form-control w-75" id="NgayLap" name="NgayLap" readonly value="@Model.NgayLap" />
+
+        </div>
+        <div class="form-group mb-3 col-4">
+            <label for="MaNV" class="form-label"> Nhân viên thực hiện: </label>
+            <input class="form-control w-75" id="MaNV" name="MaNV" readonly value="@Model.NK_MaNV " />
+        </div>
+    </div>
+    <div class="row " style="margin: 0; margin-top: 10px; font-size: 17px;">
+        <div class="form-group mb-3 col-4">
+            <label for="lstNCC" class="form-label"> Nhà cung cấp:</label>
+            <input class="form-control w-75" id="MaNV" name="MaNV" readonly value="@ViewBag.selectedNCC " />
+        </div>
+        <div class="form-group mb-3 col-4">
+            <label for="NguoiGiao" class="form-label"> Họ tên người giao: </label>
+            <input class="form-control w-75" id="NguoiGiao" name="NguoiGiao" readonly value="@Model.HoTenNguoiGiao" />
+        </div>
+        <div class="form-group mb-3 col-4">
+            <label for="SoCT" class="form-label"> Số chứng từ kèm theo (nếu có): </label>
+            <input class="form-control w-75" id="SoCT" name="SoCT" readonly value="@Model.SoChungTu" />
+        </div>
+    </div>
+
+    <p style="font-size:20px; font-weight:bold; margin-top:10px;">CHI TIẾT NHẬP KHO:</p>
+@Html.Action("Partial_XemNK_LayDuLieuCTNK", "NHAPKHO", new { id = Model.MaNK })
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row" style="padding-bottom:10px;">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="row" style="margin:0">
+                <div class="col-4">
+                    @Html.ActionLink("< Quay về", "LayDanhSachPhieuNhapKho", null, new { @class = "btn-back" })
+                </div>
+                <div class="col-4" style="text-align:center">
+                    @{
+                        <input type="submit" value="Xác nhận xoá" class="btn btn-danger" onclick="clicked(event)" />
+                        <script>
+                                function clicked(e) {
+                                    if (!confirm('Xác nhận xoá phiếu nhập kho?')) {
+                                        e.preventDefault();
+                                    }
+                                    else {
+                                        alert("Đã xoá phiếu nhập kho!");
+                                    }
+                                }</script>
+                    }
+                </div>
+                <div class="col-4"></div>
+            </div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+}
+</div>
