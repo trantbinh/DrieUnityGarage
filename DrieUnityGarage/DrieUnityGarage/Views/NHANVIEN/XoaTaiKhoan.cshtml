@@ -1,0 +1,69 @@
+﻿@model DrieUnityGarage.Models.NHANVIEN
+
+@{
+    ViewBag.Title = "XoaTaiKhoan";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center">
+            <h2 style="color: red">Xác nhận xoá thông tin</h2>
+        </div>
+    </div>
+    <div class="container col-6" style="margin-top: 10px; font-size:17px;">
+        <p style="font-weight:500; color:red; font-size:18px; text-align:center">@ViewBag.ThongBao</p>
+        <hr />
+        <div class="form-group mb-3">
+            <label for="MaNV" class="form-label"> Nhân viên: [Mã - Họ tên - Chức vụ] </label>
+            <input class="form-control" id="MaNV" name="MaNV" value="@ViewBag.selectedNhanVien" readonly />
+        </div>
+        <div class="form-group mb-3">
+            <label for="NgayTaoTK" class="form-label"> Ngày tạo tài khoản: </label>
+            <input class="form-control" id="NgayTaoTK" name="NgayTaoTK" value="@ViewBag.NgayTaoTK" readonly />
+        </div>
+        <div class="form-group mb-3">
+            <label for="TenDangNhap" class="form-label"> Tên đăng nhập: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.TenDangNhap)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="MatKhau" class="form-label"> Mật khẩu: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.MatKhau)
+            </div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("XoaTaiKhoan", "NHANVIEN"))
+    {@Html.AntiForgeryToken()
+    <div class="row" style="padding-bottom:10px;">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="row" style="margin:0">
+
+                <div class="col-4">
+                    @Html.ActionLink("< Quay về", "LayDanhSachTaiKhoan", null, new { @class = "btn-back" })
+                </div>
+                <div class="col-4" style="text-align:center">
+                    @{
+                        <input type="submit" value="Xác nhận xoá" class="btn btn-danger" onclick="clicked(event)" />
+                        <script>
+                            function clicked(e) {
+                                if (!confirm('Xác nhận xoá tài khoản nhân viên này?')) {
+                                    e.preventDefault();
+                                }
+
+                            }</script>
+                    }
+                </div>
+                <div class="col-4"></div>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+}
+</div>

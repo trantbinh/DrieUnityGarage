@@ -496,6 +496,9 @@
     <Content Include="Views\DANHGIATINHTRANG\LayThongTinDanhGiaTinhTrang.cshtml" />
     <Content Include="Views\DANHGIATINHTRANG\SuaDanhGiaTinhTrang.cshtml" />
     <Content Include="Views\DANHGIATINHTRANG\LayDanhSachDanhGiaTinhTrang.cshtml" />
+    <Content Include="Views\NHANVIEN\SuaTaiKhoan.cshtml" />
+    <Content Include="Views\NHANVIEN\LayThongTinTaiKhoan.cshtml" />
+    <Content Include="Views\NHANVIEN\XoaTaiKhoan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
