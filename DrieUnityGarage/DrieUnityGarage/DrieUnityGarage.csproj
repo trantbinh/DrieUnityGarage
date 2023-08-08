@@ -131,6 +131,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BAOGIAController.cs" />
+    <Compile Include="Controllers\DANHGIATINHTRANGController.cs" />
     <Compile Include="Controllers\HANGHOAController.cs" />
     <Compile Include="Controllers\HOADONController.cs" />
     <Compile Include="Controllers\DrieUnityGarageController.cs" />
@@ -166,6 +167,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DANHGIADICHVU.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DANHGIATINHTRANG.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DATLICH.cs">
@@ -426,11 +430,6 @@
     <Content Include="Views\KHACHHANG\Details.cshtml" />
     <Content Include="Views\KHACHHANG\Edit.cshtml" />
     <Content Include="Views\KHACHHANG\Index.cshtml" />
-    <Content Include="Views\NHANVIEN\Create.cshtml" />
-    <Content Include="Views\NHANVIEN\Delete.cshtml" />
-    <Content Include="Views\NHANVIEN\Details.cshtml" />
-    <Content Include="Views\NHANVIEN\Edit.cshtml" />
-    <Content Include="Views\NHANVIEN\Index.cshtml" />
     <Content Include="Views\NHANVIEN\LayDanhSachNhanVien.cshtml" />
     <Content Include="Views\NHANVIEN\LayThongTinNhanVien.cshtml" />
     <Content Include="Views\NHANVIEN\SuaThongTinNhanVien.cshtml" />
@@ -488,6 +487,18 @@
     <Content Include="Views\NHAPKHO\Partial_TaoNK_ThemChiTietPhieuNK.cshtml" />
     <Content Include="Views\NHAPKHO\Partial_SuaNK_LayChiTietNK.cshtml" />
     <Content Include="Views\NHAPKHO\Partial_XemNK_LayDuLieuCTNK.cshtml" />
+    <Content Include="Views\HOADON\ThemHoaDon_PhieuBG.cshtml" />
+    <Content Include="Views\HOADON\Partial_TaoHD_PhieuBG_LayChiTietHoaDon.cshtml" />
+    <Content Include="Views\HOADON\Partial_TaoHD_PhieuBG_ThemChiTietHoaDon.cshtml" />
+    <Content Include="Views\BAOGIA\Partial_CapNhatBG_ThemChiTietBaoGia.cshtml" />
+    <Content Include="Views\DANHGIATINHTRANG\TaoDanhGiaTinhTrang.cshtml" />
+    <Content Include="Views\DANHGIATINHTRANG\XoaDanhGiaTinhTrang.cshtml" />
+    <Content Include="Views\DANHGIATINHTRANG\LayThongTinDanhGiaTinhTrang.cshtml" />
+    <Content Include="Views\DANHGIATINHTRANG\SuaDanhGiaTinhTrang.cshtml" />
+    <Content Include="Views\DANHGIATINHTRANG\LayDanhSachDanhGiaTinhTrang.cshtml" />
+    <Content Include="Views\NHANVIEN\SuaTaiKhoan.cshtml" />
+    <Content Include="Views\NHANVIEN\LayThongTinTaiKhoan.cshtml" />
+    <Content Include="Views\NHANVIEN\XoaTaiKhoan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

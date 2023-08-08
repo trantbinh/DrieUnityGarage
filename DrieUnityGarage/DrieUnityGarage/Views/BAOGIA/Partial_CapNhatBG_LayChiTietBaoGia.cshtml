@@ -14,8 +14,6 @@
         padding-left: 17px;
     }
 </style>
-
-
 <table class="table index-table">
     <tr>
         <th>
@@ -45,15 +43,12 @@
         <th>
             Xoá
         </th>
-
-
     </tr>
 
     @foreach (var item in Model)
     {
         using (Html.BeginForm("CapNhatBG_CapNhatSoLuong", "BAOGIA", new { id = item.MaSP }))
         {
-
             <tr>
                 <td>
                     <img src="~/Uploads/HangHoa/@item.HinhAnh" class="center" style="width: 50%; height: 50%;" />
@@ -70,10 +65,6 @@
                     @item.DonViTinh
                 </td>
                 <td>
-
-                </td>
-                <td>
-
                     <input type="number" min="1" max="@item.TonKho" name="changequantity" value="@item.SoLuong"
                            data-id="@item.MaSP" class="quantity quantity-form" />
                 </td>
@@ -98,23 +89,21 @@
             </tr>
         }
     }
-    @if (Session["lstSPBG"] != null)
-    {
-        <tr style="font-weight:bold">
-            <td>
-                Tổng
-            </td>
-            <td colspan="2"></td>
-
-            <td class="soluong">@ViewBag.TotalNumber</td>
-            <td></td>
-            <td class="tongthanhtoan">
-                @String.Format("{0:0,0}đ", @ViewBag.TotalPrice)
-            </td>
-            <td colspan="3"></td>
-
-        </tr>
-
+    @{ var a = Session["lstSPBG"] as List<DrieUnityGarage.Models.THONGTINSANPHAM>;
+        if (a.Count != 0)
+        {
+            <tr style="font-weight:bold">
+                <td colspan="2">
+                    Tổng cộng
+                </td>
+                <td colspan="2"></td>
+                <td class="soluong">@ViewBag.TotalNumber</td>
+                <td></td>
+                <td class="tongthanhtoan">
+                    @String.Format("{0:0,0}đ", @ViewBag.TotalPrice)
+                </td>
+                <td colspan="2"></td>
+            </tr>
+        }
     }
-
 </table>
