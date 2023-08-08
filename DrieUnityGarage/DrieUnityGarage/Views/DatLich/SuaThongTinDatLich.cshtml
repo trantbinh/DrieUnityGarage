@@ -1,0 +1,93 @@
+﻿@model DrieUnityGarage.Models.DATLICH
+@{
+    ViewBag.Title = "SuaThongTinDatLich";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center">
+            <h2>Chỉnh sửa thông tin tiếp nhận xe</h2>
+        </div>
+    </div>
+    @using (Html.BeginForm())
+    {
+        <div class="container col-6" style="margin-top: 10px; font-size:17px;">
+
+
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.MaDL)
+                @Html.HiddenFor(model => model.NgayLap)
+
+
+                <div class="form-group mb-3">
+                    <label for="MaTN" class="form-label"> Mã đặt lịch: </label>
+                    <input class="col-12 form-control" name="MaTN" id="MaTN" value="@Model.MaDL" disabled />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="NgayLap" class="form-label"> Ngày Lập: </label>
+                    <input class="col-12 form-control" value="@String.Format("{0: HH:mm:ss, dd/MM/yyyy}", @Model.NgayLap)" disabled />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="TN_MaKH" class="form-label"> Chọn khách hàng: [Mã khách hàng - Số điện thoại - Họ tên] </label>
+                    <div class="col-12">
+                        @Html.DropDownList("DL_MaKH", null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DL_MaKH, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="lstXe" class="form-label"> Chọn xe cần sửa: [Biển số xe] </label>
+                    <div class="col-12">
+                        @Html.DropDownList("lstXe", null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DL_BienSoXe, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="NgayHen" class="form-label"> Ngày Hẹn: </label>
+                    <div class="col-12">
+                        <input type="date" id="NgayHen" name="NgayHen" required class="form-control" value="@ViewBag.NgayHen">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="TinhTrangXe" class="form-label"> Tình trạng xe: </label>
+                <div class="col-12">
+                    @Html.TextAreaFor(model => model.TinhTrangXe, 3, 1, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TinhTrangXe, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="GhiChuKH" class="form-label"> Ghi chú của khách hàng: </label>
+                <div class="col-12">
+                    @Html.TextAreaFor(model => model.GhiChuKH, 3, 1, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.GhiChuKH, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+        <div class="row" style="padding-bottom:10px;">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <div class="row" style="margin:0">
+                    <div class="col-4">
+                        @Html.ActionLink("< Quay về", "LayDanhSachThongTinDatLich", null, new { @class = "btn-back" })
+                    </div>
+                    <div class="col-4" style="text-align:center">
+                        <input type="submit" value="Lưu chỉnh sửa" class="btn btn-success" />
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    }
+
+</div>
