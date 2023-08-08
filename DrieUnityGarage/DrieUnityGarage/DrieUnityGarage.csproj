@@ -488,6 +488,10 @@
     <Content Include="Views\NHAPKHO\Partial_TaoNK_ThemChiTietPhieuNK.cshtml" />
     <Content Include="Views\NHAPKHO\Partial_SuaNK_LayChiTietNK.cshtml" />
     <Content Include="Views\NHAPKHO\Partial_XemNK_LayDuLieuCTNK.cshtml" />
+    <Content Include="Views\HOADON\ThemHoaDon_PhieuBG.cshtml" />
+    <Content Include="Views\HOADON\Partial_TaoHD_PhieuBG_LayChiTietHoaDon.cshtml" />
+    <Content Include="Views\HOADON\Partial_TaoHD_PhieuBG_ThemChiTietHoaDon.cshtml" />
+    <Content Include="Views\BAOGIA\Partial_CapNhatBG_ThemChiTietBaoGia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

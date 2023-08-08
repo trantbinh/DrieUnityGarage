@@ -252,15 +252,15 @@ namespace DrieUnityGarage.Controllers
             return View(xUATKHO);
         }
 
-        //-------------------------------TẠO PHIẾU TỪ BÁO GIÁ------------------------ (Tạm thời đang test trên hoá đơn)
+        //-------------------------------TẠO PHIẾU TỪ BÁO GIÁ------------------------
         //Partial Danh sách hàng hoá
         public ActionResult Partial_TaoXKTuBG_LayChiTietXK(String id)
         {
-            var cthd = db.CT_HOADON.Where(m => m.CTHD_MaHD.Equals(id)).ToList();
+            var cthd = db.CT_BAOGIA.Where(m => m.CTBG_MaBG.Equals(id)).ToList();
             List<THONGTINSANPHAM> lstHH = new List<THONGTINSANPHAM>();
             for (int i = 0; i < cthd.Count(); i++)
             {
-                lstHH.Add(new THONGTINSANPHAM(cthd[i].CTHD_MaHH, cthd[i].SoLuong));
+                lstHH.Add(new THONGTINSANPHAM(cthd[i].CTBG_MaHH, cthd[i].SoLuong));
             }
             int totalNumber = 0;
             if (lstHH != null)
@@ -284,7 +284,7 @@ namespace DrieUnityGarage.Controllers
             ViewBag.MaXK = TaoMaPhieuXuatKho();
             ViewBag.LyDoXuat = "Xuất theo báo giá";
             ViewBag.MaBG = idBG;
-            ViewBag.MaNV = Session["MaTaiKhoanNV"].ToString();
+            ViewBag.MaNV = "NV001";
             ViewBag.NgayLap = DateTime.Now.ToString("hh:mm:ss, dd/MM/yyyy");
             /*var bg = db.HOADONs.Find(idBG);*/
             return View();

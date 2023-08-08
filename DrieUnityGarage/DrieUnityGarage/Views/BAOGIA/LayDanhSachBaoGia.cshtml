@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<DrieUnityGarage.Models.BAOGIA>
 @{
-    ViewBag.Title = "LayDanhSachBaoGia";
+    ViewBag.Title = "Danh sách báo giá";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
@@ -39,8 +39,8 @@
                 Biển số xe
             </th>
             <th>
-                Mã nhân viên
             </th>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -67,20 +67,24 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.PHUONGTIEN.BienSoXe)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.THONGTINTIEPNHAN.TN_MaNV)
-                </td>
+          
                 <td>
                     @Html.ActionLink("Sửa", "SuaBaoGia", new { id = item.MaBG }, new { @class = "btn btn-success" })
 
                 </td>
                 <td>
                     @Html.ActionLink("Chi tiết", "XemThongTinBaoGia", new { id = item.MaBG }, new { @class = "btn btn-details" })
-
                 </td>
                 <td>
                     @Html.ActionLink("Xoá", "XoaBaoGia", new { id = item.MaBG }, new { @class = "btn btn-danger" })
                 </td>
+                <td>
+                    @Html.ActionLink("Xuất kho", "TaoPhieuXuatKho_PhieuBG", "XUATKHO", new { idBG = item.MaBG }, new { @class = "btn btn-warning" })
+                </td>
+                <td>
+                    @Html.ActionLink("Tạo hoá đơn", "ThemHoaDon_PhieuBG", "HOADON", new { idBG = item.MaBG }, new { @class = "btn btn-primary" })
+                </td>
+
             </tr>
         }
 

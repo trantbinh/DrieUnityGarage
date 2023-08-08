@@ -19,7 +19,7 @@ namespace DrieUnityGarage.Controllers
         {
             List<THONGTINSANPHAM> lstSPBG = Session["lstSPBG"] as List<THONGTINSANPHAM>;
             //Nếu CTBG chưa tồn tại thì tạo mới và đưa vào Session
-            if (lstSPBG == null)    
+            if (lstSPBG == null)
             {
                 lstSPBG = new List<THONGTINSANPHAM>();
                 Session["lstSPBG"] = lstSPBG;
@@ -39,7 +39,7 @@ namespace DrieUnityGarage.Controllers
                 lstSPBG.Add(currentProduct);
             }
             else
-            {   
+            {
                 if (currentProduct.TonKho == currentProduct.SoLuong)
                 {
                     Session["QuaTonKho"] = 3;
@@ -134,23 +134,21 @@ namespace DrieUnityGarage.Controllers
 
 
         [HttpPost]
-        public ActionResult CTBG_ThemBaoGia(BAOGIA bg, [Bind(Include = "MaKH,HoTenKH,DienThoaiKH,NgaySinh,GioiTinh,Email,DiemThanhVien,DiaChi")] KHACHHANG kHACHHANG)
+        public ActionResult CTBG_ThemBaoGia(BAOGIA bg)
         {
             var tongtien = TinhTongTien();
             List<THONGTINSANPHAM> lstSP = CTBG_LayDanhSachSanPham();
             if (ModelState.IsValid)
             {
                 bg.MaBG = Session["MaBG"].ToString();
-
                 bg.NgayLap = DateTime.Now;
                 bg.BG_MaKH = Session["MaKH"].ToString();
                 bg.BG_BienSoXe = Session["BienSoXe"].ToString();
                 bg.TongThanhToan = tongtien;
                 bg.BG_MaTN = Session["MaTN"].ToString();
-                
+
                 db.BAOGIAs.Add(bg);
                 db.SaveChanges();
-
                 foreach (var item in lstSP)
                 {
                     var details = new CT_BAOGIA();
@@ -159,34 +157,29 @@ namespace DrieUnityGarage.Controllers
                     details.CTBG_MaHH = item.MaSP;
                     details.ThanhTien = item.FinalPrice();
                     db.CT_BAOGIA.Add(details);
+
+                    //Tính số lượng tồn kho
+                    HANGHOA hANGHOA = db.HANGHOAs.FirstOrDefault(m => m.MaHH.Equals(item.MaSP));
+                    int slTon = (int)hANGHOA.SoLuongTmp;
+                    int slTonMoi = (int)(slTon - item.SoLuong);
+                    if (slTon == 0 || slTonMoi < 0)
+                    {
+                        hANGHOA.SoLuongTmp = 0;
+                    }
+                    else hANGHOA.SoLuongTmp = slTonMoi;
+                    hANGHOA.DonGia = 0;
+                    hANGHOA.MaHH = item.MaSP;
+                    hANGHOA.DonViTinh = "";
+                    hANGHOA.LoaiHang = "";
+                    hANGHOA.HH_MaNCC = "";
+                    hANGHOA.HinhAnh = "";
+                    hANGHOA.TenHH = "";
+                    db.HANGHOAs.Attach(hANGHOA);
+                    db.Entry(hANGHOA).Property(s => s.SoLuongTmp).IsModified = true;
+
                     db.SaveChanges();
                 }
-
-                int diemThanhVien = (int)tongtien * 10 / 100;
-                if (kHACHHANG.DiemThanhVien == null)
-                    kHACHHANG.DiemThanhVien = diemThanhVien;
-                else kHACHHANG.DiemThanhVien += (int)diemThanhVien;
-                kHACHHANG.MaKH = Session["MaKH"].ToString(); ;
-                kHACHHANG.HoTenKH = "A";
-                kHACHHANG.DienThoaiKH = "A";
-                kHACHHANG.NgaySinh = (DateTime)DateTime.Now;
-                kHACHHANG.GioiTinh = "A";
-                kHACHHANG.Email = "A";
-                kHACHHANG.DiaChi = "A";
-
-                db.KHACHHANGs.Attach(kHACHHANG);
-                db.Entry(kHACHHANG).Property(s => s.DiemThanhVien).IsModified = true;
-                db.SaveChanges();
-
-
             }
-            Session.Remove("MaBG");
-            Session.Remove("MaKH");
-            Session.Remove("MaTN");
-            Session.Remove("BienSoXe");
-            Session.Remove("CheckTN");
-            Session.Remove("lstSPBG");
-
             return RedirectToAction("LayDanhSachBaoGia", "BAOGIA");
         }
         // GET: HOADON
@@ -195,7 +188,10 @@ namespace DrieUnityGarage.Controllers
             Session.Remove("DaLayThongTinTiepNhan");
             Session.Remove("c");
             Session.Remove("lstSPBG");
-
+            Session.Remove("MaBG");
+            Session.Remove("MaKH");
+            Session.Remove("MaTN");
+            Session.Remove("BienSoXe");
             var bAOGIAs = db.BAOGIAs.Include(h => h.KHACHHANG).Include(h => h.PHUONGTIEN).Include(h => h.THONGTINTIEPNHAN);
             return View(bAOGIAs.ToList());
         }
@@ -378,8 +374,63 @@ namespace DrieUnityGarage.Controllers
             ViewBag.TotalPrice = TinhTongTien();
             return PartialView(lstSp);
         }
+        //Thêm sản phẩm vào chi tiết hoá đơn
+        public ActionResult Partial_CapNhatBG_ThemChiTietBaoGia()
+        {
+            var lstHH = db.HANGHOAs.Where(m => m.SoLuongTmp > 0).ToList();
+            ViewBag.CTBG_MaHH = new SelectList(lstHH, "MaHH", "TenHH");
+            return PartialView();
+        }
+        [HttpPost]
+        public ActionResult Partial_CapNhatBG_ThemChiTietBaoGia(CT_BAOGIA hh)
+        {
+            var lstHH = db.HANGHOAs.Where(m => m.SoLuongTmp > 0).ToList();
+            ViewBag.CTBG_MaHH = new SelectList(lstHH, "MaHH", "TenHH");
+            ViewBag.Selected = hh.CTBG_MaHH;
+            Session["MaHH"] = hh.CTBG_MaHH;
+            return RedirectToAction("SuaBaoGia_ThemSP", "BAOGIA", new { id = Session["MaHH"].ToString() });
+        }
+        //Thêm một sản phẩm vào CTHD
+        public ActionResult SuaBaoGia_ThemSP(String id)
+        {
+            List<THONGTINSANPHAM> lstSPHD = CTBG_LayDanhSachSanPham();
+            THONGTINSANPHAM currentProduct = lstSPHD.FirstOrDefault(p => p.MaSP.Equals(id));
+            if (currentProduct == null)
+            {
+                currentProduct = new THONGTINSANPHAM(id);
+                lstSPHD.Add(currentProduct);
+            }
+            else
+            {
+                currentProduct.SoLuong++;
+            }
+            return RedirectToAction("SuaBaoGia", "BAOGIA", new { id = Session["MaBG"] });
+        }
+        //Xoá sản phẩm khỏi CTHD
+        public ActionResult CapNhatBG_XoaSP(String id)
 
+        {
+            List<THONGTINSANPHAM> myCart = CTBG_LayDanhSachSanPham();
+            THONGTINSANPHAM pro = myCart.SingleOrDefault(n => n.MaSP.Equals(id));
+            if (pro != null)
+            {
+                myCart.RemoveAll(n => n.MaSP.Equals(id));
+                return RedirectToAction("SuaBaoGia", "BAOGIA", new { id = Session["MaBG"] });
+            }
+            return RedirectToAction("SuaBaoGia", "BAOGIA", new { id = Session["MaBG"] });
+        }
 
+        // Cập nhật lại số lượng sản phẩm
+        public ActionResult CapNhatBG_CapNhatSoLuong(String id, FormCollection f)
+        {
+            List<THONGTINSANPHAM> myCart = CTBG_LayDanhSachSanPham();
+            THONGTINSANPHAM pro = myCart.SingleOrDefault(n => n.MaSP.Equals(id));
+            if (pro != null)
+            {
+                pro.SoLuong = int.Parse(f["changequantity"].ToString());
+            }
+            return RedirectToAction("SuaBaoGia", new { id = Session["MaBG"] });
+        }
         // GET: HOADON/Edit/5
         public ActionResult SuaBaoGia(string id)
         {
@@ -414,7 +465,6 @@ namespace DrieUnityGarage.Controllers
             Session["MaBG"] = id;
             Session["MaTN"] = bAOGIA.BG_MaTN;
             Session["MaKH"] = TTTN.MaKH;
-            Session["MaKH"] = TTTN.MaKH;
 
             //Lấy ra các thông tin cần thiết
             String tenKH = db.KHACHHANGs.Find(TTTN.MaKH).HoTenKH;
@@ -433,54 +483,38 @@ namespace DrieUnityGarage.Controllers
 
             return View(bAOGIA);
         }
-
-        //Xoá sản phẩm khỏi CTHD
-        public ActionResult CapNhatBG_XoaSP(String id)
-
-        {
-            List<THONGTINSANPHAM> myCart = CTBG_LayDanhSachSanPham();
-            THONGTINSANPHAM pro = myCart.SingleOrDefault(n => n.MaSP.Equals(id));
-            if (pro != null)
-            {
-                myCart.RemoveAll(n => n.MaSP.Equals(id));
-                return RedirectToAction("SuaBaoGia", "BAOGIA", new { id = Session["MaBG"] });
-            }
-            return RedirectToAction("SuaBaoGia", "BAOGIA", new { id = Session["MaBG"] });
-        }
-
-        // Cập nhật lại số lượng sản phẩm
-        public ActionResult CapNhatBG_CapNhatSoLuong(String id, FormCollection f)
-        {
-            List<THONGTINSANPHAM> myCart = CTBG_LayDanhSachSanPham();
-            THONGTINSANPHAM pro = myCart.SingleOrDefault(n => n.MaSP.Equals(id));
-            if (pro != null)
-            {
-                pro.SoLuong = int.Parse(f["changequantity"].ToString());
-            }
-            return RedirectToAction("SuaBaoGia", new { id = Session["MaBG"] });
-        }
-
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SuaBaoGia([Bind(Include = "MaBG,NgayLap,BG_MaKH,BG_BienSoXe,TongThanhToan,BG_MaTN")] BAOGIA bg)
         {
-            if (ModelState.IsValid)
+            var lstSPHD = Session["lstSPBG"] as List<THONGTINSANPHAM>;
+            var tongtien = TinhTongTien();
+            List<THONGTINSANPHAM> lstSP = CTBG_LayDanhSachSanPham();
+            String idBG = Session["MaBG"].ToString();
+
+            if (lstSPHD.Count() != 0)
             {
-                var tongtien = TinhTongTien();
-                List<THONGTINSANPHAM> lstSP = CTBG_LayDanhSachSanPham();
                 if (ModelState.IsValid)
                 {
-                    bg.MaBG = Session["MaBG"].ToString();
+                    bg.MaBG = idBG;
                     bg.NgayLap = DateTime.Now;
                     bg.TongThanhToan = tongtien;
-                    bg.MaBG = Session["MaBG"].ToString();
+                    bg.BG_BienSoXe = Session["BienSoXe"].ToString();
                     bg.BG_MaKH = Session["MaKH"].ToString();
                     bg.BG_MaTN = Session["MaTN"].ToString();
                     db.BAOGIAs.Attach(bg);
                     db.Entry(bg).Property(s => s.TongThanhToan).IsModified = true;
                     db.SaveChanges();
 
+                    bool check;
+                    List<CT_BAOGIA> cthd = db.CT_BAOGIA.Where(m => m.CTBG_MaBG.Equals(idBG)).ToList();
+                    if (cthd != null)
+                    {
+                        for (int i = 0; i < cthd.Count(); i++)
+                        {
+                            check = XoaChiTietBG(cthd[i].CTBG_MaBG);
+                        }
+                    }
                     foreach (var item in lstSP)
                     {
                         var details = new CT_BAOGIA();
@@ -488,41 +522,49 @@ namespace DrieUnityGarage.Controllers
                         details.SoLuong = item.SoLuong;
                         details.CTBG_MaHH = item.MaSP;
                         details.ThanhTien = item.FinalPrice();
-                        db.CT_BAOGIA.Attach(details);
-                        db.Entry(details).Property(s => s.SoLuong).IsModified = true;
-                        db.Entry(details).Property(s => s.ThanhTien).IsModified = true;
+                        db.CT_BAOGIA.Add(details);
+
+                        //Tính số lượng tồn kho
+                        HANGHOA hANGHOA = db.HANGHOAs.FirstOrDefault(m => m.MaHH.Equals(item.MaSP));
+                        int slTon = (int)hANGHOA.SoLuongTmp;
+                        int slTonMoi = (int)(slTon - item.SoLuong);
+                        if (slTonMoi < 0)
+                        {
+                            hANGHOA.SoLuongTmp = 0;
+                        }
+                        else hANGHOA.SoLuongTmp = slTonMoi;
+                        hANGHOA.DonGia = 0;
+                        hANGHOA.MaHH = item.MaSP;
+                        hANGHOA.DonViTinh = "";
+                        hANGHOA.LoaiHang = "";
+                        hANGHOA.HH_MaNCC = "";
+                        hANGHOA.HinhAnh = "";
+                        hANGHOA.TenHH = "";
+                        db.HANGHOAs.Attach(hANGHOA);
+                        db.Entry(hANGHOA).Property(s => s.SoLuongTmp).IsModified = true;
                         db.SaveChanges();
                     }
-                    KHACHHANG kHACHHANG = new KHACHHANG();
-                    int diemThanhVien = (int)tongtien * 10 / 100;
-                    if (kHACHHANG.DiemThanhVien == null)
-                        kHACHHANG.DiemThanhVien = diemThanhVien;
-                    else kHACHHANG.DiemThanhVien += (int)diemThanhVien;
-                    kHACHHANG.MaKH = Session["MaKH"].ToString(); ;
-                    kHACHHANG.HoTenKH = "A";
-                    kHACHHANG.DienThoaiKH = "A";
-                    kHACHHANG.NgaySinh = (DateTime)DateTime.Now;
-                    kHACHHANG.GioiTinh = "A";
-                    kHACHHANG.Email = "A";
-                    kHACHHANG.DiaChi = "A";
-
-                    db.KHACHHANGs.Attach(kHACHHANG);
-                    db.Entry(kHACHHANG).Property(s => s.DiemThanhVien).IsModified = true;
-                    db.SaveChanges();
+                    return RedirectToAction("LayDanhSachBaoGia");
                 }
-                Session.Remove("MaBG");
-                Session.Remove("MaKH");
-                Session.Remove("BienSoXe");
-                Session.Remove("CheckTN");
-                Session.Remove("lstSPBG");
-                Session.Remove("c");
-                return RedirectToAction("SuaBaoGia");
+                return View(bg);
             }
-
-            return View(bg);
+            else
+            {
+                bool check;
+                List<CT_BAOGIA> cthd = db.CT_BAOGIA.Where(m => m.CTBG_MaBG.Equals(idBG)).ToList();
+                if (cthd != null)
+                {
+                    for (int i = 0; i < cthd.Count(); i++)
+                    {
+                        check = XoaChiTietBG(cthd[i].CTBG_MaBG);
+                    }
+                }
+                BAOGIA bAOGIA = db.BAOGIAs.Find(idBG);
+                db.BAOGIAs.Remove(bAOGIA);
+                db.SaveChanges();
+                return RedirectToAction("LayDanhSachBaoGia");
+            }
         }
-
-
         // GET: HOADON/Delete/5
         public ActionResult XoaBaoGia(string id)
         {
@@ -570,20 +612,37 @@ namespace DrieUnityGarage.Controllers
                     check = XoaChiTietBG(ctbg[i].CTBG_MaBG);
                 }
             }
-
-
             BAOGIA bAOGIA = db.BAOGIAs.Find(id);
             db.BAOGIAs.Remove(bAOGIA);
             db.SaveChanges();
             return RedirectToAction("LayDanhSachBaoGia");
-
-
         }
 
         public bool XoaChiTietBG(string id)
         {
             CT_BAOGIA cT_BAOGIA = db.CT_BAOGIA.FirstOrDefault(m => m.CTBG_MaBG.Equals(id));
             db.CT_BAOGIA.Remove(cT_BAOGIA);
+
+            //Tính số lượng tồn kho
+            String maSP = cT_BAOGIA.CTBG_MaHH;
+            HANGHOA hANGHOA = db.HANGHOAs.FirstOrDefault(m => m.MaHH.Equals(maSP));
+            int slTon = (int)hANGHOA.SoLuongTmp;
+            int slTonMoi = (int)(slTon + cT_BAOGIA.SoLuong);
+            if (slTonMoi < 0)
+            {
+                hANGHOA.SoLuongTmp = 0;
+            }
+            else hANGHOA.SoLuongTmp = slTonMoi;
+            hANGHOA.DonGia = 0;
+            hANGHOA.MaHH = maSP;
+            hANGHOA.DonViTinh = "";
+            hANGHOA.LoaiHang = "";
+            hANGHOA.HH_MaNCC = "";
+            hANGHOA.HinhAnh = "";
+            hANGHOA.TenHH = "";
+            db.HANGHOAs.Attach(hANGHOA);
+            db.Entry(hANGHOA).Property(s => s.SoLuongTmp).IsModified = true;
+
             db.SaveChanges();
             return true;
         }
