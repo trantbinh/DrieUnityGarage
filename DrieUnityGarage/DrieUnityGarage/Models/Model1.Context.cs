@@ -26,13 +26,16 @@ namespace DrieUnityGarage.Models
         }
     
         public virtual DbSet<BANGIAOXE> BANGIAOXEs { get; set; }
+        public virtual DbSet<BAOCAOTONKHO> BAOCAOTONKHOes { get; set; }
         public virtual DbSet<BAOGIA> BAOGIAs { get; set; }
         public virtual DbSet<BAOHANH> BAOHANHs { get; set; }
+        public virtual DbSet<CT_BAOCAOTONKHO> CT_BAOCAOTONKHO { get; set; }
         public virtual DbSet<CT_BAOGIA> CT_BAOGIA { get; set; }
         public virtual DbSet<CT_HOADON> CT_HOADON { get; set; }
         public virtual DbSet<CT_NHAPKHO> CT_NHAPKHO { get; set; }
         public virtual DbSet<CT_XUATKHO> CT_XUATKHO { get; set; }
         public virtual DbSet<DANHGIADICHVU> DANHGIADICHVUs { get; set; }
+        public virtual DbSet<DANHGIATINHTRANG> DANHGIATINHTRANGs { get; set; }
         public virtual DbSet<DATLICH> DATLICHes { get; set; }
         public virtual DbSet<HANGHOA> HANGHOAs { get; set; }
         public virtual DbSet<HOADON> HOADONs { get; set; }
@@ -46,6 +49,5 @@ namespace DrieUnityGarage.Models
         public virtual DbSet<THONGTINTIEPNHAN> THONGTINTIEPNHANs { get; set; }
         public virtual DbSet<TRAGOP> TRAGOPs { get; set; }
         public virtual DbSet<XUATKHO> XUATKHOes { get; set; }
-        public virtual DbSet<DANHGIATINHTRANG> DANHGIATINHTRANGs { get; set; }
     }
 }

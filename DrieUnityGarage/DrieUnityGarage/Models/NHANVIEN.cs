@@ -17,6 +17,7 @@ namespace DrieUnityGarage.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NHANVIEN()
         {
+            this.BAOCAOTONKHOes = new HashSet<BAOCAOTONKHO>();
             this.NHAPKHOes = new HashSet<NHAPKHO>();
             this.THONGTINTIEPNHANs = new HashSet<THONGTINTIEPNHAN>();
             this.XUATKHOes = new HashSet<XUATKHO>();
@@ -35,6 +36,8 @@ namespace DrieUnityGarage.Models
         public string MatKhau { get; set; }
         public Nullable<System.DateTime> NgayTaoTK { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BAOCAOTONKHO> BAOCAOTONKHOes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NHAPKHO> NHAPKHOes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

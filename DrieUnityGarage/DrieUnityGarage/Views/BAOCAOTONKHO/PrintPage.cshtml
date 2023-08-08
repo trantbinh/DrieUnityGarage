@@ -1,0 +1,97 @@
+﻿@model List<DrieUnityGarage.Models.HANGHOA>
+@{
+    ViewBag.Title = "PrintPage";
+    Layout = "~/Views/Shared/_BlankLayout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/TaoHoaDon.css" />
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center; ">
+            <h2>BÁO CÁO TỒN KHO</h2>
+        </div>
+    </div>
+    <div class="container col-4" style="margin-top: 20px; font-size:17px;">
+        <div class="form-group mb-3">
+            <label for="MaBCTK" class="form-label"> Mã báo cáo tồn kho: </label>
+            <div class="form-control w-100" id="MaBCTK">@ViewBag.MaBC</div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="NgayLap" class="form-label"> Ngày lập báo cáo: </label>
+            <div class="form-control w-100" id="NgayLap">@ViewBag.NgayLap</div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="MaNV" class="form-label">  Nhân viên thực hện: </label>
+            <div class="form-control w-100" id="MaNV">@ViewBag.NhanVien</div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:30px;">
+        <div class="container col-12" style="margin-top: 20px; font-size:17px;">
+            <div class="col-2"></div>
+            <div class="col-8">
+                @{ var count = 1;}
+                <table class="table table-bordered index-table" style="margin-left:100px;">
+                    <tr>
+                        <th>
+                            STT
+                        </th>
+                        <th>
+                            Mã hàng hoá
+                        </th>
+                        <th>
+                            Tên hàng hoá
+                        </th>
+                        <th>
+                            ĐVT
+                        </th>
+                        <th>
+                            Số lượng tồn
+                        </th>
+                        <th>
+                            Nhà cung cấp
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @count
+                            </td>
+
+                            <td>
+                                @item.MaHH
+                            </td>
+                            <td>
+                                @item.TenHH
+                            </td>
+
+                            <td>
+                                @item.DonViTinh
+                            </td>
+
+                            <td>
+                                @item.SoLuongTon
+                            </td>
+
+                            <td>
+                                @item.NHACUNGCAP.TenNCC
+
+                            </td>
+
+                        </tr>
+                        { count++; }
+                    }
+                </table>
+            </div>
+            <div class="col-2"></div>
+        </div>
+
+    </div>
+
+    </div>
+
+

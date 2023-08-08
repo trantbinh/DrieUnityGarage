@@ -53,6 +53,9 @@
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -130,6 +133,7 @@
     <Compile Include="App_Start\BundleConfig2.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BAOCAOTONKHOController.cs" />
     <Compile Include="Controllers\BAOGIAController.cs" />
     <Compile Include="Controllers\DATLICHController.cs" />
     <Compile Include="Controllers\DANHGIATINHTRANGController.cs" />
@@ -149,10 +153,16 @@
     <Compile Include="Models\BANGIAOXE.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BAOCAOTONKHO.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BAOGIA.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BAOHANH.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CT_BAOCAOTONKHO.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CT_BAOGIA.cs">
@@ -358,6 +368,10 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\bootstrap5\css\bootstrap-grid.css.map" />
@@ -382,6 +396,7 @@
     <Content Include="Content\bootstrap5\js\bootstrap.esm.min.js.map" />
     <Content Include="Content\bootstrap5\js\bootstrap.js.map" />
     <Content Include="Content\bootstrap5\js\bootstrap.min.js.map" />
+    <Content Include="App_Browsers\qt.browser" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -506,6 +521,14 @@
     <Content Include="Views\NHANVIEN\LayThongTinTaiKhoan.cshtml" />
     <Content Include="Views\NHANVIEN\XoaTaiKhoan.cshtml" />
     <Content Include="Views\HANGHOA\TraCuuHangHoa.cshtml" />
+    <Content Include="Views\BAOCAOTONKHO\TaoBaoCaoTonKho.cshtml" />
+    <Content Include="Views\BAOCAOTONKHO\XoaBaoCaoTonKho.cshtml" />
+    <Content Include="Views\BAOCAOTONKHO\LayChiTietBaoCaoTonKho.cshtml" />
+    <Content Include="Views\BAOCAOTONKHO\LayDanhSachBaoCaoTonKho.cshtml" />
+    <Content Include="Views\BAOCAOTONKHO\Partial_TaoBC_ChiTietBaoCao.cshtml" />
+    <Content Include="Views\Shared\_BlankLayout.cshtml" />
+    <Content Include="Views\BAOCAOTONKHO\PrintPage.cshtml" />
+    <Content Include="Views\BAOCAOTONKHO\Partial_XemBC_ChiTietBaoCao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
