@@ -1,7 +1,7 @@
 ﻿@model DrieUnityGarage.Models.DANHGIATINHTRANG
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Chi tiết phiếu đánh giá tình trạng xe";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
@@ -1660,10 +1660,10 @@
         <div class="col-8">
             <div class="row" style="margin:0">
                 <div class="col-4">
-                    @Html.ActionLink("< Quay về", "Index", null, new { @class = "btn-back" })
+                    @Html.ActionLink("< Quay về", "LayDanhSachDanhGiaTinhTrang", null, new { @class = "btn-back" })
                 </div>
                 <div class="col-4" style="text-align:center">
-                    @Html.ActionLink("Chỉnh sửa thông tin", "Edit", new { id = Model.MaDG }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Chỉnh sửa thông tin", "SuaDanhGiaTinhTrang", new { id = Model.MaDG }, new { @class = "btn btn-success" })
                 </div>
                 <div class="col-4"></div>
             </div>

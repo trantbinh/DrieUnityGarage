@@ -1,7 +1,7 @@
 ﻿@model DrieUnityGarage.Models.DANHGIATINHTRANG
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Tạo phiếu đánh giá tình trạng xe";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
@@ -93,7 +93,7 @@
     @if (Session["DaLayThongTinTiepNhan"] != null)
     {
 
-        using (Html.BeginForm("Create"))
+        using (Html.BeginForm("TaoDanhGiaTinhTrang"))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -747,7 +747,7 @@
                 <div class="col-8">
                     <div class="row" style="margin:auto">
                         <div class="col-4">
-                            @Html.ActionLink("< Quay về", "Index", null, new { @class = "btn-back" })
+                            @Html.ActionLink("< Quay về", "LayDanhSachDanhGiaTinhTrang", null, new { @class = "btn-back" })
                         </div>
 
                         <div class="col-4" style="text-align:center">

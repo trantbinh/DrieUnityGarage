@@ -28,7 +28,7 @@ namespace DrieUnityGarage.Controllers
         }
 
         // GET: DANHGIATINHTRANG
-        public ActionResult Index()
+        public ActionResult LayDanhSachDanhGiaTinhTrang()
         {
             Session.Remove("DaLayThongTinTiepNhan");
             var dANHGIATINHTRANGs = db.DANHGIATINHTRANGs.Include(d => d.THONGTINTIEPNHAN);
@@ -36,8 +36,8 @@ namespace DrieUnityGarage.Controllers
             return View(dANHGIATINHTRANGs.ToList());
         }
 
-        // GET: DANHGIATINHTRANG/Details/5
-        public ActionResult Details(string id)
+        // GET: DANHGIATINHTRANG/LayThongTinDanhGiaTinhTrang/5
+        public ActionResult LayThongTinDanhGiaTinhTrang(string id)
         {
             if (id == null)
             {
@@ -75,8 +75,8 @@ namespace DrieUnityGarage.Controllers
             return View(dANHGIATINHTRANG);
         }
 
-        // GET: DANHGIATINHTRANG/Create
-        public ActionResult Create()
+        // GET: DANHGIATINHTRANG/TaoDanhGiaTinhTrang
+        public ActionResult TaoDanhGiaTinhTrang()
         {
             String date = DateTime.Now.ToString("dd/MM/yyyy");
             ViewBag.NgayLapHD = date;
@@ -125,15 +125,15 @@ namespace DrieUnityGarage.Controllers
             //Check đã lấy thông tin xe hay chưa, có null không
             Session["DaLayThongTinTiepNhan"] = 3;
 
-            return RedirectToAction("Create");
+            return RedirectToAction("TaoDanhGiaTinhTrang");
         }
 
-        // POST: DANHGIATINHTRANG/Create
+        // POST: DANHGIATINHTRANG/TaoDanhGiaTinhTrang
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaDG,NgayLap,DG_MaTN,NgoaiThat,KinhChanGio,GatMua,HeThongDen,HeThongDieuHoa,DauDongCo,DauPhanh,DauTroLucLai,NuocRuaKinh,NuocLamMat,LocGioDongCo,LocGioDieuHoa,Acquy,HeThongSac,DauCap,MaPhanh,DiaPhanh,HeThongLai,HeThongTreo,BanhTraiTruoc,BanhTraiSau,BanhPhaiTruoc,BanhPhaiSau,CanChinhThuocLai,CanBangDong,DaoLop,ThayThe,GhiChu")] DANHGIATINHTRANG dANHGIATINHTRANG)
+        public ActionResult TaoDanhGiaTinhTrang([Bind(Include = "MaDG,NgayLap,DG_MaTN,NgoaiThat,KinhChanGio,GatMua,HeThongDen,HeThongDieuHoa,DauDongCo,DauPhanh,DauTroLucLai,NuocRuaKinh,NuocLamMat,LocGioDongCo,LocGioDieuHoa,Acquy,HeThongSac,DauCap,MaPhanh,DiaPhanh,HeThongLai,HeThongTreo,BanhTraiTruoc,BanhTraiSau,BanhPhaiTruoc,BanhPhaiSau,CanChinhThuocLai,CanBangDong,DaoLop,ThayThe,GhiChu")] DANHGIATINHTRANG dANHGIATINHTRANG)
         {
             if (ModelState.IsValid)
             {
@@ -142,15 +142,15 @@ namespace DrieUnityGarage.Controllers
                 dANHGIATINHTRANG.DG_MaTN = Session["MaTN"].ToString();
                 db.DANHGIATINHTRANGs.Add(dANHGIATINHTRANG);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("LayDanhSachDanhGiaTinhTrang");
             }
 
             ViewBag.DG_MaTN = new SelectList(db.THONGTINTIEPNHANs, "MaTN", "TN_MaKH", dANHGIATINHTRANG.DG_MaTN);
             return View(dANHGIATINHTRANG);
         }
 
-        // GET: DANHGIATINHTRANG/Edit/5
-        public ActionResult Edit(string id)
+        // GET: DANHGIATINHTRANG/SuaDanhGiaTinhTrang/5
+        public ActionResult SuaDanhGiaTinhTrang(string id)
         {
             if (id == null)
             {
@@ -191,26 +191,26 @@ namespace DrieUnityGarage.Controllers
             return View(dANHGIATINHTRANG);
         }
 
-        // POST: DANHGIATINHTRANG/Edit/5
+        // POST: DANHGIATINHTRANG/SuaDanhGiaTinhTrang/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaDG,NgayLap,DG_MaTN,NgoaiThat,KinhChanGio,GatMua,HeThongDen,HeThongDieuHoa,DauDongCo,DauPhanh,DauTroLucLai,NuocRuaKinh,NuocLamMat,LocGioDongCo,LocGioDieuHoa,Acquy,HeThongSac,DauCap,MaPhanh,DiaPhanh,HeThongLai,HeThongTreo,BanhTraiTruoc,BanhTraiSau,BanhPhaiTruoc,BanhPhaiSau,CanChinhThuocLai,CanBangDong,DaoLop,ThayThe,GhiChu")] DANHGIATINHTRANG dANHGIATINHTRANG, String lstMaTN)
+        public ActionResult SuaDanhGiaTinhTrang([Bind(Include = "MaDG,NgayLap,DG_MaTN,NgoaiThat,KinhChanGio,GatMua,HeThongDen,HeThongDieuHoa,DauDongCo,DauPhanh,DauTroLucLai,NuocRuaKinh,NuocLamMat,LocGioDongCo,LocGioDieuHoa,Acquy,HeThongSac,DauCap,MaPhanh,DiaPhanh,HeThongLai,HeThongTreo,BanhTraiTruoc,BanhTraiSau,BanhPhaiTruoc,BanhPhaiSau,CanChinhThuocLai,CanBangDong,DaoLop,ThayThe,GhiChu")] DANHGIATINHTRANG dANHGIATINHTRANG, String lstMaTN)
         {
             if (ModelState.IsValid)
             {
                 dANHGIATINHTRANG.DG_MaTN = lstMaTN;
                 db.Entry(dANHGIATINHTRANG).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("LayDanhSachDanhGiaTinhTrang");
             }
             ViewBag.DG_MaTN = new SelectList(db.THONGTINTIEPNHANs, "MaTN", "TN_MaKH", dANHGIATINHTRANG.DG_MaTN);
             return View(dANHGIATINHTRANG);
         }
 
-        // GET: DANHGIATINHTRANG/Delete/5
-        public ActionResult Delete(string id)
+        // GET: DANHGIATINHTRANG/XoaDanhGiaTinhTrang/5
+        public ActionResult XoaDanhGiaTinhTrang(string id)
         {
             if (id == null)
             {
@@ -248,15 +248,15 @@ namespace DrieUnityGarage.Controllers
             return View(dANHGIATINHTRANG);
         }
 
-        // POST: DANHGIATINHTRANG/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: DANHGIATINHTRANG/XoaDanhGiaTinhTrang/5
+        [HttpPost, ActionName("XoaDanhGiaTinhTrang")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
             DANHGIATINHTRANG dANHGIATINHTRANG = db.DANHGIATINHTRANGs.Find(id);
             db.DANHGIATINHTRANGs.Remove(dANHGIATINHTRANG);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("LayDanhSachDanhGiaTinhTrang");
         }
 
         protected override void Dispose(bool disposing)
