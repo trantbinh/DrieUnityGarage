@@ -34,7 +34,7 @@ namespace DrieUnityGarage.Controllers
             {
                 return HttpNotFound();
             }
-            String idNV = "NV001";
+            String idNV = Session["MaTaiKhoanNV"].ToString();
             String tenNV = db.NHANVIENs.Find(idNV).HoTenNV; ;
             String nv = idNV + " - " + tenNV;
             ViewBag.NhanVien = nv;
@@ -57,7 +57,7 @@ namespace DrieUnityGarage.Controllers
 
         public ActionResult PrintPage(String id)
         {
-            String idNV = "NV001";
+            String idNV = Session["MaTaiKhoanNV"].ToString();
             String tenNV = db.NHANVIENs.Find(idNV).HoTenNV; ;
             String nv = idNV + " - " + tenNV;
             ViewBag.NhanVien = nv;
@@ -70,7 +70,7 @@ namespace DrieUnityGarage.Controllers
         // GET: KIEMKEKHOHANG/TaoPhieuKiemKeKhoHang
         public ActionResult TaoPhieuKiemKeKhoHang()
         {
-            String idNV = "NV001";
+            String idNV = Session["MaTaiKhoanNV"].ToString();
             String tenNV = db.NHANVIENs.Find(idNV).HoTenNV; ;
             String nv = idNV + " - " + tenNV;
             ViewBag.NhanVien = nv;
@@ -114,7 +114,7 @@ namespace DrieUnityGarage.Controllers
             if (ModelState.IsValid)
             {
                 kIEMKEKHOHANG.MaKK = id;
-                kIEMKEKHOHANG.KK_MaNV = "NV001";
+                kIEMKEKHOHANG.KK_MaNV = Session["MaTaiKhoanNV"].ToString();
                 kIEMKEKHOHANG.ThoiDiemKiemKe = DateTime.Now;
                 db.KIEMKEKHOHANGs.Add(kIEMKEKHOHANG);
                 db.SaveChanges();
@@ -152,7 +152,7 @@ namespace DrieUnityGarage.Controllers
             {
                 return HttpNotFound();
             }
-            String idNV = "NV001";
+            String idNV = Session["MaTaiKhoanNV"].ToString();
             String tenNV = db.NHANVIENs.Find(idNV).HoTenNV; ;
             String nv = idNV + " - " + tenNV;
             ViewBag.NhanVien = nv;

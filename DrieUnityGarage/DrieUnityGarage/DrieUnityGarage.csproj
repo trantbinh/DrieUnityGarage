@@ -151,6 +151,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BANGGIA.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BANGIAOXE.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -542,6 +545,8 @@
     <Content Include="Views\KIEMKEKHOHANG\LayDanhSachPhieuKiemKeKhoHang.cshtml" />
     <Content Include="Views\KIEMKEKHOHANG\Partial_XemKK_ChiTietKiemKe.cshtml" />
     <Content Include="Views\KIEMKEKHOHANG\PrintPage.cshtml" />
+    <Content Include="Views\HANGHOA\TaoBangGia.cshtml" />
+    <Content Include="Views\HANGHOA\LayThongTinBangGia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

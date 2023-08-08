@@ -5,6 +5,12 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DrieUnityGarageModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BANGGIA">
+          <Key>
+            <PropertyRef Name="BangGia_MaHH" />
+          </Key>
+          <Property Name="BangGia_MaHH" Type="varchar" MaxLength="5" Nullable="false" />
+        </EntityType>
         <EntityType Name="BANGIAOXE">
           <Key>
             <PropertyRef Name="MaBG" />
@@ -329,6 +335,18 @@
           <Property Name="XK_MaBG" Type="varchar" MaxLength="5" />
           <Property Name="SoChungTu" Type="varchar" MaxLength="20" />
         </EntityType>
+        <Association Name="FK_BANGGIA_HANGHOA">
+          <End Role="HANGHOA" Type="Self.HANGHOA" Multiplicity="1" />
+          <End Role="BANGGIA" Type="Self.BANGGIA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="HANGHOA">
+              <PropertyRef Name="MaHH" />
+            </Principal>
+            <Dependent Role="BANGGIA">
+              <PropertyRef Name="BangGia_MaHH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_BANGIAOXE_THONGTINTIEPNHAN">
           <End Role="THONGTINTIEPNHAN" Type="Self.THONGTINTIEPNHAN" Multiplicity="1" />
           <End Role="BANGIAOXE" Type="Self.BANGIAOXE" Multiplicity="*" />
@@ -822,6 +840,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DrieUnityGarageModelStoreContainer">
+          <EntitySet Name="BANGGIA" EntityType="Self.BANGGIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BANGIAOXE" EntityType="Self.BANGIAOXE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BAOCAOTONKHO" EntityType="Self.BAOCAOTONKHO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BAOGIA" EntityType="Self.BAOGIA" Schema="dbo" store:Type="Tables" />
@@ -848,6 +867,10 @@
           <EntitySet Name="THONGTINTIEPNHAN" EntityType="Self.THONGTINTIEPNHAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRAGOP" EntityType="Self.TRAGOP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="XUATKHO" EntityType="Self.XUATKHO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BANGGIA_HANGHOA" Association="Self.FK_BANGGIA_HANGHOA">
+            <End Role="HANGHOA" EntitySet="HANGHOA" />
+            <End Role="BANGGIA" EntitySet="BANGGIA" />
+          </AssociationSet>
           <AssociationSet Name="FK_BANGIAOXE_THONGTINTIEPNHAN" Association="Self.FK_BANGIAOXE_THONGTINTIEPNHAN">
             <End Role="THONGTINTIEPNHAN" EntitySet="THONGTINTIEPNHAN" />
             <End Role="BANGIAOXE" EntitySet="BANGIAOXE" />
@@ -1214,6 +1237,7 @@
           <NavigationProperty Name="CT_XUATKHO" Relationship="Self.FK_CTXUATKHO_HANGHOA" FromRole="HANGHOA" ToRole="CT_XUATKHO" />
           <NavigationProperty Name="NHACUNGCAP" Relationship="Self.FK_HANGHOA_NCC" FromRole="HANGHOA" ToRole="NHACUNGCAP" />
           <NavigationProperty Name="CT_KIEMKEKHOHANG" Relationship="DrieUnityGarageModel.FK_CTKIEMKEKHOHANG_HANGHOA" FromRole="HANGHOA" ToRole="CT_KIEMKEKHOHANG" />
+          <NavigationProperty Name="BANGGIA" Relationship="DrieUnityGarageModel.FK_BANGGIA_HANGHOA" FromRole="HANGHOA" ToRole="BANGGIA" />
         </EntityType>
         <EntityType Name="HOADON">
           <Key>
@@ -2034,6 +2058,11 @@
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
             <End Role="KIEMKEKHOHANG" EntitySet="KIEMKEKHOHANGs" />
           </AssociationSet>
+          <EntitySet Name="BANGGIAs" EntityType="DrieUnityGarageModel.BANGGIA" />
+          <AssociationSet Name="FK_BANGGIA_HANGHOA" Association="DrieUnityGarageModel.FK_BANGGIA_HANGHOA">
+            <End Role="HANGHOA" EntitySet="HANGHOAs" />
+            <End Role="BANGGIA" EntitySet="BANGGIAs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="CT_KIEMKEKHOHANG">
           <Key>
@@ -2104,6 +2133,25 @@
             </Principal>
             <Dependent Role="KIEMKEKHOHANG">
               <PropertyRef Name="KK_MaNV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BANGGIA">
+          <Key>
+            <PropertyRef Name="BangGia_MaHH" />
+          </Key>
+          <Property Name="BangGia_MaHH" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HANGHOA" Relationship="DrieUnityGarageModel.FK_BANGGIA_HANGHOA" FromRole="BANGGIA" ToRole="HANGHOA" />
+        </EntityType>
+        <Association Name="FK_BANGGIA_HANGHOA">
+          <End Type="DrieUnityGarageModel.HANGHOA" Role="HANGHOA" Multiplicity="1" />
+          <End Type="DrieUnityGarageModel.BANGGIA" Role="BANGGIA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="HANGHOA">
+              <PropertyRef Name="MaHH" />
+            </Principal>
+            <Dependent Role="BANGGIA">
+              <PropertyRef Name="BangGia_MaHH" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2454,6 +2502,13 @@
                 <ScalarProperty Name="KK_MaNV" ColumnName="KK_MaNV" />
                 <ScalarProperty Name="ThoiDiemKiemKe" ColumnName="ThoiDiemKiemKe" />
                 <ScalarProperty Name="MaKK" ColumnName="MaKK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BANGGIAs">
+            <EntityTypeMapping TypeName="DrieUnityGarageModel.BANGGIA">
+              <MappingFragment StoreEntitySet="BANGGIA">
+                <ScalarProperty Name="BangGia_MaHH" ColumnName="BangGia_MaHH" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

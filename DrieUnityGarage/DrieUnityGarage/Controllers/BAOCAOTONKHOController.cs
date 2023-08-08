@@ -63,7 +63,7 @@ namespace DrieUnityGarage.Controllers
         // GET: BAOCAOTONKHO/TaoBaoCaoTonKho
         public ActionResult TaoBaoCaoTonKho()
         {
-            String idNV = "NV001";
+            String idNV = Session["MaTaiKhoanNV"].ToString(); 
             String tenNV = db.NHANVIENs.Find(idNV).HoTenNV; ;
             String nv = idNV + " - " + tenNV;
             ViewBag.NhanVien = nv;
@@ -87,8 +87,8 @@ namespace DrieUnityGarage.Controllers
         public ActionResult PrintPage(String id)
         {
             var hanghoa = db.CT_BAOCAOTONKHO.Where(m=>m.CTBCTK_MaBCTK.Equals(id)).ToList();
-            String tenNV = db.NHANVIENs.Find("NV001").HoTenNV; ;
-            String nv = "NV001" + " - " + tenNV;
+            String tenNV = db.NHANVIENs.Find(Session["MaTaiKhoanNV"].ToString()).HoTenNV; ;
+            String nv = Session["MaTaiKhoanNV"].ToString() + " - " + tenNV;
             ViewBag.NhanVien = nv;
             ViewBag.MaBC = TaoMaBaoCao();
             ViewBag.NgayLap = DateTime.Now.ToString("dd/MM/yyyy");
@@ -108,7 +108,7 @@ namespace DrieUnityGarage.Controllers
             {
                 bAOCAOTONKHO.MaBCTK = id;
                 bAOCAOTONKHO.NgayLap = DateTime.Now;
-                bAOCAOTONKHO.BCTK_MaNV = "NV001";
+                bAOCAOTONKHO.BCTK_MaNV = Session["MaTaiKhoanNV"].ToString();
                 db.BAOCAOTONKHOes.Add(bAOCAOTONKHO);
                 db.SaveChanges();
 

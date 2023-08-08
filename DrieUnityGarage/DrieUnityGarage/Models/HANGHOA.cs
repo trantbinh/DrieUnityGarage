@@ -51,5 +51,6 @@ namespace DrieUnityGarage.Models
         public virtual NHACUNGCAP NHACUNGCAP { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CT_KIEMKEKHOHANG> CT_KIEMKEKHOHANG { get; set; }
+        public virtual BANGGIA BANGGIA { get; set; }
     }
 }

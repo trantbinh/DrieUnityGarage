@@ -14,6 +14,56 @@ namespace DrieUnityGarage.Controllers
     public class HANGHOAController : Controller
     {
         private DrieUnityGarageEntities db = new DrieUnityGarageEntities();
+        public ActionResult LayThongTinBangGia()
+        {
+            var bangGia = db.BANGGIAs.ToList();
+            return View(bangGia);   
+        }
+
+        public ActionResult TaoBangGia() {
+            var hh = db.HANGHOAs.Where(m=>m.LoaiHang.Equals("Phụ tùng")).ToList();
+            return View(hh);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult TaoBangGia(List<String> listSanPham)
+        {
+            bool check;
+            var lstBG = db.BANGGIAs.ToList();
+            foreach(var item in lstBG)
+            {
+                check = XoaBangGia(item.BangGia_MaHH);
+            }
+            List<BANGGIA> bangGia = new List<BANGGIA>();
+            for(int i = 0; i < listSanPham.Count(); i++)
+            {
+                BANGGIA bg = new BANGGIA();
+                bg.BangGia_MaHH= listSanPham[i];
+                bangGia.Add(bg);
+            }
+            if (ModelState.IsValid)
+            {
+                foreach(var item in bangGia)
+                {
+                    BANGGIA bgDB = new BANGGIA();
+                    bgDB.BangGia_MaHH = item.BangGia_MaHH;
+                    db.BANGGIAs.Add(bgDB);
+                    db.SaveChanges();
+                }
+                return RedirectToAction("LayThongTinBangGia");
+
+            }
+            return View(listSanPham);
+        }
+        public bool XoaBangGia(String id)
+        {
+            var lstBG = db.BANGGIAs.FirstOrDefault(m=>m.BangGia_MaHH.Equals(id));
+            db.BANGGIAs.Remove(lstBG);
+            db.SaveChanges();
+            return true;
+        }
+
 
         // GET: HANGHOA
         public ActionResult LayDanhSachHangHoa()

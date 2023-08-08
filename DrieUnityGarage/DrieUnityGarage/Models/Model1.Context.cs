@@ -51,5 +51,6 @@ namespace DrieUnityGarage.Models
         public virtual DbSet<XUATKHO> XUATKHOes { get; set; }
         public virtual DbSet<CT_KIEMKEKHOHANG> CT_KIEMKEKHOHANG { get; set; }
         public virtual DbSet<KIEMKEKHOHANG> KIEMKEKHOHANGs { get; set; }
+        public virtual DbSet<BANGGIA> BANGGIAs { get; set; }
     }
 }
