@@ -51,7 +51,6 @@ namespace DrieUnityGarage.Controllers
             String tenNV = db.NHANVIENs.Find(bAOCAOTONKHO.BCTK_MaNV).HoTenNV; ;
             String nv = bAOCAOTONKHO.BCTK_MaNV + " - " + tenNV;
             ViewBag.NhanVien = nv;
-            Session["Count"] = 1;
             Session["MaBC"] = id;
             return View(bAOCAOTONKHO);
         }
@@ -80,14 +79,14 @@ namespace DrieUnityGarage.Controllers
 
         }
         [ValidateAntiForgeryToken]
-        public ActionResult PrintIndex()
+        public ActionResult PrintIndex(String id)
         {
-            return new ActionAsPdf("PrintPage", new { name = "Giorgio" }) { FileName = "Test.pdf" };
+            return new ActionAsPdf("PrintPage", new { name = "Giorgio", id = id}) { FileName = "BaoCaoTonKho.pdf" };
         }
 
-        public ActionResult PrintPage()
+        public ActionResult PrintPage(String id)
         {
-            var hanghoa = db.HANGHOAs.Where(m => m.LoaiHang.Equals("Phụ tùng")).Include(m => m.NHACUNGCAP).ToList();
+            var hanghoa = db.CT_BAOCAOTONKHO.Where(m=>m.CTBCTK_MaBCTK.Equals(id)).ToList();
             String tenNV = db.NHANVIENs.Find("NV001").HoTenNV; ;
             String nv = "NV001" + " - " + tenNV;
             ViewBag.NhanVien = nv;

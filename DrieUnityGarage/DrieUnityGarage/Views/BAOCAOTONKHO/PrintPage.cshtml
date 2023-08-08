@@ -1,4 +1,4 @@
-﻿@model List<DrieUnityGarage.Models.HANGHOA>
+﻿@model List<DrieUnityGarage.Models.CT_BAOCAOTONKHO>
 @{
     ViewBag.Title = "PrintPage";
     Layout = "~/Views/Shared/_BlankLayout.cshtml";
@@ -63,22 +63,22 @@
                             </td>
 
                             <td>
-                                @item.MaHH
+                                >@item.HANGHOA.MaHH
                             </td>
                             <td>
-                                @item.TenHH
-                            </td>
-
-                            <td>
-                                @item.DonViTinh
+                                @item.HANGHOA.TenHH
                             </td>
 
                             <td>
-                                @item.SoLuongTon
+                                @item.HANGHOA.DonViTinh
                             </td>
 
                             <td>
-                                @item.NHACUNGCAP.TenNCC
+                                @item.HANGHOA.SoLuongTon
+                            </td>
+
+                            <td>
+                                @item.CTBCTK_NhaCungCap
 
                             </td>
 

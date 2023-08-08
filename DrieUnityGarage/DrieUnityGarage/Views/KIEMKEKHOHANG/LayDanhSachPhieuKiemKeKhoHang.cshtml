@@ -1,0 +1,54 @@
+﻿@model IEnumerable<DrieUnityGarage.Models.KIEMKEKHOHANG>
+
+@{
+    ViewBag.Title = "Danh sách phiếu kiểm kê kho hàng";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-5">
+            <h2>Danh sách phiếu kiểm kê </h2>
+        </div>
+        <div class="col-lg-5">
+        </div>
+        <div class="col-lg-2">
+            @Html.ActionLink("Tạo mới", "TaoPhieuKiemKeKhoHang", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+    <table class="table index-table" style="margin-top:20px;">
+        <tr>
+            <th>Mã phiếu</th>
+            <th>
+                Thời điểm kiểm kê
+            </th>
+            <th>
+                Nhân viên thực hiện
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaKK)
+                </td>
+
+                <td>
+                    @String.Format("{0:hh:mm:ss, dd/MM/yyyy}", item.ThoiDiemKiemKe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NHANVIEN.MaNV) - @Html.DisplayFor(modelItem => item.NHANVIEN.HoTenNV)
+                </td>
+                <td>
+                    @Html.ActionLink("Chi tiết", "LayChiTietKiemKeKhoHang", new { id = item.MaKK }, new { @class = "btn btn-details" })
+
+                </td>
+                <td>   @Html.ActionLink("Xoá", "XoaPhieuKiemKeKhoHang", new { id = item.MaKK }, new { @class = "btn btn-danger" })</td>
+            </tr>
+        }
+    </table>
+</div>

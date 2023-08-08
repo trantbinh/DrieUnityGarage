@@ -1,0 +1,59 @@
+﻿@model IEnumerable<DrieUnityGarage.Models.CT_KIEMKEKHOHANG>
+
+@{ var count = 1;}
+<style>
+    .no-border {
+        border: 0;
+        box-shadow: none; /* You may want to include this as bootstrap applies these styles too */
+    }
+</style>
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+<table class="col-8 table table-bordered">
+    <tr>
+        <th rowspan="2">
+            STT
+        </th>
+        <th rowspan="2">
+            Hàng hoá
+        </th>
+        <th rowspan="2">Đơn vị tính</th>
+        <th rowspan="2">Đơn giá</th>
+        <th colspan="2">Theo sổ sách kế toán</th>
+        <th  colspan="2">Theo kiểm kê</th>
+
+    </tr>
+    <tr>
+        <th>Số lượng</th>
+        <th>Thành tiền</th>
+        <th>Số lượng</th>
+        <th>Thành tiền</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@count</td>
+            <td>@item.HANGHOA.TenHH</td>
+            <td>@item.HANGHOA.DonViTinh</td>
+            <td> @String.Format("{0:0,0}đ", item.HANGHOA.DonGia)</td>
+            <td>
+                @item.CTKK_SoLuongSoSach
+            </td>
+            <td>
+                @String.Format("{0:0,0}đ", item.CTKK_ThanhTienSoSach)
+            </td>
+            <td>
+                @item.CTKK_SoLuongKiemKe
+            </td>
+            <td>
+                @String.Format("{0:0,0}đ", item.CTKK_ThanhTienKiemKe)
+            </td>
+
+        </tr>
+        { count++; }
+
+    }
+
+</table>
+

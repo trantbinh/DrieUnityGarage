@@ -58,7 +58,7 @@
                     @String.Format("{0:dd/MM/yyyy}", item.NgayLap)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NHANVIEN.HoTenNV)
+                    @Html.DisplayFor(modelItem => item.NHANVIEN.MaNV) - @Html.DisplayFor(modelItem => item.NHANVIEN.HoTenNV)
                 </td>
                 <td>
                     @Html.ActionLink("Chi tiết", "LayChiTietBaoCaoTonKho", new { id = item.MaBCTK }, new { @class = "btn btn-details" })

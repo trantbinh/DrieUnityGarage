@@ -12,20 +12,20 @@ namespace DrieUnityGarage.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class BAOCAOTONKHO
+    public partial class KIEMKEKHOHANG
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BAOCAOTONKHO()
+        public KIEMKEKHOHANG()
         {
-            this.CT_BAOCAOTONKHO = new HashSet<CT_BAOCAOTONKHO>();
+            this.CT_KIEMKEKHOHANG = new HashSet<CT_KIEMKEKHOHANG>();
         }
     
-        public string MaBCTK { get; set; }
-        public Nullable<System.DateTime> NgayLap { get; set; }
-        public string BCTK_MaNV { get; set; }
+        public string MaKK { get; set; }
+        public Nullable<System.DateTime> ThoiDiemKiemKe { get; set; }
+        public string KK_MaNV { get; set; }
     
-        public virtual NHANVIEN NHANVIEN { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CT_BAOCAOTONKHO> CT_BAOCAOTONKHO { get; set; }
+        public virtual ICollection<CT_KIEMKEKHOHANG> CT_KIEMKEKHOHANG { get; set; }
+        public virtual NHANVIEN NHANVIEN { get; set; }
     }
 }

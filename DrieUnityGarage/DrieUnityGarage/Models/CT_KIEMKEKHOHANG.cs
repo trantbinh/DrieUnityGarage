@@ -12,14 +12,16 @@ namespace DrieUnityGarage.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CT_BAOCAOTONKHO
+    public partial class CT_KIEMKEKHOHANG
     {
-        public string CTBCTK_MaBCTK { get; set; }
-        public string CTBCTK_MaHH { get; set; }
-        public Nullable<int> CTBCTK_SoLuongTonKho { get; set; }
-        public string CTBCTK_NhaCungCap { get; set; }
+        public string CTKK_MaKK { get; set; }
+        public string CTKK_MaHH { get; set; }
+        public Nullable<int> CTKK_SoLuongSoSach { get; set; }
+        public Nullable<decimal> CTKK_ThanhTienSoSach { get; set; }
+        public Nullable<int> CTKK_SoLuongKiemKe { get; set; }
+        public Nullable<decimal> CTKK_ThanhTienKiemKe { get; set; }
     
         public virtual HANGHOA HANGHOA { get; set; }
-        public virtual BAOCAOTONKHO BAOCAOTONKHO { get; set; }
+        public virtual KIEMKEKHOHANG KIEMKEKHOHANG { get; set; }
     }
 }
