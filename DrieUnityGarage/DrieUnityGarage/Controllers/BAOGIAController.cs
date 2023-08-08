@@ -192,7 +192,18 @@ namespace DrieUnityGarage.Controllers
             Session.Remove("MaKH");
             Session.Remove("MaTN");
             Session.Remove("BienSoXe");
+            Session.Remove("lstXK");
+
+            var xk = db.XUATKHOes.ToList();
+            Session["lstXK"] = xk;
+
+            var tn = db.THONGTINTIEPNHANs.ToList();
+            Session["lstTN"] = tn;
+
+
             var bAOGIAs = db.BAOGIAs.Include(h => h.KHACHHANG).Include(h => h.PHUONGTIEN).Include(h => h.THONGTINTIEPNHAN);
+
+
             return View(bAOGIAs.ToList());
         }
 
@@ -456,10 +467,7 @@ namespace DrieUnityGarage.Controllers
 
             //Tạo 1 String chứa các thông tin của khách hàng để hiển thị
             String selectedTN = TTTN.MaTN + " - " + TTTN.MaKH + " - " + TTTN.BienSoXe;
-
-
             Session["selectedTiepNhan"] = selectedTN;
-
 
             //Thông tin cần lưu của tiếp nhận
             Session["MaBG"] = id;

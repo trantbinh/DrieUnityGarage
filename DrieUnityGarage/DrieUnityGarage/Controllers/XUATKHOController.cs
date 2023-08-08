@@ -284,7 +284,7 @@ namespace DrieUnityGarage.Controllers
             ViewBag.MaXK = TaoMaPhieuXuatKho();
             ViewBag.LyDoXuat = "Xuất theo báo giá";
             ViewBag.MaBG = idBG;
-            ViewBag.MaNV = "NV001";
+            ViewBag.MaNV = Session["MaTaiKhoanNV"].ToString();
             ViewBag.NgayLap = DateTime.Now.ToString("hh:mm:ss, dd/MM/yyyy");
             /*var bg = db.HOADONs.Find(idBG);*/
             return View();

@@ -52,7 +52,7 @@
 
             <tr>
                 <td>
-                   <img src="~/Uploads/HangHoa/@item.HinhAnh" class="center" style="width: 50%; height: 50%;" />
+                    <img src="~/Uploads/HangHoa/@item.HinhAnh" class="center" style="width: 50%; height: 50%;" />
                 </td>
 
                 <td>
@@ -86,32 +86,29 @@
                 <td>
                     <a href="@Url.Action("CTDH_XoaSP","HOADON", new { id = item.MaSP })" class="btn" style="padding:0">
                         <img alt="" src="@Url.Content("~/Images/Icon/icon_Delete.png")">
-                      
+
                     </a>
                 </td>
             </tr>
 
         }
     }
-    @if (Session["lstSPHD"] != null)
-    {
-        <tr style="font-weight:bold">
-            <td>
-                Tổng
-            </td>
-            <td colspan="2"></td>
-
-            <td class="soluong">@ViewBag.TotalNumber</td>
-            <td></td>
-            <td class="tongthanhtoan">
-                @String.Format("{0:0,0}đ", @ViewBag.TotalPrice)
-            </td>
-            <td colspan="3"></td>
-
-        </tr>
-
-
-
+    @{ var a = Session["lstSPHD"] as List<DrieUnityGarage.Models.THONGTINSANPHAM>;
+        if (a.Count != 0)
+        {
+            <tr style="font-weight:bold">
+                <td colspan="2">
+                    Tổng cộng
+                </td>
+                <td colspan="2"></td>
+                <td class="soluong">@ViewBag.TotalNumber</td>
+                <td></td>
+                <td class="tongthanhtoan">
+                    @String.Format("{0:0,0}đ", @ViewBag.TotalPrice)
+                </td>
+                <td colspan="2"></td>
+            </tr>
+        }
     }
 
 </table>

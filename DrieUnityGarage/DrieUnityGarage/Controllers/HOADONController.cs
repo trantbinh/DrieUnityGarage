@@ -462,6 +462,19 @@ namespace DrieUnityGarage.Controllers
                     db.KHACHHANGs.Attach(kHACHHANG);
                     db.Entry(kHACHHANG).Property(s => s.DiemThanhVien).IsModified = true;
 
+                    THONGTINTIEPNHAN TTTN = db.THONGTINTIEPNHANs.FirstOrDefault(m => m.MaTN.Equals(hd.HD_MaTN));
+                    TTTN.TrangThai = "Đã hoàn thành";
+                    TTTN.MaTN = hd.HD_MaTN;
+                    TTTN.TN_MaNV = "";
+                    TTTN.TN_MaKH = "";
+                    TTTN.TN_BienSoXe = "";
+                    TTTN.ThoiGianGiaoDuKien = DateTime.Now;
+                    TTTN.ThoiGianTiepNhan = DateTime.Now;
+                    TTTN.GhiChuKH = "";
+                    db.THONGTINTIEPNHANs.Attach(TTTN);
+                    db.Entry(TTTN).Property(s => s.TrangThai).IsModified = true;
+
+
                     db.SaveChanges();
 
                     foreach (var item in lstSP)
@@ -558,6 +571,7 @@ namespace DrieUnityGarage.Controllers
             return PartialView(lstHH);
         }
 
+
         public ActionResult Partial_CapNhatHD_LayChiTietHoaDon(string id)
         {
             List<THONGTINSANPHAM> lstSp;
@@ -581,58 +595,37 @@ namespace DrieUnityGarage.Controllers
             ViewBag.TotalPrice = TinhTongTien();
             return PartialView(lstSp);
         }
-
-        // GET: HOADON/SuaHoaDon/5
-        public ActionResult SuaHoaDon(string id)
+        //Thêm sản phẩm vào chi tiết hoá đơn
+        public ActionResult Partial_CapNhatHD_ThemChiTietHoaDon()
         {
-            if (id == null)
+            var lstHH = db.HANGHOAs.Where(m => m.SoLuongTmp > 0).ToList();
+            ViewBag.CTHD_MaHH = new SelectList(lstHH, "MaHH", "TenHH");
+            return PartialView();
+        }
+        [HttpPost]
+        public ActionResult Partial_CapNhatHD_ThemChiTietHoaDon(CT_HOADON hh)
+        {
+            var lstHH = db.HANGHOAs.Where(m => m.SoLuongTmp > 0).ToList();
+            ViewBag.CTHD_MaHH = new SelectList(lstHH, "MaHH", "TenHH");
+            ViewBag.Selected = hh.CTHD_MaHH;
+            Session["MaHH"] = hh.CTHD_MaHH;
+            return RedirectToAction("SuaHoaDon_ThemSP", "HOADON", new { id = Session["MaHH"].ToString() });
+        }
+        //Thêm một sản phẩm vào CTHD
+        public ActionResult SuaHoaDon_ThemSP(String id)
+        {
+            List<THONGTINSANPHAM> lstSPHD = CTHD_LayDanhSachSanPham();
+            THONGTINSANPHAM currentProduct = lstSPHD.FirstOrDefault(p => p.MaSP.Equals(id));
+            if (currentProduct == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                currentProduct = new THONGTINSANPHAM(id);
+                lstSPHD.Add(currentProduct);
             }
-            HOADON hOADON = db.HOADONs.Find(id);
-            if (hOADON == null)
+            else
             {
-                return HttpNotFound();
+                currentProduct.SoLuong++;
             }
-            //Lấy thông tin tiếp nhận
-            String date = DateTime.Now.ToString("dd/MM/yyyy");
-            ViewBag.NgayLapHD = date;
-            ViewBag.MaHD = id;
-
-            List<THONGTINTIEPNHANXE> lstTiepNhan = LayDanhSachTiepNhanDB();
-            ViewBag.lstMaTN = new SelectList(lstTiepNhan, "MaTN", "FullThongTin");
-
-            //Lấy ra thông tin tiếp nhận
-            THONGTINTIEPNHANXE TTTN = new THONGTINTIEPNHANXE(hOADON.HD_MaTN);
-
-            //Tạo 1 String chứa các thông tin của khách hàng để hiển thị
-            String selectedTN = TTTN.MaTN + " - " + TTTN.MaKH + " - " + TTTN.BienSoXe;
-
-
-            Session["selectedTiepNhan"] = selectedTN;
-
-            //Thông tin cần lưu của tiếp nhận
-            Session["MaHD"] = id;
-            Session["MaTN"] = hOADON.HD_MaTN;
-            Session["MaKH"] = TTTN.MaKH;
-            Session["MaKH"] = TTTN.MaKH;
-
-            //Lấy ra các thông tin cần thiết
-            String tenKH = db.KHACHHANGs.Find(TTTN.MaKH).HoTenKH;
-            String kh = TTTN.MaKH + " - " + tenKH;
-            Session["KhachHang"] = kh;
-            Session["BienSoXe"] = TTTN.BienSoXe;
-
-            String tenNV = db.NHANVIENs.Find(TTTN.MaNV).HoTenNV; ;
-            String nv = TTTN.MaNV + " - " + tenNV;
-            Session["NhanVien"] = nv;
-
-            ViewBag.selectedTiepNhan = Session["selectedTiepNhan"];
-            ViewBag.KhachHang = Session["KhachHang"];
-            ViewBag.BienSoXe = Session["BienSoXe"];
-            ViewBag.NhanVien = Session["NhanVien"];
-
-            return View(hOADON);
+            return RedirectToAction("SuaHoaDon", "HOADON", new { id = Session["MaHD"] });
         }
         //Xoá sản phẩm khỏi CTHD
         public ActionResult CapNhatHD_XoaSP(String id)
@@ -659,6 +652,60 @@ namespace DrieUnityGarage.Controllers
                 pro.SoLuong = int.Parse(f["changequantity"].ToString());
             }
             return RedirectToAction("SuaHoaDon", new { id = Session["MaHD"] });
+        }
+
+
+
+
+
+        // GET: HOADON/SuaHoaDon/5
+        public ActionResult SuaHoaDon(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            HOADON hOADON = db.HOADONs.Find(id);
+            if (hOADON == null)
+            {
+                return HttpNotFound();
+            }
+            //Lấy thông tin tiếp nhận
+            String date = DateTime.Now.ToString("dd/MM/yyyy");
+            ViewBag.NgayLapHD = date;
+            ViewBag.MaHD = id;
+
+            List<THONGTINTIEPNHANXE> lstTiepNhan = LayDanhSachTiepNhanDB();
+            ViewBag.lstMaTN = new SelectList(lstTiepNhan, "MaTN", "FullThongTin");
+
+            //Lấy ra thông tin tiếp nhận
+            THONGTINTIEPNHANXE TTTN = new THONGTINTIEPNHANXE(hOADON.HD_MaTN);
+
+            //Tạo 1 String chứa các thông tin của khách hàng để hiển thị
+            String selectedTN = TTTN.MaTN + " - " + TTTN.MaKH + " - " + TTTN.BienSoXe;
+            Session["selectedTiepNhan"] = selectedTN;
+
+            //Thông tin cần lưu của tiếp nhận
+            Session["MaHD"] = id;
+            Session["MaTN"] = hOADON.HD_MaTN;
+            Session["MaKH"] = TTTN.MaKH;
+
+            //Lấy ra các thông tin cần thiết
+            String tenKH = db.KHACHHANGs.Find(TTTN.MaKH).HoTenKH;
+            String kh = TTTN.MaKH + " - " + tenKH;
+            Session["KhachHang"] = kh;
+            Session["BienSoXe"] = TTTN.BienSoXe;
+
+            String tenNV = db.NHANVIENs.Find(TTTN.MaNV).HoTenNV; ;
+            String nv = TTTN.MaNV + " - " + tenNV;
+            Session["NhanVien"] = nv;
+
+            ViewBag.selectedTiepNhan = Session["selectedTiepNhan"];
+            ViewBag.KhachHang = Session["KhachHang"];
+            ViewBag.BienSoXe = Session["BienSoXe"];
+            ViewBag.NhanVien = Session["NhanVien"];
+
+            return View(hOADON);
         }
 
         [HttpPost]
@@ -815,6 +862,20 @@ namespace DrieUnityGarage.Controllers
             kHACHHANG.DiaChi = "";
             db.KHACHHANGs.Attach(kHACHHANG);
             db.Entry(kHACHHANG).Property(s => s.DiemThanhVien).IsModified = true;
+            HOADON hOADON = db.HOADONs.Find(id);
+
+
+            THONGTINTIEPNHAN TTTN = db.THONGTINTIEPNHANs.FirstOrDefault(m => m.MaTN.Equals(hOADON.HD_MaTN));
+            TTTN.TrangThai = "Chưa hoàn thành";
+            TTTN.MaTN = hOADON.HD_MaTN;
+            TTTN.TN_MaNV = "";
+            TTTN.TN_MaKH = "";
+            TTTN.TN_BienSoXe = "";
+            TTTN.ThoiGianGiaoDuKien = DateTime.Now;
+            TTTN.ThoiGianTiepNhan = DateTime.Now;
+            TTTN.GhiChuKH = "";
+            db.THONGTINTIEPNHANs.Attach(TTTN);
+            db.Entry(TTTN).Property(s => s.TrangThai).IsModified = true;
 
             List<CT_HOADON> cthd = db.CT_HOADON.Where(m => m.CTHD_MaHD.Equals(id)).ToList();
             if (cthd != null)
@@ -824,7 +885,6 @@ namespace DrieUnityGarage.Controllers
                     check = XoaChiTietHD(cthd[i].CTHD_MaHD);
                 }
             }
-                HOADON hOADON = db.HOADONs.Find(id);
                 db.HOADONs.Remove(hOADON);
                 db.SaveChanges();
             return RedirectToAction("LayDanhSachHoaDon");

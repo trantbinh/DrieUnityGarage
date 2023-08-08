@@ -51,14 +51,7 @@
     }
 
     <p style="font-size:20px; font-weight:bold; margin-top:10px;">CHI TIẾT HOÁ ĐƠN:</p>
-    <div class="row">
-        <div class="col-lg-9">
             @Html.Action("Partial_TaoHD_PhieuBG_LayChiTietHoaDon", "HOADON", new {id = ViewBag.MaBG})
-        </div>
-        <div class="col-lg-3">
-            @Html.Action("Partial_TaoHD_PhieuBG_ThemChiTietHoaDon", "HOADON")
-        </div>
-    </div>
     <div class="row" style="padding-bottom:10px;">
         <div class="col-2"></div>
         <div class="col-8">

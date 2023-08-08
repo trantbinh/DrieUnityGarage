@@ -67,23 +67,80 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.PHUONGTIEN.BienSoXe)
                 </td>
-          
-                <td>
-                    @Html.ActionLink("Sửa", "SuaBaoGia", new { id = item.MaBG }, new { @class = "btn btn-success" })
+                @{var lstXK = Session["lstXK"] as List<DrieUnityGarage.Models.XUATKHO>; var check = 0;
+                    var lstTN = Session["lstTN"] as List<DrieUnityGarage.Models.THONGTINTIEPNHAN>;
+                    for (int i = 0; i < lstXK.Count(); i++)
+                    {
+                        if (lstXK[i].XK_MaBG.Equals(item.MaBG)) { check = 1; break; }
+                    }
+                    for (int i = 0; i < lstTN.Count(); i++)
+                    {
+                        if (lstTN[i].TrangThai.Equals("Đã hoàn thành"))
+                        {
+                            if (item.BG_MaTN.Equals(lstTN[i].MaTN))
+                            { check = 2; break; }
+                        }
+                    }
+                    if (check == 2)
+                    {
+                        
+                        <td colspan="5">
+                            <button type="button" class="btn btn-light" style="width:100%" disabled> Đã hoàn thành</button>
+                        </td>
 
-                </td>
-                <td>
-                    @Html.ActionLink("Chi tiết", "XemThongTinBaoGia", new { id = item.MaBG }, new { @class = "btn btn-details" })
-                </td>
-                <td>
-                    @Html.ActionLink("Xoá", "XoaBaoGia", new { id = item.MaBG }, new { @class = "btn btn-danger" })
-                </td>
-                <td>
-                    @Html.ActionLink("Xuất kho", "TaoPhieuXuatKho_PhieuBG", "XUATKHO", new { idBG = item.MaBG }, new { @class = "btn btn-warning" })
-                </td>
-                <td>
-                    @Html.ActionLink("Tạo hoá đơn", "ThemHoaDon_PhieuBG", "HOADON", new { idBG = item.MaBG }, new { @class = "btn btn-primary" })
-                </td>
+                    }
+                    else
+                    {
+
+                        <td>
+                            @Html.ActionLink("Sửa", "SuaBaoGia", new { id = item.MaBG }, new { @class = "btn btn-success" })
+
+                        </td>
+                        <td>
+                            @Html.ActionLink("Chi tiết", "XemThongTinBaoGia", new { id = item.MaBG }, new { @class = "btn btn-details" })
+                        </td>
+                        <td>
+                            @Html.ActionLink("Xoá", "XoaBaoGia", new { id = item.MaBG }, new { @class = "btn btn-danger" })
+                        </td>
+
+                        if (check == 1)
+                        {
+
+                            <td>
+                                <button type="button" class="btn btn-warning" onclick="myFunctionLDSBG_XuatKho()">Xuất kho</button>
+                                <script>
+                                    function myFunctionLDSBG_XuatKho() {
+                                        alert("Báo giá này đã được xuất kho!");
+                                    }
+                                </script>
+                            </td>
+                            <td>
+                                @Html.ActionLink("Tạo hoá đơn", "ThemHoaDon_PhieuBG", "HOADON", new { idBG = item.MaBG }, new { @class = "btn btn-primary" })
+                            </td>
+
+                        }
+                        else
+                        {
+                            <td>
+                                @Html.ActionLink("Xuất kho", "TaoPhieuXuatKho_PhieuBG", "XUATKHO", new { idBG = item.MaBG }, new { @class = "btn btn-warning" })
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary" onclick="myFunctionLDSBG_TaoHD()">Tạo hoá đơn</button>
+                                <script>
+                                    function myFunctionLDSBG_TaoHD() {
+                                        alert("Xuất kho hàng hoá trước khi tạo hoá đơn!");
+                                    }
+                                </script>
+                            </td>
+
+                        }
+
+
+                    }
+
+                }
+
+
 
             </tr>
         }
