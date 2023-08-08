@@ -50,7 +50,15 @@ namespace DrieUnityGarage.Models
             PhongBan = nv.PhongBan;
             TenDangNhap = nv.TenDangNhap;
             MatKhau = nv.MatKhau;
-            NgayTaoTK=(DateTime)nv.NgayTaoTK;
+            if (nv.NgayTaoTK == null)
+            {
+                NgayTaoTK = DateTime.Now;
+            }
+            else
+            {
+                NgayTaoTK = (DateTime)nv.NgayTaoTK;
+            }
+
             ThongTin = id + " - " + HoTenNV + " - " + ChucVu;
         }
 
