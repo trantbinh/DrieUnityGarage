@@ -430,11 +430,6 @@
     <Content Include="Views\KHACHHANG\Details.cshtml" />
     <Content Include="Views\KHACHHANG\Edit.cshtml" />
     <Content Include="Views\KHACHHANG\Index.cshtml" />
-    <Content Include="Views\NHANVIEN\Create.cshtml" />
-    <Content Include="Views\NHANVIEN\Delete.cshtml" />
-    <Content Include="Views\NHANVIEN\Details.cshtml" />
-    <Content Include="Views\NHANVIEN\Edit.cshtml" />
-    <Content Include="Views\NHANVIEN\Index.cshtml" />
     <Content Include="Views\NHANVIEN\LayDanhSachNhanVien.cshtml" />
     <Content Include="Views\NHANVIEN\LayThongTinNhanVien.cshtml" />
     <Content Include="Views\NHANVIEN\SuaThongTinNhanVien.cshtml" />

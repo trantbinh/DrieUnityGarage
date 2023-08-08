@@ -9,112 +9,94 @@
 
 <div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
     <div class="row">
-        <div class="col-lg-3"></div>
-        <div class="col-lg-6" style="text-align:center">
-            <h2>Xác nhận xoá nhân viên</h2>
+        <div class="col-lg-12" style="text-align:center">
+            <h2 style="color: red">Xác nhận xoá thông tin</h2>
         </div>
-        <div class="col-lg-3"></div>
-       
     </div>
-    <div class="container col-8">
+    <div class="container col-6" style="margin-top: 10px; font-size:17px;">
         <p style="font-weight:500; color:red; font-size:18px; text-align:center">@ViewBag.ThongBao</p>
         <hr />
 
-        <div class="form-horizontal form-decor">
-
-            <div class="form-group space-field">
-                Họ tên:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.HoTenNV)
-                </div>
-            </div>
-
-            <div class="form-group space-field">
-                Số điện thoại:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.DienThoaiNV)
-                </div>
-            </div>
-
-            <div class="form-group space-field">
-                Ngày tháng năm sinh:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.NgaySinh)
-                </div>
-            </div>
-
-            <div class="form-group space-field">
-                Giới tính:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.GioiTinh)
-                </div>
-            </div>
-
-            <div class="form-group space-field">
-                Email:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.Email)
-                </div>
-            </div>
-
-            <div class="form-group space-field">
-                Địa chỉ:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.DiaChi)
-                </div>
-            </div>
-
-            <div class="form-group space-field">
-                Chức vụ:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.ChucVu)
-                </div>
-            </div>
-
-            <div class="form-group space-field">
-                Phòng ban:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.PhongBan)
-                </div>
-            </div>
-
-            <div class="form-group space-field">
-                Tên đăng nhập:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.TenDangNhap)
-                </div>
-            </div>
-
-            <div class="form-group space-field">
-                Mật khẩu:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.MatKhau)
-                </div>
-            </div>
-
-            <div class="form-group space-field">
-                Ngày tạo tài khoản:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.NgayTaoTK)
-                </div>
+        <div class="form-group mb-3">
+            <label for="HoTenNV" class="form-label"> Họ tên: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.HoTenNV)
             </div>
         </div>
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true)
+        <div class="form-group mb-3">
+            <label for="DienThoaiNV" class="form-label"> Số điện thoại: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.DienThoaiNV)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="DonGia" class="form-label"> Đơn giá: </label>
+            <div class="col-12 form-control">
+                @String.Format("{0:dd/MM/yyyy}", Model.NgaySinh)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="GioiTinh" class="form-label"> Giới tính: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.GioiTinh)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="Email" class="form-label"> Email: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.Email)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="DiaChi" class="form-label">  Địa chỉ: </label>
+            <textarea class="form-control col-12" id="DiaChi" name="DiaChi" rows="2" readonly>@Model.DiaChi</textarea>
 
-            <div class="form-group" style="margin-top:40px">
-                <div class="row">
-                    <div class="col-lg-5 align-bottom">
-                        @Html.ActionLink("< Quay về", "LayDanhSachNhanVien", null, new { @class = "nonedecor" })
+        </div>
+        <div class="form-group mb-3">
+            <label for="PhongBan" class="form-label">Phòng ban: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.PhongBan)
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="ChucVu" class="form-label">Chức vụ: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.ChucVu)
+            </div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="row" style="padding-bottom:10px;">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <div class="row" style="margin:0">
+
+                    <div class="col-4">
+                        @Html.ActionLink("< Quay về", "LayDanhSachNhanVien", null, new { @class = "btn-back" })
                     </div>
-                    <div class="col-lg-7">
-                        <input type="submit" value="Xoá thông tin" class="btn btn-danger delete-btn " />
+                    <div class="col-4" style="text-align:center">
+                        @{
+                            <input type="submit" value="Xác nhận xoá" class="btn btn-danger" onclick="clicked(event)" />
+                            <script>
+                                    function clicked(e) {
+                                        if (!confirm('Xác nhận xoá hồ sơ nhân viên?')) {
+                                            e.preventDefault();
+                                        }
+                                       
+                                    }</script>
+                        }
                     </div>
+                    <div class="col-4"></div>
                 </div>
             </div>
-        }
-    </div>
+            <div class="col-3"></div>
+        </div>
+    }
 
 </div>

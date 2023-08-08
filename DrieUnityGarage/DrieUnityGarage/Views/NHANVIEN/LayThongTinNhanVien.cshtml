@@ -1,5 +1,4 @@
 ﻿@model DrieUnityGarage.Models.NHANVIEN
-
 @{
     ViewBag.Title = "LayThongTinNhanVien";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
@@ -10,103 +9,75 @@
 
 <div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
     <div class="row">
-        <div class="col-lg-3"></div>
-        <div class="col-lg-6" style="text-align:center">
-            <h2>Thông tin nhân viên</h2>
+        <div class="col-lg-12" style="text-align:center">
+            <h2>Chi tiết hồ sơ nhân viên</h2>
         </div>
-        <div class="col-lg-3"></div>
     </div>
-    <div class="container col-8">
+    <div class="container col-6" style="margin-top: 10px; font-size:17px;">
         <hr />
-        <div class="form-horizontal form-decor">
-
-            <div class="form-group space-field">
-                Họ tên:
-                <div class="col-md-12 form-control">
+            <div class="form-group mb-3">
+                <label for="HoTenNV" class="form-label"> Họ tên: </label>
+                <div class="col-12 form-control">
                     @Html.DisplayFor(model => model.HoTenNV)
                 </div>
             </div>
-
-            <div class="form-group space-field">
-                Số điện thoại:
-                <div class="col-md-12 form-control">
+            <div class="form-group mb-3">
+                <label for="DienThoaiNV" class="form-label"> Số điện thoại: </label>
+                <div class="col-12 form-control">
                     @Html.DisplayFor(model => model.DienThoaiNV)
                 </div>
             </div>
-
-            <div class="form-group space-field">
-                Ngày tháng năm sinh:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.NgaySinh)
+            <div class="form-group mb-3">
+                <label for="DonGia" class="form-label"> Đơn giá: </label>
+                <div class="col-12 form-control">
+                    @String.Format("{0:dd/MM/yyyy}", Model.NgaySinh)
                 </div>
             </div>
-
-            <div class="form-group space-field">
-                Giới tính:
-                <div class="col-md-12 form-control">
+            <div class="form-group mb-3">
+                <label for="GioiTinh" class="form-label"> Giới tính: </label>
+                <div class="col-12 form-control">
                     @Html.DisplayFor(model => model.GioiTinh)
                 </div>
             </div>
-
-            <div class="form-group space-field">
-                Email:
-                <div class="col-md-12 form-control">
+            <div class="form-group mb-3">
+                <label for="Email" class="form-label"> Email: </label>
+                <div class="col-12 form-control">
                     @Html.DisplayFor(model => model.Email)
                 </div>
             </div>
+            <div class="form-group mb-3">
+                <label for="DiaChi" class="form-label">  Địa chỉ: </label>
+                <textarea class="form-control col-12" id="DiaChi" name="DiaChi" rows="2" readonly>@Model.DiaChi</textarea>
 
-            <div class="form-group space-field">
-                Địa chỉ:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.DiaChi)
-                </div>
             </div>
-
-            <div class="form-group space-field">
-                Chức vụ:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.ChucVu)
-                </div>
-            </div>
-
-            <div class="form-group space-field">
-                Phòng ban:
-                <div class="col-md-12 form-control">
+            <div class="form-group mb-3">
+                <label for="PhongBan" class="form-label">Phòng ban: </label>
+                <div class="col-12 form-control">
                     @Html.DisplayFor(model => model.PhongBan)
                 </div>
             </div>
 
-            <div class="form-group space-field">
-                Tên đăng nhập:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.TenDangNhap)
+            <div class="form-group mb-3">
+                <label for="ChucVu" class="form-label">Chức vụ: </label>
+                <div class="col-12 form-control">
+                    @Html.DisplayFor(model => model.ChucVu)
                 </div>
             </div>
-
-            <div class="form-group space-field">
-                mật khẩu:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.MatKhau)
+    </div>
+    <div class="row" style="padding-bottom:10px;">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="row" style="margin:0">
+                <div class="col-4">
+                    @Html.ActionLink("< Quay về", "LayDanhSachNhanVien", null, new { @class = "btn-back" })
                 </div>
-            </div>
-
-            <div class="form-group space-field">
-                Ngày tạo tài khoản:
-                <div class="col-md-12 form-control">
-                    @Html.DisplayFor(model => model.NgayTaoTK)
+                <div class="col-4" style="text-align:center">
+                    @Html.ActionLink("Chỉnh sửa thông tin", "SuaThongTinNhanVien", new { id = Model.MaNV }, new { @class = "btn btn-success" })
                 </div>
-            </div>
-        </div>
-        <div class="form-group" style="margin-top:40px">
-            <div class="row">
-                <div class="col-lg-5 align-bottom">
-                    @Html.ActionLink("< Quay về", "LayDanhSachNhanVien", null, new { @class = "nonedecor" })
-                </div>
-                <div class="col-lg-7">
-                    @Html.ActionLink("Chỉnh sửa", "XoaNhanVien", new { id = Model.MaNV }, new { @class = "btn btn-success create-btn" })
-                </div>
+                <div class="col-4"></div>
             </div>
         </div>
+        <div class="col-3"></div>
     </div>
 
 </div>

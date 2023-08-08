@@ -34,8 +34,6 @@ namespace DrieUnityGarage.Controllers
                 {
                     var check = db.NHANVIENs.FirstOrDefault(k => k.TenDangNhap.Equals(nv.TenDangNhap)&& k.MatKhau.Equals(nv.MatKhau));
 
-                 
-
                     if (check != null)
                     {
                         Session["TaiKhoan"] = check;
@@ -132,6 +130,7 @@ namespace DrieUnityGarage.Controllers
         // GET: NHANVIEN/Create
         public ActionResult ThemNhanVien()
         {
+            ViewBag.MaNV = TaoMaNhanVien();
             return View();
         }
 
@@ -144,38 +143,18 @@ namespace DrieUnityGarage.Controllers
         {
             if (ModelState.IsValid)
             {
-                //Tạo mã nhà cung cấp String
-                List<NHANVIEN> lstHH = db.NHANVIENs.ToList();
-                int countLst = lstHH.Count();
-                if (countLst == 0)
+
+                var email = db.NHANVIENs.FirstOrDefault(k => k.Email.Equals(nHANVIEN.Email));
+                if (email != null)
+                    ModelState.AddModelError(string.Empty, "Email đã tồn tại!");
+                if (ModelState.IsValid)
                 {
-                    nHANVIEN.MaNV = "NV001";
+                    nHANVIEN.MaNV = TaoMaNhanVien();
+                    db.NHANVIENs.Add(nHANVIEN);
+                    db.SaveChanges();
+                    return RedirectToAction("LayDanhSachNhanVien");
                 }
-                else
-                {
-                    NHANVIEN lastHH = lstHH[countLst - 1];
-                    String lastMHH = lastHH.MaNV;
-                    int lastMaHHNum = int.Parse(lastMHH.Substring(2));
-                    int newMaHH = lastMaHHNum + 1;
-                    if (newMaHH < 10)
-                    {
-                        nHANVIEN.MaNV = "NV00" + newMaHH.ToString();
-                    }
-
-                    else
-                    {
-                        nHANVIEN.MaNV = "NV0" + newMaHH.ToString();
-
-                    }
-
-
-                }
-                nHANVIEN.NgayTaoTK = DateTime.Now;
-                db.NHANVIENs.Add(nHANVIEN);
-                db.SaveChanges();
-                return RedirectToAction("LayDanhSachNhanVien");
             }
-
             return View(nHANVIEN);
         }
 
@@ -191,6 +170,13 @@ namespace DrieUnityGarage.Controllers
             {
                 return HttpNotFound();
             }
+            DateTime date;
+            if (nHANVIEN.NgaySinh!= null)
+            {
+                date = (DateTime)nHANVIEN.NgaySinh;
+                ViewBag.NgaySinh = date.ToString("yyyy/MM/dd");
+            }
+
             return View(nHANVIEN);
         }
 
@@ -201,12 +187,13 @@ namespace DrieUnityGarage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SuaThongTinNhanVien([Bind(Include = "MaNV,HoTenNV,DienThoaiNV,NgaySinh,GioiTinh,Email,DiaChi,ChucVu,PhongBan,TenDangNhap,MatKhau,NgayTaoTK")] NHANVIEN nHANVIEN)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(nHANVIEN).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("LayDanhSachNhanVien");
-            }
+                if (ModelState.IsValid)
+                {
+
+                    db.Entry(nHANVIEN).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("LayDanhSachNhanVien");
+                }
             return View(nHANVIEN);
         }
 
@@ -222,7 +209,7 @@ namespace DrieUnityGarage.Controllers
 
 ;            if (check == 0)
             {
-                ViewBag.ThongBao = "Không thể xoá nhân viên này vì mã nhân viên đã được dùng để tạo thông tin khác";
+                ViewBag.ThongBao = "!Lưu ý: Không thể xoá nhân viên này vì dữ liệu nhân viên đã được liên kết với các dữ liệu khác";
             }
            else
             { 
@@ -231,6 +218,13 @@ namespace DrieUnityGarage.Controllers
                     return HttpNotFound();
                 }
             }
+            DateTime date;
+            if (nHANVIEN.NgaySinh != null)
+            {
+                date = (DateTime)nHANVIEN.NgaySinh;
+                ViewBag.NgaySinh = date.ToString("yyyy/MM/dd");
+            }
+
             return View(nHANVIEN);
         }
 
@@ -271,5 +265,30 @@ namespace DrieUnityGarage.Controllers
             }
             base.Dispose(disposing);
         }
+        private String TaoMaNhanVien()
+        {
+            String idHD = "";
+            //Tạo mã nhà cung cấp String
+            List<NHANVIEN> lstHD = db.NHANVIENs.ToList();
+            int countLst = lstHD.Count();
+            if (countLst == 0)
+            {
+                idHD = "NV001";
+            }
+            else
+            {
+                NHANVIEN lastHD = lstHD[countLst - 1];
+                String lastMaHD = lastHD.MaNV;
+                int lastMaHDNum = int.Parse(lastMaHD.Substring(2));
+                int newMaHD = lastMaHDNum + 1;
+                if (newMaHD < 10)
+                {
+                    idHD = "NV00" + newMaHD.ToString();
+                }
+                else { idHD = "NV0" + newMaHD.ToString(); }
+            }
+            return (idHD);
+        }
+
     }
 }
