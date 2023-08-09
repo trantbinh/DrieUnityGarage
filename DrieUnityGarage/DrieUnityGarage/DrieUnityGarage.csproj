@@ -146,6 +146,7 @@
     <Compile Include="Controllers\NHANVIENController.cs" />
     <Compile Include="Controllers\NHAPKHOController.cs" />
     <Compile Include="Controllers\PHIEUTHUController.cs" />
+    <Compile Include="Controllers\PHUONGTIENController.cs" />
     <Compile Include="Controllers\THONGTINTIEPNHANController.cs" />
     <Compile Include="Controllers\TRAGOPController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -567,6 +568,11 @@
     <Content Include="Views\TRAGOP\Index.cshtml" />
     <Content Include="Views\TRAGOP\CTTG_TaoCT.cshtml" />
     <Content Include="Views\TRAGOP\CTTG_LayDSThongTin.cshtml" />
+    <Content Include="Views\PHUONGTIEN\Create.cshtml" />
+    <Content Include="Views\PHUONGTIEN\Delete.cshtml" />
+    <Content Include="Views\PHUONGTIEN\Details.cshtml" />
+    <Content Include="Views\PHUONGTIEN\Edit.cshtml" />
+    <Content Include="Views\PHUONGTIEN\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

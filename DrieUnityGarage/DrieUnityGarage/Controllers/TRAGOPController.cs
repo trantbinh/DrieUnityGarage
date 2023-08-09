@@ -81,20 +81,6 @@ namespace DrieUnityGarage.Controllers
             return RedirectToAction("CTTG_LayDSThongTin", new { id = Session["MaTG"].ToString() });
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // GET: TRAGOP
         public ActionResult Index()
         {
