@@ -10,16 +10,14 @@
 <div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
     <div class="row">
         <div class="col-lg-12" style="text-align:center; ">
-            <h2>Tạo phiếu thu</h2>
+            <h2>PHIỂU THU</h2>
         </div>
     </div>
-
     @using (Html.BeginForm("TaoPhieuThu", "PHIEUTHU"))
     {
         @Html.AntiForgeryToken()
         <div class="container col-6" style="margin-top: 10px; font-size:17px;">
             <hr />
-
             <div class="form-group mb-3">
                 <label for="MaHH" class="form-label"> Mã phiếu thu: </label>
                 <input class="form-control" id="MaHH" value="@ViewBag.MaPT" disabled />
@@ -27,26 +25,19 @@
             <div class="form-group mb-3">
                 <label for="NhanVien" class="form-label"> Người lập phiếu: </label>
                 <input class="form-control" id="NhanVien" name="NhanVien" disabled value="@ViewBag.NhanVien" />
-
             </div>
-
             <div class="form-group mb-3">
                 <label for="NgayLap" class="form-label"> Thời gian lập phiếu: </label>
                 <input class="form-control" id="NgayLap" name="NgayLap" disabled value="@ViewBag.NgayLap" />
-
             </div>
             <div class="form-group mb-3">
                 <label for="DiaChi" class="form-label"> Địa chỉ nộp: </label>
                 <textarea class="form-control" id="DiaChi" name="DiaChi" rows="2" disabled>@ViewBag.DiaChi</textarea>
-
             </div>
-
             <div class="form-group mb-3">
                 <label class="form-label" for="lstMaKH"> Chọn người nộp: [Mã khách hàng - Số điện thoại - Họ tên]</label>
                 @Html.DropDownList("lstMaKH", null, htmlAttributes: new { @class = "form-control" })
             </div>
-
-
             <div class="form-group mb-3">
                 <label for="LyDoNop" class="form-label"> Lý do nộp: </label>
                 <textarea class="form-control" id="LyDoNop" name="LyDoNop" rows="3" required></textarea>
@@ -54,15 +45,12 @@
             <div class="form-group mb-3">
                 <label for="SoTien" class="form-label"> Số tiền nộp: </label>
                 <input type="number" class="form-control" id="SoTien" name="SoTien" required />
-
             </div>
             <div class="form-group mb-3">
                 <label for="ChungTuGoc" class="form-label"> Chứng từ gốc kèm theo (nếu có): </label>
                 <input class="form-control" id="ChungTuGoc" name="ChungTuGoc" />
-
             </div>
         </div>
-
         <div class="row" style="padding-bottom:10px;">
             <div class="col-3"></div>
             <div class="col-6">

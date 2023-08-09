@@ -12,11 +12,16 @@ namespace DrieUnityGarage.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CT_HOADON
+    public partial class CT_TRAGOP
     {
-        public string CTHD_MaHH { get; set; }
-        public string CTHD_MaHD { get; set; }
-        public Nullable<int> SoLuong { get; set; }
-        public Nullable<decimal> ThanhTien { get; set; }
+        public string CTTG_MaTG { get; set; }
+        public int CTTG_Thang { get; set; }
+        public Nullable<System.DateTime> CTTG_NgayTra { get; set; }
+        public Nullable<decimal> CTTG_SoTienTra { get; set; }
+        public Nullable<decimal> CTTG_SoTienConLai { get; set; }
+        public string CTTG_MaPT { get; set; }
+    
+        public virtual TRAGOP TRAGOP { get; set; }
+        public virtual PHIEUTHU PHIEUTHU { get; set; }
     }
 }

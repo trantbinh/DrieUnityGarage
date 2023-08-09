@@ -1,0 +1,386 @@
+﻿@model DrieUnityGarage.Models.TRAGOP
+
+@{
+    ViewBag.Title = "Chi tiết phiếu đăng ký";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center">
+            <h2>Chi tiết thông tin phiếu đăng ký trả góp</h2>
+        </div>
+    </div>
+    <div class="container col-7" style="margin-top: 10px; font-size:17px;">
+        <hr />
+        <div class="form-group mb-3">
+            <label for="MaTG" class="form-label"> Mã phiếu đăng ký: </label>
+            <input class="form-control" id="MaTG" value="@Model.MaTG" readonly />
+        </div>
+        <div class="form-group mb-3">
+            <label for="NhanVien" class="form-label"> Người lập phiếu: </label>
+            <input class="form-control" id="NhanVien" name="NhanVien" readonly value="@ViewBag.NhanVien" />
+        </div>
+        <div class="form-group mb-3">
+            <label for="NgayLap" class="form-label"> Thời gian lập phiếu: </label>
+            <input class="form-control" id="NgayLap" name="NgayLap" readonly value="@String.Format("{0:hh:mm:ss, dd/MM/yyyy}",Model.NgayLap)" />
+        </div>
+        <div class="form-group mb-3">
+            <label class="form-label" for="MaHD"> Chọn hoá đơn: [Mã hoá đơn]</label>
+            <input class="form-control" id="MaHD" value="@Model.TG_MaHD" readonly />
+        </div>
+        <div class="form-group mb-3">
+            <label class="form-label" style="padding-right:33px"> Tỷ lệ trả góp (%): </label>
+            @if (Model.TyLeTraGop == 0.5)
+            {
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio1" value="0.5" checked disabled>
+                    <label class="form-check-label" for="inlineRadio1">50%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio2" value="0.6" disabled>
+                    <label class="form-check-label" for="inlineRadio2">60%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio3" value="0.7" disabled>
+                    <label class="form-check-label" for="inlineRadio3">70%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio4" value="0.8" readonly>
+                    <label class="form-check-label" for="inlineRadio4">80%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio5" value="0.9" readonly>
+                    <label class="form-check-label" for="inlineRadio5">90%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio6" value="1" readonly>
+                    <label class="form-check-label" for="inlineRadio6">100%</label>
+                </div>
+
+            }
+            else if (Model.TyLeTraGop == 0.6)
+            { <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio1" value="0.5" readonly>
+                    <label class="form-check-label" for="inlineRadio1">50%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio2" value="0.6" checked readonly>
+                    <label class="form-check-label" for="inlineRadio2">60%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio3" value="0.7" readonly>
+                    <label class="form-check-label" for="inlineRadio3">70%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio4" value="0.8" readonly>
+                    <label class="form-check-label" for="inlineRadio4">80%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio5" value="0.9" readonly>
+                    <label class="form-check-label" for="inlineRadio5">90%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio6" value="1" readonly>
+                    <label class="form-check-label" for="inlineRadio6">100%</label>
+                </div>
+            }
+            else if (Model.TyLeTraGop == 0.7)
+            { <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio1" value="0.5" readonly>
+                    <label class="form-check-label" for="inlineRadio1">50%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio2" value="0.6" readonly>
+                    <label class="form-check-label" for="inlineRadio2">60%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio3" value="0.7" checked readonly>
+                    <label class="form-check-label" for="inlineRadio3">70%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio4" value="0.8" readonly>
+                    <label class="form-check-label" for="inlineRadio4">80%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio5" value="0.9" readonly>
+                    <label class="form-check-label" for="inlineRadio5">90%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio6" value="1" readonly>
+                    <label class="form-check-label" for="inlineRadio6">100%</label>
+                </div>}
+            else if (Model.TyLeTraGop == 0.8)
+            {<div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio1" value="0.5" readonly>
+                    <label class="form-check-label" for="inlineRadio1">50%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio2" value="0.6" readonly>
+                    <label class="form-check-label" for="inlineRadio2">60%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio3" value="0.7" readonly>
+                    <label class="form-check-label" for="inlineRadio3">70%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio4" value="0.8" checked readonly>
+                    <label class="form-check-label" for="inlineRadio4">80%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio5" value="0.9" readonly>
+                    <label class="form-check-label" for="inlineRadio5">90%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio6" value="1" readonly>
+                    <label class="form-check-label" for="inlineRadio6">100%</label>
+                </div>}
+            else if (Model.TyLeTraGop == 0.9)
+            { <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio1" value="0.5" readonly>
+                    <label class="form-check-label" for="inlineRadio1">50%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio2" value="0.6" readonly>
+                    <label class="form-check-label" for="inlineRadio2">60%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio3" value="0.7" readonly />
+                    <label class="form-check-label" for="inlineRadio3">70%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio4" value="0.8" readonly>
+                    <label class="form-check-label" for="inlineRadio4">80%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio5" value="0.9" checked readonly>
+                    <label class="form-check-label" for="inlineRadio5">90%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio6" value="1" readonly>
+                    <label class="form-check-label" for="inlineRadio6">100%</label>
+                </div>}
+            else
+            {<div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio1" value="0.5" readonly>
+                    <label class="form-check-label" for="inlineRadio1">50%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio2" value="0.6" readonly>
+                    <label class="form-check-label" for="inlineRadio2">60%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio3" value="0.7" readonly>
+                    <label class="form-check-label" for="inlineRadio3">70%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio4" value="0.8" readonly>
+                    <label class="form-check-label" for="inlineRadio4">80%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio5" value="0.9" readonly>
+                    <label class="form-check-label" for="inlineRadio5">90%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="TyLeTraGop" id="inlineRadio6" value="1" checked readonly>
+                    <label class="form-check-label" for="inlineRadio6">100%</label>
+                </div>}
+        </div>
+        <div class="form-group mb-3">
+            <label class="form-label" style="padding-right:10px;"> Thời hạn trả (tháng):  </label>
+            @if (Model.ThoiHanTra == 3)
+            {
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio11" value="3" checked readonly>
+                    <label class="form-check-label" for="inlineRadio1">3</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio22" value="6" readonly>
+                    <label class="form-check-label" for="inlineRadio2">6</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio33" value="9" readonly>
+                    <label class="form-check-label" for="inlineRadio3">9</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio44" value="12" readonly>
+                    <label class="form-check-label" for="inlineRadio3">12</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio55" value="18" readonly>
+                    <label class="form-check-label" for="inlineRadio3">18</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio66" value="24" readonly>
+                    <label class="form-check-label" for="inlineRadio3">24</label>
+                </div>
+
+            }
+            else if (Model.ThoiHanTra == 6)
+            {
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio11" value="3" readonly>
+                    <label class="form-check-label" for="inlineRadio1">3</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio22" value="6" checked readonly>
+                    <label class="form-check-label" for="inlineRadio2">6</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio33" value="9" readonly>
+                    <label class="form-check-label" for="inlineRadio3">9</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio44" value="12" readonly>
+                    <label class="form-check-label" for="inlineRadio3">12</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio55" value="18" readonly>
+                    <label class="form-check-label" for="inlineRadio3">18</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio66" value="24" readonly>
+                    <label class="form-check-label" for="inlineRadio3">24</label>
+                </div>
+
+            }
+            else if (Model.ThoiHanTra == 9)
+            {
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio11" value="3" readonly>
+                    <label class="form-check-label" for="inlineRadio1">3</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio22" value="6" readonly>
+                    <label class="form-check-label" for="inlineRadio2">6</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio33" value="9" checked readonly>
+                    <label class="form-check-label" for="inlineRadio3">9</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio44" value="12" readonly>
+                    <label class="form-check-label" for="inlineRadio3">12</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio55" value="18" readonly>
+                    <label class="form-check-label" for="inlineRadio3">18</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio66" value="24" readonly>
+                    <label class="form-check-label" for="inlineRadio3">24</label>
+                </div>
+
+            }
+            else if (Model.ThoiHanTra == 12)
+            {
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio11" value="3" readonly>
+                    <label class="form-check-label" for="inlineRadio1">3</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio22" value="6" readonly>
+                    <label class="form-check-label" for="inlineRadio2">6</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio33" value="9" readonly>
+                    <label class="form-check-label" for="inlineRadio3">9</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio44" value="12" checked readonly>
+                    <label class="form-check-label" for="inlineRadio3">12</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio55" value="18" readonly>
+                    <label class="form-check-label" for="inlineRadio3">18</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio66" value="24" readonly>
+                    <label class="form-check-label" for="inlineRadio3">24</label>
+                </div>
+
+            }
+            else if (Model.ThoiHanTra == 18)
+            {
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio11" value="3" readonly>
+                    <label class="form-check-label" for="inlineRadio1">3</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio22" value="6" readonly>
+                    <label class="form-check-label" for="inlineRadio2">6</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio33" value="9" readonly>
+                    <label class="form-check-label" for="inlineRadio3">9</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio44" value="12" readonly>
+                    <label class="form-check-label" for="inlineRadio3">12</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio55" value="18" checked readonly>
+                    <label class="form-check-label" for="inlineRadio3">18</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio66" value="24" readonly />
+                    <label class="form-check-label" for="inlineRadio3">24</label>
+                </div>
+
+            }
+            else
+            {
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio11" value="3" readonly>
+                    <label class="form-check-label" for="inlineRadio1">3</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio22" value="6" readonly>
+                    <label class="form-check-label" for="inlineRadio2">6</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio33" value="9" readonly>
+                    <label class="form-check-label" for="inlineRadio3">9</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio44" value="12" readonly>
+                    <label class="form-check-label" for="inlineRadio3">12</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio55" value="18" readonly>
+                    <label class="form-check-label" for="inlineRadio3">18</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ThoiHanTra" id="inlineRadio66" value="24" checked readonly />
+                    <label class="form-check-label" for="inlineRadio3">24</label>
+                </div>
+
+            }
+
+        </div>
+        <div class="form-group mb-3">
+            <label for="NgayTraDinhKi" class="form-label"> Ngày trả định kỳ: </label>
+            <div class="col-12">
+                <input type="date" id="NgayTraDinhKi" name="NgayTraDinhKi" readonly class="form-control" value="@ViewBag.NgayTraDinhKi">
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding-bottom:10px;">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="row" style="margin:0">
+                <div class="col-4">
+                    @Html.ActionLink("< Quay về", "Index", null, new { @class = "btn-back" })
+                </div>
+                <div class="col-4" style="text-align:center">
+                    @Html.ActionLink("Chỉnh sửa thông tin", "Edit", new { id = Model.MaTG }, new { @class = "btn btn-success" })
+                </div>
+                <div class="col-4"></div>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>

@@ -19,7 +19,7 @@ namespace DrieUnityGarage.Models
         public Nullable<int> CTBCTK_SoLuongTonKho { get; set; }
         public string CTBCTK_NhaCungCap { get; set; }
     
-        public virtual HANGHOA HANGHOA { get; set; }
         public virtual BAOCAOTONKHO BAOCAOTONKHO { get; set; }
+        public virtual HANGHOA HANGHOA { get; set; }
     }
 }

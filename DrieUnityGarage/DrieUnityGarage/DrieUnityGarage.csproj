@@ -147,6 +147,7 @@
     <Compile Include="Controllers\NHAPKHOController.cs" />
     <Compile Include="Controllers\PHIEUTHUController.cs" />
     <Compile Include="Controllers\THONGTINTIEPNHANController.cs" />
+    <Compile Include="Controllers\TRAGOPController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\XUATKHOController.cs" />
     <Compile Include="Global.asax.cs">
@@ -180,6 +181,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CT_NHAPKHO.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CT_TRAGOP.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CT_XUATKHO.cs">
@@ -556,6 +560,13 @@
     <Content Include="Views\PHIEUTHU\LayThongTinPhieuThu.cshtml" />
     <Content Include="Views\PHIEUTHU\SuaPhieuThu.cshtml" />
     <Content Include="Views\PHIEUTHU\LayDanhSachPhieuThu.cshtml" />
+    <Content Include="Views\TRAGOP\Create.cshtml" />
+    <Content Include="Views\TRAGOP\Delete.cshtml" />
+    <Content Include="Views\TRAGOP\Details.cshtml" />
+    <Content Include="Views\TRAGOP\Edit.cshtml" />
+    <Content Include="Views\TRAGOP\Index.cshtml" />
+    <Content Include="Views\TRAGOP\CTTG_TaoCT.cshtml" />
+    <Content Include="Views\TRAGOP\CTTG_LayDSThongTin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

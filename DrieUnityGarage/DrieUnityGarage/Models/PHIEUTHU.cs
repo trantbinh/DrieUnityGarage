@@ -14,6 +14,12 @@ namespace DrieUnityGarage.Models
     
     public partial class PHIEUTHU
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PHIEUTHU()
+        {
+            this.CT_TRAGOP = new HashSet<CT_TRAGOP>();
+        }
+    
         public string MaPT { get; set; }
         public Nullable<System.DateTime> NgayLap { get; set; }
         public string DiaChi { get; set; }
@@ -25,5 +31,7 @@ namespace DrieUnityGarage.Models
     
         public virtual KHACHHANG KHACHHANG { get; set; }
         public virtual NHANVIEN NHANVIEN { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CT_TRAGOP> CT_TRAGOP { get; set; }
     }
 }
