@@ -14,6 +14,7 @@
             <h2>Tạo bảng giá</h2>
         </div>
     </div>
+    <p style="font-weight:500; color:red; font-size:18px; text-align:center">@ViewBag.ThongBao</p>
     @using (Html.BeginForm("TaoBangGia", "HANGHOA"))
     {
         @Html.AntiForgeryToken()
@@ -26,7 +27,6 @@
                     <th width="10%">
                         Chọn
                     </th>
-
                     <th width="10%">
                         STT
                     </th>
@@ -39,7 +39,6 @@
                     <th>
                         Số lượng
                     </th>
-
                     <th>
                         Đơn vị tính
                     </th>
@@ -101,7 +100,7 @@
                                     alert('Chọn ít nhất một sản phẩm để tạo bảng giá!')
 
                             }
-                           
+
                         </script>
                     </div>
                     <div class="col-2">

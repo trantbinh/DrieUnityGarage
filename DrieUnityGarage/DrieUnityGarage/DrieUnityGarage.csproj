@@ -145,6 +145,7 @@
     <Compile Include="Controllers\NHACUNGCAPController.cs" />
     <Compile Include="Controllers\NHANVIENController.cs" />
     <Compile Include="Controllers\NHAPKHOController.cs" />
+    <Compile Include="Controllers\PHIEUTHUController.cs" />
     <Compile Include="Controllers\THONGTINTIEPNHANController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\XUATKHOController.cs" />
@@ -227,6 +228,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\NHAPKHO.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PHIEUTHU.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PHUONGTIEN.cs">
@@ -547,6 +551,11 @@
     <Content Include="Views\KIEMKEKHOHANG\PrintPage.cshtml" />
     <Content Include="Views\HANGHOA\TaoBangGia.cshtml" />
     <Content Include="Views\HANGHOA\LayThongTinBangGia.cshtml" />
+    <Content Include="Views\PHIEUTHU\Create.cshtml" />
+    <Content Include="Views\PHIEUTHU\Delete.cshtml" />
+    <Content Include="Views\PHIEUTHU\Details.cshtml" />
+    <Content Include="Views\PHIEUTHU\Edit.cshtml" />
+    <Content Include="Views\PHIEUTHU\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

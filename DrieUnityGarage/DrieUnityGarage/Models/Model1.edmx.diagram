@@ -74,6 +74,9 @@
         <AssociationConnector Association="DrieUnityGarageModel.FK_KIEMKEKHOHANG_NHANVIEN" />
         <EntityTypeShape EntityType="DrieUnityGarageModel.BANGGIA" Width="1.5" PointX="7.5" PointY="9.75" />
         <AssociationConnector Association="DrieUnityGarageModel.FK_BANGGIA_HANGHOA" />
+        <EntityTypeShape EntityType="DrieUnityGarageModel.PHIEUTHU" Width="1.5" PointX="13.25" PointY="29.75" />
+        <AssociationConnector Association="DrieUnityGarageModel.FK_PHIEUTHU_KHACHHANG" />
+        <AssociationConnector Association="DrieUnityGarageModel.FK_PHIEUTHU_NHANVIEN" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

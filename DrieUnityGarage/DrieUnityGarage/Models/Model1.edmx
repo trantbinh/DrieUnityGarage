@@ -262,6 +262,19 @@
           <Property Name="SoChungTu" Type="varchar" MaxLength="20" />
           <Property Name="NK_MaNV" Type="varchar" MaxLength="5" />
         </EntityType>
+        <EntityType Name="PHIEUTHU">
+          <Key>
+            <PropertyRef Name="MaPT" />
+          </Key>
+          <Property Name="MaPT" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="NgayLap" Type="datetime" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="500" />
+          <Property Name="LyDoNop" Type="nvarchar" MaxLength="500" />
+          <Property Name="SoTien" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ChungTuGoc" Type="nvarchar" MaxLength="100" />
+          <Property Name="PT_MaKH" Type="varchar" MaxLength="5" />
+          <Property Name="PT_MaNV" Type="varchar" MaxLength="5" />
+        </EntityType>
         <EntityType Name="PHUONGTIEN">
           <Key>
             <PropertyRef Name="BienSoXe" />
@@ -731,6 +744,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PHIEUTHU_KHACHHANG">
+          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+          <End Role="PHIEUTHU" Type="Self.PHIEUTHU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MaKH" />
+            </Principal>
+            <Dependent Role="PHIEUTHU">
+              <PropertyRef Name="PT_MaKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PHIEUTHU_NHANVIEN">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="PHIEUTHU" Type="Self.PHIEUTHU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MaNV" />
+            </Principal>
+            <Dependent Role="PHIEUTHU">
+              <PropertyRef Name="PT_MaNV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PHUONGTIEN_KHACHHANG">
           <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
           <End Role="PHUONGTIEN" Type="Self.PHUONGTIEN" Multiplicity="*" />
@@ -861,6 +898,7 @@
           <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NHAPKHO" EntityType="Self.NHAPKHO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHIEUTHU" EntityType="Self.PHIEUTHU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PHUONGTIEN" EntityType="Self.PHUONGTIEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THONGTINTHANHTOAN" EntityType="Self.THONGTINTHANHTOAN" Schema="dbo" store:Type="Tables" />
@@ -998,6 +1036,14 @@
           <AssociationSet Name="FK_NHAPKHO_NHANVIEN" Association="Self.FK_NHAPKHO_NHANVIEN">
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
             <End Role="NHAPKHO" EntitySet="NHAPKHO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PHIEUTHU_KHACHHANG" Association="Self.FK_PHIEUTHU_KHACHHANG">
+            <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+            <End Role="PHIEUTHU" EntitySet="PHIEUTHU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PHIEUTHU_NHANVIEN" Association="Self.FK_PHIEUTHU_NHANVIEN">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="PHIEUTHU" EntitySet="PHIEUTHU" />
           </AssociationSet>
           <AssociationSet Name="FK_PHUONGTIEN_KHACHHANG" Association="Self.FK_PHUONGTIEN_KHACHHANG">
             <End Role="KHACHHANG" EntitySet="KHACHHANG" />
@@ -1276,6 +1322,7 @@
           <NavigationProperty Name="PHUONGTIENs" Relationship="Self.FK_PHUONGTIEN_KHACHHANG" FromRole="KHACHHANG" ToRole="PHUONGTIEN" />
           <NavigationProperty Name="THONGTINTHANHTOANs" Relationship="Self.FK_THONGTINTHANHTOAN_KHACHHANG" FromRole="KHACHHANG" ToRole="THONGTINTHANHTOAN" />
           <NavigationProperty Name="THONGTINTIEPNHANs" Relationship="Self.FK_THONGTINTIEPNHAN_KHACHHANG" FromRole="KHACHHANG" ToRole="THONGTINTIEPNHAN" />
+          <NavigationProperty Name="PHIEUTHUs" Relationship="DrieUnityGarageModel.FK_PHIEUTHU_KHACHHANG" FromRole="KHACHHANG" ToRole="PHIEUTHU" />
         </EntityType>
         <EntityType Name="NHACUNGCAP">
           <Key>
@@ -1313,6 +1360,7 @@
           <NavigationProperty Name="THONGTINTIEPNHANs" Relationship="Self.FK_THONGTINTIEPNHAN_NHANVIEN" FromRole="NHANVIEN" ToRole="THONGTINTIEPNHAN" />
           <NavigationProperty Name="XUATKHOes" Relationship="Self.FK_XUATKHO_NHANVIEN" FromRole="NHANVIEN" ToRole="XUATKHO" />
           <NavigationProperty Name="KIEMKEKHOHANGs" Relationship="DrieUnityGarageModel.FK_KIEMKEKHOHANG_NHANVIEN" FromRole="NHANVIEN" ToRole="KIEMKEKHOHANG" />
+          <NavigationProperty Name="PHIEUTHUs" Relationship="DrieUnityGarageModel.FK_PHIEUTHU_NHANVIEN" FromRole="NHANVIEN" ToRole="PHIEUTHU" />
         </EntityType>
         <EntityType Name="NHAPKHO">
           <Key>
@@ -2063,6 +2111,15 @@
             <End Role="HANGHOA" EntitySet="HANGHOAs" />
             <End Role="BANGGIA" EntitySet="BANGGIAs" />
           </AssociationSet>
+          <EntitySet Name="PHIEUTHUs" EntityType="DrieUnityGarageModel.PHIEUTHU" />
+          <AssociationSet Name="FK_PHIEUTHU_KHACHHANG" Association="DrieUnityGarageModel.FK_PHIEUTHU_KHACHHANG">
+            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+            <End Role="PHIEUTHU" EntitySet="PHIEUTHUs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PHIEUTHU_NHANVIEN" Association="DrieUnityGarageModel.FK_PHIEUTHU_NHANVIEN">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="PHIEUTHU" EntitySet="PHIEUTHUs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="CT_KIEMKEKHOHANG">
           <Key>
@@ -2152,6 +2209,45 @@
             </Principal>
             <Dependent Role="BANGGIA">
               <PropertyRef Name="BangGia_MaHH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PHIEUTHU">
+          <Key>
+            <PropertyRef Name="MaPT" />
+          </Key>
+          <Property Name="MaPT" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="NgayLap" Type="DateTime" Precision="3" />
+          <Property Name="DiaChi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LyDoNop" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SoTien" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ChungTuGoc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PT_MaKH" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PT_MaNV" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="KHACHHANG" Relationship="DrieUnityGarageModel.FK_PHIEUTHU_KHACHHANG" FromRole="PHIEUTHU" ToRole="KHACHHANG" />
+          <NavigationProperty Name="NHANVIEN" Relationship="DrieUnityGarageModel.FK_PHIEUTHU_NHANVIEN" FromRole="PHIEUTHU" ToRole="NHANVIEN" />
+        </EntityType>
+        <Association Name="FK_PHIEUTHU_KHACHHANG">
+          <End Type="DrieUnityGarageModel.KHACHHANG" Role="KHACHHANG" Multiplicity="0..1" />
+          <End Type="DrieUnityGarageModel.PHIEUTHU" Role="PHIEUTHU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MaKH" />
+            </Principal>
+            <Dependent Role="PHIEUTHU">
+              <PropertyRef Name="PT_MaKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PHIEUTHU_NHANVIEN">
+          <End Type="DrieUnityGarageModel.NHANVIEN" Role="NHANVIEN" Multiplicity="0..1" />
+          <End Type="DrieUnityGarageModel.PHIEUTHU" Role="PHIEUTHU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MaNV" />
+            </Principal>
+            <Dependent Role="PHIEUTHU">
+              <PropertyRef Name="PT_MaNV" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2509,6 +2605,20 @@
             <EntityTypeMapping TypeName="DrieUnityGarageModel.BANGGIA">
               <MappingFragment StoreEntitySet="BANGGIA">
                 <ScalarProperty Name="BangGia_MaHH" ColumnName="BangGia_MaHH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHIEUTHUs">
+            <EntityTypeMapping TypeName="DrieUnityGarageModel.PHIEUTHU">
+              <MappingFragment StoreEntitySet="PHIEUTHU">
+                <ScalarProperty Name="PT_MaNV" ColumnName="PT_MaNV" />
+                <ScalarProperty Name="PT_MaKH" ColumnName="PT_MaKH" />
+                <ScalarProperty Name="ChungTuGoc" ColumnName="ChungTuGoc" />
+                <ScalarProperty Name="SoTien" ColumnName="SoTien" />
+                <ScalarProperty Name="LyDoNop" ColumnName="LyDoNop" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="NgayLap" ColumnName="NgayLap" />
+                <ScalarProperty Name="MaPT" ColumnName="MaPT" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
