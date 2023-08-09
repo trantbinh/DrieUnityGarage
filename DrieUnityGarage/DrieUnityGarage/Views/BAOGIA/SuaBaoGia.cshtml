@@ -1,6 +1,6 @@
 ﻿@model DrieUnityGarage.Models.BAOGIA
 @{
-    ViewBag.Title = "SuaBaoGia";
+    ViewBag.Title = "Sửa báo giá";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
@@ -29,10 +29,8 @@
             <label class="form-label" for="lstMaKH">Thông tin tiếp nhận:</label>
             <div class="form-control w-75" id="NgayLapHD">@ViewBag.selectedTiepNhan</div>
         </div>
-
     </div>
     <div class="row " style="margin: 0; font-size: 17px;">
-
         <div class="form-group mb-3 col-4">
             <label for="KhachHang" class="form-label"> Khách hàng: </label>
             <div class="form-control w-75" id="KhachHang">@ViewBag.KhachHang</div>
@@ -46,14 +44,22 @@
             <div class="form-control w-75" id="NhanVien">@ViewBag.NhanVien</div>
         </div>
     </div>
-    <p style="font-size:20px; font-weight:bold; margin-top:10px;">CHI TIẾT BÁO GIÁ:</p>
+    <p style="font-size:20px; font-weight:bold; margin-top:10px; margin-bottom:0">CHI TIẾT BÁO GIÁ:</p>
+    <div class="row">
+        <div class="col-lg-9">
+            @Html.Action("Partial_CapNhatBG_LayChiTietBaoGia", "BAOGIA", new { id = Model.MaBG })
+        </div>
+        <div class="col-lg-3">
+            @Html.Action("Partial_CapNhatBG_ThemChiTietBaoGia", "BAOGIA")
+        </div>
+    </div>
 
 
-    @Html.Action("Partial_CapNhatBG_LayChiTietBaoGia", "BAOGIA", new { id = Model.MaBG })
+
     <div class="row" style="padding-bottom:10px;">
-        <div class="col-3"></div>
-        <div class="col-6">
-            <div class="row" style="margin:auto">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="row">
                 <div class="col-4">
                     @Html.ActionLink("< Quay về", "LayDanhSachBaoGia", null, new { @class = "btn-back" })
                 </div>
@@ -63,11 +69,35 @@
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                        <input type="submit" value="Cập nhật báo giá" class="btn btn-success" />}
+                        {
+                            var a = Session["lstSPBG"] as List<DrieUnityGarage.Models.THONGTINSANPHAM>;
+                            if (a.Count != 0)
+                            {
+                                <input type="submit" value="Cập nhật báo giá" class="btn btn-success" onclick="myFunctionXK()" />
+                                <script>
+                                    function myFunctionXK() {
+                                        alert("Đã cập nhật phiếu báo giá!");
+                                    }
+                                </script>
+                            }
+                            else
+                            {
+                                <input type="submit" value="Cập nhật báo giá" class="btn btn-success" onclick="clicked(event)" />
+                                <script>
+                                    function clicked(e) {
+                                        if (!confirm('Không có chi tiết phiếu báo giá, thông tin báo giá sẽ bị xoá khỏi cơ sở dữ liệu! Bạn chắc chắn muốn xoá?')) {
+                                            e.preventDefault();
+                                        }
+                                        else {
+                                            alert("Đã xoá phiếu báo giá!");
+                                        }
+                                    }
+                                </script>
+                            }
+                        }
+                    }
                 </div>
-
-                <div class="col-4"></div>
+                <div class="col-2"></div>
             </div>
         </div>
     </div>

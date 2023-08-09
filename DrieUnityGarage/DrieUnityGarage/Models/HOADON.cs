@@ -17,8 +17,7 @@ namespace DrieUnityGarage.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public HOADON()
         {
-            this.CT_HOADON = new HashSet<CT_HOADON>();
-            this.TRAGOPs = new HashSet<TRAGOP>();
+            this.THONGTINTHANHTOANs = new HashSet<THONGTINTHANHTOAN>();
         }
     
         public string MaHD { get; set; }
@@ -29,13 +28,11 @@ namespace DrieUnityGarage.Models
         public string HD_MaTT { get; set; }
         public string HD_MaTN { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CT_HOADON> CT_HOADON { get; set; }
         public virtual KHACHHANG KHACHHANG { get; set; }
         public virtual PHUONGTIEN PHUONGTIEN { get; set; }
         public virtual THONGTINTHANHTOAN THONGTINTHANHTOAN { get; set; }
         public virtual THONGTINTIEPNHAN THONGTINTIEPNHAN { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TRAGOP> TRAGOPs { get; set; }
+        public virtual ICollection<THONGTINTHANHTOAN> THONGTINTHANHTOANs { get; set; }
     }
 }

@@ -49,18 +49,23 @@
     @Html.Action("Partial_XemHD_LayDuLieuCTHD", "HOADON", new { id = Model.MaHD })
     <div class="row" style="padding-bottom:10px;">
 
-        <div class="col-3"></div>
-        <div class="col-6">
+        <div class="col-2"></div>
+        <div class="col-8">
             <div class="row" style="margin:0">
                 <div class="col-4">
                     @Html.ActionLink("< Quay về", "LayDanhSachHoaDon", null, new { @class = "btn-back" })
                 </div>
                 <div class="col-4" style="text-align:center">
-                    @Html.ActionLink("Chỉnh sửa thông tin", "SuaHoaDon", new { id = Model.MaHD }, new { @class = "btn btn-success" })
+                    <input type="submit" value="Cập nhật thông tin hoá đơn" class="btn btn-success" onclick="myFunctionSuaHD()" />
+                    <script>
+                                function myFunctionSuaHD() {
+                                    alert("Thông tin hoá đơn được xuất từ báo giá, không thể chỉnh sửa!");
+                                }
+                    </script>
                 </div>
                 <div class="col-4"></div>
             </div>
         </div>
-        <div class="col-3"></div>
+        <div class="col-2"></div>
     </div>
 </div>

@@ -41,49 +41,37 @@
                 Email
             </th>
             <th>
-                Địa chỉ
-            </th>
-            <th>
                 Chức vụ
             </th>
             <th>
                 Phòng ban
             </th>
-            <th>
-
-            </th>
-            <th>
-
-            </th>
-            <th>
-
-            </th>
+            <th></th>
+            <th></th>
+            <th> </th>
         </tr>
 
         @foreach (var item in Model)
         {
             <tr>
-                <th>
+                <td>
                     @Html.DisplayFor(modelItem => item.MaNV)
-                </th>
+                </td>
 
-                <th>
+                <td>
                     @Html.DisplayFor(modelItem => item.HoTenNV)
-                </th>
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DienThoaiNV)
                 </td>
                 <td>
-                    @String.Format("{0:dd/MMM/yy}", item.NgaySinh)
+                    @String.Format("{0:dd/MM/yyyy}", item.NgaySinh)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.GioiTinh)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DiaChi)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ChucVu)
@@ -96,10 +84,10 @@
 
                 </td>
                 <td>
-                    @Html.ActionLink("Chi tiết", "LayThongTinNhanVien", new { id = item.MaNV }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Chi tiết", "LayThongTinNhanVien", new { id = item.MaNV }, new { @class = "btn btn-details" })
 
                 </td>
-                <td>   @Html.ActionLink("Xoá", "XoaNhanVien", new { id = item.MaNV, check = 1 }, new { @class = "btn btn-primary" })</td>
+                <td>   @Html.ActionLink("Xoá", "XoaNhanVien", new { id = item.MaNV, check = 1 }, new { @class = "btn btn-danger" })</td>
             </tr>
         }
 

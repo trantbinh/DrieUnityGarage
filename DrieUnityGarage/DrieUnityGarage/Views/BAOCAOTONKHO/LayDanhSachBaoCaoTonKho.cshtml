@@ -1,0 +1,74 @@
+﻿@model IEnumerable<DrieUnityGarage.Models.BAOCAOTONKHO>
+
+@{
+    ViewBag.Title = "Danh sách báo cáo tồn kho";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-5">
+            <h2>Danh sách báo cáo tồn kho</h2>
+        </div>
+        <div class="col-lg-5">
+        </div>
+        <div class="col-lg-2">
+            @Html.ActionLink("Tạo mới", "TaoBaoCaoTonKho", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+    <div class="row" style="margin-top:20px; margin-left:50px">
+        @using (Html.BeginForm("LayDanhSachBaoCaoTonKho", "BAOCAOTONKHO", FormMethod.Get, new { @class = "form-inline" }))
+        {
+            <div class="form-group">
+                <label class="form-check-inline">Ngày bắt đầu: </label>
+                <input type="date" class="form-control w-auto form-check-inline" name="dateStart">
+                <label class="form-check-inline">Ngày kết thúc: </label>
+                <input type="date" class="form-control w-auto form-check-inline" name="dateEnd">
+                <label class="form-check-inline">Nhân viên thực hiện:</label>@Html.DropDownList("lstNhanVien",null, htmlAttributes: new { @class = "form-control w-auto form-check-inline" })
+                <input type="submit" class="btn btn-warning" value="Lọc báo cáo">
+            </div>
+        }
+    </div>
+    <table class="table index-table" style="margin-top:20px;">
+        <tr>
+            <th>
+                Mã báo cáo tồn kho
+            </th>
+            <th>
+                Ngày lập
+            </th>
+            <th>
+                Nhân viên thực hiện
+            </th>
+            <th></th>
+            <th></th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaBCTK)
+                </td>
+
+                <td>
+                    @String.Format("{0:dd/MM/yyyy}", item.NgayLap)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NHANVIEN.MaNV) - @Html.DisplayFor(modelItem => item.NHANVIEN.HoTenNV)
+                </td>
+                <td>
+                    @Html.ActionLink("Chi tiết", "LayChiTietBaoCaoTonKho", new { id = item.MaBCTK }, new { @class = "btn btn-details" })
+                </td>
+
+                <td>
+                    @Html.ActionLink("Xoá", "XoaBaoCaoTonKho", new { id = item.MaBCTK }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

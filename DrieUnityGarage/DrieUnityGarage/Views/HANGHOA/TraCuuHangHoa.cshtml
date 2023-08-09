@@ -1,0 +1,124 @@
+﻿@model IEnumerable<DrieUnityGarage.Models.HANGHOA>
+@{
+        ViewBag.Title = "TraCuuHangHoa";
+        Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    }
+    @{
+        var lstLoaiHang = new List<SelectListItem>()
+{
+                    new SelectListItem()
+                    {
+                       Text ="Phụ tùng",
+                       Value ="Phụ tùng"
+                    },
+                     new SelectListItem()
+                   {
+                       Text = "Dịch vụ",
+                       Value = "Dịch vụ"
+                   }
+               };
+    }
+    @{
+        var lstTinhTrang = new List<SelectListItem>()
+{
+                    new SelectListItem()
+                    {
+                       Text ="Còn tồn kho",
+                       Value ="Còn tồn kho"
+                    },
+                     new SelectListItem()
+                   {
+                       Text = "Cần nhập hàng",
+                       Value = "Cần nhập hàng"
+                   }
+               };
+    }
+
+
+    <link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+    <div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+        <div class="row">
+            <div class="col-lg-12" style="text-align:center">
+                <h2>Tra cứu hàng hoá</h2>
+            </div>
+        </div>
+        <div class="row" style="margin-top:20px;">
+            @using (Html.BeginForm("TraCuuHangHoa", "HANGHOA", FormMethod.Get, new { @class = "form-inline" }))
+            {
+                <div class="form-group">
+                    <label class="form-check-inline">Loại hàng:</label>@Html.DropDownList("LoaiHang", lstLoaiHang, htmlAttributes: new { @class = "form-control w-auto form-check-inline" })
+                    <label class="form-check-inline">Đơn vị tính:</label>@Html.DropDownList("lstDVT", null, htmlAttributes: new { @class = "form-control w-auto form-check-inline" })
+                    <label class="form-check-inline">Tình trạng hàng:</label>@Html.DropDownList("TinhTrang", lstTinhTrang, htmlAttributes: new { @class = "form-control w-auto form-check-inline" })
+
+                    <label class="form-check-inline">Tên hàng hoá: </label>
+                    <input type="Text" class="form-control w-25 form-check-inline " value="@ViewBag.Keyword" name="searchString" placeholder="Nhập tên hàng hoá cần tra cứu">
+                    <input type="submit" class="btn btn-danger" value="Tra cứu">
+                </div>
+            }
+
+        </div>
+        <table class="table index-table" style="margin-top:20px;">
+            <tr>
+                <th>
+                    Mã hàng hoá
+                </th>
+                <th>
+                    Hình ảnh
+                </th>
+
+                <th>
+                    Tên hàng hoá
+                </th>
+                <th>
+                    Đơn giá
+                </th>
+                <th>
+                    Đơn vị tính
+                <th>
+                    Loại hàng
+                <th>
+                    Số lượng tồn
+                </th>
+                <th>
+                    Nhà cung cấp
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaHH)
+                    </td>
+                    <td>
+                        <img src="~/Uploads/HangHoa/@item.HinhAnh" class="center" style="width: 80%; height: 80%;" />
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenHH)
+                    </td>
+                    <td>
+                        @String.Format("{0:0,0}đ", item.DonGia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DonViTinh)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LoaiHang)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoLuongTon)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NHACUNGCAP.TenNCC)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+
+

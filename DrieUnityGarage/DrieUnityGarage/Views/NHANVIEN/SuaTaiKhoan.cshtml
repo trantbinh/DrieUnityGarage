@@ -1,0 +1,74 @@
+﻿@model DrieUnityGarage.Models.NHANVIEN
+@{
+    ViewBag.Title = "SuaTaiKhoan";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center; ">
+            <h2>Sửa tài khoản nhân viên</h2>
+        </div>
+    </div>
+    @using (Html.BeginForm("SuaTaiKhoan","NHANVIEN"))
+    {
+        <div class="container col-6" style="margin-top: 10px; font-size:17px;">
+
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.MaNV)
+            @Html.HiddenFor(model => model.HoTenNV)
+            @Html.HiddenFor(model => model.NgaySinh)
+            @Html.HiddenFor(model => model.GioiTinh)
+            @Html.HiddenFor(model => model.Email)
+            @Html.HiddenFor(model => model.DiaChi)
+            @Html.HiddenFor(model => model.ChucVu)
+            @Html.HiddenFor(model => model.PhongBan)
+            <hr />
+            <div class="form-group mb-3">
+                <label for="MaNV" class="form-label"> Nhân viên: [Mã - Họ tên - Chức vụ] </label>
+                <input class="form-control" id="MaNV" name="MaNV" value="@Model.MaNV - @Model.HoTenNV - @Model.ChucVu" readonly />
+            </div>
+            <div class="form-group mb-3">
+                <label for="NgayTaoTK" class="form-label"> Ngày tạo tài khoản: </label>
+                <input class="form-control" id="NgayTaoTK" name="NgayTaoTK" value="@String.Format("{0:dd/MM/yyyy}", Model.NgayTaoTK)" readonly />
+            </div>
+            <div class="form-group mb-3">
+                <label for="TenDangNhap" class="form-label"> Tên đăng nhập: </label>
+                @Html.EditorFor(model => model.TenDangNhap, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.TenDangNhap, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group mb-3">
+                <label for="MatKhau" class="form-label"> Mật khẩu: </label>
+                @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control", @required = "required", @type = "password" } })
+                @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group mb-3">
+                <label for="XacNhanMK" class="form-label"> Xác nhận lại mật khẩu: </label>
+                <input type="password" id="XacNhanMK" name="XacNhanMK" required class="form-control">
+            </div>
+
+        </div>
+        <div class="row" style="padding-bottom:10px;">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <div class="row" style="margin:auto">
+                    <div class="col-4">
+                        @Html.ActionLink("< Quay về", "LayDanhSachTaiKhoan", null, new { @class = "btn-back" })
+                    </div>
+                    <div class="col-4" style="text-align:center">
+                        <input type="submit" value="Lưu chỉnh sửa" class="btn btn-success" />
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+            </div>
+            <div class="col-3"></div>
+        </div>
+
+
+    }
+
+
+</div>

@@ -9,18 +9,15 @@
 
 <div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
     <div class="row">
-        <div class="col-lg-3"></div>
-        <div class="col-lg-6" style="text-align:center">
+        <div class="col-lg-12" style="text-align:center; ">
             <h2>Tạo tài khoản nhân viên</h2>
         </div>
-        <div class="col-lg-3"></div>
     </div>
-    <div class="container col-6">
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
+    @using (Html.BeginForm())
+    {
+        <div class="container col-6" style="margin-top: 10px; font-size:17px;">
 
-        <div class="form-horizontal form-decor">
+            @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.MaNV)
             @Html.HiddenFor(model => model.HoTenNV)
@@ -31,43 +28,46 @@
             @Html.HiddenFor(model => model.ChucVu)
             @Html.HiddenFor(model => model.PhongBan)
             <hr />
-            <div class="form-group space-field">
-                Mã nhân viên:
-                <div class="col-md-12">
-                    @Html.DropDownList("MaNV", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.MaNV, "", new { @class = "text-danger" })
-                </div>
+            <div class="form-group mb-3">
+                <label for="MaNV" class="form-label"> Chọn nhân viên: [Mã - Họ tên - Chức vụ] </label>
+                @Html.DropDownList("lstNhanVien", null, htmlAttributes: new { @class = "form-control", @required = "true" })
+            </div>
+            <div class="form-group mb-3">
+                <label for="NgayTaoTK" class="form-label"> Ngày tạo tài khoản: </label>
+                <input class="form-control" id="NgayTaoTK" name="NgayTaoTK" value="@ViewBag.NgayTaoTK" readonly />
+            </div>
+            <div class="form-group mb-3">
+                <label for="TenDangNhap" class="form-label"> Tên đăng nhập: </label>
+                @Html.EditorFor(model => model.TenDangNhap, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.TenDangNhap, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group mb-3">
+                <label for="MatKhau" class="form-label"> Mật khẩu: </label>
+                @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control", @required = "required", @type = "password" } })
+                @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group mb-3">
+                <label for="XacNhanMK" class="form-label"> Xác nhận lại mật khẩu: </label>
+                <input type="password" id="XacNhanMK" name="XacNhanMK" required class="form-control">
             </div>
 
-            <div class="form-group space-field">
-                Tên đăng nhập
-                <div class="col-md-12">
-                    @Html.EditorFor(model => model.TenDangNhap, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TenDangNhap, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group space-field">
-                Mật khẩu
-                <div class="col-md-12">
-                    @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.MaNV, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group" style="margin-top:40px">
-                <div class="row" style="text-align:center">
-                    <div class="col-lg-4 "></div>
-                    <div class="col-lg-4">
-                        <input type="submit" value="Tạo mới" class="btn btn-info" style="font-weight:bold; font-size:18px;" />
-                    </div>
-                    @Html.ActionLink("Quay về", "LayDanhSachTaiKhoan", null, new { @class = "btn-back" })
-                    <div class="col-lg-4 "></div>
-
-                </div>
-            </div>
         </div>
-        }
+        <div class="row" style="padding-bottom:10px;">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <div class="row" style="margin:auto">
+                    <div class="col-4">
+                        @Html.ActionLink("< Quay về", "LayDanhSachTaiKhoan", null, new { @class = "btn-back" })
+                    </div>
+                    <div class="col-4" style="text-align:center">
+                        <input type="submit" value="Tạo tài khoản nhân viên" class="btn btn-primary" />
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+            </div>
+            <div class="col-3"></div>
+        </div>
 
-    </div>
 
+    }
 </div>
