@@ -142,7 +142,7 @@ namespace DrieUnityGarage.Controllers
                 date = (DateTime)dANHGIADICHVU.NgayLap;
                 ViewBag.NgayLap = DateTime.Now;
             }
-            ViewBag.DGDV_MaTN = new SelectList(db.THONGTINTIEPNHANs, "MaTN","MaTN" , dANHGIADICHVU.DGDV_MaTN);
+            ViewBag.DGDV_MaTN = new SelectList(db.THONGTINTIEPNHANs, "MaTN", "MaTN", "TN000");
             return View(dANHGIADICHVU);
         }
 

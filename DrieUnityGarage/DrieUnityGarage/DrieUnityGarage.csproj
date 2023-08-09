@@ -130,6 +130,7 @@
     <Compile Include="App_Start\BundleConfig2.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BANGIAOXEController.cs" />
     <Compile Include="Controllers\BAOGIAController.cs" />
     <Compile Include="Controllers\BAOHANHController.cs" />
     <Compile Include="Controllers\CT_BAOGIAController.cs" />
@@ -513,6 +514,12 @@
     <Content Include="Views\THONGTINTHANHTOAN\TaoThongTinThanhToan.cshtml" />
     <Content Include="Views\THONGTINTHANHTOAN\SuaThongTinThanhToan.cshtml" />
     <Content Include="Views\THONGTINTHANHTOAN\XoaThongTinThanhToan.cshtml" />
+    <Content Include="Views\BANGIAOXE\LayDanhSachBanGiaoXe.cshtml" />
+    <Content Include="Views\BANGIAOXE\ThemBanGiaoXe.cshtml" />
+    <Content Include="Views\BANGIAOXE\SuaBanGiaoXe.cshtml" />
+    <Content Include="Views\BANGIAOXE\XoaThongTinBanGiaoXe.cshtml" />
+    <Content Include="Views\BANGIAOXE\XemThongTinBanGiaoXe.cshtml" />
+    <Content Include="Views\PHANHOIDICHVU\LayThongTinPhanHoiDichVu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

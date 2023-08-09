@@ -221,7 +221,7 @@ namespace DrieUnityGarage.Controllers
 
             }
         }
-    // GET: HOADON
+        // GET: HOADON
         public ActionResult LayDanhSachHoaDon()
         {
             Session.Remove("DaLayThongTinTiepNhan");
@@ -251,7 +251,7 @@ namespace DrieUnityGarage.Controllers
             //Tạo 1 String chứa các thông tin của khách hàng để hiển thị
             String selectedTN = TTTN.MaTN + " - " + TTTN.MaKH + " - " + TTTN.BienSoXe;
 
-           ViewBag.selectedTiepNhan= selectedTN;
+            ViewBag.selectedTiepNhan= selectedTN;
 
             //Lấy ra các thông tin cần thiết
             String tenKH = db.KHACHHANGs.Find(TTTN.MaKH).HoTenKH;

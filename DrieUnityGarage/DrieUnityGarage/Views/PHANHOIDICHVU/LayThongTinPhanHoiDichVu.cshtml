@@ -1,0 +1,76 @@
+﻿@model DrieUnityGarage.Models.DANHGIADICHVU
+@{
+    ViewBag.Title = "LayThongTinPhanHoiDichVu";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center">
+            <h2>Chi tiết thông tin đặt lịch</h2>
+        </div>
+    </div>
+    <div class="container col-6" style="margin-top: 10px; font-size:17px;">
+        <hr />
+        <div class="form-group mb-3">
+            <label for="TN_MaKH" class="form-label"> Mã đánh giá: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.MaDGDV)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="ThoiGianTiepNhan" class="form-label"> Ngày Lập: </label>
+            <div class="col-12 form-control">
+                @String.Format("{0: HH:mm:ss, dd/MM/yyyy}", @Model.NgayLap)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="TN_BienSoXe" class="form-label"> Mã tiếp nhận: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.DGDV_MaTN)
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="ThoiGianGiaoDuKien" class="form-label"> Mức độ chất lượng: </label>
+            <div class="col-12 form-control">
+                @String.Format("{0: dd/MM/yyyy}", @Model.MucDoChatLuong) <span>sao</span>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="ThoiGianGiaoDuKien" class="form-label"> Mức độ thái độ: </label>
+            <div class="col-12 form-control">
+                @String.Format("{0: dd/MM/yyyy}", @Model.MucDoThaiDo) <span>sao</span>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="ThoiGianGiaoDuKien" class="form-label"> Mức độ dịch vụ: </label>
+            <div class="col-12 form-control">
+                @String.Format("{0: dd/MM/yyyy}", @Model.MucDoDichVu) <span>sao</span>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="GhiChuKH" class="form-label"> Góp ý khác: </label>
+            <textarea class="col-12 form-control" rows="3" disabled style="background-color:white">@Model.GopYKhac.Trim()</textarea>
+        </div>
+    </div>
+    <div class="row" style="padding-bottom:10px;">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="row" style="margin:0">
+                <div class="col-4">
+                    @Html.ActionLink("< Quay về", "LayDanhSachBanGiaoXe", null, new { @class = "btn-back" })
+                </div>
+                <div class="col-4" style="text-align:center">
+                    @Html.ActionLink("Chỉnh sửa thông tin", "SuaBanGiaoXe", new { id = Model.MaBG }, new { @class = "btn btn-success" })
+                </div>
+                <div class="col-4"></div>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+
+</div>
+
