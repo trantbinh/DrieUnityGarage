@@ -82,7 +82,6 @@ namespace DrieUnityGarage.Controllers
 
         //Xoá sản phẩm khỏi CTHD
         public ActionResult CTDH_XoaSP(String id)
-
         {
             Session.Remove("QuaTonKho");
             List<THONGTINSANPHAM> myCart = CTHD_LayDanhSachSanPham();

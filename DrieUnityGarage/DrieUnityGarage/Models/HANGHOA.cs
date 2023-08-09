@@ -24,7 +24,7 @@ namespace DrieUnityGarage.Models
             this.CT_NHAPKHO = new HashSet<CT_NHAPKHO>();
             this.CT_XUATKHO = new HashSet<CT_XUATKHO>();
         }
-    
+        
         public string MaHH { get; set; }
         public string TenHH { get; set; }
         public decimal DonGia { get; set; }

@@ -1,0 +1,78 @@
+﻿@model DrieUnityGarage.Models.BAOHANH
+@{
+    ViewBag.Title = "LayThongTinBaoHanh";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center">
+            <h2>Chi tiết thông tin bảo hành</h2>
+        </div>
+    </div>
+    <div class="container col-6" style="margin-top: 10px; font-size:17px;">
+        <hr />
+        <div class="form-group mb-3">
+            <label for="TN_MaKH" class="form-label"> Khách hàng: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.BH_MaKH)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="TN_BienSoXe" class="form-label"> Biển số xe: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.BH_BienSoXe)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="TN_BienSoXe" class="form-label"> Mã Hàng hoá: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.BH_MaHH)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="ThoiGianTiepNhan" class="form-label"> Thời hạn bảo hành: </label>
+            <div class="col-12 form-control">
+                @String.Format("{0: HH:mm:ss, dd/MM/yyyy}", @Model.ThoiHanBaoHanh)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="ThoiGianGiaoDuKien" class="form-label"> Thời gian bắt đầu: </label>
+            <div class="col-12 form-control">
+                @String.Format("{0: dd/MM/yyyy}", @Model.ThoiGianBatDau)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="ThoiGianGiaoDuKien" class="form-label"> Thời gian kết thúc: </label>
+            <div class="col-12 form-control">
+                @String.Format("{0: dd/MM/yyyy}", @Model.ThoiGianKetThuc)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="TN_BienSoXe" class="form-label"> Nơi bảo hành: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.NoiBaoHanh)
+            </div>
+        </div>
+
+    </div>
+    <div class="row" style="padding-bottom:10px;">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="row" style="margin:0">
+                <div class="col-4">
+                    @Html.ActionLink("< Quay về", "LayDanhSachThongTinBaoHanh", null, new { @class = "btn-back" })
+                </div>
+                <div class="col-4" style="text-align:center">
+                    @Html.ActionLink("Chỉnh sửa thông tin", "SuaThongTinBaoHanh", new { id = Model.MaBH }, new { @class = "btn btn-success" })
+                </div>
+                <div class="col-4"></div>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+
+</div>
+
