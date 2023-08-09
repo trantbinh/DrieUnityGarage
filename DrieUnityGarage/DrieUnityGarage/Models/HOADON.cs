@@ -11,16 +11,21 @@ namespace DrieUnityGarage.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Linq;
+
     public partial class HOADON
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        DrieUnityGarageEntities db = new DrieUnityGarageEntities();
         public HOADON()
         {
             this.CT_HOADON = new HashSet<CT_HOADON>();
             this.TRAGOPs = new HashSet<TRAGOP>();
         }
-    
+        public HOADON(String id)
+        {
+            this.HD_MaKH = HD_MaKH;
+        }
         public string MaHD { get; set; }
         public Nullable<System.DateTime> NgayLap { get; set; }
         public string HD_MaKH { get; set; }

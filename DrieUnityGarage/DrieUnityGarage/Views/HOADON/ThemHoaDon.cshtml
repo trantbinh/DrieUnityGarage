@@ -1,4 +1,4 @@
-﻿@model DrieUnityGarage.Models.HOADON
+﻿@model IEnumerable<DrieUnityGarage.Models.HOADON>
 
 @{
     ViewBag.Title = "Tạo hoá đơn";
@@ -108,12 +108,14 @@
 
                             if (Session["DaLayThongTinTiepNhan"] == null || a.Count() == 0)
                             {
-                                <button onclick="myFunction()" class="btn btn-primary">Tạo hoá đơn</button>
+
+
+                                <button onclick="myFunction()" class="btn btn-primary"> Tạo hoá đơn</button>
+
                             }
                             else
                             {
-                                <input type="submit" value="Tạo hoá đơn" class="btn btn-primary" />
-
+                                <input type="submit" value="Thanh Toán" class="btn btn-primary" />
                             }
                         }
                     }

@@ -212,7 +212,7 @@ namespace DrieUnityGarage.Controllers
                 Session.Remove("CheckTN");
                 Session.Remove("lstSPHD");
 
-                return RedirectToAction("LayDanhSachHoaDon", "HOADON");
+                return RedirectToAction("TaoThongTinThanhToan", "THONGTINTHANHTOAN");
 
             }
             else
@@ -313,7 +313,7 @@ namespace DrieUnityGarage.Controllers
             ViewBag.NgayLapHD = date;
             String idTN = TaoMaHoaDon();
             ViewBag.MaHD = idTN;
-
+            Session["MaHD_ThanhToan"] = idTN;
             List<THONGTINTIEPNHANXE> lstTiepNhan = LayDanhSachTiepNhanDB();
             ViewBag.lstMaTN = new SelectList(lstTiepNhan, "MaTN", "FullThongTin");
 

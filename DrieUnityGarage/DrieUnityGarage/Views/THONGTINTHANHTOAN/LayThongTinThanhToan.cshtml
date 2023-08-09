@@ -1,0 +1,66 @@
+﻿@model DrieUnityGarage.Models.THONGTINTHANHTOAN
+
+@{
+    ViewBag.Title = "LayThongTinThanhToan";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center">
+            <h2>Chi tiết thông tin thanh toán</h2>
+        </div>
+    </div>
+    <div class="container col-6" style="margin-top: 10px; font-size:17px;">
+        <hr />
+        <div class="form-group mb-3">
+            <label for="NgayTT" class="form-label"> Ngày thanh toán: </label>
+            <div class="col-12 form-control">
+                @String.Format("{0: HH:mm:ss, dd/MM/yyyy}", @Model.NgayTT)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="TT_MaHD" class="form-label"> Mã hoá đơn: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.TT_MaHD)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="TT_MaKH" class="form-label"> Khách hàng: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.TT_MaKH)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="HinhThuc" class="form-label"> Hình thức: </label>
+            <textarea class="col-12 form-control" rows="3" disabled style="background-color:white">@Model.HinhThuc.Trim()</textarea>
+        </div>
+        <div class="form-group mb-3">
+            <label for="TyLeThanhToan" class="form-label"> Tỷ lệ thanh toán: </label>
+            <div class="col-12 form-control">
+                @String.Format("{0: dd/MM/yyyy}", @Model.TyLeThanhToan)
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="row" style="padding-bottom:10px;">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="row" style="margin:0">
+                <div class="col-4">
+                    @Html.ActionLink("< Quay về", "LayDanhSachThongTinThanhToan", null, new { @class = "btn-back" })
+                </div>
+                <div class="col-4" style="text-align:center">
+                    @Html.ActionLink("Chỉnh sửa thông tin", "SuaThongTinThanhToan", new { id = Model.MaTT }, new { @class = "btn btn-success" })
+                </div>
+                <div class="col-4"></div>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+
+</div>
