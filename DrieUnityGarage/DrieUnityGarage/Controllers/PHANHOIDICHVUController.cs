@@ -135,14 +135,22 @@ namespace DrieUnityGarage.Controllers
                 return HttpNotFound();
             }
 
-            
+            //Lấy ra thông tin tiếp nhận
+            THONGTINTIEPNHANXE TTTN = new THONGTINTIEPNHANXE(dANHGIADICHVU.DGDV_MaTN);
+
+            //Tạo 1 String chứa các thông tin của khách hàng để hiển thị
+            String selectedTN = TTTN.MaTN + " - " + TTTN.MaKH + " - " + TTTN.BienSoXe;
+
+
+            Session["selectedTiepNhan"] = selectedTN;
+
             DateTime date;
             if (dANHGIADICHVU.NgayLap != null)
             {
                 date = (DateTime)dANHGIADICHVU.NgayLap;
                 ViewBag.NgayLap = DateTime.Now;
             }
-            ViewBag.DGDV_MaTN = new SelectList(db.THONGTINTIEPNHANs, "MaTN", "MaTN", "TN000");
+            ViewBag.selectedTiepNhan = Session["selectedTiepNhan"];
             return View(dANHGIADICHVU);
         }
 
