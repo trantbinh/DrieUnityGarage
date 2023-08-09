@@ -42,7 +42,6 @@ namespace DrieUnityGarage.Controllers
             Session["lstXe"] = newlstKH;
             return newlstKH;
         }
-        //Lấy danh sách hàng hoá
 
         public ActionResult LayDanhSachThongTinBaoHanh()
         {
@@ -83,6 +82,7 @@ namespace DrieUnityGarage.Controllers
             {
                 List<THONGTINPHUONGTIEN> a = Session["lstXe"] as List<THONGTINPHUONGTIEN>;
                 ViewBag.lstXe = new SelectList(a, "BienSoXe", "BienSoXe");
+                ViewBag.selectedKhachHang = Session["selectedKhachHang"];
 
             }
             else if (Session["KhongCoThongTinXe"] != null)
@@ -130,7 +130,7 @@ namespace DrieUnityGarage.Controllers
         //Lưu thông tin tiếp nhận vào database
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult TaoThongTinBaoHanh(String lstXe,int ThoiHanBaoHanh,DateTime ThoiGianKetThuc,String NoiBH, String lstHH)
+        public ActionResult TaoThongTinBaoHanh(String lstXe,int ThoiHanBaoHanh,DateTime ThoiGianKetThuc,String NoiBaoHanh, String lstHH)
         {
             BAOHANH bAOHANH = new BAOHANH();
             if (ModelState.IsValid)
@@ -143,7 +143,7 @@ namespace DrieUnityGarage.Controllers
                 bAOHANH.ThoiHanBaoHanh = ThoiHanBaoHanh;
                 bAOHANH.ThoiGianBatDau = DateTime.Now;
                 bAOHANH.ThoiGianKetThuc = ThoiGianKetThuc;
-                bAOHANH.NoiBaoHanh = NoiBH;
+                bAOHANH.NoiBaoHanh = NoiBaoHanh;
                 db.BAOHANHs.Add(bAOHANH);
                 db.SaveChanges();
                 return RedirectToAction("LayDanhSachThongTinBaoHanh");
@@ -184,6 +184,7 @@ namespace DrieUnityGarage.Controllers
             if (bAOHANH.ThoiGianKetThuc != null)
             {
                 date = (DateTime)bAOHANH.ThoiGianKetThuc;
+                ViewBag.ThoiGianBatDau = DateTime.Now;
                 ViewBag.ThoiGianKetThuc = date.ToString("yyyy/MM/dd");
             }
 
@@ -197,7 +198,7 @@ namespace DrieUnityGarage.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SuaThongTinBaoHanh(BAOHANH bAOHANH
-            , String BH_MaKH, String lstXe,  int ThoiHanBaoHanh, DateTime ThoiGianKetThuc,String NoiBh)
+            , String BH_MaKH, String lstXe,  int ThoiHanBaoHanh, DateTime ThoiGianKetThuc,String NoiBaoHanh)
         {
             if (ModelState.IsValid)
             {
@@ -206,7 +207,7 @@ namespace DrieUnityGarage.Controllers
                 bAOHANH.ThoiHanBaoHanh = ThoiHanBaoHanh;
                 bAOHANH.ThoiGianBatDau = DateTime.Now;
                 bAOHANH.ThoiGianKetThuc = ThoiGianKetThuc;
-                bAOHANH.NoiBaoHanh = NoiBh;
+                bAOHANH.NoiBaoHanh = NoiBaoHanh;
                 db.Entry(bAOHANH).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("LayDanhSachThongTinBaoHanh");
@@ -229,16 +230,17 @@ namespace DrieUnityGarage.Controllers
             }
             else
             {
-               
                 if (bAOHANH == null)
                 {
                     return HttpNotFound();
                 }
             }
-            DateTime date;
+            DateTime date,date2;
             if(bAOHANH.ThoiGianBatDau == DateTime.Now)
             {
                 date = (DateTime)bAOHANH.ThoiGianKetThuc;
+                date2 = (DateTime)bAOHANH.ThoiGianBatDau;
+                ViewBag.ThoiGianBatDau = date2;
                 ViewBag.ThoiGianKetThuc = date.ToString("yyyy/MM/dd");
             }
             return View(bAOHANH);

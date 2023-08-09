@@ -30,7 +30,7 @@
                     <label for="KhachHang" class="form-label"> Khách hàng: </label>
                     <div class="form-control" id="KhachHang">@ViewBag.selectedKhachHang</div>
                 </div>
- 
+
 
             }
             else
@@ -39,7 +39,6 @@
                     <label for="MaBaoHanh" class="form-label"> Mã bảo hành: </label>
                     <div class="form-control" id="MaTiepNhan">@ViewBag.MaBH</div>
                 </div>
-
                 <div class="mb-3">
                     <label class="form-label" for="lstMaKH"> Chọn khách hàng: [Mã khách hàng - Số điện thoại - Họ tên]</label>
                     @Html.DropDownList("lstMaKH", null, htmlAttributes: new { @class = "form-control" })
@@ -72,7 +71,7 @@
                         @Html.DropDownList("lstHH", null, htmlAttributes: new { @class = "form-control" })
                     </div>
                     <div class="mb-4">
-                        <label for="ThoiHanBaoHanh" class="form-label"> Thời hạn bảo hành: </label>
+                        <label for="ThoiHanBaoHanh" class="form-label"> Thời hạn bảo hành: (năm)</label>
                         <div class="col-12">
                             <input type="number" id="NgayHen" name="ThoiHanBaoHanh" required class="form-control" value="@ViewBag.ThoiHanBaoHanh">
                         </div>
