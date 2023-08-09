@@ -551,11 +551,11 @@
     <Content Include="Views\KIEMKEKHOHANG\PrintPage.cshtml" />
     <Content Include="Views\HANGHOA\TaoBangGia.cshtml" />
     <Content Include="Views\HANGHOA\LayThongTinBangGia.cshtml" />
-    <Content Include="Views\PHIEUTHU\Create.cshtml" />
-    <Content Include="Views\PHIEUTHU\Delete.cshtml" />
-    <Content Include="Views\PHIEUTHU\Details.cshtml" />
-    <Content Include="Views\PHIEUTHU\Edit.cshtml" />
-    <Content Include="Views\PHIEUTHU\Index.cshtml" />
+    <Content Include="Views\PHIEUTHU\TaoPhieuThu.cshtml" />
+    <Content Include="Views\PHIEUTHU\XoaPhieuThu.cshtml" />
+    <Content Include="Views\PHIEUTHU\LayThongTinPhieuThu.cshtml" />
+    <Content Include="Views\PHIEUTHU\SuaPhieuThu.cshtml" />
+    <Content Include="Views\PHIEUTHU\LayDanhSachPhieuThu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
