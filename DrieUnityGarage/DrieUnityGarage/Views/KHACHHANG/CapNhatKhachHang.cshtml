@@ -9,101 +9,90 @@
 
 <div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
     <div class="row">
-        <div class="col-lg-3"></div>
-        <div class="col-lg-6" style="text-align:center">
-            <h2>Chỉnh sửa thông tin khách hàng</h2>
+        <div class="col-lg-12" style="text-align:center; ">
+            <h2>Cập nhật thông tin khách hàng</h2>
         </div>
-        <div class="col-lg-3"></div>
     </div>
-    <div class="container col-6">
 
-        @using (Html.BeginForm())
-        {
+    @using (Html.BeginForm())
+    {
+        <div class="container col-6" style="margin-top: 10px; font-size:17px;">
+
             @Html.AntiForgeryToken()
-            <div class="form-horizontal form-decor">
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.MaKH)
+            @Html.ValidationSummary(true, null, new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.MaKH)
+            @Html.HiddenFor(model => model.DiemThanhVien)
+            <hr />
+            <div class="form-group mb-3">
+                <label for="MaNV" class="form-label"> Mã nhân viên: </label>
+                <input class="form-control" id="MaNV" value="@Model.MaKH" disabled />
+            </div>
 
-                <div class="form-group space-field">
-                    Họ tên khách hàng:
-                    <div class="col-md-12">
-                        @Html.EditorFor(model => model.HoTenKH, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.HoTenKH, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+            <div class="form-group mb-3">
+                <label for="HoTenNV" class="form-label"> Họ tên Khách hàng: </label>
+                @Html.EditorFor(model => model.HoTenKH, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.HoTenKH, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group mb-3">
+                <label for="DienThoaiKH" class="form-label"> Số điện thoại: </label>
+                <input type="tel" id="DienThoaiKH" name="DienThoaiKH" required class="form-control" pattern="[0-9]{10}" placeholder="0955021452" value="@Model.DienThoaiKH">
 
-                <div class="form-group space-field">
-                    Số điện thoại khách hàng:
-                    <div class="col-md-12">
-                        @Html.EditorFor(model => model.DienThoaiKH, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.DienThoaiKH, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+            </div>
 
-                <div class="form-group space-field">
-                    Ngày tháng năm sinh:
-                    <div class="col-md-12">
-                        @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                @*Tạo dropdown líst*@
-                @{
-                    var lstGioiTinh = new List<SelectListItem>()
-                                                    {
-                    new SelectListItem()
-                    {
-                       Text ="Nam",
-                       Value ="Nam"
-                    },
-                     new SelectListItem()
-                   {
-                       Text = "Nữ",
-                       Value = "Nữ"
-                   }
-               };
-                }
-                <div class="form-group space-field">
-                    <div class="col-md-12">
-                        Giới tính:
-                        @Html.DropDownList("LoaiHinh", lstGioiTinh, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group space-field">
-                    Email:
-                    <div class="col-md-12">
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group space-field">
-                    Email:
-                    <div class="col-md-12">
-                        @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group" style="margin-top:40px">
-                    <div class="row">
-                        <div class="col-lg-5 align-bottom">
-                            @Html.ActionLink("< Quay về", "LayDanhSachKhachHang", null, new { @class = "nonedecor" })
-                        </div>
-                        <div class="col-lg-7">
-                            <input type="submit" value="Lưu" class="btn btn-info create-btn" />
-
-                        </div>
-                    </div>
+            <div class="form-group mb-3">
+                <label for="NgaySinh" class="form-label"> Ngày tháng năm sinh: </label>
+                <div class="col-12">
+                    <input type="date" id="NgaySinh" name="NgaySinh" required class="form-control" value="@ViewBag.NgaySinh">
                 </div>
             </div>
-        }
-    </div>
-</div>
+            @{ var lstGioiTinh = new List<SelectListItem>
+        ()
+                {
+                new SelectListItem()
+                {
+                Text ="Nam",
+                Value ="Nam"
+                },
+                new SelectListItem()
+                {
+                Text = "Nữ",
+                Value = "Nữ"
+                }
+                };
+            }
 
+            <div class="form-group mb-3">
+                <label for="GioiTinh" class="form-label"> Giới tính: </label>
+                @Html.DropDownList("GioiTinh", lstGioiTinh, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group mb-3">
+                <label for="Email" class="form-label"> Email:</label>
+                <input type="email" id="Email" name="Email" readonly class="form-control" placeholder="abc@gmail.com" value="@Model.Email">
+            </div>
+            <div class="form-group mb-3">
+                <label for="DiaChi" class="form-label"> Địa chỉ:</label>
+                <textarea class="form-control" id="DiaChi" name="DiaChi" rows="2" required>@Model.DiaChi</textarea>
+
+            </div>
+        </div>
+        <div class="row" style="padding-bottom:10px;">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <div class="row" style="margin:auto">
+                    <div class="col-4">
+                        @Html.ActionLink("< Quay về", "LayDanhSachKhachHang", null, new { @class = "btn-back" })
+                    </div>
+                    <div class="col-4" style="text-align:center">
+                        <input type="submit" value="Lưu chỉnh sửa" class="btn btn-success" />
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+            </div>
+            <div class="col-3"></div>
+        </div>
+
+    }
+</div>
 
 

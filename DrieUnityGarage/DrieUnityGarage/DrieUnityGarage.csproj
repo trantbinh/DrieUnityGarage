@@ -460,11 +460,6 @@
     <Content Include="Views\THONGTINTIEPNHAN\LayThongTinTiepNhan.cshtml" />
     <Content Include="Views\THONGTINTIEPNHAN\SuaThongTinTiepNhan.cshtml" />
     <Content Include="Views\THONGTINTIEPNHAN\LayDanhSachThongTinTiepNhan.cshtml" />
-    <Content Include="Views\KHACHHANG\Create.cshtml" />
-    <Content Include="Views\KHACHHANG\Delete.cshtml" />
-    <Content Include="Views\KHACHHANG\Details.cshtml" />
-    <Content Include="Views\KHACHHANG\Edit.cshtml" />
-    <Content Include="Views\KHACHHANG\Index.cshtml" />
     <Content Include="Views\NHANVIEN\LayDanhSachNhanVien.cshtml" />
     <Content Include="Views\NHANVIEN\LayThongTinNhanVien.cshtml" />
     <Content Include="Views\NHANVIEN\SuaThongTinNhanVien.cshtml" />
@@ -561,18 +556,18 @@
     <Content Include="Views\PHIEUTHU\LayThongTinPhieuThu.cshtml" />
     <Content Include="Views\PHIEUTHU\SuaPhieuThu.cshtml" />
     <Content Include="Views\PHIEUTHU\LayDanhSachPhieuThu.cshtml" />
-    <Content Include="Views\TRAGOP\Create.cshtml" />
-    <Content Include="Views\TRAGOP\Delete.cshtml" />
-    <Content Include="Views\TRAGOP\Details.cshtml" />
-    <Content Include="Views\TRAGOP\Edit.cshtml" />
-    <Content Include="Views\TRAGOP\Index.cshtml" />
+    <Content Include="Views\TRAGOP\TaoPhieuTraGop.cshtml" />
+    <Content Include="Views\TRAGOP\XoaPhieuTraGop.cshtml" />
+    <Content Include="Views\TRAGOP\LayThongTinPhieuTraGop.cshtml" />
+    <Content Include="Views\TRAGOP\SuaPhieuTraGop.cshtml" />
+    <Content Include="Views\TRAGOP\LayDanhSachPhieuTraGop.cshtml" />
     <Content Include="Views\TRAGOP\CTTG_TaoCT.cshtml" />
     <Content Include="Views\TRAGOP\CTTG_LayDSThongTin.cshtml" />
-    <Content Include="Views\PHUONGTIEN\Create.cshtml" />
-    <Content Include="Views\PHUONGTIEN\Delete.cshtml" />
-    <Content Include="Views\PHUONGTIEN\Details.cshtml" />
-    <Content Include="Views\PHUONGTIEN\Edit.cshtml" />
-    <Content Include="Views\PHUONGTIEN\Index.cshtml" />
+    <Content Include="Views\PHUONGTIEN\TaoThongTinPhuongTien.cshtml" />
+    <Content Include="Views\PHUONGTIEN\XoaThongTinPhuongTien.cshtml" />
+    <Content Include="Views\PHUONGTIEN\LayThongTinPhuongTien.cshtml" />
+    <Content Include="Views\PHUONGTIEN\SuaThongTinPhuongTien.cshtml" />
+    <Content Include="Views\PHUONGTIEN\LayDanhSachPhuongTien.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

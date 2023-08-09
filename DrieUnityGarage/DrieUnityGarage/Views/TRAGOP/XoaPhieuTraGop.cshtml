@@ -1,7 +1,7 @@
 ﻿@model DrieUnityGarage.Models.TRAGOP
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "XoaPhieuTraGop";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
@@ -368,7 +368,7 @@
             </div>
         </div>
     </div>
-    @using (Html.BeginForm("Delete", "TRAGOP"))
+    @using (Html.BeginForm("XoaPhieuTraGop", "TRAGOP"))
     {@Html.AntiForgeryToken()
     <div class="row" style="padding-bottom:10px;">
         <div class="col-3"></div>
@@ -376,7 +376,7 @@
             <div class="row" style="margin:0">
 
                 <div class="col-4">
-                    @Html.ActionLink("< Quay về", "Index", null, new { @class = "btn-back" })
+                    @Html.ActionLink("< Quay về", "LayDanhSachPhieuTraGop", null, new { @class = "btn-back" })
                 </div>
                 <div class="col-4" style="text-align:center">
                     @{

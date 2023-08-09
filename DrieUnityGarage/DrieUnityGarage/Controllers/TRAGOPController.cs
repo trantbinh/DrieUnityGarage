@@ -26,7 +26,7 @@ namespace DrieUnityGarage.Controllers
 
 
 
-        // GET: TRAGOP/Create
+        // GET: TRAGOP/TaoPhieuTraGop
         public ActionResult CTTG_TaoCT(String id)
         {
             var tg = db.TRAGOPs.Find(id);
@@ -47,7 +47,7 @@ namespace DrieUnityGarage.Controllers
             return View();
         }
 
-        // POST: TRAGOP/Create
+        // POST: TRAGOP/TaoPhieuTraGop
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -82,13 +82,13 @@ namespace DrieUnityGarage.Controllers
         }
 
         // GET: TRAGOP
-        public ActionResult Index()
+        public ActionResult LayDanhSachPhieuTraGop()
         {
             return View(db.TRAGOPs.ToList());
         }
 
-        // GET: TRAGOP/Details/5
-        public ActionResult Details(string id)
+        // GET: TRAGOP/LayThongTinPhieuTraGop/5
+        public ActionResult LayThongTinPhieuTraGop(string id)
         {
             if (id == null)
             {
@@ -112,8 +112,8 @@ namespace DrieUnityGarage.Controllers
             return View(tRAGOP);
         }
 
-        // GET: TRAGOP/Create
-        public ActionResult Create()
+        // GET: TRAGOP/TaoPhieuTraGop
+        public ActionResult TaoPhieuTraGop()
         {
             var hoaDon = db.HOADONs.ToList();
             var lstHoaDon = new List<HOADON>();
@@ -137,12 +137,12 @@ namespace DrieUnityGarage.Controllers
             return View();
         }
 
-        // POST: TRAGOP/Create
+        // POST: TRAGOP/TaoPhieuTraGop
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaTG,NgayLap,TG_MaHD,TG_MaKH,SoTienTraGop,NgayTraDinhKi,TyLeTraGop,ThoiHanTra,SoTienDaTra, TG_MaNV")] TRAGOP tRAGOP, String lstMaHD)
+        public ActionResult TaoPhieuTraGop([Bind(Include = "MaTG,NgayLap,TG_MaHD,TG_MaKH,SoTienTraGop,NgayTraDinhKi,TyLeTraGop,ThoiHanTra,SoTienDaTra, TG_MaNV")] TRAGOP tRAGOP, String lstMaHD)
         {
             var hoaDon = db.HOADONs.Find(lstMaHD);
             decimal soTienTra = (decimal) hoaDon.TongThanhToan * (decimal) tRAGOP.TyLeTraGop;
@@ -160,13 +160,13 @@ namespace DrieUnityGarage.Controllers
                 tRAGOP.SoTienDaTra = 0;
                 db.TRAGOPs.Add(tRAGOP);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("LayDanhSachPhieuTraGop");
             }
             return View(tRAGOP);
         }
 
-        // GET: TRAGOP/Edit/5
-        public ActionResult Edit(string id)
+        // GET: TRAGOP/SuaPhieuTraGop/5
+        public ActionResult SuaPhieuTraGop(string id)
         {
             if (id == null)
             {
@@ -202,12 +202,12 @@ namespace DrieUnityGarage.Controllers
             return View(tRAGOP);
         }
 
-        // POST: TRAGOP/Edit/5
+        // POST: TRAGOP/SuaPhieuTraGop/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaTG,NgayLap,TG_MaHD,TG_MaKH,SoTienTraGop,NgayTraDinhKi,TyLeTraGop,ThoiHanTra,SoTienDaTra")] TRAGOP tRAGOP, String lstMaHD)
+        public ActionResult SuaPhieuTraGop([Bind(Include = "MaTG,NgayLap,TG_MaHD,TG_MaKH,SoTienTraGop,NgayTraDinhKi,TyLeTraGop,ThoiHanTra,SoTienDaTra")] TRAGOP tRAGOP, String lstMaHD)
         {
             var hoaDon = db.HOADONs.Find(lstMaHD);
             decimal soTienTra = (decimal)hoaDon.TongThanhToan * (decimal)tRAGOP.TyLeTraGop;
@@ -224,13 +224,13 @@ namespace DrieUnityGarage.Controllers
                 tRAGOP.TG_MaNV = Session["MaNV"].ToString();
                 db.Entry(tRAGOP).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("LayDanhSachPhieuTraGop");
             }
             return View(tRAGOP);
         }
 
-        // GET: TRAGOP/Delete/5
-        public ActionResult Delete(string id)
+        // GET: TRAGOP/XoaPhieuTraGop/5
+        public ActionResult XoaPhieuTraGop(string id)
         {
             if (id == null)
             {
@@ -253,8 +253,8 @@ namespace DrieUnityGarage.Controllers
             return View(tRAGOP);
         }
 
-        // POST: TRAGOP/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: TRAGOP/XoaPhieuTraGop/5
+        [HttpPost, ActionName("XoaPhieuTraGop")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
@@ -270,7 +270,7 @@ namespace DrieUnityGarage.Controllers
             TRAGOP tRAGOP = db.TRAGOPs.Find(id);
             db.TRAGOPs.Remove(tRAGOP);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("LayDanhSachPhieuTraGop");
         }
         public bool XoaChiTietTG(string id)
         {

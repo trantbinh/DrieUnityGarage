@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<DrieUnityGarage.Models.TRAGOP>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "LayDanhSachPhieuTraGop";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 <link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
@@ -15,7 +15,7 @@
         <div class="col-lg-5">
         </div>
         <div class="col-lg-2">
-            @Html.ActionLink("Tạo mới", "Create", null, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Tạo mới", "TaoPhieuTraGop", null, new { @class = "btn btn-primary" })
         </div>
     </div>
     <table class="table index-table" style="margin-top:20px;">
@@ -73,13 +73,13 @@
                     @String.Format("{0:0,0}đ", conLai)
                 </td>
                 <td>
-                    @Html.ActionLink("Sửa", "Edit", new { id = item.MaTG }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Sửa", "SuaPhieuTraGop", new { id = item.MaTG }, new { @class = "btn btn-success" })
                 </td>
                 <td>
-                    @Html.ActionLink("Chi tiết", "Details", new { id = item.MaTG }, new { @class = "btn btn-details" })
+                    @Html.ActionLink("Chi tiết", "LayThongTinPhieuTraGop", new { id = item.MaTG }, new { @class = "btn btn-details" })
                 </td>
                 <td>
-                    @Html.ActionLink("Xoá", "Delete", new { id = item.MaTG }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Xoá", "XoaPhieuTraGop", new { id = item.MaTG }, new { @class = "btn btn-danger" })
                 </td>
                 <td>
                     @Html.ActionLink("Cập nhật", "CTTG_LayDSThongTin", new { id = item.MaTG }, new { @class = "btn btn-warning" })
