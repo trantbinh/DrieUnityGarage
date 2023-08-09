@@ -141,6 +141,7 @@
     <Compile Include="Controllers\KHACHHANGController.cs" />
     <Compile Include="Controllers\NHACUNGCAPController.cs" />
     <Compile Include="Controllers\NHANVIENController.cs" />
+    <Compile Include="Controllers\PHANHOIDICHVUController.cs" />
     <Compile Include="Controllers\THONGTINTIEPNHANController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\XUATKHOController.cs" />
@@ -502,6 +503,10 @@
     <Content Include="Views\BAOHANH\TaoThongTinBaoHanh.cshtml" />
     <Content Include="Views\BAOHANH\SuaThongTinBaoHanh.cshtml" />
     <Content Include="Views\BAOHANH\XoaThongTinBaoHanh.cshtml" />
+    <Content Include="Views\PHANHOIDICHVU\LayDanhSachPhanHoiDichVu.cshtml" />
+    <Content Include="Views\PHANHOIDICHVU\ThemPhanHoiDichVu.cshtml" />
+    <Content Include="Views\PHANHOIDICHVU\SuaThongTinPhanHoiDV.cshtml" />
+    <Content Include="Views\PHANHOIDICHVU\XoaThongTinPhanHoiDV.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

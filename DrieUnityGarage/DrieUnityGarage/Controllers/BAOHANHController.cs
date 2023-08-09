@@ -235,12 +235,10 @@ namespace DrieUnityGarage.Controllers
                     return HttpNotFound();
                 }
             }
-            DateTime date,date2;
+            DateTime date;
             if(bAOHANH.ThoiGianBatDau == DateTime.Now)
             {
                 date = (DateTime)bAOHANH.ThoiGianKetThuc;
-                date2 = (DateTime)bAOHANH.ThoiGianBatDau;
-                ViewBag.ThoiGianBatDau = date2;
                 ViewBag.ThoiGianKetThuc = date.ToString("yyyy/MM/dd");
             }
             return View(bAOHANH);
