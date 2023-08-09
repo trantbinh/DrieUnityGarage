@@ -38,6 +38,7 @@ namespace DrieUnityGarage.Controllers
         // GET: KHACHHANG/Create
         public ActionResult ThemKhachHang()
         {
+            ViewBag.MaKH = TaoMaKhachHang();
             return View();
         }
 
@@ -50,36 +51,19 @@ namespace DrieUnityGarage.Controllers
         {
             if (ModelState.IsValid)
             {
-                //Tạo mã nhà cung cấp String
-                List<KHACHHANG> lstHH = db.KHACHHANGs.ToList();
-                int countLst = lstHH.Count();
-                if (countLst == 0)
+
+                var email = db.KHACHHANGs.FirstOrDefault(k => k.Email.Equals(kHACHHANG.Email));
+                if (email != null)
+                    ModelState.AddModelError(string.Empty, "Email đã tồn tại!");
+
+                if (ModelState.IsValid)
                 {
-                    kHACHHANG.MaKH = "KH001";
+                    kHACHHANG.MaKH = TaoMaKhachHang();
+                    kHACHHANG.DiemThanhVien = 0;
+                    db.KHACHHANGs.Add(kHACHHANG);
+                    db.SaveChanges();
+                    return RedirectToAction("LayDanhSachKhachHang");
                 }
-                else
-                {
-                    KHACHHANG lastHH = lstHH[countLst - 1];
-                    String lastMHH = lastHH.MaKH;
-                    int lastMaHHNum = int.Parse(lastMHH.Substring(2));
-                    int newMaHH = lastMaHHNum + 1;
-                    if (newMaHH < 10)
-                    {
-                        kHACHHANG.MaKH = "KH00" + newMaHH.ToString();
-                    }
-
-                    else
-                    {
-                        kHACHHANG.MaKH = "KH0" + newMaHH.ToString();
-
-                    }
-
-
-                }
-                kHACHHANG.DiemThanhVien = 0;
-                db.KHACHHANGs.Add(kHACHHANG);
-                db.SaveChanges();
-                return RedirectToAction("LayDanhSachKhachHang");
             }
 
             return View(kHACHHANG);
@@ -97,7 +81,38 @@ namespace DrieUnityGarage.Controllers
             {
                 return HttpNotFound();
             }
+            DateTime date;
+            if (kHACHHANG.NgaySinh != null)
+            {
+                date = (DateTime)kHACHHANG.NgaySinh;
+                ViewBag.NgaySinh = date.ToString("yyyy/MM/dd");
+            }
+
             return View(kHACHHANG);
+        }
+        private String TaoMaKhachHang()
+        {
+            String idHD = "";
+            //Tạo mã nhà cung cấp String
+            List<KHACHHANG> lstHD = db.KHACHHANGs.ToList();
+            int countLst = lstHD.Count();
+            if (countLst == 0)
+            {
+                idHD = "KH001";
+            }
+            else
+            {
+                KHACHHANG lastHD = lstHD[countLst - 1];
+                String lastMaHD = lastHD.MaKH;
+                int lastMaHDNum = int.Parse(lastMaHD.Substring(2));
+                int newMaHD = lastMaHDNum + 1;
+                if (newMaHD < 10)
+                {
+                    idHD = "KH00" + newMaHD.ToString();
+                }
+                else { idHD = "KH0" + newMaHD.ToString(); }
+            }
+            return (idHD);
         }
 
         // POST: KHACHHANG/Edit/5
@@ -109,6 +124,7 @@ namespace DrieUnityGarage.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 db.Entry(kHACHHANG).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("LayDanhSachKhachHang");

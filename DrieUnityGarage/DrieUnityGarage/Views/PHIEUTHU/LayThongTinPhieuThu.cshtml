@@ -1,0 +1,75 @@
+﻿@model DrieUnityGarage.Models.PHIEUTHU
+
+@{
+    ViewBag.Title = "Chi tiết phiếu thu";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center">
+            <h2>Chi tiết phiếu thu</h2>
+        </div>
+    </div>
+    <div class="container col-6" style="margin-top: 10px; font-size:17px;">
+        <hr />
+        <div class="form-group mb-3">
+            <label for="MaHH" class="form-label"> Mã phiếu thu: </label>
+            <input class="form-control" id="MaHH" value="@Model.MaPT" readonly />
+        </div>
+        <div class="form-group mb-3">
+            <label for="NhanVien" class="form-label"> Người lập phiếu: </label>
+            <input class="form-control" id="NhanVien" name="NhanVien" readonly value="@ViewBag.NhanVien" />
+
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="NgayLap" class="form-label"> Thời gian lập phiếu: </label>
+            <input class="form-control" id="NgayLap" name="NgayLap" readonly value="@String.Format("{0:hh:mm:ss, dd/MM/yyyy}",Model.NgayLap)" />
+
+        </div>
+        <div class="form-group mb-3">
+            <label for="DiaChi" class="form-label"> Địa chỉ nộp: </label>
+            <textarea class="form-control" id="DiaChi" name="DiaChi" rows="2" readonly>@Model.DiaChi</textarea>
+
+        </div>
+        <div class="form-group mb-3">
+            <label class="form-label" for="lstMaKH">Người nộp: [Mã khách hàng - Số điện thoại - Họ tên]</label>
+            <input class="form-control" id="NhanVien" name="NhanVien" readonly value="@ViewBag.KhachHang" />
+        </div>
+
+
+        <div class="form-group mb-3">
+            <label for="LyDoNop" class="form-label"> Lý do nộp: </label>
+            <textarea class="form-control" id="LyDoNop" name="LyDoNop" rows="3" readonly>@Model.LyDoNop</textarea>
+        </div>
+        <div class="form-group mb-3">
+            <label for="SoTien" class="form-label"> Số tiền nộp: </label>
+            <input type="number" class="form-control" id="SoTien" name="SoTien" readonly value="@Model.SoTien" />
+
+        </div>
+        <div class="form-group mb-3">
+            <label for="ChungTuGoc" class="form-label"> Chứng từ gốc kèm theo (nếu có): </label>
+            <input class="form-control" id="ChungTuGoc" name="ChungTuGoc" readonly value="@Model.ChungTuGoc" />
+
+        </div>
+    </div>
+    <div class="row" style="padding-bottom:10px;">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="row" style="margin:0">
+                <div class="col-4">
+                    @Html.ActionLink("< Quay về", "LayDanhSachPhieuThu", null, new { @class = "btn-back" })
+                </div>
+                <div class="col-4" style="text-align:center">
+                    @Html.ActionLink("Chỉnh sửa thông tin", "SuaPhieuThu", new { id = Model.MaPT }, new { @class = "btn btn-success" })
+                </div>
+                <div class="col-4"></div>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>

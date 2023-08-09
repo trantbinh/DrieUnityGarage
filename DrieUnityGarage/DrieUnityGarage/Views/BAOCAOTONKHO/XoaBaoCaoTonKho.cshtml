@@ -1,0 +1,78 @@
+﻿@model DrieUnityGarage.Models.BAOCAOTONKHO
+
+@{
+    ViewBag.Title = "XoaBaoCaoTonKho";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center">
+            <h2 style="color: red">Xác nhận xoá báo cáo</h2>
+        </div>
+    </div>
+    <div class="container col-6" style="margin-top: 10px; font-size:17px;">
+        <hr />
+        <div class="form-group mb-3">
+            <label for="MaBC" class="form-label"> Mã báo cáo tồn kho: </label>
+            <div class="col-12 form-control">
+                @Html.DisplayFor(model => model.MaBCTK)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="NgayLap" class="form-label"> Ngày lập báo cáo: </label>
+            <div class="col-12 form-control">
+                @String.Format("{0:dd/MM/yyyy}", Model.NgayLap)
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="MaNV" class="form-label"> Nhân viên thực hiện </label>
+            <div class="col-12 form-control">
+                @ViewBag.NhanVien
+            </div>
+        </div>
+    </div>
+    <p style="font-size:20px; font-weight:bold; margin-top:25px; text-align:center">CHI TIẾT BÁO CÁO</p>
+
+    <div class="row" style="margin-top:30px;">
+        <div class="col-2"></div>
+        <div class="col-8">
+            @Html.Action("Partial_XemBC_ChiTietBaoCao", "BAOCAOTONKHO", new
+       {
+           id = Session["MaBC"].ToString()
+       })
+        </div>
+        <div class="col-2"></div>
+    </div>
+    @using (Html.BeginForm("XoaBaoCaoTonKho", "BAOCAOTONKHO"))
+    {@Html.AntiForgeryToken()
+    <div class="row" style="padding-bottom:10px; margin-top:20px;">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="row" style="margin:0">
+
+                <div class="col-4">
+                    @Html.ActionLink("< Quay về", "LayDanhSachBaoCaoTonKho", null, new { @class = "btn-back" })
+                </div>
+                <div class="col-4" style="text-align:center">
+                    @{
+                        <input type="submit" value="Xác nhận xoá" class="btn btn-danger" onclick="clicked(event)" />
+                        <script>
+                                    function clicked(e) {
+                                        if (!confirm('Xác nhận xoá báo cáo?')) {
+                                            e.preventDefault();
+                                        }
+
+                                    }</script>
+                    }
+                </div>
+                <div class="col-4"></div>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+}
+</div>

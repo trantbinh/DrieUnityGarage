@@ -6,7 +6,7 @@
 
 
 <link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
-<link rel="stylesheet" href="~/Content/KhachHang_Index.css" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
 <div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
     <div class="row">
         <div class="col-lg-5">
@@ -60,7 +60,7 @@
                     @Html.DisplayFor(modelItem => item.DienThoaiKH)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NgaySinh)
+                    @String.Format("{0:dd/MM/yyyy}", item.NgaySinh)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.GioiTinh)
@@ -76,11 +76,11 @@
 
                 </td>
                 <td>
-                    @Html.ActionLink("Chi tiết", "LayThongTinKhachHang", new { id = item.MaKH }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Chi tiết", "LayThongTinKhachHang", new { id = item.MaKH }, new { @class = "btn btn-details" })
 
                 </td>
                 <td>
-                    @Html.ActionLink("Xoá", "XoaKhachHang", new { id = item.MaKH, check = 1 }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Xoá", "XoaKhachHang", new { id = item.MaKH, check = 1 }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
         }

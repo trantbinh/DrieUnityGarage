@@ -20,8 +20,8 @@ namespace DrieUnityGarage.Models
             this.BANGIAOXEs = new HashSet<BANGIAOXE>();
             this.BAOGIAs = new HashSet<BAOGIA>();
             this.DANHGIADICHVUs = new HashSet<DANHGIADICHVU>();
-            this.HOADONs = new HashSet<HOADON>();
             this.DANHGIATINHTRANGs = new HashSet<DANHGIATINHTRANG>();
+            this.HOADONs = new HashSet<HOADON>();
         }
     
         public string MaTN { get; set; }
@@ -40,11 +40,11 @@ namespace DrieUnityGarage.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DANHGIADICHVU> DANHGIADICHVUs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DANHGIATINHTRANG> DANHGIATINHTRANGs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HOADON> HOADONs { get; set; }
         public virtual KHACHHANG KHACHHANG { get; set; }
         public virtual NHANVIEN NHANVIEN { get; set; }
         public virtual PHUONGTIEN PHUONGTIEN { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DANHGIATINHTRANG> DANHGIATINHTRANGs { get; set; }
     }
 }

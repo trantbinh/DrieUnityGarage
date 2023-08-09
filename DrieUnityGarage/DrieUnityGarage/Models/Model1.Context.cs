@@ -25,27 +25,34 @@ namespace DrieUnityGarage.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<BANGGIA> BANGGIAs { get; set; }
         public virtual DbSet<BANGIAOXE> BANGIAOXEs { get; set; }
+        public virtual DbSet<BAOCAOTONKHO> BAOCAOTONKHOes { get; set; }
         public virtual DbSet<BAOGIA> BAOGIAs { get; set; }
         public virtual DbSet<BAOHANH> BAOHANHs { get; set; }
+        public virtual DbSet<CT_BAOCAOTONKHO> CT_BAOCAOTONKHO { get; set; }
         public virtual DbSet<CT_BAOGIA> CT_BAOGIA { get; set; }
         public virtual DbSet<CT_HOADON> CT_HOADON { get; set; }
+        public virtual DbSet<CT_KIEMKEKHOHANG> CT_KIEMKEKHOHANG { get; set; }
         public virtual DbSet<CT_NHAPKHO> CT_NHAPKHO { get; set; }
+        public virtual DbSet<CT_TRAGOP> CT_TRAGOP { get; set; }
         public virtual DbSet<CT_XUATKHO> CT_XUATKHO { get; set; }
         public virtual DbSet<DANHGIADICHVU> DANHGIADICHVUs { get; set; }
+        public virtual DbSet<DANHGIATINHTRANG> DANHGIATINHTRANGs { get; set; }
         public virtual DbSet<DATLICH> DATLICHes { get; set; }
         public virtual DbSet<HANGHOA> HANGHOAs { get; set; }
         public virtual DbSet<HOADON> HOADONs { get; set; }
         public virtual DbSet<KHACHHANG> KHACHHANGs { get; set; }
+        public virtual DbSet<KIEMKEKHOHANG> KIEMKEKHOHANGs { get; set; }
         public virtual DbSet<NHACUNGCAP> NHACUNGCAPs { get; set; }
         public virtual DbSet<NHANVIEN> NHANVIENs { get; set; }
         public virtual DbSet<NHAPKHO> NHAPKHOes { get; set; }
+        public virtual DbSet<PHIEUTHU> PHIEUTHUs { get; set; }
         public virtual DbSet<PHUONGTIEN> PHUONGTIENs { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<THONGTINTHANHTOAN> THONGTINTHANHTOANs { get; set; }
         public virtual DbSet<THONGTINTIEPNHAN> THONGTINTIEPNHANs { get; set; }
         public virtual DbSet<TRAGOP> TRAGOPs { get; set; }
         public virtual DbSet<XUATKHO> XUATKHOes { get; set; }
-        public virtual DbSet<DANHGIATINHTRANG> DANHGIATINHTRANGs { get; set; }
     }
 }

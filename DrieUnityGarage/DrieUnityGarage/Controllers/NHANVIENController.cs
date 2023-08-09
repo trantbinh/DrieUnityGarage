@@ -301,15 +301,6 @@ namespace DrieUnityGarage.Controllers
             return RedirectToAction("LayDanhSachTaiKhoan");
         }
 
-
-
-
-
-
-
-
-
-
         // GET: NHANVIEN
         public ActionResult LayDanhSachNhanVien()
         {
@@ -393,7 +384,6 @@ namespace DrieUnityGarage.Controllers
         {
                 if (ModelState.IsValid)
                 {
-
                     db.Entry(nHANVIEN).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("LayDanhSachNhanVien");
