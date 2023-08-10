@@ -1,0 +1,95 @@
+﻿@model IEnumerable<DrieUnityGarage.Models.BANGGIA>
+@{
+    ViewBag.Title = "LayThongTinBangGia";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/TaoHoaDon.css" />
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+<div class="container-fluid" style="margin-top:30px; padding-left:100px; padding-right:100px">
+    @{ var count = 1;}
+
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center; ">
+            <h2>BẢNG GIÁ PHỤ TÙNG</h2>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:30px;">
+        <div class="col-2"></div>
+        <table class="table table-bordered index-table col-8">
+            <tr>
+                <th width="10%">
+                    STT
+                </th>
+                <th width="15%">
+                    Mã phụ tùng
+                </th>
+                <th width="30%">
+                    Tên phụ tùng
+                </th>
+                <th>
+                    Số lượng
+                </th>
+
+                <th>
+                    Đơn vị tính
+                </th>
+                <th>
+                    Giá bán lẻ
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @count
+                    </td>
+
+                    <td>
+                        @item.HANGHOA.MaHH
+                    </td>
+                    <td>
+                        @item.HANGHOA.TenHH
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        @item.HANGHOA.DonViTinh
+                    </td>
+                    <td>
+                        @String.Format("{0:0,0}đ", item.HANGHOA.DonGia)
+                    </td>
+
+                </tr>
+                { count++; }
+            }
+        </table>
+
+        <div class="col-2"></div>
+    </div>
+
+    <div class="row" style="padding-bottom:10px; margin-top:20px">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="row" style="margin:auto">
+                <div class="col-4">
+                </div>
+
+                <div class="col-4" style="text-align:center">
+                    @Html.ActionLink("Tạo bảng giá mới", "TaoBangGia","HANGHOA", null, new { @class = "btn btn-details" })
+                </div>
+                <div class="col-2">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+

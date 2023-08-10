@@ -3,8 +3,6 @@
 <link rel="stylesheet" href="~/Content/TaoHoaDon.css" />
 <link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/Content/NCC_Index.css" />
-
-
 <style>
     #hinh {
         background: white url(/Images/Icon/icon_Edit.png) left no-repeat;
@@ -95,25 +93,22 @@
 
         }
     }
-    @if (Session["lstSPBG"] != null)
-    {
-        <tr style="font-weight:bold">
-            <td>
-                Tổng
-            </td>
-            <td colspan="2"></td>
-
-            <td class="soluong">@ViewBag.TotalNumber</td>
-            <td></td>
-            <td class="tongthanhtoan">
-                @String.Format("{0:0,0}đ", @ViewBag.TotalPrice)
-            </td>
-            <td colspan="3"></td>
-
-        </tr>
-
-
-
+    @{ var a = Session["lstSPBG"] as List<DrieUnityGarage.Models.THONGTINSANPHAM>;
+        if (a.Count != 0)
+        {
+            <tr style="font-weight:bold">
+                <td colspan="2">
+                    Tổng cộng
+                </td>
+                <td colspan="2"></td>
+                <td class="soluong">@ViewBag.TotalNumber</td>
+                <td></td>
+                <td class="tongthanhtoan">
+                    @String.Format("{0:0,0}đ", @ViewBag.TotalPrice)
+                </td>
+                <td colspan="2"></td>
+            </tr>
+        }
     }
 
 </table>

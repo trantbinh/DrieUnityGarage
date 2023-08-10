@@ -14,6 +14,66 @@ namespace DrieUnityGarage.Controllers
     public class HANGHOAController : Controller
     {
         private DrieUnityGarageEntities db = new DrieUnityGarageEntities();
+        public ActionResult LayThongTinBangGia()
+        {
+            var bangGia = db.BANGGIAs.ToList();
+            return View(bangGia);   
+        }
+
+        public ActionResult TaoBangGia() {
+            var hh = db.HANGHOAs.Where(m=>m.LoaiHang.Equals("Phụ tùng")).ToList();
+            return View(hh);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult TaoBangGia(List<String> listSanPham)
+        {
+            if (listSanPham !=null)
+            {
+                bool check;
+                var lstBG = db.BANGGIAs.ToList();
+                foreach (var item in lstBG)
+                {
+                    check = XoaBangGia(item.BangGia_MaHH);
+                }
+                List<BANGGIA> bangGia = new List<BANGGIA>();
+                for (int i = 0; i < listSanPham.Count(); i++)
+                {
+                    BANGGIA bg = new BANGGIA();
+                    bg.BangGia_MaHH = listSanPham[i];
+                    bangGia.Add(bg);
+                }
+                if (ModelState.IsValid)
+                {
+                    foreach (var item in bangGia)
+                    {
+                        BANGGIA bgDB = new BANGGIA();
+                        bgDB.BangGia_MaHH = item.BangGia_MaHH;
+                        db.BANGGIAs.Add(bgDB);
+                        db.SaveChanges();
+                    }
+                    return RedirectToAction("LayThongTinBangGia");
+
+                }
+
+            }
+            else
+            {
+                ViewBag.ThongBao = "!Lỗi: Tạo bảng giá không thành công! Chọn ít nhất một sản phẩm để tạo bảng giá";
+            }
+            var hh = db.HANGHOAs.Where(m => m.LoaiHang.Equals("Phụ tùng")).ToList();
+            return View(hh);
+
+        }
+        public bool XoaBangGia(String id)
+        {
+            var lstBG = db.BANGGIAs.FirstOrDefault(m=>m.BangGia_MaHH.Equals(id));
+            db.BANGGIAs.Remove(lstBG);
+            db.SaveChanges();
+            return true;
+        }
+
 
         // GET: HANGHOA
         public ActionResult LayDanhSachHangHoa()
@@ -22,7 +82,35 @@ namespace DrieUnityGarage.Controllers
             var hANGHOAs = db.HANGHOAs.Include(h => h.NHACUNGCAP);
             return View(hANGHOAs.ToList());
         }
+        public ActionResult TraCuuHangHoa(String searchString, String LoaiHang = null, String lstDVT = null, String TinhTrang = null)
+        {
+            var hANGHOAs = db.HANGHOAs.Include(h => h.NHACUNGCAP);
+            ViewBag.Keyword = searchString;
+            ViewBag.lstDVT = new SelectList(db.HANGHOAs, "DonViTinh", "DonViTinh");
 
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                searchString = searchString.ToLower();
+                hANGHOAs = hANGHOAs.Where(b => b.TenHH.ToLower().Contains(searchString));
+            }
+            if (LoaiHang != null)
+            {
+                hANGHOAs = hANGHOAs.Where(c => c.LoaiHang.Equals(LoaiHang));
+            }
+            if (lstDVT != null)
+            {
+                hANGHOAs = hANGHOAs.Where(c => c.DonViTinh.Equals(lstDVT));
+            }
+            if (TinhTrang != null)
+            {
+                if (TinhTrang.Equals("Cần nhập hàng"))
+                    hANGHOAs = hANGHOAs.Where(c => c.SoLuongTon <= 5);
+                else hANGHOAs = hANGHOAs.Where(c => c.SoLuongTon > 5);
+
+            }
+            return View(hANGHOAs.ToList());
+
+        }
         // GET: HANGHOA/Details/5
         public ActionResult LayThongTinHangHoa(string id)
         {

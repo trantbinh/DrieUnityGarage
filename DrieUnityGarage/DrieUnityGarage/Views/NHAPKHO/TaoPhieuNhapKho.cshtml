@@ -1,0 +1,129 @@
+﻿@model DrieUnityGarage.Models.NHAPKHO
+
+@{
+    ViewBag.Title = "Tạo phiếu nhập kho";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center; ">
+            <h2>Tạo phiếu nhập kho</h2>
+        </div>
+    </div>
+    <p style="font-size:20px; font-weight:bold">THÔNG TIN CHUNG:</p>
+
+    @if (Session["LayThongTin"] == null)
+    {
+        using (Html.BeginForm("TaoNK_LayThongTin", "NHAPKHO"))
+        {
+            <div class="row " style="margin: 0; margin-top: 10px; font-size: 17px;">
+                <div class="form-group mb-3 col-4">
+                    <label for="MaNK" class="form-label"> Mã phiếu nhập kho: </label>
+                    <input class="form-control w-75" id="MaNK" name="MaXK" readonly value="@ViewBag.MaNK" />
+                </div>
+                <div class="form-group mb-3 col-4">
+                    <label for="NgayLap" class="form-label"> Thời gian lập: </label>
+                    <input class="form-control w-75" id="NgayLap" name="NgayLap" readonly value="@ViewBag.NgayLap" />
+
+                </div>
+                <div class="form-group mb-3 col-4">
+                    <label for="MaNV" class="form-label"> Nhân viên thực hiện: </label>
+                    <input class="form-control w-75" id="MaNV" name="MaNV" readonly value="@ViewBag.MaNV " />
+                </div>
+            </div>
+            <div class="row " style="margin: 0; margin-top: 10px; font-size: 17px;">
+                <div class="form-group mb-3 col-4">
+                    <label for="lstNCC" class="form-label"> Chọn nhà cung cấp: [Mã - Tên] </label>
+                    @Html.DropDownList("lstNCC", null, htmlAttributes: new { @class = "form-control w-75", @required = "true" })
+                </div>
+                <div class="form-group mb-3 col-4">
+                    <label for="NguoiGiao" class="form-label"> Họ tên người giao: </label>
+                    <input class="form-control w-75" id="NguoiGiao" name="NguoiGiao" required value="@ViewBag.NguoiGiao" />
+                </div>
+                <div class="form-group mb-3 col-4">
+                    <label for="SoCT" class="form-label"> Số chứng từ kèm theo (nếu có): </label>
+                    <input class="form-control w-75" id="SoCT" name="SoCT" value="@ViewBag.SoCT" />
+                </div>
+            </div>
+            <div class="row" style="margin-top:20px;">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <div class="row" style="margin:auto">
+                        <div class="col-4">
+                            @Html.ActionLink("< Quay về", "LayDanhSachPhieuNhapKho", null, new { @class = "btn-back" })
+                        </div>
+                        <div class="col-4" style="text-align:center">
+                            <input type="submit" value="Tạo chi tiết phiếu" class="btn btn-primary" />
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+            <div class="row " style="margin: 0; margin-top: 10px; font-size: 17px;">
+                <div class="form-group mb-3 col-4">
+                    <label for="MaNK" class="form-label"> Mã phiếu nhập kho: </label>
+                    <input class="form-control w-75" id="MaNK" name="MaXK" readonly value="@ViewBag.MaNK" />
+                </div>
+                <div class="form-group mb-3 col-4">
+                    <label for="NgayLap" class="form-label"> Thời gian lập: </label>
+                    <input class="form-control w-75" id="NgayLap" name="NgayLap" readonly value="@ViewBag.NgayLap" />
+
+                </div>
+                <div class="form-group mb-3 col-4">
+                    <label for="MaNV" class="form-label"> Nhân viên thực hiện: </label>
+                    <input class="form-control w-75" id="MaNV" name="MaNV" readonly value="@ViewBag.MaNV " />
+                </div>
+            </div>
+            <div class="row " style="margin: 0; margin-top: 10px; font-size: 17px;">
+                <div class="form-group mb-3 col-4">
+                    <label for="lstNCC" class="form-label"> Chọn nhà cung cấp: [Mã - Tên] </label>
+                    <input class="form-control w-75" id="MaNV" name="MaNV" readonly value="@ViewBag.selectedNCC " />
+                </div>
+                <div class="form-group mb-3 col-4">
+                    <label for="NguoiGiao" class="form-label"> Họ tên người giao: </label>
+                    <input class="form-control w-75" id="NguoiGiao" name="NguoiGiao" readonly value="@ViewBag.NguoiGiao" />
+                </div>
+                <div class="form-group mb-3 col-4">
+                    <label for="SoCT" class="form-label"> Số chứng từ kèm theo (nếu có): </label>
+                    <input class="form-control w-75" id="SoCT" name="SoCT" readonly value="@ViewBag.SoCT" />
+                </div>
+            </div>
+            <p style="font-size:20px; font-weight:bold; margin-top:10px;">CHI TIẾT NHẬP KHO:</p>
+            <div class="row">
+                <div class="col-lg-9">
+                    @Html.Action("Partial_TaoNK_LayChiTietPhieuNK", "NHAPKHO")
+                </div>
+                <div class="col-lg-3">
+                    @Html.Action("Partial_TaoNK_ThemChiTietPhieuNK", "NHAPKHO")
+                </div>
+            </div>
+        using (Html.BeginForm("TaoPhieuNhapKho"))
+        {
+
+            <div class="row" style="margin-top:20px;">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <div class="row" style="margin:auto">
+                        <div class="col-4">
+                            @Html.ActionLink("< Quay về", "LayDanhSachPhieuNhapKho", null, new { @class = "btn-back" })
+                        </div>
+                        <div class="col-4" style="text-align:center">
+                            @Html.AntiForgeryToken()
+                            <input type="submit" value="Tạo phiếu" class="btn btn-primary" />
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    }
+</div>

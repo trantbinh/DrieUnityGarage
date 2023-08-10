@@ -1,0 +1,111 @@
+﻿@model List<DrieUnityGarage.Models.CT_TRAGOP>
+@{
+    ViewBag.Title = "CTTG_LayDSThongTin";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/TaoHoaDon.css" />
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<style>
+    #hinh {
+        background: white url(/Images/Icon/icon_Edit.png) left no-repeat;
+        padding-left: 17px;
+    }
+
+    #hinh2 {
+        background: white url(/Images/Icon/icon_Delete.png) left no-repeat;
+        padding-left: 17px;
+    }
+</style>
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+<div class="container-fluid" style="margin-top:30px; padding-left:100px; padding-right:100px">
+    <div class="row">
+        <div class="col-12" style="text-align:center; ">
+            <h2>CHI TIẾT TRẢ GÓP</h2>
+        </div>
+    </div>
+    <p style="font-weight:500; color:red; font-size:18px; text-align:center">@ViewBag.ThongBao</p>
+    <div class="row" style="margin-top:30px;">
+        <div class="col-2"></div>
+        <table class="table table-bordered index-table col-8">
+            <tr>
+                <th>
+                    Số tháng
+                </th>
+                <th w>
+                    Ngày trả
+                </th>
+                <th>
+                    Số tiền trả
+                </th>
+                <th>
+                    Số tiền còn lại
+                </th>
+                <th>
+                    Phiếu thu
+                </th>
+                <th>
+                    Xoá
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.CTTG_Thang
+                    </td>
+
+                    <td>
+                        @String.Format("{0:dd/MM/yyyy}", item.CTTG_NgayTra)
+                    </td>
+                    <td>
+                        @String.Format("{0:0,0}đ", item.CTTG_SoTienTra)
+                    </td>
+                    <td>
+                        @String.Format("{0:0,0}đ", item.CTTG_SoTienConLai)
+                    </td>
+                    <td>
+                        @item.CTTG_MaPT
+                    </td>
+                    <td>
+                        <a href="@Url.Action("CTTG_XoaCT", "TRAGOP", new { id = item.CTTG_MaTG , t =item.CTTG_Thang})" class="btn" style="padding:0" onclick="clicked(event)">
+                            <img alt="" src="@Url.Content("~/Images/Icon/icon_Delete.png")">
+                        </a>
+                        <script>
+                            function clicked(e) {
+                                if (!confirm('Xác nhận xoá chi tiết trả góp?')) {
+                                    e.preventDefault();
+                                }
+                                else {
+                                    alert('Đã xoá chi tiết trả góp')
+                                }
+                            }</script>
+
+                    </td>
+                </tr>
+            }
+            </table>
+            <div class="col-2"></div>
+
+        </div>
+        <div class="row" style="padding-bottom:10px;">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div class="row" style="margin:0">
+                    <div class="col-4">
+                        @Html.ActionLink("< Quay về", "Index", null, new { @class = "btn-back" })
+                    </div>
+                    <div class="col-4" style="text-align:center">
+                        @Html.ActionLink("Tạo thông tin trả góp mới", "CTTG_TaoCT", new { id = Session["MaTG"].ToString() }, new { @class = "btn btn-success" })
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+</div>
+
+
+
+

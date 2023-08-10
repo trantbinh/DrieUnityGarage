@@ -19,16 +19,9 @@
 
             <script>
                 function myFunction() {
-                    alert("Vui lòng lấy dữ liệu tiếp nhận trước khi thêm hoá đơn");
+                    alert("Vui lòng lấy dữ liệu tiếp nhận trước khi thêm báo giá");
                 }
             </script>
-            <script>
-                function myFunction2() {
-                    alert("Không thể thêm! Số lượng sản phẩm vượt số lượng còn trong kho");
-                }
-            </script>
-
-
             @if (Session["DaLayThongTinTiepNhan"] == null)
             {
                 <button onclick="myFunction()" class="btn btn-info">Thêm vào báo giá</button>
@@ -38,20 +31,7 @@
                 <input type="submit" value="Thêm vào hoá đơn" class="btn btn-info" />
 
             }
-            @*else if (Session["QuaTonKho"] != null)
-                {
-                    <button onclick="myFunction2()" class="btn btn-info">Thêm vào hoá đơn</button>
-
-
-
-                    }
-                    else if(Session["DaLayThongTinTiepNhan"] != null)
-                    {
-                    <input type="submit" value="Thêm vào hoá đơn" class="btn btn-info" />
-                }
-            *@
         </div>
-
 
     </div>
 }

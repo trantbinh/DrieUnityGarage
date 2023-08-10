@@ -1,0 +1,73 @@
+﻿@model IEnumerable<DrieUnityGarage.Models.PHIEUTHU>
+
+@{
+    ViewBag.Title = "Danh sách phiếu thu";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-5">
+            <h2>Danh sách phiếu xuất kho </h2>
+        </div>
+        <div class="col-lg-5">
+        </div>
+        <div class="col-lg-2">
+            @Html.ActionLink("Tạo mới", "TaoPhieuThu", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+    <table class="table index-table" style="margin-top:20px;">
+        <tr>
+            <th>
+                Mã phiếu thu
+            </th>
+
+            <th>
+                Ngày lập phiếu
+            </th>
+            <th>
+                Số tiền thu
+            </th>
+            <th>
+                Người nộp
+            <th>
+                Người thu
+            </th>
+            <th width="10%"></th>
+            <th width="10%"></th>
+            <th width="10%"></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaPT)
+                </td>
+
+                <td>
+                    @String.Format("{0:dd/MM/yyyy}", item.NgayLap)
+                </td>
+                <td>
+                    @String.Format("{0:0,0}đ", item.SoTien)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KHACHHANG.MaKH) - @Html.DisplayFor(modelItem => item.KHACHHANG.HoTenKH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NHANVIEN.MaNV) - @Html.DisplayFor(modelItem => item.NHANVIEN.HoTenNV)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "SuaPhieuThu", new { id = item.MaPT }, new { @class = "btn btn-success" })
+                </td>
+                <td>
+                    @Html.ActionLink("Chi tiết", "LayThongTinPhieuThu", new { id = item.MaPT }, new { @class = "btn btn-details" })
+                </td>
+                <td>
+                    @Html.ActionLink("Xoá", "XoaPhieuThu", new { id = item.MaPT }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

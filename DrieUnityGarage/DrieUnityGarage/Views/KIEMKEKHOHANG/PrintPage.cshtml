@@ -1,0 +1,84 @@
+﻿@model List<DrieUnityGarage.Models.CT_KIEMKEKHOHANG>
+@{
+    ViewBag.Title = "PrintPage";
+    Layout = "~/Views/Shared/_BlankLayout.cshtml";
+}
+@{ var count = 1;}
+
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+<div class="container-fluid" style="margin-top:30px; padding-left:70px; padding-right:70px">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center; ">
+            <h2>Kiểm kê kho hàng</h2>
+        </div>
+    </div>
+    <p style="font-size:20px; font-weight:bold">THÔNG TIN CHUNG:</p>
+    <div class="row " style="margin: 0; margin-top: 10px; font-size: 17px;">
+        <div class="form-group mb-3 col-4">
+            <label for="MaBCTK" class="form-label"> Mã báo cáo tồn kho: </label>
+            <div class="form-control w-75" id="MaHH">@ViewBag.MaBC</div>
+        </div>
+        <div class="form-group mb-3 col-4">
+            <label for="NgayLap" class="form-label"> Ngày lập báo cáo: </label>
+            <div class="form-control w-75" id="MaHH">@ViewBag.NgayLap</div>
+
+        </div>
+        <div class="form-group mb-3 col-4">
+            <label for="MaNV" class="form-label">  Nhân viên thực hện: </label>
+            <div class="form-control w-75" id="MaHH">@ViewBag.NhanVien</div>
+        </div>
+    </div>
+    <p style="font-size:20px; font-weight:bold; margin-top:20px;">DANH SÁCH HÀNG HOÁ KIỂM KÊ: </p>
+    <div class="row" style="margin-top:30px;">
+        <table class="col-8 table table-bordered">
+            <tr>
+                <th rowspan="2">
+                    STT
+                </th>
+                <th rowspan="2">
+                    Hàng hoá
+                </th>
+                <th rowspan="2">Đơn vị tính</th>
+                <th rowspan="2">Đơn giá</th>
+                <th colspan="2">Theo sổ sách kế toán</th>
+                <th colspan="2">Theo kiểm kê</th>
+
+            </tr>
+            <tr>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@count</td>
+                    <td>@item.HANGHOA.TenHH</td>
+                    <td>@item.HANGHOA.DonViTinh</td>
+                    <td> @String.Format("{0:0,0}đ", item.HANGHOA.DonGia)</td>
+                    <td>
+                        @item.CTKK_SoLuongSoSach
+                    </td>
+                    <td>
+                        @item.CTKK_ThanhTienSoSach
+                    </td>
+                    <td>
+                        @item.CTKK_SoLuongKiemKe
+                    </td>
+                    <td>
+                        @item.CTKK_ThanhTienKiemKe
+                    </td>
+
+                </tr>
+                { count++; }
+
+            }
+
+        </table>
+
+
+    </div>
+</div>

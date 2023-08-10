@@ -14,6 +14,13 @@ namespace DrieUnityGarage.Models
     
     public partial class TRAGOP
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TRAGOP()
+        {
+            this.CT_TRAGOP = new HashSet<CT_TRAGOP>();
+            this.THONGTINTHANHTOANs = new HashSet<THONGTINTHANHTOAN>();
+        }
+    
         public string MaTG { get; set; }
         public Nullable<System.DateTime> NgayLap { get; set; }
         public string TG_MaHD { get; set; }
@@ -23,8 +30,13 @@ namespace DrieUnityGarage.Models
         public Nullable<double> TyLeTraGop { get; set; }
         public Nullable<int> ThoiHanTra { get; set; }
         public Nullable<decimal> SoTienDaTra { get; set; }
+        public Nullable<decimal> SoTienTraHangThang { get; set; }
+        public string TG_MaNV { get; set; }
     
-        public virtual HOADON HOADON { get; set; }
-        public virtual KHACHHANG KHACHHANG { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CT_TRAGOP> CT_TRAGOP { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<THONGTINTHANHTOAN> THONGTINTHANHTOANs { get; set; }
+        public virtual NHANVIEN NHANVIEN { get; set; }
     }
 }

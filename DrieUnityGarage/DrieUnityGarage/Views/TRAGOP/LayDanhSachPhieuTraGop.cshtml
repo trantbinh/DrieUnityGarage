@@ -1,0 +1,92 @@
+﻿@model IEnumerable<DrieUnityGarage.Models.TRAGOP>
+
+@{
+    ViewBag.Title = "LayDanhSachPhieuTraGop";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-5">
+            <h2>Danh sách phiếu đăng ký trả góp</h2>
+        </div>
+        <div class="col-lg-5">
+        </div>
+        <div class="col-lg-2">
+            @Html.ActionLink("Tạo mới", "TaoPhieuTraGop", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+    <table class="table index-table" style="margin-top:20px;">
+        <tr>
+            <th>Mã phiếu</th>
+            <th>
+                Ngày lập
+            </th>
+            <th>
+                Mã hoá đơn
+            </th>
+            <th>
+                Tổng trả góp
+            </th>
+            <th>
+                Ngày trả định kỳ
+            </th>
+            <th>
+                Thời hạn
+            </th>
+            <th>
+                Còn lại
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaTG)
+
+                </td>
+                <td>
+                    @String.Format("{0:dd/MM/yyyy}", item.NgayLap)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TG_MaHD)
+                </td>
+                <td>
+                    @String.Format("{0:0,0}đ", item.SoTienTraGop)
+                </td>
+                <td>
+                    @String.Format("{0:dd/MM/yyyy}", item.NgayTraDinhKi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThoiHanTra) tháng
+                </td>
+                <td>
+                    @{var conLai = item.SoTienTraGop - item.SoTienDaTra;}
+                    @String.Format("{0:0,0}đ", conLai)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "SuaPhieuTraGop", new { id = item.MaTG }, new { @class = "btn btn-success" })
+                </td>
+                <td>
+                    @Html.ActionLink("Chi tiết", "LayThongTinPhieuTraGop", new { id = item.MaTG }, new { @class = "btn btn-details" })
+                </td>
+                <td>
+                    @Html.ActionLink("Xoá", "XoaPhieuTraGop", new { id = item.MaTG }, new { @class = "btn btn-danger" })
+                </td>
+                <td>
+                    @Html.ActionLink("Cập nhật", "CTTG_LayDSThongTin", new { id = item.MaTG }, new { @class = "btn btn-warning" })
+                </td>
+
+            </tr>
+        }
+
+    </table>
+</div>

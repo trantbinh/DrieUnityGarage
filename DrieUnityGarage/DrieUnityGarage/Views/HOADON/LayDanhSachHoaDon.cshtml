@@ -15,7 +15,6 @@
         <div class="col-lg-5">
         </div>
         <div class="col-lg-2">
-            @Html.ActionLink("Tạo mới", "ThemHoaDon", null, new { @class = "btn btn-primary" })
         </div>
     </div>
     <table class="table">
@@ -41,7 +40,6 @@
             <th></th>
             <th></th>
             <th></th>
-            <th></th>
         </tr>
 
         @foreach (var item in Model)
@@ -54,7 +52,7 @@
                     @String.Format("{0:dd/MM/yyyy}", item.NgayLap)
                 </td>
                 <td>
-                    @String.Format("{0:0,0}", item.TongThanhToan)
+                    @String.Format("{0:0,0}đ", item.TongThanhToan)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.HD_MaTN)
@@ -66,19 +64,13 @@
                     @Html.DisplayFor(modelItem => item.PHUONGTIEN.BienSoXe)
                 </td>
                 <td>
-                    @Html.ActionLink("Sửa", "SuaHoaDon", new { id = item.MaHD }, new { @class = "btn btn-success" })
-
-                </td>
-                <td>
                     @Html.ActionLink("Chi tiết", "XemThongTinHoaDon", new { id = item.MaHD }, new { @class = "btn btn-details" })
 
                 </td>
                 <td>
                     @Html.ActionLink("Xoá", "XoaHoaDon", new { id = item.MaHD }, new { @class = "btn btn-danger" })
                 </td>
-                <td>
-                    @Html.ActionLink("Xuất kho", "TaoPhieuXuatKho_PhieuBG", "XUATKHO", new { idBG = item.MaHD }, new { @class = "btn btn-warning" })
-                </td>
+
             </tr>
         }
     </table>

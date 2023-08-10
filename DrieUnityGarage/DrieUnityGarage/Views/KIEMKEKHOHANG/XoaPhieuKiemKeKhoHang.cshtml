@@ -1,0 +1,69 @@
+﻿@model DrieUnityGarage.Models.KIEMKEKHOHANG
+
+@{
+    ViewBag.Title = "Xoá phiếu kiểm kê kho hàng";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+<div class="container-fluid" style="margin-top:30px; padding-left:70px; padding-right:70px">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center; ">
+            <h2 style="color: red">Xác nhận xoá phiếu kiểm kê</h2>
+        </div>
+    </div>
+
+    <p style="font-size:20px; font-weight:bold">THÔNG TIN CHUNG:</p>
+    <div class="row " style="margin: 0; margin-top: 10px; font-size: 17px;">
+        <div class="form-group mb-3 col-4">
+            <label for="MaBCTK" class="form-label"> Mã báo cáo tồn kho: </label>
+            <div class="form-control w-75" id="MaHH">@ViewBag.MaBC</div>
+        </div>
+        <div class="form-group mb-3 col-4">
+            <label for="NgayLap" class="form-label"> Ngày lập báo cáo: </label>
+            <div class="form-control w-75" id="MaHH">@ViewBag.NgayLap</div>
+
+        </div>
+        <div class="form-group mb-3 col-4">
+            <label for="MaNV" class="form-label">  Nhân viên thực hện: </label>
+            <div class="form-control w-75" id="MaHH">@ViewBag.NhanVien</div>
+        </div>
+    </div>
+    <p style="font-size:20px; font-weight:bold; margin-top:20px;">DANH SÁCH HÀNG HOÁ KIỂM KÊ: </p>
+    <div class="row" style="margin-top:30px;">
+        @Html.Action("Partial_XemKK_ChiTietKiemKe", "KIEMKEKHOHANG", new { id = Model.MaKK })
+
+    </div>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="row" style="padding-bottom:10px; margin-top:20px;">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <div class="row" style="margin:0">
+
+                    <div class="col-4">
+                        @Html.ActionLink("< Quay về", "LayDanhSachPhieuKiemKeKhoHang", null, new { @class = "btn-back" })
+                    </div>
+                    <div class="col-4" style="text-align:center">
+                        @{
+                            <input type="submit" value="Xác nhận xoá" class="btn btn-danger" onclick="clicked(event)" />
+                            <script>
+                                    function clicked(e) {
+                                        if (!confirm('Xác nhận xoá phiếu kiểm kê?')) {
+                                            e.preventDefault();
+                                        }
+
+                                    }</script>
+                        }
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    }
+</div>

@@ -18,8 +18,9 @@ namespace DrieUnityGarage.Models
         public HANGHOA()
         {
             this.BAOHANHs = new HashSet<BAOHANH>();
+            this.CT_BAOCAOTONKHO = new HashSet<CT_BAOCAOTONKHO>();
             this.CT_BAOGIA = new HashSet<CT_BAOGIA>();
-            this.CT_HOADON = new HashSet<CT_HOADON>();
+            this.CT_KIEMKEKHOHANG = new HashSet<CT_KIEMKEKHOHANG>();
             this.CT_NHAPKHO = new HashSet<CT_NHAPKHO>();
             this.CT_XUATKHO = new HashSet<CT_XUATKHO>();
         }
@@ -34,12 +35,15 @@ namespace DrieUnityGarage.Models
         public string HinhAnh { get; set; }
         public string HH_MaNCC { get; set; }
     
+        public virtual BANGGIA BANGGIA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BAOHANH> BAOHANHs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CT_BAOCAOTONKHO> CT_BAOCAOTONKHO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CT_BAOGIA> CT_BAOGIA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CT_HOADON> CT_HOADON { get; set; }
+        public virtual ICollection<CT_KIEMKEKHOHANG> CT_KIEMKEKHOHANG { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CT_NHAPKHO> CT_NHAPKHO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

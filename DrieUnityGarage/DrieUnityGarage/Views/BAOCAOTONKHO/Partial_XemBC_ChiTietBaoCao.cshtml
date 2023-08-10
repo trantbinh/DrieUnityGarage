@@ -1,0 +1,59 @@
+﻿@model List<DrieUnityGarage.Models.CT_BAOCAOTONKHO>
+
+<link rel="stylesheet" href="~/Content/TaoHoaDon.css" />
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+@{ var count = 1;}
+<table class="table table-bordered index-table">
+    <tr>
+        <th>
+            STT
+        </th>
+        <th>
+            Mã hàng hoá
+        </th>
+        <th>
+            Tên hàng hoá
+        </th>
+        <th>
+            ĐVT
+        </th>
+        <th>
+            Số lượng tồn
+        </th>
+        <th>
+            Nhà cung cấp
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @count
+            </td>
+
+            <td>
+                @item.CTBCTK_MaHH
+            </td>
+            <td>
+                @item.HANGHOA.TenHH
+            </td>
+
+            <td>
+                @item.HANGHOA.DonViTinh
+            </td>
+
+            <td>
+                @item.CTBCTK_SoLuongTonKho
+            </td>
+
+            <td>
+                @item.CTBCTK_NhaCungCap
+
+            </td>
+        </tr>
+        { count++; }
+    }
+</table>

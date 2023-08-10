@@ -198,7 +198,6 @@ namespace DrieUnityGarage.Controllers
             List<THONGTINKHACHHANG> lstKhachHang = LayDanhSachKhachHangDB();
             ViewBag.DL_MaKH = new SelectList(lstKhachHang, "MaKH", "ThongTin", dATLICH.DL_MaKH);
 
-
             //Lấy danh sách xe từ database sau đó lọc ra những xe của khách hàng
             var xe = LayDanhSachXeDB();
             List<THONGTINPHUONGTIEN> lstXe = new List<THONGTINPHUONGTIEN>();
