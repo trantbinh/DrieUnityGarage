@@ -1,0 +1,106 @@
+﻿@model DrieUnityGarage.Models.BANGIAOXE
+@{
+    ViewBag.Title = "SuaBanGiaoXe";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center">
+            <h2>Chỉnh sửa thông tin bàn giao</h2>
+        </div>
+    </div>
+    @using (Html.BeginForm())
+    {
+        <div class="container col-6" style="margin-top: 10px; font-size:17px;">
+
+
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.MaBG)
+
+
+                <div class="form-group mb-3">
+                    <label for="MaDGDV" class="form-label"> Mã đánh giá: </label>
+                    <input class="col-12 form-control" name="MaDGDV" id="MaTN" value="@Model.MaBG" disabled />
+                </div>
+                <div class="form-group mb-3">
+                    <label for="NgayLap" class="form-label"> Ngày lập: </label>
+                    <input class="col-12 form-control" name="NgayLap" id="MaTN" value="@Model.NgayLap" disabled />
+                </div>
+                <div class="form-group mb-3">
+                    <label for="DGDV_MaTN" class="form-label"> Mã tiếp nhận: </label>
+                    <input class="col-12 form-control" name="DGDV_MaTN" id="MaTN" value="@Model.BG_MaTN" disabled />
+                </div>
+                <table class="table index-table" style="margin-top:20px;">
+                    <tr>
+                        <td>
+                            Đánh giá tình trạng
+                        </td>
+                        <td>
+                            <input type="radio" name="MucDoChatLuong" value="1" />Rất tệ
+                        </td>
+                        <td>
+                            <input type="radio" name="MucDoChatLuong" value="2" />Tệ
+                        </td>
+                        <td>
+                            <input type="radio" name="MucDoChatLuong" value="3" />Bình thường
+                        </td>
+                        <td>
+                            <input type="radio" name="MucDoChatLuong" value="4" />Tốt
+                        </td>
+                        <td>
+                            <input type="radio" name="MucDoChatLuong" value="5" />Rất tốt
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Đánh giá trang bị
+                        </td>
+                        <td>
+                            <input type="radio" name="MucDoDichVu" value="1" />Rất tệ
+                        </td>
+                        <td>
+                            <input type="radio" name="MucDoDichVu" value="2" />Tệ
+                        </td>
+                        <td>
+                            <input type="radio" name="MucDoDichVu" value="3" />Bình thường
+                        </td>
+                        <td>
+                            <input type="radio" name="MucDoDichVu" value="4" />Tốt
+                        </td>
+                        <td>
+                            <input type="radio" name="MucDoDichVu" value="5" />Rất tốt
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+        </div>
+        <div class="row" style="padding-bottom:10px;">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <div class="row" style="margin:0">
+                    <div class="col-4">
+                        @Html.ActionLink("< Quay về", "LayDanhSachBanGiaoXe", null, new { @class = "btn-back" })
+                    </div>
+                    <div class="col-4" style="text-align:center">
+                        <input type="submit" value="Lưu chỉnh sửa" class="btn btn-success" />
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    }
+
+</div>
+
+
