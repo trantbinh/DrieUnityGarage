@@ -133,17 +133,10 @@
     <Compile Include="App_Start\BundleConfig2.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-
     <Compile Include="Controllers\BANGIAOXEController.cs" />
-
     <Compile Include="Controllers\BAOCAOTONKHOController.cs" />
-
     <Compile Include="Controllers\BAOGIAController.cs" />
-
     <Compile Include="Controllers\BAOHANHController.cs" />
-    <Compile Include="Controllers\CT_BAOGIAController.cs" />
-    <Compile Include="Controllers\CT_HOADONController.cs" />
-
     <Compile Include="Controllers\DATLICHController.cs" />
     <Compile Include="Controllers\DANHGIATINHTRANGController.cs" />
     <Compile Include="Controllers\HANGHOAController.cs" />
@@ -153,14 +146,11 @@
     <Compile Include="Controllers\KIEMKEKHOHANGController.cs" />
     <Compile Include="Controllers\NHACUNGCAPController.cs" />
     <Compile Include="Controllers\NHANVIENController.cs" />
-
     <Compile Include="Controllers\PHANHOIDICHVUController.cs" />
     <Compile Include="Controllers\THONGTINTHANHTOANController.cs" />
-
     <Compile Include="Controllers\NHAPKHOController.cs" />
     <Compile Include="Controllers\PHIEUTHUController.cs" />
     <Compile Include="Controllers\PHUONGTIENController.cs" />
-
     <Compile Include="Controllers\THONGTINTIEPNHANController.cs" />
     <Compile Include="Controllers\TRAGOPController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -527,13 +517,11 @@
     <Content Include="Views\DatLich\TaoThongTinDatLich.cshtml" />
     <Content Include="Views\DatLich\SuaThongTinDatLich.cshtml" />
     <Content Include="Views\DatLich\XoaThongTinDatLich.cshtml" />
-
     <Content Include="Views\BAOHANH\LayDanhSachThongTinBaoHanh.cshtml" />
     <Content Include="Views\BAOHANH\LayThongTinBaoHanh.cshtml" />
     <Content Include="Views\BAOHANH\TaoThongTinBaoHanh.cshtml" />
     <Content Include="Views\BAOHANH\SuaThongTinBaoHanh.cshtml" />
     <Content Include="Views\BAOHANH\XoaThongTinBaoHanh.cshtml" />
-
     <Content Include="Views\PHANHOIDICHVU\LayDanhSachPhanHoiDichVu.cshtml" />
     <Content Include="Views\PHANHOIDICHVU\ThemPhanHoiDichVu.cshtml" />
     <Content Include="Views\PHANHOIDICHVU\SuaThongTinPhanHoiDV.cshtml" />
@@ -549,8 +537,6 @@
     <Content Include="Views\BANGIAOXE\XoaThongTinBanGiaoXe.cshtml" />
     <Content Include="Views\BANGIAOXE\XemThongTinBanGiaoXe.cshtml" />
     <Content Include="Views\PHANHOIDICHVU\LayThongTinPhanHoiDichVu.cshtml" />
-
-
     <Content Include="Views\NHAPKHO\TaoPhieuNhapKho.cshtml" />
     <Content Include="Views\NHAPKHO\XoaPhieuNhapKho.cshtml" />
     <Content Include="Views\NHAPKHO\LayThongTinPhieuNhapKho.cshtml" />
@@ -606,8 +592,6 @@
     <Content Include="Views\PHUONGTIEN\LayThongTinPhuongTien.cshtml" />
     <Content Include="Views\PHUONGTIEN\SuaThongTinPhuongTien.cshtml" />
     <Content Include="Views\PHUONGTIEN\LayDanhSachPhuongTien.cshtml" />
-
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

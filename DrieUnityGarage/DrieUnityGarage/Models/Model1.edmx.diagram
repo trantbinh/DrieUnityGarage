@@ -79,6 +79,8 @@
         <AssociationConnector Association="DrieUnityGarageModel.FK_THONGTINTHANHTOAN_TRAGOP" ManuallyRouted="false" />
         <AssociationConnector Association="DrieUnityGarageModel.FK_CTTRAGOP_PHIEUTHY" />
         <AssociationConnector Association="DrieUnityGarageModel.FK_TRAGOP_NHANVIEN" />
+        <AssociationConnector Association="DrieUnityGarageModel.FK_CTHOADON_HANGHOA" />
+        <AssociationConnector Association="DrieUnityGarageModel.FK_CTHOADON_HOADON" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -281,21 +281,6 @@ namespace DrieUnityGarage.Controllers
 
 
 
-
-        public List<THONGTINTIEPNHANXE> LayDanhSachTiepNhanDB()
-        {
-            var newlstKH = new List<THONGTINTIEPNHANXE>();
-            var khDB = db.THONGTINTIEPNHANs.Where(m=>m.TrangThai.Equals("Chưa hoàn thành")).ToList();
-            int c = khDB.Count();
-            for (int i = 0; i < c; i++)
-            {
-                newlstKH.Add(new THONGTINTIEPNHANXE(khDB[i].MaTN));
-            }
-            Session.Remove("lstTN");
-            Session["lstTN"] = newlstKH;
-            return newlstKH;
-        }
-
         // GET: HOADON/Create
         public ActionResult ThemHoaDon()
         {
@@ -586,78 +571,11 @@ namespace DrieUnityGarage.Controllers
         //--------------------------DANH SÁCH HOÁ ĐƠN-------------------------------\\
 
         // GET: HOADON
-        public ActionResult LayDanhSachHoaDon()
-        {
-            Session.Remove("DaLayThongTinTiepNhan");
-            Session.Remove("c");
-            Session.Remove("lstSPHD");
-            Session.Remove("MaHD");
-            Session.Remove("MaKH");
-            Session.Remove("MaTN");
-            Session.Remove("BienSoXe");
-            var hOADONs = db.HOADONs.Include(h => h.KHACHHANG).Include(h => h.PHUONGTIEN).Include(h => h.THONGTINTHANHTOAN).Include(h => h.THONGTINTIEPNHAN);
-            return View(hOADONs.ToList());
-        }
 
         //--------------------------XEM CHI TIẾT HOÁ ĐƠN-------------------------------\\
 
         // GET: HOADON/Details/5
-        public ActionResult XemThongTinHoaDon(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            HOADON hOADON = db.HOADONs.Find(id);
-            if (hOADON == null)
-            {
-                return HttpNotFound();
-            }
-
-            //Lấy ra thông tin của khách hàng có mã khách hàng là từ dropdown
-            THONGTINTIEPNHANXE TTTN = new THONGTINTIEPNHANXE(hOADON.HD_MaTN);
-
-            //Tạo 1 String chứa các thông tin của khách hàng để hiển thị
-            String selectedTN = TTTN.MaTN + " - " + TTTN.MaKH + " - " + TTTN.BienSoXe;
-
-           ViewBag.selectedTiepNhan= selectedTN;
-
-            //Lấy ra các thông tin cần thiết
-            String tenKH = db.KHACHHANGs.Find(TTTN.MaKH).HoTenKH;
-            String kh = TTTN.MaKH + " - " + tenKH;
-            ViewBag.KhachHang = kh;
-            ViewBag.BienSoXe = TTTN.BienSoXe;
-
-            String tenNV = db.NHANVIENs.Find(TTTN.MaNV).HoTenNV; ;
-            String nv = TTTN.MaNV + " - " + tenNV;
-            ViewBag.NhanVien = nv;
-
-            return View(hOADON);
-        }
-        public ActionResult Partial_XemHD_LayDuLieuCTHD(String id)
-        {
-            var cthd = db.CT_HOADON.Where(m => m.CTHD_MaHD.Equals(id)).ToList();
-            List<THONGTINSANPHAM> lstHH = new List<THONGTINSANPHAM>();
-            for(int i =0; i< cthd.Count(); i++)
-            {
-                lstHH.Add(new THONGTINSANPHAM(cthd[i].CTHD_MaHH, cthd[i].SoLuong));
-            }
-                int totalNumber = 0;
-                
-                if (lstHH != null)
-                    totalNumber = lstHH.Sum(sp => sp.SoLuong);
-
-                decimal totalPrice = 0;
-                if (lstHH != null)
-                    totalPrice = lstHH.Sum(sp => sp.FinalPrice());
-            
-
-            ViewBag.TotalNumber = totalNumber;
-            ViewBag.TotalPrice = totalPrice;
-
-            return PartialView(lstHH);
-        }
-
+     
 
         public ActionResult Partial_CapNhatHD_LayChiTietHoaDon(string id)
         {

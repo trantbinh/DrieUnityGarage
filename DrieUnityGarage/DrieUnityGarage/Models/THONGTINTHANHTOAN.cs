@@ -27,6 +27,7 @@ namespace DrieUnityGarage.Models
         public Nullable<decimal> TongThanhToan { get; set; }
         public string HinhThuc { get; set; }
         public string TT_TraGop { get; set; }
+        public Nullable<double> TyLeThanhToan { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HOADON> HOADONs { get; set; }
