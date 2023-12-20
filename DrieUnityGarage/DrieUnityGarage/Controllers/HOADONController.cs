@@ -217,6 +217,8 @@ namespace DrieUnityGarage.Controllers
             Session.Remove("DaLayThongTinTiepNhan");
                 Session.Remove("c");
             Session.Remove("lstSPHD");
+            var tn = db.THONGTINTHANHTOANs.ToList();
+            Session["lstTT"] = tn;
 
             var hOADONs = db.HOADONs.Include(h => h.KHACHHANG).Include(h => h.PHUONGTIEN).Include(h => h.THONGTINTHANHTOAN).Include(h => h.THONGTINTIEPNHAN);
             return View(hOADONs.ToList());
@@ -533,19 +535,6 @@ namespace DrieUnityGarage.Controllers
 
                     db.KHACHHANGs.Attach(kHACHHANG);
                     db.Entry(kHACHHANG).Property(s => s.DiemThanhVien).IsModified = true;
-
-                    THONGTINTIEPNHAN TTTN = db.THONGTINTIEPNHANs.FirstOrDefault(m => m.MaTN.Equals(hd.HD_MaTN));
-                    TTTN.TrangThai = "Đã hoàn thành";
-                    TTTN.MaTN = hd.HD_MaTN;
-                    TTTN.TN_MaNV = "";
-                    TTTN.TN_MaKH = "";
-                    TTTN.TN_BienSoXe = "";
-                    TTTN.ThoiGianGiaoDuKien = DateTime.Now;
-                    TTTN.ThoiGianTiepNhan = DateTime.Now;
-                    TTTN.GhiChuKH = "";
-                    db.THONGTINTIEPNHANs.Attach(TTTN);
-                    db.Entry(TTTN).Property(s => s.TrangThai).IsModified = true;
-
 
                     db.SaveChanges();
 

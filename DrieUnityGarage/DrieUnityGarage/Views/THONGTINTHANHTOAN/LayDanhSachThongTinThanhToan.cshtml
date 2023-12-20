@@ -39,8 +39,6 @@
             <th>
                 Tỉ lệ thanh toán
             </th>
-
-            <th></th>
             <th></th>
             <th></th>
         </tr>
@@ -65,9 +63,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TyLeThanhToan) <span>%</span>
-                </td>
-                <td>
-                    @Html.ActionLink("Sửa", "SuaThongTinThanhToan", new { id = item.MaTT }, new { @class = "btn btn-success" })
                 </td>
                 <td>
                     @Html.ActionLink("Chi tiết", "LayThongTinThanhToan", new { id = item.MaTT }, new { @class = "btn btn-details" })

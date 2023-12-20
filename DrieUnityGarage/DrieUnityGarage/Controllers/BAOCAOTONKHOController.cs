@@ -87,8 +87,9 @@ namespace DrieUnityGarage.Controllers
         public ActionResult PrintPage(String id)
         {
             var hanghoa = db.CT_BAOCAOTONKHO.Where(m=>m.CTBCTK_MaBCTK.Equals(id)).ToList();
-            String tenNV = db.NHANVIENs.Find(Session["MaTaiKhoanNV"].ToString()).HoTenNV; ;
-            String nv = Session["MaTaiKhoanNV"].ToString() + " - " + tenNV;
+            String idNV = "NV002";
+            String tenNV = db.NHANVIENs.Find(idNV).HoTenNV; ;
+            String nv = idNV + " - " + tenNV;
             ViewBag.NhanVien = nv;
             ViewBag.MaBC = TaoMaBaoCao();
             ViewBag.NgayLap = DateTime.Now.ToString("dd/MM/yyyy");

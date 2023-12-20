@@ -23,6 +23,8 @@
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.MaBG)
+                @Html.HiddenFor(model => model.NgayLap)
+                @Html.HiddenFor(model => model.BG_MaTN)
 
 
                 <div class="form-group mb-3">
@@ -43,19 +45,19 @@
                             Đánh giá tình trạng
                         </td>
                         <td>
-                            <input type="radio" name="MucDoChatLuong" value="1" />Rất tệ
+                            <input type="radio" name="DanhGiaTinhTrang" value="1" />Rất tệ
                         </td>
                         <td>
-                            <input type="radio" name="MucDoChatLuong" value="2" />Tệ
+                            <input type="radio" name="DanhGiaTinhTrang" value="2" />Tệ
                         </td>
                         <td>
-                            <input type="radio" name="MucDoChatLuong" value="3" />Bình thường
+                            <input type="radio" name="DanhGiaTinhTrang" value="3" />Bình thường
                         </td>
                         <td>
-                            <input type="radio" name="MucDoChatLuong" value="4" />Tốt
+                            <input type="radio" name="DanhGiaTinhTrang" value="4" />Tốt
                         </td>
                         <td>
-                            <input type="radio" name="MucDoChatLuong" value="5" />Rất tốt
+                            <input type="radio" name="DanhGiaTinhTrang" value="5" checked />Rất tốt
                         </td>
                     </tr>
                     <tr>
@@ -63,26 +65,23 @@
                             Đánh giá trang bị
                         </td>
                         <td>
-                            <input type="radio" name="MucDoDichVu" value="1" />Rất tệ
+                            <input type="radio" name="DanhGiaTrangBi" value="1" />Rất tệ
                         </td>
                         <td>
-                            <input type="radio" name="MucDoDichVu" value="2" />Tệ
+                            <input type="radio" name="DanhGiaTrangBi" value="2" />Tệ
                         </td>
                         <td>
-                            <input type="radio" name="MucDoDichVu" value="3" />Bình thường
+                            <input type="radio" name="DanhGiaTrangBi" value="3" />Bình thường
                         </td>
                         <td>
-                            <input type="radio" name="MucDoDichVu" value="4" />Tốt
+                            <input type="radio" name="DanhGiaTrangBi" value="4" />Tốt
                         </td>
                         <td>
-                            <input type="radio" name="MucDoDichVu" value="5" />Rất tốt
+                            <input type="radio" name="DanhGiaTrangBi" value="5" checked />Rất tốt
                         </td>
                     </tr>
                 </table>
             </div>
-
-
-
         </div>
         <div class="row" style="padding-bottom:10px;">
             <div class="col-3"></div>

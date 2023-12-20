@@ -47,7 +47,7 @@
                     @Html.DisplayFor(modelItem => item.MaBG)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NgayLap)
+                    @String.Format("{0:dd/MM/yyyy}", item.NgayLap)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.BG_MaTN)

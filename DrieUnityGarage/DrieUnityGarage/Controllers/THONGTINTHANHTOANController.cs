@@ -34,13 +34,14 @@ namespace DrieUnityGarage.Controllers
             return View(tHONGTINTHANHTOAN);
         }
 
-        public ActionResult TaoThongTinThanhToan()
+        public ActionResult TaoThongTinThanhToan(String idHD)
         {
             String date = DateTime.Now.ToString("dd/MM/yyyy");
             ViewBag.NgayTT = date;
 
             String idTT = TaoMaThanhToan();
             ViewBag.MaTT = idTT;
+            ViewBag.MaHD = idHD;
            /* ViewBag.TT_MaHD = Session["MaHD_ThanhToan"].ToString(); 
 */
             return View();
@@ -51,18 +52,20 @@ namespace DrieUnityGarage.Controllers
         public ActionResult TaoThongTinThanhToan(String HinhThuc, String lstHD)
         {
             THONGTINTHANHTOAN tHONGTINTHANHTOAN = new THONGTINTHANHTOAN();
+            var hd = db.HOADONs.Find(lstHD);
             if (ModelState.IsValid)
             {
                 String id = TaoMaThanhToan();
                 tHONGTINTHANHTOAN.MaTT = id;
                 tHONGTINTHANHTOAN.TT_MaHD = lstHD;
-                tHONGTINTHANHTOAN.TT_MaKH = Session["MaKH"].ToString();
-                tHONGTINTHANHTOAN.TongThanhToan = null;
+                tHONGTINTHANHTOAN.TT_MaKH = hd.HD_MaKH;
+                tHONGTINTHANHTOAN.TongThanhToan = hd.TongThanhToan;
                 tHONGTINTHANHTOAN.HinhThuc = HinhThuc;
                 tHONGTINTHANHTOAN.TyLeThanhToan = 1;
+                tHONGTINTHANHTOAN.NgayTT=DateTime.Now;
                 db.THONGTINTHANHTOANs.Add(tHONGTINTHANHTOAN);
                 db.SaveChanges();
-                return RedirectToAction("LayDanhSachThongTinThanhToan");
+                return RedirectToAction("LayDanhSachHoaDon","HOADON");
             }
 
             return View(tHONGTINTHANHTOAN);

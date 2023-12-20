@@ -121,8 +121,22 @@ namespace DrieUnityGarage.Controllers
                 bANGIAOXE.BG_MaTN = lstMaTN;
                 bANGIAOXE.DanhGiaTinhTrang = DanhGiaTinhTrang;
                 bANGIAOXE.DanhGiaTrangBi = DanhGiaTrangBi;
-/*                db.BANGIAOXEs.Add(bANGIAOXE);
-                db.SaveChanges();*/
+                db.BANGIAOXEs.Add(bANGIAOXE);
+
+                THONGTINTIEPNHAN TTTN = db.THONGTINTIEPNHANs.FirstOrDefault(m => m.MaTN.Equals(lstMaTN));
+                TTTN.TrangThai = "Đã hoàn thành";
+                TTTN.MaTN = lstMaTN;
+                TTTN.TN_MaNV = "";
+                TTTN.TN_MaKH = "";
+                TTTN.TN_BienSoXe = "";
+                TTTN.ThoiGianGiaoDuKien = DateTime.Now;
+                TTTN.ThoiGianTiepNhan = DateTime.Now;
+                TTTN.GhiChuKH = "";
+                db.THONGTINTIEPNHANs.Attach(TTTN);
+                db.Entry(TTTN).Property(s => s.TrangThai).IsModified = true;
+
+
+                db.SaveChanges();
                 return RedirectToAction("LayDanhSachBanGiaoXe");
             }
             ViewBag.BG_MaTN = new SelectList(db.THONGTINTIEPNHANs, "MaTN", "MaTN", "TN000");
@@ -177,11 +191,10 @@ namespace DrieUnityGarage.Controllers
                     bg.MaBG = id;
                     bg.NgayLap = DateTime.Now;
                     bg.BG_MaTN = Session["MaTN"].ToString();
-                    bg.DanhGiaTinhTrang = 1;
-                    bg.DanhGiaTrangBi = 5;
-                    db.BANGIAOXEs.Attach(bg);
+                    bg.DanhGiaTinhTrang = bg.DanhGiaTinhTrang;
+                    bg.DanhGiaTrangBi = bg.DanhGiaTrangBi;
+                    db.Entry(bg).State = EntityState.Modified;
                     db.SaveChanges();
-                   
                 }
                 Session.Remove("MaHD");
                 Session.Remove("MaKH");
@@ -190,7 +203,7 @@ namespace DrieUnityGarage.Controllers
                 Session.Remove("CheckTN");
                 Session.Remove("lstSPHD");
                 Session.Remove("c");
-                return RedirectToAction("SuaBanGiaoXe");
+                return RedirectToAction("LayDanhSachBanGiaoXe");
             }
 
             return View(bg);
