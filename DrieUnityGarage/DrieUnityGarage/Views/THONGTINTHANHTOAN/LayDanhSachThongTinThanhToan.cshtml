@@ -1,0 +1,78 @@
+﻿@model IEnumerable<DrieUnityGarage.Models.THONGTINTHANHTOAN>
+
+@{
+    ViewBag.Title = "LayDanhSachThongTinThanhToan";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-5">
+            <h2>Danh sách thông tin thanh toán</h2>
+        </div>
+        <div class="col-lg-5">
+        </div>
+    </div>
+    <table class="table index-table" style="margin-top:20px;">
+        <tr>
+            <th>
+                Mã thanh toán
+            </th>
+
+            <th>
+                Ngày thanh toán
+            </th>
+            <th>
+                Mã hoá đơn
+            </th>
+
+            <th>
+                Mã khách hàng
+            </th>
+
+            <th>
+                Hình thức
+            </th>
+            <th>
+                Tỉ lệ thanh toán
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaTT)
+                </td>
+                <td>
+                    @String.Format("{0:dd/MM/yyyy}", item.NgayTT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TT_MaHD)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TT_MaKH)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.HinhThuc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TyLeThanhToan) <span>%</span>
+                </td>
+                <td>
+                    @Html.ActionLink("Chi tiết", "LayThongTinThanhToan", new { id = item.MaTT }, new { @class = "btn btn-details" })
+                </td>
+                <td>
+
+                    @Html.ActionLink("Xoá", "XoaThongTinThanhToan", new { id = item.MaTT, check = 1 }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

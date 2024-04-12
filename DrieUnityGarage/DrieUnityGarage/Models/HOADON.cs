@@ -18,6 +18,7 @@ namespace DrieUnityGarage.Models
         public HOADON()
         {
             this.THONGTINTHANHTOANs = new HashSet<THONGTINTHANHTOAN>();
+            this.CT_HOADON = new HashSet<CT_HOADON>();
         }
     
         public string MaHD { get; set; }
@@ -34,5 +35,7 @@ namespace DrieUnityGarage.Models
         public virtual THONGTINTIEPNHAN THONGTINTIEPNHAN { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<THONGTINTHANHTOAN> THONGTINTHANHTOANs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CT_HOADON> CT_HOADON { get; set; }
     }
 }

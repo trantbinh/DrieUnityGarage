@@ -18,5 +18,8 @@ namespace DrieUnityGarage.Models
         public string CTHD_MaHD { get; set; }
         public Nullable<int> SoLuong { get; set; }
         public Nullable<decimal> ThanhTien { get; set; }
+    
+        public virtual HANGHOA HANGHOA { get; set; }
+        public virtual HOADON HOADON { get; set; }
     }
 }

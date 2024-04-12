@@ -1,0 +1,105 @@
+﻿@model DrieUnityGarage.Models.BANGIAOXE
+@{
+    ViewBag.Title = "ThemBanGiaoXe";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px;">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center; ">
+            <h2>Tạo thông tin bàn giao</h2>
+        </div>
+    </div>
+    @using (Html.BeginForm("ThemBanGiaoXe", "BANGIAOXE"))
+    {
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <p style="font-size:20px; color:red; text-align:center; font-weight:bold">@ViewBag.ThongBao</p>
+        <div class="container col-6" style="margin-top: 10px; font-size:17px;">
+            <hr />
+            <div class="form-group mb-3">
+                <label for="MaBG" class="form-label"> Mã bàn giao: </label>
+                <div class="form-control" id="MaTiepNhan">@ViewBag.MaBG</div>
+            </div>
+            <div class="mb-3">
+                <label for="NgayLap" class="form-label"> Ngày lập: </label>
+                <div class="form-control" id="NgayLap">@ViewBag.NgayLapBG</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="lstMaTN"> Chọn thông tin tiếp nhận</label>
+                @Html.DropDownList("lstMaTN", null, htmlAttributes: new { @class = "form-control", @required="true" })
+                @Html.ValidationMessageFor(model => model.BG_MaTN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row" style="margin:0; padding:0">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <table class="table index-table" style="margin-top:20px;">
+                    <tr>
+                        <td>
+                            Đánh giá tình trạng
+                        </td>
+                        <td>
+                            <input type="radio" name="DanhGiaTinhTrang" value="1" />Rất tệ
+                        </td>
+                        <td>
+                            <input type="radio" name="DanhGiaTinhTrang" value="2" />Tệ
+                        </td>
+                        <td>
+                            <input type="radio" name="DanhGiaTinhTrang" value="3" />Bình thường
+                        </td>
+                        <td>
+                            <input type="radio" name="DanhGiaTinhTrang" value="4" />Tốt
+                        </td>
+                        <td>
+                            <input type="radio" name="DanhGiaTinhTrang" value="5" checked/>Rất tốt
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Đánh giá trang bị
+                        </td>
+                        <td>
+                            <input type="radio" name="DanhGiaTrangBi" value="1" />Rất tệ
+                        </td>
+                        <td>
+                            <input type="radio" name="DanhGiaTrangBi" value="2" />Tệ
+                        </td>
+                        <td>
+                            <input type="radio" name="DanhGiaTrangBi" value="3" />Bình thường
+                        </td>
+                        <td>
+                            <input type="radio" name="DanhGiaTrangBi" value="4" />Tốt
+                        </td>
+                        <td>
+                            <input type="radio" name="DanhGiaTrangBi" value="5" checked/>Rất tốt
+                    </tr>
+                </table>
+            </div>
+            <div class="col-3"></div>
+        </div>
+        <div class="row" style="padding-bottom:10px;">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <div class="row" style="margin:auto">
+                    <div class="col-4">
+                        @Html.ActionLink("< Quay về", "LayDanhSachBanGiaoXe", null, new { @class = "btn-back" })
+                    </div>
+                    <div class="col-4" style="text-align:center">
+                        <input type="submit" value="Tạo thông tin" class="btn btn-primary" />
+                    </div>
+                    <div class="col-4"></div>
+
+                </div>
+            </div>
+            <div class="col-3"></div>
+
+        </div>
+    }
+</div>

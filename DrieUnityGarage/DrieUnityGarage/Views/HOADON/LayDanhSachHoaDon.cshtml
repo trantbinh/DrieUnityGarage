@@ -70,8 +70,35 @@
                 <td>
                     @Html.ActionLink("Xoá", "XoaHoaDon", new { id = item.MaHD }, new { @class = "btn btn-danger" })
                 </td>
+                @{ var lstTT = Session["lstTT"] as List<DrieUnityGarage.Models.THONGTINTHANHTOAN>;
+                    var check = 0;
+
+                    for (int i = 0; i < lstTT.Count(); i++)
+                    {
+                        if (lstTT[i].TT_MaHD.Equals(item.MaHD)) { check = 1; break; }
+                    }
+                    if (check == 1)
+                    {
+                        <td>
+                            <button type="button" class="btn btn-light" style="width:100%" disabled> Đã thanh toán</button>
+                        </td>
+
+                    }
+                    else
+                    {
+
+                        <td>
+                            @Html.ActionLink("Thanh toán", "TaoThongTinThanhToan", "THONGTINTHANHTOAN", new { idHD = item.MaHD }, new { @class = "btn btn-warning" })
+                        </td>
+
+                    }
+
+
+
+
+                }
+
             </tr>
         }
-
     </table>
 </div>

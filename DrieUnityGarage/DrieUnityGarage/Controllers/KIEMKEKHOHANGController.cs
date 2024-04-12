@@ -57,7 +57,7 @@ namespace DrieUnityGarage.Controllers
 
         public ActionResult PrintPage(String id)
         {
-            String idNV = Session["MaTaiKhoanNV"].ToString();
+            String idNV = "NV002";
             String tenNV = db.NHANVIENs.Find(idNV).HoTenNV; ;
             String nv = idNV + " - " + tenNV;
             ViewBag.NhanVien = nv;

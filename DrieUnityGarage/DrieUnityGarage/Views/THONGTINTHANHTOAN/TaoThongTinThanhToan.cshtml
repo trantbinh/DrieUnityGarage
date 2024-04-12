@@ -1,0 +1,85 @@
+﻿@model DrieUnityGarage.Models.THONGTINTHANHTOAN
+@{
+    ViewBag.Title = "TaoThongTinThanhToan";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/NCC_Index.css" />
+
+
+<div class="container-fluid" style="margin-top:30px; padding-left:30px; padding-right:30px">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6" style="text-align:center">
+            <h2>THANH TOÁN HOÁ ĐƠN</h2>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+    @using (Html.BeginForm())
+    {
+        <div class="container col-6">
+
+            @Html.AntiForgeryToken()
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group mb-3">
+                    <label for="MaTT" class="form-label"> Mã thanh toán: </label>
+                    <div class="form-control" id="MaTiepNhan">@ViewBag.MaTT</div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="NgayTT" class="form-label"> Ngày Thanh Toán: </label>
+                    <div class="form-control" id="MaTiepNhan">@ViewBag.NgayTT</div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="lstHD" class="form-label"> Mã hoá đơn: </label>
+                    <input class="form-control" readonly name="lstHD"id ="lstHD" value="@ViewBag.MaHD">
+                </div>
+                @{
+                    var lstHinhThuc = new List<SelectListItem>
+                        ()
+                                    {
+                new SelectListItem()
+                {
+                Text ="Trả góp",
+                Value ="Trả góp"
+                },
+                new SelectListItem()
+                {
+                Text = "Visa",
+                Value = "Visa"
+                },
+                new SelectListItem()
+                {
+                Text = "Tiền mặt",
+                Value = "Tiền mặt"
+                }
+                };
+
+                }
+                <div class="form-group mb-3">
+                    <label for="HinhThuc" class="form-label">  Hình thức thanh toán: </label>
+                    @Html.DropDownList("HinhThuc", lstHinhThuc, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.HinhThuc, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+
+            <div class="row" style="padding-bottom:10px;">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <div class="row" style="margin:auto">
+                        <div class="col-4">
+                            @Html.ActionLink("< Quay về", "LayDanhSachHoaDon", null, new { @class = "btn-back" })
+                        </div>
+                        <div class="col-4" style="text-align:center">
+                            <input type="submit" value="Thanh toán" class="btn btn-primary" />
+                        </div>
+                        <div class="col-4"></div>
+                    </div>
+                </div>
+                <div class="col-3"></div>
+        </div>
+
+    }
+</div>
